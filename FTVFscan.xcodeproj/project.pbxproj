@@ -1,0 +1,601 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		39E32CB2181F9BC9009C911F /* UIDevice+Identifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E32CB1181F9BC9009C911F /* UIDevice+Identifier.m */; };
+		39E32CB5181FA6D2009C911F /* FTVRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */; };
+		39E32CBA181FB77D009C911F /* FTVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E32CB9181FB77D009C911F /* FTVUser.m */; };
+		39E39D1F1820F2B3003D023E /* NSString+NSStringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E39D1E1820F2B3003D023E /* NSString+NSStringUtils.m */; };
+		39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E39D211820F4BB003D023E /* FTVImageProcEngine.m */; };
+		809377F4B37548E694C80943 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17EB1EFD5A21421C90C01507 /* libPods.a */; };
+		8465C63B17F5D1B500A00460 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63A17F5D1B500A00460 /* Foundation.framework */; };
+		8465C63D17F5D1B500A00460 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63C17F5D1B500A00460 /* CoreGraphics.framework */; };
+		8465C63F17F5D1B500A00460 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63E17F5D1B500A00460 /* UIKit.framework */; };
+		8465C64517F5D1B500A00460 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8465C64317F5D1B500A00460 /* InfoPlist.strings */; };
+		8465C64717F5D1B500A00460 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C64617F5D1B500A00460 /* main.m */; };
+		8465C64B17F5D1B500A00460 /* FTVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C64A17F5D1B500A00460 /* FTVAppDelegate.m */; };
+		8465C64E17F5D1B500A00460 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8465C64C17F5D1B500A00460 /* Main.storyboard */; };
+		8465C65117F5D1B500A00460 /* FTVTourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C65017F5D1B500A00460 /* FTVTourViewController.m */; };
+		8465C65417F5D1B500A00460 /* FTVScansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C65317F5D1B500A00460 /* FTVScansViewController.m */; };
+		8465C65617F5D1B500A00460 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8465C65517F5D1B500A00460 /* Images.xcassets */; };
+		8465C65D17F5D1B600A00460 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C65C17F5D1B600A00460 /* XCTest.framework */; };
+		8465C65E17F5D1B600A00460 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63A17F5D1B500A00460 /* Foundation.framework */; };
+		8465C65F17F5D1B600A00460 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63E17F5D1B500A00460 /* UIKit.framework */; };
+		8465C66717F5D1B600A00460 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8465C66517F5D1B600A00460 /* InfoPlist.strings */; };
+		8465C66917F5D1B600A00460 /* FTVFscanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C66817F5D1B600A00460 /* FTVFscanTests.m */; };
+		8465C67417F5D69300A00460 /* FTVCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C67317F5D69300A00460 /* FTVCameraViewController.m */; };
+		8465C67717F5D73B00A00460 /* FTVGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C67617F5D73B00A00460 /* FTVGalleryViewController.m */; };
+		8465C67A17F5D74C00A00460 /* FTVBrandsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C67917F5D74C00A00460 /* FTVBrandsViewController.m */; };
+		8465C67C17F5F30000A00460 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C67B17F5F30000A00460 /* MobileCoreServices.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8465C66017F5D1B600A00460 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8465C62F17F5D1B500A00460 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8465C63617F5D1B500A00460;
+			remoteInfo = FTVFscan;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		17EB1EFD5A21421C90C01507 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		39E32CAE181F990B009C911F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		39E32CB0181F9BC9009C911F /* UIDevice+Identifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Identifier.h"; sourceTree = "<group>"; };
+		39E32CB1181F9BC9009C911F /* UIDevice+Identifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Identifier.m"; sourceTree = "<group>"; };
+		39E32CB3181FA6D2009C911F /* FTVRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVRegisterViewController.h; sourceTree = "<group>"; };
+		39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVRegisterViewController.m; sourceTree = "<group>"; };
+		39E32CB6181FAFD7009C911F /* DLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
+		39E32CB8181FB77D009C911F /* FTVUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVUser.h; sourceTree = "<group>"; };
+		39E32CB9181FB77D009C911F /* FTVUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVUser.m; sourceTree = "<group>"; };
+		39E39D1D1820F2B3003D023E /* NSString+NSStringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSStringUtils.h"; sourceTree = "<group>"; };
+		39E39D1E1820F2B3003D023E /* NSString+NSStringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSStringUtils.m"; sourceTree = "<group>"; };
+		39E39D201820F4BB003D023E /* FTVImageProcEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVImageProcEngine.h; sourceTree = "<group>"; };
+		39E39D211820F4BB003D023E /* FTVImageProcEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVImageProcEngine.m; sourceTree = "<group>"; };
+		4756BE2E181EA80500B39EB7 /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		62E03682EDFA4EAAB4576DB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		8465C63717F5D1B500A00460 /* FTVFscan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FTVFscan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8465C63A17F5D1B500A00460 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8465C63C17F5D1B500A00460 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8465C63E17F5D1B500A00460 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8465C64217F5D1B500A00460 /* FTVFscan-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FTVFscan-Info.plist"; sourceTree = "<group>"; };
+		8465C64417F5D1B500A00460 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8465C64617F5D1B500A00460 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8465C64817F5D1B500A00460 /* FTVFscan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FTVFscan-Prefix.pch"; sourceTree = "<group>"; };
+		8465C64917F5D1B500A00460 /* FTVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTVAppDelegate.h; sourceTree = "<group>"; };
+		8465C64A17F5D1B500A00460 /* FTVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTVAppDelegate.m; sourceTree = "<group>"; };
+		8465C64D17F5D1B500A00460 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8465C64F17F5D1B500A00460 /* FTVTourViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTVTourViewController.h; sourceTree = "<group>"; };
+		8465C65017F5D1B500A00460 /* FTVTourViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTVTourViewController.m; sourceTree = "<group>"; };
+		8465C65217F5D1B500A00460 /* FTVScansViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTVScansViewController.h; sourceTree = "<group>"; };
+		8465C65317F5D1B500A00460 /* FTVScansViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTVScansViewController.m; sourceTree = "<group>"; };
+		8465C65517F5D1B500A00460 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8465C65B17F5D1B600A00460 /* FTVFscanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTVFscanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8465C65C17F5D1B600A00460 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		8465C66417F5D1B600A00460 /* FTVFscanTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FTVFscanTests-Info.plist"; sourceTree = "<group>"; };
+		8465C66617F5D1B600A00460 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8465C66817F5D1B600A00460 /* FTVFscanTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTVFscanTests.m; sourceTree = "<group>"; };
+		8465C67217F5D69300A00460 /* FTVCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVCameraViewController.h; sourceTree = "<group>"; };
+		8465C67317F5D69300A00460 /* FTVCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVCameraViewController.m; sourceTree = "<group>"; };
+		8465C67517F5D73B00A00460 /* FTVGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVGalleryViewController.h; sourceTree = "<group>"; };
+		8465C67617F5D73B00A00460 /* FTVGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVGalleryViewController.m; sourceTree = "<group>"; };
+		8465C67817F5D74C00A00460 /* FTVBrandsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVBrandsViewController.h; sourceTree = "<group>"; };
+		8465C67917F5D74C00A00460 /* FTVBrandsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVBrandsViewController.m; sourceTree = "<group>"; };
+		8465C67B17F5F30000A00460 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8465C63417F5D1B500A00460 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8465C67C17F5F30000A00460 /* MobileCoreServices.framework in Frameworks */,
+				8465C63D17F5D1B500A00460 /* CoreGraphics.framework in Frameworks */,
+				8465C63F17F5D1B500A00460 /* UIKit.framework in Frameworks */,
+				8465C63B17F5D1B500A00460 /* Foundation.framework in Frameworks */,
+				809377F4B37548E694C80943 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8465C65817F5D1B600A00460 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8465C65D17F5D1B600A00460 /* XCTest.framework in Frameworks */,
+				8465C65F17F5D1B600A00460 /* UIKit.framework in Frameworks */,
+				8465C65E17F5D1B600A00460 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		39E32CAF181F9BAE009C911F /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				39E32CB6181FAFD7009C911F /* DLog.h */,
+				39E32CB0181F9BC9009C911F /* UIDevice+Identifier.h */,
+				39E32CB1181F9BC9009C911F /* UIDevice+Identifier.m */,
+				39E39D1D1820F2B3003D023E /* NSString+NSStringUtils.h */,
+				39E39D1E1820F2B3003D023E /* NSString+NSStringUtils.m */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		39E32CB7181FB33D009C911F /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				39E32CB8181FB77D009C911F /* FTVUser.h */,
+				39E32CB9181FB77D009C911F /* FTVUser.m */,
+				39E39D201820F4BB003D023E /* FTVImageProcEngine.h */,
+				39E39D211820F4BB003D023E /* FTVImageProcEngine.m */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		8465C62E17F5D1B500A00460 = {
+			isa = PBXGroup;
+			children = (
+				8465C64017F5D1B500A00460 /* FTVFscan */,
+				8465C66217F5D1B600A00460 /* FTVFscanTests */,
+				8465C63917F5D1B500A00460 /* Frameworks */,
+				8465C63817F5D1B500A00460 /* Products */,
+				62E03682EDFA4EAAB4576DB0 /* Pods.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		8465C63817F5D1B500A00460 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8465C63717F5D1B500A00460 /* FTVFscan.app */,
+				8465C65B17F5D1B600A00460 /* FTVFscanTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8465C63917F5D1B500A00460 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8465C67B17F5F30000A00460 /* MobileCoreServices.framework */,
+				8465C63A17F5D1B500A00460 /* Foundation.framework */,
+				8465C63C17F5D1B500A00460 /* CoreGraphics.framework */,
+				8465C63E17F5D1B500A00460 /* UIKit.framework */,
+				8465C65C17F5D1B600A00460 /* XCTest.framework */,
+				17EB1EFD5A21421C90C01507 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8465C64017F5D1B500A00460 /* FTVFscan */ = {
+			isa = PBXGroup;
+			children = (
+				39E32CB7181FB33D009C911F /* Util */,
+				39E32CAF181F9BAE009C911F /* Library */,
+				8465C64917F5D1B500A00460 /* FTVAppDelegate.h */,
+				8465C64A17F5D1B500A00460 /* FTVAppDelegate.m */,
+				8465C64C17F5D1B500A00460 /* Main.storyboard */,
+				39E32CB3181FA6D2009C911F /* FTVRegisterViewController.h */,
+				39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */,
+				8465C67217F5D69300A00460 /* FTVCameraViewController.h */,
+				8465C67317F5D69300A00460 /* FTVCameraViewController.m */,
+				8465C64F17F5D1B500A00460 /* FTVTourViewController.h */,
+				8465C65017F5D1B500A00460 /* FTVTourViewController.m */,
+				8465C65217F5D1B500A00460 /* FTVScansViewController.h */,
+				8465C65317F5D1B500A00460 /* FTVScansViewController.m */,
+				8465C67517F5D73B00A00460 /* FTVGalleryViewController.h */,
+				8465C67617F5D73B00A00460 /* FTVGalleryViewController.m */,
+				8465C67817F5D74C00A00460 /* FTVBrandsViewController.h */,
+				8465C67917F5D74C00A00460 /* FTVBrandsViewController.m */,
+				8465C65517F5D1B500A00460 /* Images.xcassets */,
+				8465C64117F5D1B500A00460 /* Supporting Files */,
+			);
+			path = FTVFscan;
+			sourceTree = "<group>";
+		};
+		8465C64117F5D1B500A00460 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8465C64217F5D1B500A00460 /* FTVFscan-Info.plist */,
+				8465C64317F5D1B500A00460 /* InfoPlist.strings */,
+				8465C64617F5D1B500A00460 /* main.m */,
+				8465C64817F5D1B500A00460 /* FTVFscan-Prefix.pch */,
+				4756BE2E181EA80500B39EB7 /* Const.h */,
+				39E32CAE181F990B009C911F /* Common.h */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8465C66217F5D1B600A00460 /* FTVFscanTests */ = {
+			isa = PBXGroup;
+			children = (
+				8465C66817F5D1B600A00460 /* FTVFscanTests.m */,
+				8465C66317F5D1B600A00460 /* Supporting Files */,
+			);
+			path = FTVFscanTests;
+			sourceTree = "<group>";
+		};
+		8465C66317F5D1B600A00460 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8465C66417F5D1B600A00460 /* FTVFscanTests-Info.plist */,
+				8465C66517F5D1B600A00460 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8465C63617F5D1B500A00460 /* FTVFscan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8465C66C17F5D1B600A00460 /* Build configuration list for PBXNativeTarget "FTVFscan" */;
+			buildPhases = (
+				AD63253B88FE46828273FB6D /* Check Pods Manifest.lock */,
+				8465C63317F5D1B500A00460 /* Sources */,
+				8465C63417F5D1B500A00460 /* Frameworks */,
+				8465C63517F5D1B500A00460 /* Resources */,
+				63B6B07E3EAA41C9B851E989 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FTVFscan;
+			productName = FTVFscan;
+			productReference = 8465C63717F5D1B500A00460 /* FTVFscan.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8465C65A17F5D1B600A00460 /* FTVFscanTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8465C66F17F5D1B600A00460 /* Build configuration list for PBXNativeTarget "FTVFscanTests" */;
+			buildPhases = (
+				8465C65717F5D1B600A00460 /* Sources */,
+				8465C65817F5D1B600A00460 /* Frameworks */,
+				8465C65917F5D1B600A00460 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8465C66117F5D1B600A00460 /* PBXTargetDependency */,
+			);
+			name = FTVFscanTests;
+			productName = FTVFscanTests;
+			productReference = 8465C65B17F5D1B600A00460 /* FTVFscanTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8465C62F17F5D1B500A00460 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = FTV;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = T2;
+				TargetAttributes = {
+					8465C65A17F5D1B600A00460 = {
+						TestTargetID = 8465C63617F5D1B500A00460;
+					};
+				};
+			};
+			buildConfigurationList = 8465C63217F5D1B500A00460 /* Build configuration list for PBXProject "FTVFscan" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8465C62E17F5D1B500A00460;
+			productRefGroup = 8465C63817F5D1B500A00460 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8465C63617F5D1B500A00460 /* FTVFscan */,
+				8465C65A17F5D1B600A00460 /* FTVFscanTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8465C63517F5D1B500A00460 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8465C65617F5D1B500A00460 /* Images.xcassets in Resources */,
+				8465C64517F5D1B500A00460 /* InfoPlist.strings in Resources */,
+				8465C64E17F5D1B500A00460 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8465C65917F5D1B600A00460 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8465C66717F5D1B600A00460 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		63B6B07E3EAA41C9B851E989 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD63253B88FE46828273FB6D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8465C63317F5D1B500A00460 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */,
+				39E32CB5181FA6D2009C911F /* FTVRegisterViewController.m in Sources */,
+				39E39D1F1820F2B3003D023E /* NSString+NSStringUtils.m in Sources */,
+				39E32CBA181FB77D009C911F /* FTVUser.m in Sources */,
+				8465C65117F5D1B500A00460 /* FTVTourViewController.m in Sources */,
+				8465C64717F5D1B500A00460 /* main.m in Sources */,
+				8465C67717F5D73B00A00460 /* FTVGalleryViewController.m in Sources */,
+				8465C67A17F5D74C00A00460 /* FTVBrandsViewController.m in Sources */,
+				39E32CB2181F9BC9009C911F /* UIDevice+Identifier.m in Sources */,
+				8465C67417F5D69300A00460 /* FTVCameraViewController.m in Sources */,
+				8465C64B17F5D1B500A00460 /* FTVAppDelegate.m in Sources */,
+				8465C65417F5D1B500A00460 /* FTVScansViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8465C65717F5D1B600A00460 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8465C66917F5D1B600A00460 /* FTVFscanTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8465C66117F5D1B600A00460 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8465C63617F5D1B500A00460 /* FTVFscan */;
+			targetProxy = 8465C66017F5D1B600A00460 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8465C64317F5D1B500A00460 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8465C64417F5D1B500A00460 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8465C64C17F5D1B500A00460 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8465C64D17F5D1B500A00460 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8465C66517F5D1B600A00460 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8465C66617F5D1B600A00460 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8465C66A17F5D1B600A00460 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8465C66B17F5D1B600A00460 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8465C66D17F5D1B600A00460 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62E03682EDFA4EAAB4576DB0 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FTVFscan/FTVFscan-Prefix.pch";
+				INFOPLIST_FILE = "FTVFscan/FTVFscan-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		8465C66E17F5D1B600A00460 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62E03682EDFA4EAAB4576DB0 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FTVFscan/FTVFscan-Prefix.pch";
+				INFOPLIST_FILE = "FTVFscan/FTVFscan-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		8465C67017F5D1B600A00460 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FTVFscan.app/FTVFscan";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FTVFscan/FTVFscan-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "FTVFscanTests/FTVFscanTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		8465C67117F5D1B600A00460 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FTVFscan.app/FTVFscan";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FTVFscan/FTVFscan-Prefix.pch";
+				INFOPLIST_FILE = "FTVFscanTests/FTVFscanTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8465C63217F5D1B500A00460 /* Build configuration list for PBXProject "FTVFscan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8465C66A17F5D1B600A00460 /* Debug */,
+				8465C66B17F5D1B600A00460 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8465C66C17F5D1B600A00460 /* Build configuration list for PBXNativeTarget "FTVFscan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8465C66D17F5D1B600A00460 /* Debug */,
+				8465C66E17F5D1B600A00460 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8465C66F17F5D1B600A00460 /* Build configuration list for PBXNativeTarget "FTVFscanTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8465C67017F5D1B600A00460 /* Debug */,
+				8465C67117F5D1B600A00460 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8465C62F17F5D1B500A00460 /* Project object */;
+}
