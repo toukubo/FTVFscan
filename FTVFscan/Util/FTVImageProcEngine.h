@@ -12,4 +12,5 @@
 
 + (UIImage*)imageResize:(UIImage*)srcImage;
 
++ (UIImage*)imageResize:(UIImage*)srcImage saveWithName:(NSString*)imgName usingJPEG:(BOOL)jpeg;
 @end

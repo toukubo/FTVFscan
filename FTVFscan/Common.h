@@ -9,19 +9,24 @@
 #ifndef FTVFscan_Common_h
 #define FTVFscan_Common_h
 
-#import "ASIHTTPRequest.h"
-#import "SVProgressHUD.h"
+#import "ArcUtil.h"
+#import "DLog.h"
 
 #import "UIDevice+Identifier.h"
 
-
-#import "DLog.h"
-
-#import "NSString+NSStringUtils.h"
+#import "GlobalCore.h"
+#import "StringUtil.h"
+#import "ColorUtil.h"
 
 #import "UIImage+Resize.h"
+
 #import "FTVImageProcEngine.h"
 
 #import "FTVAppDelegate.h"
+
+// ----------------- 3rd party -----------------
+#import "ASIHTTPRequest.h"
+#import "SVProgressHUD.h"
+
 
 #endif

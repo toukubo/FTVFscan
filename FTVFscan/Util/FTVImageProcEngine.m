@@ -17,9 +17,26 @@
 
 + (UIImage*)imageResize:(UIImage*)srcImage
 {
-//    -(UIImage*)resizedImageToFitInSize:(CGSize*)size scaleIfSmaller:(BOOL)scale;
-    return [srcImage resizedImageToSize:CGSizeMake(500, 500)];
+    return [srcImage resizedImageToFitInSize:CGSizeMake(500, 500) scaleIfSmaller:YES];
 }
 
++ (UIImage*)imageResize:(UIImage*)srcImage saveWithName:(NSString*)imgName usingJPEG:(BOOL)jpeg
+{
+    UIImage *image = [FTVImageProcEngine imageResize:srcImage];
+    
+    NSString *savedImagePath = [PathForDocumentsResource(@"") stringByAppendingPathComponent:imgName];
+    
+    NSData *imageData;
+    
+    if (jpeg) {
+        imageData = UIImageJPEGRepresentation(image, .5);
+    } else {
+        imageData = UIImagePNGRepresentation(image);
+    }
+    
+    [imageData writeToFile:savedImagePath atomically:NO];
+    
+    return image;
+}
 
 @end

@@ -131,7 +131,7 @@
     [request startSynchronous];
     
     //TODO: simple change retval to NO to quick test register process
-    //    return NO;
-    return retval;
+    return YES;
+//    return retval;
 }
 @end

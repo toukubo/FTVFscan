@@ -7,11 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		39E32CB2181F9BC9009C911F /* UIDevice+Identifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E32CB1181F9BC9009C911F /* UIDevice+Identifier.m */; };
 		39E32CB5181FA6D2009C911F /* FTVRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */; };
 		39E32CBA181FB77D009C911F /* FTVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E32CB9181FB77D009C911F /* FTVUser.m */; };
-		39E39D1F1820F2B3003D023E /* NSString+NSStringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E39D1E1820F2B3003D023E /* NSString+NSStringUtils.m */; };
 		39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E39D211820F4BB003D023E /* FTVImageProcEngine.m */; };
+		39F4935D18213B3000093167 /* ColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F4934C18213B3000093167 /* ColorUtil.m */; };
+		39F4935F18213B3000093167 /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F4935018213B3000093167 /* DateUtil.m */; };
+		39F4936018213B3000093167 /* DeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F4935318213B3000093167 /* DeviceUtil.m */; };
+		39F4936118213B3000093167 /* GlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F4935618213B3000093167 /* GlobalCore.m */; };
+		39F4936218213B3000093167 /* ImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F4935818213B3000093167 /* ImageUtils.m */; };
+		39F4936418213B3000093167 /* UIDevice+Identifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F4935C18213B3000093167 /* UIDevice+Identifier.m */; };
+		39F4936C1821427E00093167 /* QuartzUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = 39F493661821427E00093167 /* QuartzUtils.c */; };
+		39F4936D1821427E00093167 /* REString.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F493691821427E00093167 /* REString.m */; };
+		39F4936E1821427E00093167 /* StringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F4936B1821427E00093167 /* StringUtil.m */; };
 		809377F4B37548E694C80943 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17EB1EFD5A21421C90C01507 /* libPods.a */; };
 		8465C63B17F5D1B500A00460 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63A17F5D1B500A00460 /* Foundation.framework */; };
 		8465C63D17F5D1B500A00460 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63C17F5D1B500A00460 /* CoreGraphics.framework */; };
@@ -47,17 +54,33 @@
 /* Begin PBXFileReference section */
 		17EB1EFD5A21421C90C01507 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		39E32CAE181F990B009C911F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		39E32CB0181F9BC9009C911F /* UIDevice+Identifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Identifier.h"; sourceTree = "<group>"; };
-		39E32CB1181F9BC9009C911F /* UIDevice+Identifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Identifier.m"; sourceTree = "<group>"; };
 		39E32CB3181FA6D2009C911F /* FTVRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVRegisterViewController.h; sourceTree = "<group>"; };
 		39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVRegisterViewController.m; sourceTree = "<group>"; };
-		39E32CB6181FAFD7009C911F /* DLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
 		39E32CB8181FB77D009C911F /* FTVUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVUser.h; sourceTree = "<group>"; };
 		39E32CB9181FB77D009C911F /* FTVUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVUser.m; sourceTree = "<group>"; };
-		39E39D1D1820F2B3003D023E /* NSString+NSStringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSStringUtils.h"; sourceTree = "<group>"; };
-		39E39D1E1820F2B3003D023E /* NSString+NSStringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSStringUtils.m"; sourceTree = "<group>"; };
 		39E39D201820F4BB003D023E /* FTVImageProcEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVImageProcEngine.h; sourceTree = "<group>"; };
 		39E39D211820F4BB003D023E /* FTVImageProcEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVImageProcEngine.m; sourceTree = "<group>"; };
+		39F4934B18213B3000093167 /* ColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtil.h; sourceTree = "<group>"; };
+		39F4934C18213B3000093167 /* ColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtil.m; sourceTree = "<group>"; };
+		39F4934F18213B3000093167 /* DateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtil.h; sourceTree = "<group>"; };
+		39F4935018213B3000093167 /* DateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtil.m; sourceTree = "<group>"; };
+		39F4935118213B3000093167 /* DebugUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugUtils.h; sourceTree = "<group>"; };
+		39F4935218213B3000093167 /* DeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceUtil.h; sourceTree = "<group>"; };
+		39F4935318213B3000093167 /* DeviceUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceUtil.m; sourceTree = "<group>"; };
+		39F4935418213B3000093167 /* DLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
+		39F4935518213B3000093167 /* GlobalCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalCore.h; sourceTree = "<group>"; };
+		39F4935618213B3000093167 /* GlobalCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalCore.m; sourceTree = "<group>"; };
+		39F4935718213B3000093167 /* ImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtils.h; sourceTree = "<group>"; };
+		39F4935818213B3000093167 /* ImageUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtils.m; sourceTree = "<group>"; };
+		39F4935B18213B3000093167 /* UIDevice+Identifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Identifier.h"; sourceTree = "<group>"; };
+		39F4935C18213B3000093167 /* UIDevice+Identifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Identifier.m"; sourceTree = "<group>"; };
+		39F4936518213CBA00093167 /* ArcUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcUtil.h; sourceTree = "<group>"; };
+		39F493661821427E00093167 /* QuartzUtils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = QuartzUtils.c; sourceTree = "<group>"; };
+		39F493671821427E00093167 /* QuartzUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuartzUtils.h; sourceTree = "<group>"; };
+		39F493681821427E00093167 /* REString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REString.h; sourceTree = "<group>"; };
+		39F493691821427E00093167 /* REString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REString.m; sourceTree = "<group>"; };
+		39F4936A1821427E00093167 /* StringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtil.h; sourceTree = "<group>"; };
+		39F4936B1821427E00093167 /* StringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtil.m; sourceTree = "<group>"; };
 		4756BE2E181EA80500B39EB7 /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		62E03682EDFA4EAAB4576DB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8465C63717F5D1B500A00460 /* FTVFscan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FTVFscan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,11 +142,27 @@
 		39E32CAF181F9BAE009C911F /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				39E32CB6181FAFD7009C911F /* DLog.h */,
-				39E32CB0181F9BC9009C911F /* UIDevice+Identifier.h */,
-				39E32CB1181F9BC9009C911F /* UIDevice+Identifier.m */,
-				39E39D1D1820F2B3003D023E /* NSString+NSStringUtils.h */,
-				39E39D1E1820F2B3003D023E /* NSString+NSStringUtils.m */,
+				39F493661821427E00093167 /* QuartzUtils.c */,
+				39F493671821427E00093167 /* QuartzUtils.h */,
+				39F493681821427E00093167 /* REString.h */,
+				39F493691821427E00093167 /* REString.m */,
+				39F4936A1821427E00093167 /* StringUtil.h */,
+				39F4936B1821427E00093167 /* StringUtil.m */,
+				39F4934B18213B3000093167 /* ColorUtil.h */,
+				39F4934C18213B3000093167 /* ColorUtil.m */,
+				39F4934F18213B3000093167 /* DateUtil.h */,
+				39F4935018213B3000093167 /* DateUtil.m */,
+				39F4935118213B3000093167 /* DebugUtils.h */,
+				39F4935218213B3000093167 /* DeviceUtil.h */,
+				39F4935318213B3000093167 /* DeviceUtil.m */,
+				39F4935418213B3000093167 /* DLog.h */,
+				39F4935518213B3000093167 /* GlobalCore.h */,
+				39F4935618213B3000093167 /* GlobalCore.m */,
+				39F4935718213B3000093167 /* ImageUtils.h */,
+				39F4935818213B3000093167 /* ImageUtils.m */,
+				39F4935B18213B3000093167 /* UIDevice+Identifier.h */,
+				39F4935C18213B3000093167 /* UIDevice+Identifier.m */,
+				39F4936518213CBA00093167 /* ArcUtil.h */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -362,17 +401,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39F4936D1821427E00093167 /* REString.m in Sources */,
 				39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */,
+				39F4936018213B3000093167 /* DeviceUtil.m in Sources */,
+				39F4936E1821427E00093167 /* StringUtil.m in Sources */,
 				39E32CB5181FA6D2009C911F /* FTVRegisterViewController.m in Sources */,
-				39E39D1F1820F2B3003D023E /* NSString+NSStringUtils.m in Sources */,
+				39F4936118213B3000093167 /* GlobalCore.m in Sources */,
 				39E32CBA181FB77D009C911F /* FTVUser.m in Sources */,
+				39F4935F18213B3000093167 /* DateUtil.m in Sources */,
 				8465C65117F5D1B500A00460 /* FTVTourViewController.m in Sources */,
+				39F4935D18213B3000093167 /* ColorUtil.m in Sources */,
 				8465C64717F5D1B500A00460 /* main.m in Sources */,
+				39F4936C1821427E00093167 /* QuartzUtils.c in Sources */,
 				8465C67717F5D73B00A00460 /* FTVGalleryViewController.m in Sources */,
+				39F4936218213B3000093167 /* ImageUtils.m in Sources */,
 				8465C67A17F5D74C00A00460 /* FTVBrandsViewController.m in Sources */,
-				39E32CB2181F9BC9009C911F /* UIDevice+Identifier.m in Sources */,
 				8465C67417F5D69300A00460 /* FTVCameraViewController.m in Sources */,
 				8465C64B17F5D1B500A00460 /* FTVAppDelegate.m in Sources */,
+				39F4936418213B3000093167 /* UIDevice+Identifier.m in Sources */,
 				8465C65417F5D1B500A00460 /* FTVScansViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

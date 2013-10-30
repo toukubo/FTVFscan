@@ -64,14 +64,16 @@
 // Here we have an image from camera for later use
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    
     returnFromPicker = YES;
+    
     [photoPicker dismissViewControllerAnimated:NO completion:^{
         UIImage *pickedImage = (UIImage *)info[@"UIImagePickerControllerOriginalImage"];
         
-        pickedImage = [FTVImageProcEngine imageResize:pickedImage];
+        //TODO: we can resize the image later, before post to the remote, so it will not harless the user experience.
+        pickedImage = [FTVImageProcEngine imageResize:pickedImage saveWithName:[NSString genRandStringLength:10] usingJPEG:YES];
         
         // In production remove imageView from storyboard and open new workflow view there in main thread
+        self.imageView.contentMode = UIViewContentModeCenter;   // disbale auto enlarge
         self.imageView.image = pickedImage;
         
         DLog(@"IMG: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);

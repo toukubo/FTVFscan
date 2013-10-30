@@ -23,15 +23,6 @@
 
 @implementation FTVGalleryViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -69,8 +60,10 @@
         // Got image from picker
         // Should do something with it )))
         UIImage *pickedImage = (UIImage *)info[@"UIImagePickerControllerOriginalImage"];
+        
+        //TODO: we can resize the image later, before post to the remote, so it will not harless the user experience.
+        pickedImage = [FTVImageProcEngine imageResize:pickedImage saveWithName:[NSString genRandStringLength:10] usingJPEG:YES];
     }];
-    NSLog(@"info: %@",info);
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
