@@ -15,7 +15,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // TODO: other application launch
+    // TODO: ------------------- other application launch stuff -------------------
+    
+    // TODO: Flurry
+    
+    // TODO: Testflight
+    
+    // TODO: Appirater
+    
+    // TODO: advertise SDK
     
     // Check credential
     if ([self checkLoginCredential]) {
@@ -52,21 +60,6 @@
  */
 - (void)switchSceneToTabController
 {
-    // Picker init there cos it takes a lot of time
-    
-    self.photoPicker = [[UIImagePickerController alloc] init];
-#if TARGET_IPHONE_SIMULATOR
-    self.photoPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-#else
-    self.photoPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-#endif
-    
-    self.photoPicker.mediaTypes = @[(NSString *)kUTTypeImage];
-    
-    self.galleryPicker = [[UIImagePickerController alloc] init];
-    self.galleryPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    self.galleryPicker.mediaTypes = @[(NSString *)kUTTypeImage];
-    
     UIViewController *mvc = (UIViewController *)self.window.rootViewController;
     UITabBarController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"ftvTabController"];
     controller.selectedIndex = 2;
@@ -124,14 +117,13 @@
     [request setFailedBlock:^{
         [SVProgressHUD dismiss];
         retval = NO;
-        
     }];
     
     // wait on registraton validation
     [request startSynchronous];
     
     //TODO: simple change retval to NO to quick test register process
-    return YES;
-//    return retval;
+//    return YES;
+    return retval;
 }
 @end
