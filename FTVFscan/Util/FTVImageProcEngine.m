@@ -11,6 +11,12 @@
 /**
  * FTVImageProcEngine is used to process images after pick from camera or photo gallery.
  *
+ * workflow - 
+ * 1. user select images from camera/gallery
+ * 2. proc engine resize the images by ratio, constraint with CGSize(500, 500)
+ * 3. store the processed image to photo album
+ * 4. post the processed image to remote
+ *
  * Currently, it only support resize to W500xH500 px.
  */
 @implementation FTVImageProcEngine
