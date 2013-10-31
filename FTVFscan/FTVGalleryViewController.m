@@ -63,6 +63,8 @@
         
         //TODO: we can resize the image later, before post to the remote, so it will not harless the user experience.
         pickedImage = [FTVImageProcEngine imageResize:pickedImage saveWithName:[NSString genRandStringLength:10] usingJPEG:YES];
+        
+        [FTVImageProcEngine executeApi:pickedImage];
     }];
 }
 
