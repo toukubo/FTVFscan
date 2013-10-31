@@ -385,9 +385,6 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = T2;
 				TargetAttributes = {
-					8465C63617F5D1B500A00460 = {
-						DevelopmentTeam = 6367C7KA72;
-					};
 					8465C65A17F5D1B600A00460 = {
 						TestTargetID = 8465C63617F5D1B500A00460;
 					};
@@ -638,7 +635,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FTVFscan/FTVFscan-Prefix.pch";
 				INFOPLIST_FILE = "FTVFscan/FTVFscan-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -686,7 +683,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FTVFscan/FTVFscan-Prefix.pch";
 				INFOPLIST_FILE = "FTVFscan/FTVFscan-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
