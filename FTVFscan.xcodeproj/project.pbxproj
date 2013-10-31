@@ -39,6 +39,16 @@
 		8465C67717F5D73B00A00460 /* FTVGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C67617F5D73B00A00460 /* FTVGalleryViewController.m */; };
 		8465C67A17F5D74C00A00460 /* FTVBrandsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C67917F5D74C00A00460 /* FTVBrandsViewController.m */; };
 		8465C67C17F5F30000A00460 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C67B17F5F30000A00460 /* MobileCoreServices.framework */; };
+		DEB4B84F1821A0D70050FA49 /* bookmark-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8451821A0D70050FA49 /* bookmark-icon.png */; };
+		DEB4B8501821A0D70050FA49 /* bookmark-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8461821A0D70050FA49 /* bookmark-icon@2x.png */; };
+		DEB4B8511821A0D70050FA49 /* camera-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8471821A0D70050FA49 /* camera-icon.png */; };
+		DEB4B8521821A0D70050FA49 /* camera-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8481821A0D70050FA49 /* camera-icon@2x.png */; };
+		DEB4B8531821A0D70050FA49 /* gallery-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8491821A0D70050FA49 /* gallery-icon.png */; };
+		DEB4B8541821A0D70050FA49 /* gallery-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B84A1821A0D70050FA49 /* gallery-icon@2x.png */; };
+		DEB4B8551821A0D70050FA49 /* list-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B84B1821A0D70050FA49 /* list-icon.png */; };
+		DEB4B8561821A0D70050FA49 /* list-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B84C1821A0D70050FA49 /* list-icon@2x.png */; };
+		DEB4B8571821A0D70050FA49 /* tour-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B84D1821A0D70050FA49 /* tour-icon.png */; };
+		DEB4B8581821A0D70050FA49 /* tour-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B84E1821A0D70050FA49 /* tour-icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +121,16 @@
 		8465C67817F5D74C00A00460 /* FTVBrandsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVBrandsViewController.h; sourceTree = "<group>"; };
 		8465C67917F5D74C00A00460 /* FTVBrandsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVBrandsViewController.m; sourceTree = "<group>"; };
 		8465C67B17F5F30000A00460 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		DEB4B8451821A0D70050FA49 /* bookmark-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark-icon.png"; sourceTree = "<group>"; };
+		DEB4B8461821A0D70050FA49 /* bookmark-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark-icon@2x.png"; sourceTree = "<group>"; };
+		DEB4B8471821A0D70050FA49 /* camera-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-icon.png"; sourceTree = "<group>"; };
+		DEB4B8481821A0D70050FA49 /* camera-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-icon@2x.png"; sourceTree = "<group>"; };
+		DEB4B8491821A0D70050FA49 /* gallery-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery-icon.png"; sourceTree = "<group>"; };
+		DEB4B84A1821A0D70050FA49 /* gallery-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery-icon@2x.png"; sourceTree = "<group>"; };
+		DEB4B84B1821A0D70050FA49 /* list-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-icon.png"; sourceTree = "<group>"; };
+		DEB4B84C1821A0D70050FA49 /* list-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-icon@2x.png"; sourceTree = "<group>"; };
+		DEB4B84D1821A0D70050FA49 /* tour-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-icon.png"; sourceTree = "<group>"; };
+		DEB4B84E1821A0D70050FA49 /* tour-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +234,7 @@
 		8465C64017F5D1B500A00460 /* FTVFscan */ = {
 			isa = PBXGroup;
 			children = (
+				DEB4B8441821A0AB0050FA49 /* Images */,
 				39E32CB7181FB33D009C911F /* Util */,
 				39E32CAF181F9BAE009C911F /* Library */,
 				8465C64917F5D1B500A00460 /* FTVAppDelegate.h */,
@@ -266,6 +287,23 @@
 				8465C66517F5D1B600A00460 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DEB4B8441821A0AB0050FA49 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DEB4B8451821A0D70050FA49 /* bookmark-icon.png */,
+				DEB4B8461821A0D70050FA49 /* bookmark-icon@2x.png */,
+				DEB4B8471821A0D70050FA49 /* camera-icon.png */,
+				DEB4B8481821A0D70050FA49 /* camera-icon@2x.png */,
+				DEB4B8491821A0D70050FA49 /* gallery-icon.png */,
+				DEB4B84A1821A0D70050FA49 /* gallery-icon@2x.png */,
+				DEB4B84B1821A0D70050FA49 /* list-icon.png */,
+				DEB4B84C1821A0D70050FA49 /* list-icon@2x.png */,
+				DEB4B84D1821A0D70050FA49 /* tour-icon.png */,
+				DEB4B84E1821A0D70050FA49 /* tour-icon@2x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,8 +385,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEB4B84F1821A0D70050FA49 /* bookmark-icon.png in Resources */,
+				DEB4B8531821A0D70050FA49 /* gallery-icon.png in Resources */,
 				8465C65617F5D1B500A00460 /* Images.xcassets in Resources */,
+				DEB4B8521821A0D70050FA49 /* camera-icon@2x.png in Resources */,
+				DEB4B8561821A0D70050FA49 /* list-icon@2x.png in Resources */,
+				DEB4B8551821A0D70050FA49 /* list-icon.png in Resources */,
+				DEB4B8501821A0D70050FA49 /* bookmark-icon@2x.png in Resources */,
+				DEB4B8511821A0D70050FA49 /* camera-icon.png in Resources */,
+				DEB4B8571821A0D70050FA49 /* tour-icon.png in Resources */,
+				DEB4B8581821A0D70050FA49 /* tour-icon@2x.png in Resources */,
 				8465C64517F5D1B500A00460 /* InfoPlist.strings in Resources */,
+				DEB4B8541821A0D70050FA49 /* gallery-icon@2x.png in Resources */,
 				8465C64E17F5D1B500A00460 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
