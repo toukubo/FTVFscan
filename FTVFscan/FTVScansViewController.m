@@ -23,7 +23,10 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [_scansWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: [ BASEURL stringByAppendingString:@"scans"]]]];
+    NSString *req_url = [NSString stringWithFormat:@"%@%@%@", BASEURL,@"/scans/index.php?deviceid=",[FTVUser getId]];
+    DLog(req_url);
+
+    [_scansWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:req_url]]];
 }
 
 
