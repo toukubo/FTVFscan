@@ -12,10 +12,31 @@
 
 + (NSString*)getId
 {
-    NSString *fakeUDID=[NSString stringWithFormat:@"%@", [[UIDevice currentDevice] identifierForVendor1]];
     
-    DLog(@"%@",fakeUDID);
+//    NSString *fakeUDID=[NSString stringWithFormat:@"%@", [[UIDevice currentDevice] identifierForVendor1]];
     
-    return fakeUDID;
+//    DLog(@"%@",fakeUDID);
+    
+//    return fakeUDID;
+    return [ self getUUID ];
+    
 }
+
++ (NSString *)getUUID
+{
+    NSString *UUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"uniqueID"];
+    if (!UUID) {
+        CFUUIDRef theUUID = CFUUIDCreate(NULL);
+        CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+        CFRelease(theUUID);
+        UUID = [(__bridge NSString*)string stringByReplacingOccurrencesOfString:@"-"withString:@""];
+        [[NSUserDefaults standardUserDefaults] setValue:UUID forKey:@"uniqueID"];
+    }
+    return UUID;
+}
+
+
+
+
+
 @end

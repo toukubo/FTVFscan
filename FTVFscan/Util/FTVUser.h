@@ -11,5 +11,7 @@
 @interface FTVUser : NSObject
 
 + (NSString *)getId;
++ (NSString *)getUUID;
+
 
 @end
