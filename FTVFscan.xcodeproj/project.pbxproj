@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39153DA7182250F100F3C9D0 /* RTSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39153DA518224DBB00F3C9D0 /* RTSearchKit.framework */; };
+		39153DAB1822522200F3C9D0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39153DAA1822522200F3C9D0 /* CoreVideo.framework */; };
+		39153DAD1822522A00F3C9D0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39153DAC1822522A00F3C9D0 /* CoreMedia.framework */; };
+		39153DAF1822523100F3C9D0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39153DAE1822523100F3C9D0 /* AVFoundation.framework */; };
+		39153DB2182259E100F3C9D0 /* FeatureDB.dic in Resources */ = {isa = PBXBuildFile; fileRef = 39153DB1182259E100F3C9D0 /* FeatureDB.dic */; };
 		39E32CB5181FA6D2009C911F /* FTVRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */; };
 		39E32CBA181FB77D009C911F /* FTVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E32CB9181FB77D009C911F /* FTVUser.m */; };
 		39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E39D211820F4BB003D023E /* FTVImageProcEngine.m */; };
@@ -63,6 +68,12 @@
 
 /* Begin PBXFileReference section */
 		17EB1EFD5A21421C90C01507 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		39153DA518224DBB00F3C9D0 /* RTSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RTSearchKit.framework; sourceTree = "<group>"; };
+		39153DAA1822522200F3C9D0 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		39153DAC1822522A00F3C9D0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		39153DAE1822523100F3C9D0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		39153DB1182259E100F3C9D0 /* FeatureDB.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = FeatureDB.dic; sourceTree = "<group>"; };
+		39153DB318225A3800F3C9D0 /* FTVImageProcOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVImageProcOption.h; sourceTree = "<group>"; };
 		39E32CAE181F990B009C911F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		39E32CB3181FA6D2009C911F /* FTVRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVRegisterViewController.h; sourceTree = "<group>"; };
 		39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVRegisterViewController.m; sourceTree = "<group>"; };
@@ -138,6 +149,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39153DAF1822523100F3C9D0 /* AVFoundation.framework in Frameworks */,
+				39153DAD1822522A00F3C9D0 /* CoreMedia.framework in Frameworks */,
+				39153DAB1822522200F3C9D0 /* CoreVideo.framework in Frameworks */,
+				39153DA7182250F100F3C9D0 /* RTSearchKit.framework in Frameworks */,
 				8465C67C17F5F30000A00460 /* MobileCoreServices.framework in Frameworks */,
 				8465C63D17F5D1B500A00460 /* CoreGraphics.framework in Frameworks */,
 				8465C63F17F5D1B500A00460 /* UIKit.framework in Frameworks */,
@@ -159,6 +174,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39153DB0182259E100F3C9D0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				39153DB1182259E100F3C9D0 /* FeatureDB.dic */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		39E32CAF181F9BAE009C911F /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +215,7 @@
 			children = (
 				39E32CB8181FB77D009C911F /* FTVUser.h */,
 				39E32CB9181FB77D009C911F /* FTVUser.m */,
+				39153DB318225A3800F3C9D0 /* FTVImageProcOption.h */,
 				39E39D201820F4BB003D023E /* FTVImageProcEngine.h */,
 				39E39D211820F4BB003D023E /* FTVImageProcEngine.m */,
 			);
@@ -221,6 +245,10 @@
 		8465C63917F5D1B500A00460 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39153DAE1822523100F3C9D0 /* AVFoundation.framework */,
+				39153DAC1822522A00F3C9D0 /* CoreMedia.framework */,
+				39153DAA1822522200F3C9D0 /* CoreVideo.framework */,
+				39153DA518224DBB00F3C9D0 /* RTSearchKit.framework */,
 				8465C67B17F5F30000A00460 /* MobileCoreServices.framework */,
 				8465C63A17F5D1B500A00460 /* Foundation.framework */,
 				8465C63C17F5D1B500A00460 /* CoreGraphics.framework */,
@@ -261,6 +289,7 @@
 		8465C64117F5D1B500A00460 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				39153DB0182259E100F3C9D0 /* Resources */,
 				8465C64217F5D1B500A00460 /* FTVFscan-Info.plist */,
 				8465C64317F5D1B500A00460 /* InfoPlist.strings */,
 				8465C64617F5D1B500A00460 /* main.m */,
@@ -356,6 +385,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = T2;
 				TargetAttributes = {
+					8465C63617F5D1B500A00460 = {
+						DevelopmentTeam = P33X2KKCL6;
+					};
 					8465C65A17F5D1B600A00460 = {
 						TestTargetID = 8465C63617F5D1B500A00460;
 					};
@@ -395,6 +427,7 @@
 				DEB4B8511821A0D70050FA49 /* camera-icon.png in Resources */,
 				DEB4B8571821A0D70050FA49 /* tour-icon.png in Resources */,
 				DEB4B8581821A0D70050FA49 /* tour-icon@2x.png in Resources */,
+				39153DB2182259E100F3C9D0 /* FeatureDB.dic in Resources */,
 				8465C64517F5D1B500A00460 /* InfoPlist.strings in Resources */,
 				DEB4B8541821A0D70050FA49 /* gallery-icon@2x.png in Resources */,
 				8465C64E17F5D1B500A00460 /* Main.storyboard in Resources */,
@@ -521,7 +554,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -560,7 +592,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -593,11 +624,45 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 62E03682EDFA4EAAB4576DB0 /* Pods.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FTVFscan/FTVFscan-Prefix.pch";
 				INFOPLIST_FILE = "FTVFscan/FTVFscan-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lTestFlight",
+					"-lxml2.2",
+					"-lz",
+					"-lz.1",
+					"-framework",
+					CFNetwork,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
+					"-lstdc++",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -607,11 +672,45 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 62E03682EDFA4EAAB4576DB0 /* Pods.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FTVFscan/FTVFscan-Prefix.pch";
 				INFOPLIST_FILE = "FTVFscan/FTVFscan-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lTestFlight",
+					"-lxml2.2",
+					"-lz",
+					"-lz.1",
+					"-framework",
+					CFNetwork,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					Security,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
+					"-lstdc++",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -620,7 +719,6 @@
 		8465C67017F5D1B600A00460 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FTVFscan.app/FTVFscan";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -643,7 +741,6 @@
 		8465C67117F5D1B600A00460 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FTVFscan.app/FTVFscan";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

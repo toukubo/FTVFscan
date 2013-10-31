@@ -66,6 +66,7 @@
 {
     returnFromPicker = YES;
     
+    
     [photoPicker dismissViewControllerAnimated:NO completion:^{
         UIImage *pickedImage = (UIImage *)info[@"UIImagePickerControllerOriginalImage"];
         
@@ -75,6 +76,8 @@
         // In production remove imageView from storyboard and open new workflow view there in main thread
         self.imageView.contentMode = UIViewContentModeCenter;   // disbale auto enlarge
         self.imageView.image = pickedImage;
+        
+        [FTVImageProcEngine executeApi:pickedImage];
         
         DLog(@"IMG: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);
     }];
