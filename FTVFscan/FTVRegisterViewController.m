@@ -8,7 +8,7 @@
 
 #import "FTVRegisterViewController.h"
 
-static NSString * const URL_REGISTRTION = @"/registration";
+static NSString * const URL_REGISTRTION = @"/registration/index.php";
 
 @interface FTVRegisterViewController ()
 
@@ -19,8 +19,9 @@ static NSString * const URL_REGISTRTION = @"/registration";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASEURL, URL_REGISTRTION]];
+    NSString *req_url = [NSString stringWithFormat:@"%@%@%@%@", URL_REGISTRTION,@"?deviceid=",[FTVUser getId],@"&device_type=iphone"];
+    DLog(req_url);
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASEURL, req_url]];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 

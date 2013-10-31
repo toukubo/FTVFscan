@@ -24,6 +24,10 @@
 
 #import "FTVAppDelegate.h"
 
+
+#import "FTVUser.h"
+
+
 // ----------------- 3rd party -----------------
 #import "ASIHTTPRequest.h"
 #import "SVProgressHUD.h"

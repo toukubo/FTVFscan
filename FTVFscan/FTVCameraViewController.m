@@ -33,7 +33,7 @@
         [photoPicker setSourceType: UIImagePickerControllerSourceTypePhotoLibrary];
 #else
         [photoPicker setSourceType: UIImagePickerControllerSourceTypeCamera];
-        [picker setCameraOverlayView:self.customCameraOverlayView];
+//        [picker setCameraOverlayView:self.customCameraOverlayView];
 #endif
         
         [photoPicker setMediaTypes: @[(NSString *)kUTTypeImage]];
