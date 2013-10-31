@@ -52,7 +52,18 @@
                                                              usingBlock:^(NSNotification *note) {
                                                                  [[NSNotificationCenter defaultCenter] removeObserver:complete];
                                                                  
+                                                                 
                                                                  [self switchSceneToTabController];
+                                                                 
+                                                                 //gonna do re-checking if the regisration is completed. if not ,eternal loop.
+                                                                 if ([self checkLoginCredential]) {
+                                                                     // goto home tab bar controller
+                                                                     [self switchSceneToTabController];
+                                                                     DLog(@"but true");
+                                                                 } else {
+                                                                     [self switchSceneToRegisterController];
+                                                                     DLog(@"but false. going to regist ");
+                                                                 }
                                                              }];
 }
 /**
@@ -96,8 +107,8 @@
 
 #pragma mark - Helper
 - (BOOL)checkLoginCredential {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@", BASEURL, @"isRegistered.php?id=", [FTVUser getId]];
-    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@%@", BASEURL, @"/registration/isRegistered.php?deviceid=", [FTVUser getId]];
+    DLog(urlStr);
     __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
     __block BOOL retval = NO;
     
@@ -108,6 +119,7 @@
         [SVProgressHUD dismiss];
         
         NSString *resp = [request responseString];
+        DLog(resp);
         if ([resp isEqualToString:@"true"]) {
             retval = YES;
         } else {
