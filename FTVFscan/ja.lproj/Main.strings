@@ -1,0 +1,33 @@
+
+/* Class = "IBUIBarButtonItem"; title = "Close"; ObjectID = "1lg-tJ-r46"; */
+"1lg-tJ-r46.title" = "Close";
+
+/* Class = "IBUITabBarItem"; title = "gallery"; ObjectID = "8QU-PC-mTF"; */
+"8QU-PC-mTF.title" = "gallery";
+
+/* Class = "IBUIViewController"; title = "Gallery"; ObjectID = "8ta-jN-3TW"; */
+"8ta-jN-3TW.title" = "Gallery";
+
+/* Class = "IBUIViewController"; title = "Tour"; ObjectID = "CZ4-MO-1fc"; */
+"CZ4-MO-1fc.title" = "Tour";
+
+/* Class = "IBUIViewController"; title = "Scans"; ObjectID = "QUy-BD-bpt"; */
+"QUy-BD-bpt.title" = "Scans";
+
+/* Class = "IBUITabBarItem"; title = "scans"; ObjectID = "Z7h-1E-pvt"; */
+"Z7h-1E-pvt.title" = "scans";
+
+/* Class = "IBUITabBarItem"; title = "brands"; ObjectID = "bDd-nK-Gxk"; */
+"bDd-nK-Gxk.title" = "brands";
+
+/* Class = "IBUIViewController"; title = "Camera"; ObjectID = "hbC-46-JWh"; */
+"hbC-46-JWh.title" = "Camera";
+
+/* Class = "IBUIViewController"; title = "Brands"; ObjectID = "q1P-WW-Mfu"; */
+"q1P-WW-Mfu.title" = "Brands";
+
+/* Class = "IBUITabBarItem"; title = "tour"; ObjectID = "u1e-5L-l1D"; */
+"u1e-5L-l1D.title" = "tour";
+
+/* Class = "IBUITabBarItem"; title = "f.scan"; ObjectID = "wsn-Vd-uX9"; */
+"wsn-Vd-uX9.title" = "f.scan";

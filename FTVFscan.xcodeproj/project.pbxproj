@@ -103,6 +103,9 @@
 		39F4936A1821427E00093167 /* StringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtil.h; sourceTree = "<group>"; };
 		39F4936B1821427E00093167 /* StringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtil.m; sourceTree = "<group>"; };
 		4756BE2E181EA80500B39EB7 /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		47C61B921824181E00DF9125 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		47C61B931824181E00DF9125 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		47C61B941824181E00DF9125 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		62E03682EDFA4EAAB4576DB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8465C63717F5D1B500A00460 /* FTVFscan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FTVFscan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8465C63A17F5D1B500A00460 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -397,6 +400,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 8465C62E17F5D1B500A00460;
 			productRefGroup = 8465C63817F5D1B500A00460 /* Products */;
@@ -524,6 +528,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8465C64417F5D1B500A00460 /* en */,
+				47C61B931824181E00DF9125 /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -532,6 +537,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8465C64D17F5D1B500A00460 /* Base */,
+				47C61B921824181E00DF9125 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -540,6 +546,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8465C66617F5D1B600A00460 /* en */,
+				47C61B941824181E00DF9125 /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -636,7 +643,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FTVFscan/FTVFscan-Prefix.pch";
 				INFOPLIST_FILE = "FTVFscan/FTVFscan-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -687,7 +694,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FTVFscan/FTVFscan-Prefix.pch";
 				INFOPLIST_FILE = "FTVFscan/FTVFscan-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
