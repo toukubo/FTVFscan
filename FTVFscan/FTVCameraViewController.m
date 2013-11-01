@@ -77,11 +77,23 @@
         self.imageView.contentMode = UIViewContentModeCenter;   // disbale auto enlarge
         self.imageView.image = pickedImage;
         
+        [ self openSafari:@"17"];
         [FTVImageProcEngine executeApi:pickedImage];
         
         DLog(@"IMG: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);
     }];
     DLog(@"info: %@",info);
+}
+- (void)openSafari:(NSString *)id
+{
+    NSString *req_url = [NSString stringWithFormat:@"%@%@%@%@%@", BASEURL,@"/scan/scan.php?deviceid=",[FTVUser getId],@"&id=",id];
+    NSURL *url = [NSURL URLWithString:req_url];
+    DLog(req_url);
+    if (![[UIApplication sharedApplication] openURL:url])
+        
+        NSLog(@"%@%@",@"Failed to open url:",[url description]);
+
+    
 }
 
 // user pressed "Cancel" So returning to first tab of the app
