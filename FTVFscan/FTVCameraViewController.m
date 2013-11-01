@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 T2. All rights reserved.
 //
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <ASIFormDataRequest.h>
 
 #import "FTVCameraViewController.h"
 
@@ -77,8 +78,13 @@
         self.imageView.contentMode = UIViewContentModeCenter;   // disbale auto enlarge
         self.imageView.image = pickedImage;
         
-        [ self openSafari:@"17"];
+
+        NSData *imageData = UIImagePNGRepresentation(pickedImage);
+
+        [ self postData: imageData withBrand:@"gucci"];
+        
         [FTVImageProcEngine executeApi:pickedImage];
+        
         
         DLog(@"IMG: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);
     }];
@@ -95,6 +101,36 @@
 
     
 }
+-(void)postData:(NSData *)photoData withBrand:(NSString *) brand_slug {
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", BASEURL, @"scan/post.php"];
+    DLog(urlStr);
+    ASIFormDataRequest* req = [ASIFormDataRequest
+                               requestWithURL:[NSURL URLWithString:urlStr]];
+    [req setTimeOutSeconds:120];
+    [req addPostValue:[FTVUser getId] forKey:@"user_id"];
+    [req addPostValue:brand_slug forKey:@"brand_slug"];
+
+    [req setData:photoData withFileName:@"image.png" andContentType:@"image/png" forKey:@"image"];
+    req.delegate  =  self;
+    req.didFinishSelector = @selector(postSucceeded:);
+    req.didFailSelector = @selector(postFaild:);
+    req.defaultResponseEncoding = NSUTF8StringEncoding;
+    [req startAsynchronous];
+}
+-(void)postSucceeded:(ASIHTTPRequest*)req {
+    NSString* resString = [req responseString];
+    DLog(resString);
+    [ self openSafari:resString];
+
+}
+-(void)postFaild:(ASIHTTPRequest*)req {
+    DLog(@"failed");
+//    NSString* resString = [req responseString];
+//    DLog(resString);
+    /// self openSafari:@"17"];
+    
+}
+
 
 // user pressed "Cancel" So returning to first tab of the app
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
