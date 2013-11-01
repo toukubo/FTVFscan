@@ -29,7 +29,7 @@
         CFUUIDRef theUUID = CFUUIDCreate(NULL);
         CFStringRef string = CFUUIDCreateString(NULL, theUUID);
         CFRelease(theUUID);
-//        UUID = [(__bridge NSString*)string stringByReplacingOccurrencesOfString:@"-"withString:@""];
+        UUID = [(__bridge NSString*)string stringByReplacingOccurrencesOfString:@"-"withString:@""];
         [[NSUserDefaults standardUserDefaults] setValue:UUID forKey:@"uniqueID"];
     }
     return UUID;
