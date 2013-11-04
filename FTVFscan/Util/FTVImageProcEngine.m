@@ -56,6 +56,8 @@
     /** Error **/
     NSString *error;
     
+//    UIImage *image = [UIImage imageNamed:@"NEC_new.jpg"];
+    
     int width = CGImageGetWidth(image.CGImage);
     int height = CGImageGetHeight(image.CGImage);
     
@@ -110,7 +112,7 @@
         NSDate *startTime = [NSDate date];
         //NSMutableArray *resultArray = [[NSMutableArray alloc] init];
         
-        NSMutableArray *resultArray = [rtsearchlib ExecuteSearchFromUIImage:image searchEnv:SearchModeServer];
+        NSMutableArray *resultArray = [rtsearchlib ExecuteSearchFromUIImage:image searchEnv:SERVER_SERVICE_SEARCH];
         NSLog(@"resultArray = %@", resultArray);
         
         //if search failed, set error.

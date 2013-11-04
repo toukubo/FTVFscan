@@ -12,6 +12,8 @@
 		39153DAD1822522A00F3C9D0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39153DAC1822522A00F3C9D0 /* CoreMedia.framework */; };
 		39153DAF1822523100F3C9D0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39153DAE1822523100F3C9D0 /* AVFoundation.framework */; };
 		39153DB2182259E100F3C9D0 /* FeatureDB.dic in Resources */ = {isa = PBXBuildFile; fileRef = 39153DB1182259E100F3C9D0 /* FeatureDB.dic */; };
+		39B391AB182782A300BD2D3B /* NEC_new.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 39B391A9182782A300BD2D3B /* NEC_new.jpg */; };
+		39B391AC182782A300BD2D3B /* NEC_old.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 39B391AA182782A300BD2D3B /* NEC_old.jpg */; };
 		39E32CB5181FA6D2009C911F /* FTVRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */; };
 		39E32CBA181FB77D009C911F /* FTVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E32CB9181FB77D009C911F /* FTVUser.m */; };
 		39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E39D211820F4BB003D023E /* FTVImageProcEngine.m */; };
@@ -74,6 +76,8 @@
 		39153DAE1822523100F3C9D0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		39153DB1182259E100F3C9D0 /* FeatureDB.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = FeatureDB.dic; sourceTree = "<group>"; };
 		39153DB318225A3800F3C9D0 /* FTVImageProcOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVImageProcOption.h; sourceTree = "<group>"; };
+		39B391A9182782A300BD2D3B /* NEC_new.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NEC_new.jpg; sourceTree = "<group>"; };
+		39B391AA182782A300BD2D3B /* NEC_old.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NEC_old.jpg; sourceTree = "<group>"; };
 		39E32CAE181F990B009C911F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		39E32CB3181FA6D2009C911F /* FTVRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVRegisterViewController.h; sourceTree = "<group>"; };
 		39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVRegisterViewController.m; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 		39153DB0182259E100F3C9D0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				39B391A9182782A300BD2D3B /* NEC_new.jpg */,
+				39B391AA182782A300BD2D3B /* NEC_old.jpg */,
 				39153DB1182259E100F3C9D0 /* FeatureDB.dic */,
 			);
 			path = Resources;
@@ -422,6 +428,7 @@
 				DEB4B8531821A0D70050FA49 /* gallery-icon.png in Resources */,
 				8465C65617F5D1B500A00460 /* Images.xcassets in Resources */,
 				DEB4B8521821A0D70050FA49 /* camera-icon@2x.png in Resources */,
+				39B391AB182782A300BD2D3B /* NEC_new.jpg in Resources */,
 				DEB4B8561821A0D70050FA49 /* list-icon@2x.png in Resources */,
 				DEB4B8551821A0D70050FA49 /* list-icon.png in Resources */,
 				DEB4B8501821A0D70050FA49 /* bookmark-icon@2x.png in Resources */,
@@ -431,6 +438,7 @@
 				39153DB2182259E100F3C9D0 /* FeatureDB.dic in Resources */,
 				8465C64517F5D1B500A00460 /* InfoPlist.strings in Resources */,
 				DEB4B8541821A0D70050FA49 /* gallery-icon@2x.png in Resources */,
+				39B391AC182782A300BD2D3B /* NEC_old.jpg in Resources */,
 				8465C64E17F5D1B500A00460 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -669,7 +677,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "51760F77-AE09-4322-878A-7A674652E916";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -720,7 +728,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "51760F77-AE09-4322-878A-7A674652E916";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};

@@ -78,7 +78,6 @@
         self.imageView.contentMode = UIViewContentModeCenter;   // disbale auto enlarge
         self.imageView.image = pickedImage;
         
-
         NSData *imageData = UIImagePNGRepresentation(pickedImage);
 
         [ self postData: imageData withBrand:@"gucci"];
