@@ -22,7 +22,18 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    _brandsWebView.delegate = self;
+    [_brandsWebView setScalesPageToFit:YES];
     [_brandsWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: [ BASEURL stringByAppendingString:@"brands"]]]];
+}
+
+
+#pragma --
+#pragma webview delegates
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    NSLog(@"Error : %@",error);
 }
 
 - (void)didReceiveMemoryWarning

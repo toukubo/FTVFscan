@@ -15,6 +15,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </webView>
                     <tabBarItem key="tabBarItem" title="tour" image="tour-icon.png" id="u1e-5L-l1D"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="tourWebView" destination="Fe0-xA-rWB" id="5gh-eF-oCA"/>
                     </connections>
@@ -39,6 +40,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="FTVFscan" image="camera-icon.png" id="wsn-Vd-uX9"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="kj8-51-VNG" id="tu9-2i-jSA"/>
@@ -58,6 +60,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="gallery" image="gallery-icon.png" id="8QU-PC-mTF"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hrg-kG-t1i" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -81,6 +84,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="history" image="bookmark-icon.png" id="Z7h-1E-pvt"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="scansWebView" destination="Fla-S9-exo" id="jhI-Gz-Klh"/>
                     </connections>
@@ -93,6 +97,7 @@
         <scene sceneID="Vex-rW-GRa">
             <objects>
                 <tabBarController storyboardIdentifier="ftvTabController" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8YX-ce-x5E" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="JQR-rB-NYL">
                         <rect key="frame" x="0.0" y="431" width="320" height="49"/>
@@ -135,6 +140,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="webView" destination="36q-cy-kWi" id="Psv-xl-FIT"/>
                     </connections>
@@ -147,6 +153,7 @@
         <scene sceneID="aK9-T9-jV5">
             <objects>
                 <navigationController storyboardIdentifier="ftvNavRegisterViewController" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OMi-TK-8Gw" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pIS-Ic-cmq">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -167,14 +174,18 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" id="Qpb-zo-XLZ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="q1P-WW-Mfu" id="Lm8-oo-Pjq"/>
+                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="brands" image="list-icon.png" id="bDd-nK-Gxk"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="brandsWebView" destination="Qpb-zo-XLZ" id="gSs-lz-1Ve"/>
