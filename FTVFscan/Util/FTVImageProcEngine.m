@@ -8,6 +8,8 @@
 #import <RTSearchKit/RTSearchApi.h>
 #import <RTSearchKit/RTFeatureSearcher.h>
 
+#import <ASIFormDataRequest.h>
+
 #import "FTVImageProcEngine.h"
 #import "FTVImageProcOption.h"
 
@@ -71,27 +73,9 @@
     
     //if authentication succeeded, execute search.
     if ([authResult isEqualToString:@"0000"]) {
-        
-        ////get file path of dictionary and appendinfo located via iTunes. ///
-        //create path of directory
-        //        NSString *homeDir = NSHomeDirectory();
-        //        NSString *docDir = [homeDir stringByAppendingPathComponent:@"Documents"];
-        //
-        //get path of feature db file.
-        //        NSString *featureFileName = @"FeatureDB_NECCM.dic";
-        //        NSString *featureFilePath = [docDir stringByAppendingPathComponent:featureFileName];
-        //
-        //get path of image which located under 'Resources'
-        NSBundle *bundle = [NSBundle mainBundle];
-        NSString *featureFilePath;
-        
-        featureFilePath = [bundle pathForResource:@"FeatureDB.dic" ofType:nil];
-        
-        //get path of append information file.
-        //        NSString *appendFileName = @"AppendInfoFile_NECCM.info";
-        //        NSString *appendFilePath = [docDir stringByAppendingPathComponent:appendFileName];
-        NSString *appendFilePath;
-        appendFilePath = [bundle pathForResource:@"AppendInfoFile.info" ofType:nil];
+        NSString *featureFilePath = [[NSBundle mainBundle] pathForResource:@"FeatureDB.dic" ofType:nil];
+
+        NSString *appendFilePath = [[NSBundle mainBundle] pathForResource:@"AppendInfoFile.info" ofType:nil];
         
         
         /************* Create Instance API ****************/
@@ -142,5 +126,53 @@
     }
 }
 
++ (void)postData:(NSData *)photoData
+       withBrand:(NSString *)brandSlug
+  withStartBlock:(void (^)(void))startBlock
+ withFinishBlock:(void (^)(BOOL success, NSString *resp))finishBlock
+ withFailedBlock:(void (^)(BOOL success, NSString *resp))failedBlock
 
+{
+    __weak NSString *urlStr = [NSString stringWithFormat:@"%@%@", BASEURL, @"scan/post.php"];
+    __weak ASIFormDataRequest* req = [ASIFormDataRequest
+                               requestWithURL:[NSURL URLWithString:urlStr]];
+    [req setTimeOutSeconds:120];
+    [req addPostValue:[FTVUser getId] forKey:@"user_id"];
+    [req addPostValue:brandSlug forKey:@"brand_slug"];
+    
+    [req setData:photoData withFileName:@"image.png" andContentType:@"image/png" forKey:@"image"];
+
+    req.defaultResponseEncoding = NSUTF8StringEncoding;
+    
+    [req setCompletionBlock:^{
+        if (req.responseStatusCode == 200) {
+            NSString* resString = [req responseString];
+            [FTVImageProcEngine openSafari:resString];
+            finishBlock(YES, req.responseString);
+        } else {
+            failedBlock(NO, req.responseString);
+        }
+    }];
+    
+    [req setFailedBlock:^{
+        failedBlock(NO, req.responseString);
+    }];
+    
+    // TODO: show progress or something...
+//    [req setUploadSizeIncrementedBlock:^(long long size) {
+//
+//    }];
+    
+    [req startAsynchronous];
+}
+
++ (void)openSafari:(NSString *)id
+{
+    NSString *req_url = [NSString stringWithFormat:@"%@%@%@%@%@", BASEURL,@"/scan/scan.php?deviceid=",[FTVUser getId],@"&id=",id];
+    NSURL *url = [NSURL URLWithString:req_url];
+    
+    if (url != nil && ![[UIApplication sharedApplication] openURL:url]) {
+        NSLog(@"%@%@",@"Failed to open url:",[url description]);
+    }
+}
 @end

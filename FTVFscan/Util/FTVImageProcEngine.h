@@ -16,4 +16,10 @@
 
 
 + (void)executeApi:(UIImage*)image;
+
++ (void)postData:(NSData *)photoData
+       withBrand:(NSString *)brand_slug
+  withStartBlock:(void (^)(void))startBlock
+ withFinishBlock:(void (^)(BOOL success, NSString *resp))finishBlock
+ withFailedBlock:(void (^)(BOOL success, NSString *resp))failedBlock;
 @end

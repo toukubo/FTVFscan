@@ -64,6 +64,20 @@
         //TODO: we can resize the image later, before post to the remote, so it will not harless the user experience.
         pickedImage = [FTVImageProcEngine imageResize:pickedImage saveWithName:[NSString genRandStringLength:10] usingJPEG:YES];
         
+        NSData *imageData = UIImagePNGRepresentation(pickedImage);
+        
+        [FTVImageProcEngine postData:imageData
+                            withBrand:@"gucci"
+                       withStartBlock:^{
+                           // TODO: write custom logic here
+                           // show HUD or something
+                       } withFinishBlock:^(BOOL success, NSString *resp) {
+                           // TODO: write custom logic here
+                       } withFailedBlock:^(BOOL success, NSString *resp) {
+                           // TODO: write custom logic here
+                       }
+         ];
+        
         [FTVImageProcEngine executeApi:pickedImage];
     }];
 }
@@ -71,7 +85,9 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     returnFromPicker = YES;
-    [galleryPicker dismissViewControllerAnimated:NO completion:^{}];
+    
+    [galleryPicker dismissViewControllerAnimated:NO completion:nil];
+    
     self.tabBarController.selectedIndex = 0;
 }
 
