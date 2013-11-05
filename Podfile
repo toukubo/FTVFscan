@@ -1,4 +1,4 @@
-platform :ios, "6.0"
+platform :ios, "5.0"
 
 # Easy to use CFNetwork wrapper for HTTP requests, Objective-C, Mac OS X and iPhone.
 pod 'ASIHTTPRequest'
