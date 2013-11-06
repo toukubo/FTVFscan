@@ -52,7 +52,7 @@
 
 - (BOOL)needOpenExternalSafari:(NSString*)url
 {
-    if ([url isMatchedByRegex:@"?target=_blank"]) {
+    if ([url isMatchedByRegex:@"target=_blank"]) {
         return YES;
     }
     
