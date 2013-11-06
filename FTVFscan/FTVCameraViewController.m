@@ -83,19 +83,23 @@
         NSString *brand_slug = [FTVImageProcEngine executeApi:pickedImage];
 
         NSData *imageData = UIImagePNGRepresentation(pickedImage);
+        if ( brand_slug == nil){
+            
+        }else{
+            [ FTVImageProcEngine postData:imageData
+                                withBrand:brand_slug
+                           withStartBlock:^{
+                               // TODO: write custom logic here
+                               // show HUD or something
+                           } withFinishBlock:^(BOOL success, NSString *resp) {
+                               // TODO: write custom logic here
+                           } withFailedBlock:^(BOOL success, NSString *resp) {
+                               // TODO: write custom logic here
+                           }
+             ];
+            
 
-        [ FTVImageProcEngine postData:imageData
-                            withBrand:brand_slug
-                       withStartBlock:^{
-                           // TODO: write custom logic here
-                           // show HUD or something
-                       } withFinishBlock:^(BOOL success, NSString *resp) {
-                           // TODO: write custom logic here
-                       } withFailedBlock:^(BOOL success, NSString *resp) {
-                           // TODO: write custom logic here
-                       }
-         ];
-        
+        }
         
         
         DLog(@"IMG: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);
