@@ -83,7 +83,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="history" image="bookmark-icon.png" id="s9c-9k-lkn"/>
+                    <tabBarItem key="tabBarItem" title="history" image="scans-icon" id="s9c-9k-lkn"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="scansWebView" destination="Tnl-30-tPb" id="TjG-4B-dux"/>
@@ -103,7 +103,6 @@
                         <rect key="frame" x="0.0" y="431" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="tintColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="oRQ-Rh-n7p" kind="relationship" relationship="viewControllers" id="AMI-2T-6Uu"/>
@@ -197,10 +196,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bookmark-icon.png" width="18" height="16"/>
         <image name="camera-icon.png" width="30" height="30"/>
         <image name="gallery-icon.png" width="30" height="30"/>
         <image name="list-icon.png" width="30" height="30"/>
+        <image name="scans-icon" width="18" height="16"/>
         <image name="tour-icon.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
