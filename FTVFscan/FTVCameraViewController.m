@@ -22,6 +22,7 @@
 @end
 
 @implementation FTVCameraViewController
+@synthesize popoverHolder;
 
 - (void)viewDidLoad
 {
@@ -31,21 +32,21 @@
     {
         [self prefersStatusBarHidden];
         [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    }
-    else
-    {
+    } else {
         // iOS 6
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
     
     if (!photoPicker) {
         photoPicker = [[UIImagePickerController alloc] init];
-#if TARGET_IPHONE_SIMULATOR
-        [photoPicker setSourceType: UIImagePickerControllerSourceTypePhotoLibrary];
-#else
-        [photoPicker setSourceType: UIImagePickerControllerSourceTypeCamera];
-        //        [picker setCameraOverlayView:self.customCameraOverlayView];
-#endif
+        
+        UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+            sourceType = UIImagePickerControllerSourceTypeCamera;
+        }
+        
+        [photoPicker setSourceType: sourceType];
         
         [photoPicker setMediaTypes: @[(NSString *)kUTTypeImage]];
     }
@@ -59,7 +60,27 @@
 {
     if(photoPicker && !returnFromPicker){
         photoPicker.delegate = self;
-        [self presentViewController:photoPicker animated:NO completion:nil];
+        
+        if (IS_IPAD) {
+            // http://stackoverflow.com/a/5546679
+            UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:photoPicker];
+            self.popoverHolder = popover;
+            
+            popover.popoverContentSize = self.view.frame.size;
+            int tabBarItemWidth = self.tabBarController.tabBar.frame.size.width / [self.tabBarController.tabBar.items count];
+            int x = tabBarItemWidth * 2;
+            
+            CGRect rect = CGRectMake(x, 0, tabBarItemWidth, self.view.frameSizeHeight - self.tabBarController.tabBar.frame.size.height);
+            
+            [self.popoverHolder presentPopoverFromRect:rect
+                                                inView:self.tabBarController.tabBar
+                              permittedArrowDirections:UIPopoverArrowDirectionAny
+                                              animated:NO];
+        } else {
+            [self presentViewController:photoPicker
+                               animated:NO
+                             completion:nil];
+        }
     }
 }
 
@@ -71,7 +92,6 @@
 
 #pragma mark -
 #pragma UIImagePickerController delegate methods
-
 // Here we have an image from camera for later use
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -81,7 +101,7 @@
     [photoPicker dismissViewControllerAnimated:NO completion:^{
         UIImage *pickedImage = (UIImage *)info[@"UIImagePickerControllerOriginalImage"];
         DLog(@"IMG pre proessed: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);
-
+        
         //TODO: we can resize the image later, before post to the remote, so it will not harless the user experience.
         pickedImage = [FTVImageProcEngine imageResize:pickedImage saveWithName:[NSString genRandStringLength:10] usingJPEG:YES];
         
@@ -92,7 +112,7 @@
         // TODO: should we use png or others?
         
         NSString *brand_slug = [FTVImageProcEngine executeApi:pickedImage];
-
+        
         NSData *imageData = UIImagePNGRepresentation(pickedImage);
         if ( brand_slug == nil){
             
@@ -108,8 +128,6 @@
                                // TODO: write custom logic here
                            }
              ];
-            
-
         }
         
         
@@ -117,9 +135,6 @@
     }];
     DLog(@"info: %@",info);
 }
-
-
-
 
 // user pressed "Cancel" So returning to first tab of the app
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -134,7 +149,6 @@
 {
     [super didReceiveMemoryWarning];
 }
-
 
 - (BOOL)prefersStatusBarHidden {
     return YES;

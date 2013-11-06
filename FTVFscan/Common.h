@@ -17,6 +17,9 @@
 #import "GlobalCore.h"
 #import "StringUtil.h"
 #import "ColorUtil.h"
+#import "DeviceUtil.h"
+
+#import "UIView+Helpers.h"
 
 #import "UIImage+Resize.h"
 

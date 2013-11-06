@@ -10,5 +10,7 @@
 
 @interface FTVCameraViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
+@property (strong) UIPopoverController *popoverHolder;
+
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @end
