@@ -24,13 +24,14 @@
 
 + (NSString *)getUUID
 {
-    NSString *UUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"uniqueID"];
+    NSString *UUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"uniqueUUID"];
+    DLog(UUID);
     if (!UUID) {
         CFUUIDRef theUUID = CFUUIDCreate(NULL);
         CFStringRef string = CFUUIDCreateString(NULL, theUUID);
         CFRelease(theUUID);
         UUID = [(__bridge NSString*)string stringByReplacingOccurrencesOfString:@"-"withString:@""];
-        [[NSUserDefaults standardUserDefaults] setValue:UUID forKey:@"uniqueID"];
+        [[NSUserDefaults standardUserDefaults] setValue:UUID forKey:@"uniqueUUID"];
     }
     return UUID;
 }
