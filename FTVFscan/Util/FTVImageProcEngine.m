@@ -96,29 +96,38 @@
         NSMutableArray *resultArray = [rtsearchlib ExecuteSearchFromUIImage:image searchEnv:SERVER_SERVICE_SEARCH];
         NSLog(@"resultArray = %@", resultArray);
         
+        NSString *brand_slug = nil;
+
+        
         //if search failed, set error.
         if (resultArray == nil) {
             NSLog(@"Failed ExecuteSearch");
             //result count was 0
+            brand_slug = @"failure";
+            
         } else if ([resultArray count] == 0) {
             NSLog(@"result count is 0. Don't HIT...");
             //result count was over 0
+            brand_slug = @"failure";
         } else {
+            
+            
+            NSDictionary *bland_dict = (NSDictionary *)[resultArray objectAtIndex: 0];
+            NSMutableArray *appendedInfos = (NSMutableArray *)[ bland_dict valueForKey:@"appendInfo"];
+            brand_slug = [ appendedInfos objectAtIndex:0];
+            DLog(brand_slug);
+            
+
             // should never reach here
         }
+        
+        return brand_slug;
+
         
         //for calculation operation time
         NSDate *stopTime = [NSDate date];
         NSTimeInterval operationTime = [stopTime timeIntervalSinceDate:startTime];
         NSLog(@"Operation Time is %f", operationTime);
-        
-        
-        NSDictionary *bland_dict = (NSDictionary *)[resultArray objectAtIndex: 0];
-        NSMutableArray *appendedInfos = (NSMutableArray *)[ bland_dict valueForKey:@"appendInfo"];
-        NSString *brand_slug = [ appendedInfos objectAtIndex:0];
-        DLog(brand_slug);
-        
-        return brand_slug;
         
         
         /************* Terminate API ****************/
