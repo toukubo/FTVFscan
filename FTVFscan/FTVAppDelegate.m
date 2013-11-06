@@ -74,6 +74,14 @@
     UIViewController *mvc = (UIViewController *)self.window.rootViewController;
     UITabBarController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"ftvTabController"];
     controller.selectedIndex = 2;
+    
+    // programly set the tab bar item title
+    ((UITabBarItem *)controller.tabBar.items[0]).title = NSLocalizedString(@"tabbar_item_title_tour", @"Tour");
+    ((UITabBarItem *)controller.tabBar.items[1]).title = NSLocalizedString(@"tabbar_item_title_history", @"History");
+    ((UITabBarItem *)controller.tabBar.items[2]).title = NSLocalizedString(@"tabbar_item_title_ftvscan", @"FTVFscan");
+    ((UITabBarItem *)controller.tabBar.items[3]).title = NSLocalizedString(@"tabbar_item_title_gallery", @"Gallery");
+    ((UITabBarItem *)controller.tabBar.items[4]).title = NSLocalizedString(@"tabbar_item_title_brands", @"Brands");
+    
     [self.window setRootViewController:controller];
 }
 
@@ -135,10 +143,8 @@
     [request startSynchronous];
     
     //TODO: simple change retval to NO to quick test register process
-    //return YES;
-    return retval;
-
-    
+    return YES;
+//    return retval;
 }
 
 

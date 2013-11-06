@@ -1,2 +1,7 @@
 /* Localized versions of Info.plist keys */
 
+"tabbar_item_title_tour" = "tour";
+"tabbar_item_title_history" = "history";
+"tabbar_item_title_ftvscan" = "ftvfscan";
+"tabbar_item_title_gallery" = "gallery";
+"tabbar_item_title_brands" = "brands";

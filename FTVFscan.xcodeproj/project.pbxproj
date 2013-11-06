@@ -12,6 +12,8 @@
 		39153DAD1822522A00F3C9D0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39153DAC1822522A00F3C9D0 /* CoreMedia.framework */; };
 		39153DAF1822523100F3C9D0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39153DAE1822523100F3C9D0 /* AVFoundation.framework */; };
 		39153DB2182259E100F3C9D0 /* FeatureDB.dic in Resources */ = {isa = PBXBuildFile; fileRef = 39153DB1182259E100F3C9D0 /* FeatureDB.dic */; };
+		3964FC56182A6D590035B187 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3964FC55182A6D590035B187 /* MainStoryboard.storyboard */; };
+		3964FC59182A6ECE0035B187 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3964FC5B182A6ECE0035B187 /* Localizable.strings */; };
 		39B391AB182782A300BD2D3B /* NEC_new.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 39B391A9182782A300BD2D3B /* NEC_new.jpg */; };
 		39B391AC182782A300BD2D3B /* NEC_old.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 39B391AA182782A300BD2D3B /* NEC_old.jpg */; };
 		39E32CB5181FA6D2009C911F /* FTVRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */; };
@@ -33,7 +35,6 @@
 		8465C64517F5D1B500A00460 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8465C64317F5D1B500A00460 /* InfoPlist.strings */; };
 		8465C64717F5D1B500A00460 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C64617F5D1B500A00460 /* main.m */; };
 		8465C64B17F5D1B500A00460 /* FTVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C64A17F5D1B500A00460 /* FTVAppDelegate.m */; };
-		8465C64E17F5D1B500A00460 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8465C64C17F5D1B500A00460 /* Main.storyboard */; };
 		8465C65117F5D1B500A00460 /* FTVTourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C65017F5D1B500A00460 /* FTVTourViewController.m */; };
 		8465C65417F5D1B500A00460 /* FTVScansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C65317F5D1B500A00460 /* FTVScansViewController.m */; };
 		8465C65617F5D1B500A00460 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8465C65517F5D1B500A00460 /* Images.xcassets */; };
@@ -76,6 +77,8 @@
 		39153DAE1822523100F3C9D0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		39153DB1182259E100F3C9D0 /* FeatureDB.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = FeatureDB.dic; sourceTree = "<group>"; };
 		39153DB318225A3800F3C9D0 /* FTVImageProcOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVImageProcOption.h; sourceTree = "<group>"; };
+		3964FC55182A6D590035B187 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		3964FC5A182A6ECE0035B187 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		39B391A9182782A300BD2D3B /* NEC_new.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NEC_new.jpg; sourceTree = "<group>"; };
 		39B391AA182782A300BD2D3B /* NEC_old.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NEC_old.jpg; sourceTree = "<group>"; };
 		39E32CAE181F990B009C911F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -107,7 +110,6 @@
 		39F4936A1821427E00093167 /* StringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtil.h; sourceTree = "<group>"; };
 		39F4936B1821427E00093167 /* StringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtil.m; sourceTree = "<group>"; };
 		4756BE2E181EA80500B39EB7 /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
-		47C61B921824181E00DF9125 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		47C61B931824181E00DF9125 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		47C61B941824181E00DF9125 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		62E03682EDFA4EAAB4576DB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -121,7 +123,6 @@
 		8465C64817F5D1B500A00460 /* FTVFscan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FTVFscan-Prefix.pch"; sourceTree = "<group>"; };
 		8465C64917F5D1B500A00460 /* FTVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTVAppDelegate.h; sourceTree = "<group>"; };
 		8465C64A17F5D1B500A00460 /* FTVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTVAppDelegate.m; sourceTree = "<group>"; };
-		8465C64D17F5D1B500A00460 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8465C64F17F5D1B500A00460 /* FTVTourViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTVTourViewController.h; sourceTree = "<group>"; };
 		8465C65017F5D1B500A00460 /* FTVTourViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTVTourViewController.m; sourceTree = "<group>"; };
 		8465C65217F5D1B500A00460 /* FTVScansViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTVScansViewController.h; sourceTree = "<group>"; };
@@ -276,7 +277,6 @@
 				39E32CAF181F9BAE009C911F /* Library */,
 				8465C64917F5D1B500A00460 /* FTVAppDelegate.h */,
 				8465C64A17F5D1B500A00460 /* FTVAppDelegate.m */,
-				8465C64C17F5D1B500A00460 /* Main.storyboard */,
 				39E32CB3181FA6D2009C911F /* FTVRegisterViewController.h */,
 				39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */,
 				8465C67217F5D69300A00460 /* FTVCameraViewController.h */,
@@ -300,11 +300,13 @@
 			children = (
 				39153DB0182259E100F3C9D0 /* Resources */,
 				8465C64217F5D1B500A00460 /* FTVFscan-Info.plist */,
+				3964FC55182A6D590035B187 /* MainStoryboard.storyboard */,
 				8465C64317F5D1B500A00460 /* InfoPlist.strings */,
 				8465C64617F5D1B500A00460 /* main.m */,
 				8465C64817F5D1B500A00460 /* FTVFscan-Prefix.pch */,
 				4756BE2E181EA80500B39EB7 /* Const.h */,
 				39E32CAE181F990B009C911F /* Common.h */,
+				3964FC5B182A6ECE0035B187 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -424,6 +426,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3964FC59182A6ECE0035B187 /* Localizable.strings in Resources */,
 				DEB4B84F1821A0D70050FA49 /* bookmark-icon.png in Resources */,
 				DEB4B8531821A0D70050FA49 /* gallery-icon.png in Resources */,
 				8465C65617F5D1B500A00460 /* Images.xcassets in Resources */,
@@ -437,9 +440,9 @@
 				DEB4B8581821A0D70050FA49 /* tour-icon@2x.png in Resources */,
 				39153DB2182259E100F3C9D0 /* FeatureDB.dic in Resources */,
 				8465C64517F5D1B500A00460 /* InfoPlist.strings in Resources */,
+				3964FC56182A6D590035B187 /* MainStoryboard.storyboard in Resources */,
 				DEB4B8541821A0D70050FA49 /* gallery-icon@2x.png in Resources */,
 				39B391AC182782A300BD2D3B /* NEC_old.jpg in Resources */,
-				8465C64E17F5D1B500A00460 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +535,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3964FC5B182A6ECE0035B187 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3964FC5A182A6ECE0035B187 /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		8465C64317F5D1B500A00460 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -539,15 +550,6 @@
 				47C61B931824181E00DF9125 /* ja */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		8465C64C17F5D1B500A00460 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8465C64D17F5D1B500A00460 /* Base */,
-				47C61B921824181E00DF9125 /* ja */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		8465C66517F5D1B600A00460 /* InfoPlist.strings */ = {
