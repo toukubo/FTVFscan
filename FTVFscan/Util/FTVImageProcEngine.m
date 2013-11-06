@@ -18,17 +18,16 @@
  *
  * workflow - 
  * 1. user select images from camera/gallery
- * 2. proc engine resize the images by ratio, constraint with CGSize(500, 500)
+ * 2. proc engine resize the images by ratio, WIDTH must be multiple of 4, and width/height ratio must be kept as original.
  * 3. store the processed image to photo album
  * 4. post the processed image to remote
- *
- * Currently, it only support resize to W500xH500 px.
  */
 @implementation FTVImageProcEngine
 
 + (UIImage*)imageResize:(UIImage*)srcImage
 {
-    return [srcImage resizedImageToFitInSize:CGSizeMake(496, 496) scaleIfSmaller:YES];
+    // workaround : we used a very never met height, so it will always constraint by the width.
+    return [srcImage resizedImageToFitInSize:CGSizeMake(496, 9999) scaleIfSmaller:YES];
 }
 
 + (UIImage*)imageResize:(UIImage*)srcImage saveWithName:(NSString*)imgName usingJPEG:(BOOL)jpeg
