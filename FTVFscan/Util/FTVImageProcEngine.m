@@ -103,9 +103,12 @@
         if (resultArray == nil) {
             NSLog(@"Failed ExecuteSearch");
             //result count was 0
+            brand_slug = @"failure";
+            
         } else if ([resultArray count] == 0) {
             NSLog(@"result count is 0. Don't HIT...");
             //result count was over 0
+            brand_slug = @"failure";
         } else {
             
             
