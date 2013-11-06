@@ -27,6 +27,17 @@
 {
     [super viewDidLoad];
     
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])
+    {
+        [self prefersStatusBarHidden];
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    }
+    else
+    {
+        // iOS 6
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    }
+    
     if (!photoPicker) {
         photoPicker = [[UIImagePickerController alloc] init];
 #if TARGET_IPHONE_SIMULATOR
@@ -118,6 +129,11 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 @end

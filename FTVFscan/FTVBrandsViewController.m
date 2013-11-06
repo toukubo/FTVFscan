@@ -18,6 +18,17 @@
 {
     [super viewDidLoad];
     _brandsWebView.delegate = self;
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])
+    {
+        [self prefersStatusBarHidden];
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    }
+    else
+    {
+        // iOS 6
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -39,6 +50,11 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 @end

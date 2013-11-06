@@ -19,7 +19,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])
+    {
+        [self prefersStatusBarHidden];
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    }
+    else
+    {
+        // iOS 6
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    }
+    
 //    appDelegate = (FTVAppDelegate *)[UIApplication sharedApplication].delegate);
     
     _tourWebView.delegate = self;
@@ -36,6 +46,10 @@
 {
     [super didReceiveMemoryWarning];
 
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 @end
