@@ -78,7 +78,8 @@
 		39153DB1182259E100F3C9D0 /* FeatureDB.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = FeatureDB.dic; sourceTree = "<group>"; };
 		39153DB318225A3800F3C9D0 /* FTVImageProcOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVImageProcOption.h; sourceTree = "<group>"; };
 		3964FC55182A6D590035B187 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
-		3964FC5A182A6ECE0035B187 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3964FC5C182A7BB50035B187 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3964FC5D182A7BD50035B187 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		39B391A9182782A300BD2D3B /* NEC_new.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NEC_new.jpg; sourceTree = "<group>"; };
 		39B391AA182782A300BD2D3B /* NEC_old.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NEC_old.jpg; sourceTree = "<group>"; };
 		39E32CAE181F990B009C911F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -538,7 +539,8 @@
 		3964FC5B182A6ECE0035B187 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3964FC5A182A6ECE0035B187 /* Base */,
+				3964FC5C182A7BB50035B187 /* en */,
+				3964FC5D182A7BD50035B187 /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
