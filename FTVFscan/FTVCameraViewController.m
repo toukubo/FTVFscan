@@ -8,6 +8,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 
 #import "FTVCameraViewController.h"
+#import "FTVDelayJobWebViewController.h"
 
 @interface FTVCameraViewController ()
 {
@@ -17,6 +18,8 @@
     BOOL returnFromPicker;
     
     UIImagePickerController *photoPicker;
+    
+    NSString                *redirectUrl;
 }
 
 @end
@@ -106,8 +109,8 @@
         pickedImage = [FTVImageProcEngine imageResize:pickedImage saveWithName:[NSString genRandStringLength:10] usingJPEG:YES];
         
         // In production remove imageView from storyboard and open new workflow view there in main thread
-        self.imageView.contentMode = UIViewContentModeCenter;   // disbale auto enlarge
-        self.imageView.image = pickedImage;
+        //        self.imageView.contentMode = UIViewContentModeCenter;   // disbale auto enlarge
+        //        self.imageView.image = pickedImage;
         
         // TODO: should we use png or others?
         
@@ -122,20 +125,39 @@
                            withStartBlock:^{
                                // TODO: write custom logic here
                                // show HUD or something
+//                               [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_loading", @"Loading")];
+                               [SVProgressHUD show];
                            } withFinishBlock:^(BOOL success, NSString *resp) {
-                               // TODO: write custom logic here
+                               if (success) {
+                                   redirectUrl = [FTVImageProcEngine encapsulateById:resp];
+                                   if (![redirectUrl isMalform]) {
+                                       [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
+                                       [SVProgressHUD dismiss];
+                                   }
+                               } else {
+                                   [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_malform", @"Malform")];
+                               }
                            } withFailedBlock:^(BOOL success, NSString *resp) {
-                               // TODO: write custom logic here
-                           }
-             ];
+                               [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_error", @"Error")];
+                           }];
         }
-        
         
         DLog(@"IMG: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);
     }];
     DLog(@"info: %@",info);
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"presentDelayJobWebViewController"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        for (UIViewController *vc in navigationController.viewControllers) {
+            if ([vc isKindOfClass:[FTVDelayJobWebViewController class]]) {
+                ((FTVDelayJobWebViewController*)vc).redirectUrl = redirectUrl;
+            }
+        }
+    }
+}
 // user pressed "Cancel" So returning to first tab of the app
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {

@@ -12,7 +12,20 @@
 
 int main(int argc, char * argv[])
 {
+//    @autoreleasepool {
+//        return UIApplicationMain(argc, argv, nil, NSStringFromClass([FTVAppDelegate class]));
+//    }
+    
+    int retVal = -1;
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([FTVAppDelegate class]));
+        @try {
+            retVal = UIApplicationMain(argc, argv, nil, NSStringFromClass([FTVAppDelegate class]));
+        }
+        @catch (NSException* exception) {
+            NSLog(@"Uncaught exception: %@", exception.description);
+            NSLog(@"Stack trace: %@", [exception callStackSymbols]);
+        }
     }
+    return retVal;
+
 }

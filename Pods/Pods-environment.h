@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_Reachability 1
 #define COCOAPODS_VERSION_PATCH_Reachability 1
 
+// RegexKitLite
+#define COCOAPODS_POD_AVAILABLE_RegexKitLite
+#define COCOAPODS_VERSION_MAJOR_RegexKitLite 4
+#define COCOAPODS_VERSION_MINOR_RegexKitLite 0
+#define COCOAPODS_VERSION_PATCH_RegexKitLite 0
+
 // SFHFKeychainUtils
 #define COCOAPODS_POD_AVAILABLE_SFHFKeychainUtils
 #define COCOAPODS_VERSION_MAJOR_SFHFKeychainUtils 0

@@ -44,6 +44,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="aaQ-bu-HIt" id="5kg-QM-UeO"/>
+                        <segue destination="B7h-6y-4Tk" kind="modal" identifier="presentDelayJobWebViewController" id="imu-oV-QJI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fn-bg-ZIc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -62,10 +63,44 @@
                     <tabBarItem key="tabBarItem" title="gallery" image="gallery-icon.png" id="l5C-6t-ysy"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="B7h-6y-4Tk" kind="modal" identifier="presentDelayJobWebViewController" id="OU8-Ov-bC0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XWl-UR-4E8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="658" y="-559"/>
+            <point key="canvasLocation" x="665" y="-573"/>
+        </scene>
+        <!--Delay Job Web View Controller-->
+        <scene sceneID="oYl-3E-Imx">
+            <objects>
+                <viewController id="7zf-zb-wVJ" customClass="FTVDelayJobWebViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NO3-Fj-Lln">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="Rmj-Q7-hjV">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9Cl-ib-YoJ">
+                        <barButtonItem key="rightBarButtonItem" title="Close" id="2Tx-jx-g5c">
+                            <connections>
+                                <action selector="dismissModalView:" destination="7zf-zb-wVJ" id="4e7-t4-6mo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="Rmj-Q7-hjV" id="ynk-L1-MQh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QYn-UB-cup" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1688" y="-532"/>
         </scene>
         <!--Bookmarks View Controller-->
         <scene sceneID="zVU-1a-4CF">
@@ -194,6 +229,24 @@
             </objects>
             <point key="canvasLocation" x="782" y="194"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="V6S-Jm-5Um">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="B7h-6y-4Tk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dXh-dM-1Rt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7zf-zb-wVJ" kind="relationship" relationship="rootViewController" id="Ypj-zb-L8Y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oXp-dE-xD5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1162" y="-532"/>
+        </scene>
     </scenes>
     <resources>
         <image name="camera-icon.png" width="30" height="30"/>
@@ -207,4 +260,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="imu-oV-QJI"/>
+    </inferredMetricsTieBreakers>
 </document>

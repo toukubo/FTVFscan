@@ -31,3 +31,6 @@ pod 'SVProgressHUD', '0.8.1'
 
 # Category to add some resizing methods to the UIImage class, to resize it to a given CGRect — or fit in a CGRect keeping aspect ratio.
 pod 'UIImage-Resize'
+
+# Lightweight Objective-C Regular Expressions using the ICU Library.
+pod 'RegexKitLite'

@@ -14,6 +14,8 @@
 		39153DB2182259E100F3C9D0 /* FeatureDB.dic in Resources */ = {isa = PBXBuildFile; fileRef = 39153DB1182259E100F3C9D0 /* FeatureDB.dic */; };
 		3964FC56182A6D590035B187 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3964FC55182A6D590035B187 /* MainStoryboard.storyboard */; };
 		3964FC59182A6ECE0035B187 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3964FC5B182A6ECE0035B187 /* Localizable.strings */; };
+		3964FC60182A8AEF0035B187 /* FTVDelayJobWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3964FC5F182A8AEF0035B187 /* FTVDelayJobWebViewController.m */; };
+		39B30007182A927800CB13EE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B30006182A927800CB13EE /* libicucore.dylib */; };
 		39B391AB182782A300BD2D3B /* NEC_new.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 39B391A9182782A300BD2D3B /* NEC_new.jpg */; };
 		39B391AC182782A300BD2D3B /* NEC_old.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 39B391AA182782A300BD2D3B /* NEC_old.jpg */; };
 		39E32CB5181FA6D2009C911F /* FTVRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */; };
@@ -78,8 +80,11 @@
 		39153DB1182259E100F3C9D0 /* FeatureDB.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = FeatureDB.dic; sourceTree = "<group>"; };
 		39153DB318225A3800F3C9D0 /* FTVImageProcOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVImageProcOption.h; sourceTree = "<group>"; };
 		3964FC55182A6D590035B187 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
-		3964FC5C182A7BB50035B187 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		3964FC5D182A7BD50035B187 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3964FC5C182A7BB50035B187 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3964FC5D182A7BD50035B187 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3964FC5E182A8AEF0035B187 /* FTVDelayJobWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVDelayJobWebViewController.h; sourceTree = "<group>"; };
+		3964FC5F182A8AEF0035B187 /* FTVDelayJobWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVDelayJobWebViewController.m; sourceTree = "<group>"; };
+		39B30006182A927800CB13EE /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		39B391A9182782A300BD2D3B /* NEC_new.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NEC_new.jpg; sourceTree = "<group>"; };
 		39B391AA182782A300BD2D3B /* NEC_old.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NEC_old.jpg; sourceTree = "<group>"; };
 		39E32CAE181F990B009C911F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -158,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39B30007182A927800CB13EE /* libicucore.dylib in Frameworks */,
 				39153DAF1822523100F3C9D0 /* AVFoundation.framework in Frameworks */,
 				39153DAD1822522A00F3C9D0 /* CoreMedia.framework in Frameworks */,
 				39153DAB1822522200F3C9D0 /* CoreVideo.framework in Frameworks */,
@@ -256,6 +262,7 @@
 		8465C63917F5D1B500A00460 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39B30006182A927800CB13EE /* libicucore.dylib */,
 				39153DAE1822523100F3C9D0 /* AVFoundation.framework */,
 				39153DAC1822522A00F3C9D0 /* CoreMedia.framework */,
 				39153DAA1822522200F3C9D0 /* CoreVideo.framework */,
@@ -278,6 +285,8 @@
 				39E32CAF181F9BAE009C911F /* Library */,
 				8465C64917F5D1B500A00460 /* FTVAppDelegate.h */,
 				8465C64A17F5D1B500A00460 /* FTVAppDelegate.m */,
+				3964FC5E182A8AEF0035B187 /* FTVDelayJobWebViewController.h */,
+				3964FC5F182A8AEF0035B187 /* FTVDelayJobWebViewController.m */,
 				39E32CB3181FA6D2009C911F /* FTVRegisterViewController.h */,
 				39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */,
 				8465C67217F5D69300A00460 /* FTVCameraViewController.h */,
@@ -499,6 +508,7 @@
 				39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */,
 				39F4936018213B3000093167 /* DeviceUtil.m in Sources */,
 				39F4936E1821427E00093167 /* StringUtil.m in Sources */,
+				3964FC60182A8AEF0035B187 /* FTVDelayJobWebViewController.m in Sources */,
 				39E32CB5181FA6D2009C911F /* FTVRegisterViewController.m in Sources */,
 				39F4936118213B3000093167 /* GlobalCore.m in Sources */,
 				39E32CBA181FB77D009C911F /* FTVUser.m in Sources */,

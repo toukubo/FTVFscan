@@ -22,4 +22,8 @@
   withStartBlock:(void (^)(void))startBlock
  withFinishBlock:(void (^)(BOOL success, NSString *resp))finishBlock
  withFailedBlock:(void (^)(BOOL success, NSString *resp))failedBlock;
+
++ (NSString*)encapsulateById:(NSString*)id;
+
++ (void)openSafari:(NSString *)urlString;
 @end

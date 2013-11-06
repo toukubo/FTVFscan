@@ -16,6 +16,7 @@
 + (NSString*)base64encode:(NSString*)str;
 + (NSString *)genRandStringLength:(int)len;
 - (BOOL)isEmpty;
+- (BOOL)isMalform;
 @end
 
 

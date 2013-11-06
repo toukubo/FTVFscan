@@ -168,6 +168,14 @@ static NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
 	return [[[NSBundle mainBundle] localizedInfoDictionary] objectForKey:key];
 }
 
+- (BOOL)isMalform
+{
+    // http://stackoverflow.com/a/3819561
+    NSString *urlRegEx =
+    @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+    NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
+    return [urlTest evaluateWithObject:self];
+}
 @end
 
 

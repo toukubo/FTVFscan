@@ -5,10 +5,11 @@
 //  Created by Tim Tretyak on 27.09.13.
 //  Copyright (c) 2013 T2. All rights reserved.
 //
+#import <MobileCoreServices/MobileCoreServices.h>
 
 #import "FTVGalleryViewController.h"
 #import "FTVAppDelegate.h"
-#import <MobileCoreServices/MobileCoreServices.h>
+#import "FTVDelayJobWebViewController.h"
 
 @interface FTVGalleryViewController ()
 {
@@ -17,6 +18,8 @@
     BOOL returnFromPicker;
     
     UIImagePickerController *galleryPicker;
+    
+    NSString                *redirectUrl;
 }
 
 @end
@@ -79,21 +82,39 @@
         
         NSString *brand_slug = [FTVImageProcEngine executeApi:pickedImage];
         
-        
-        [ FTVImageProcEngine postData:imageData
-                            withBrand:brand_slug
-                       withStartBlock:^{
-                           // TODO: write custom logic here
-                           // show HUD or something
-                       } withFinishBlock:^(BOOL success, NSString *resp) {
-                           // TODO: write custom logic here
-                       } withFailedBlock:^(BOOL success, NSString *resp) {
-                           // TODO: write custom logic here
-                       }
-         ];
-        
-
+        [FTVImageProcEngine postData:imageData
+                           withBrand:brand_slug
+                      withStartBlock:^{
+                          // TODO: write custom logic here
+                          // show HUD or something
+//                          [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_loading", @"Loading")];
+                          [SVProgressHUD show];
+                      } withFinishBlock:^(BOOL success, NSString *resp) {
+                          if (success) {
+                              redirectUrl = [FTVImageProcEngine encapsulateById:resp];
+                              if (![redirectUrl isMalform]) {
+                                  [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
+                                  [SVProgressHUD dismiss];
+                              }
+                          } else {
+                              [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_malform", @"Malform")];
+                          }
+                      } withFailedBlock:^(BOOL success, NSString *resp) {
+                          [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_error", @"Error")];
+                      }];
     }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"presentDelayJobWebViewController"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        for (UIViewController *vc in navigationController.viewControllers) {
+            if ([vc isKindOfClass:[FTVDelayJobWebViewController class]]) {
+                ((FTVDelayJobWebViewController*)vc).redirectUrl = redirectUrl;
+            }
+        }
+    }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

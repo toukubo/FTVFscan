@@ -18,15 +18,15 @@
 //    DLog(@"%@",fakeUDID);
     
 //    return fakeUDID;
-    return [ self getUUID ];
+    return [FTVUser getUUID];
     
 }
 
 + (NSString *)getUUID
 {
     NSString *UUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"uniqueUUID"];
-    DLog(UUID);
     if (!UUID) {
+        DLog(UUID);
         CFUUIDRef theUUID = CFUUIDCreate(NULL);
         CFStringRef string = CFUUIDCreateString(NULL, theUUID);
         CFRelease(theUUID);

@@ -16,7 +16,7 @@
 /**
  * FTVImageProcEngine is used to process images after pick from camera or photo gallery.
  *
- * workflow - 
+ * workflow -
  * 1. user select images from camera/gallery
  * 2. proc engine resize the images by ratio, WIDTH must be multiple of 4, and width/height ratio must be kept as original.
  * 3. store the processed image to photo album
@@ -54,10 +54,10 @@
 // stolen from RTSearchApiTester
 + (NSString*)executeApi:(UIImage*)image
 {
-//    UIImage *image = [UIImage imageNamed:@"NEC_new.jpg"];
+    //    UIImage *image = [UIImage imageNamed:@"NEC_new.jpg"];
     int width = CGImageGetWidth(image.CGImage);
     int height = CGImageGetHeight(image.CGImage);
-
+    
     /************* Create API Instance ****************/
     RTSearchApi *api = [[RTSearchApi alloc] init];
     
@@ -97,7 +97,7 @@
         NSLog(@"resultArray = %@", resultArray);
         
         NSString *brand_slug = nil;
-
+        
         
         //if search failed, set error.
         if (resultArray == nil) {
@@ -117,12 +117,12 @@
             brand_slug = [ appendedInfos objectAtIndex:0];
             DLog(brand_slug);
             
-
+            
             // should never reach here
         }
         
         return brand_slug;
-
+        
         
         //for calculation operation time
         NSDate *stopTime = [NSDate date];
@@ -135,10 +135,10 @@
         
     } else {
         // handle following errors
-//            #define AUTH_CONST_ERROR    @"0101"
-//            #define AUTH_OPE_ERROR      @"0201"
-//            #define AUTH_SRV_ERROR      @"0501"
-//            #define AUTH_CON_ERROR      @"0901"
+        //            #define AUTH_CONST_ERROR    @"0101"
+        //            #define AUTH_OPE_ERROR      @"0201"
+        //            #define AUTH_SRV_ERROR      @"0501"
+        //            #define AUTH_CON_ERROR      @"0901"
     }
     return nil;
 }
@@ -152,19 +152,17 @@
 {
     __weak NSString *urlStr = [NSString stringWithFormat:@"%@%@", BASEURL, @"scan/post.php"];
     __weak ASIFormDataRequest* req = [ASIFormDataRequest
-                               requestWithURL:[NSURL URLWithString:urlStr]];
+                                      requestWithURL:[NSURL URLWithString:urlStr]];
     [req setTimeOutSeconds:120];
     [req addPostValue:[FTVUser getId] forKey:@"user_id"];
     [req addPostValue:brandSlug forKey:@"brand_slug"];
     
     [req setData:photoData withFileName:@"image.png" andContentType:@"image/png" forKey:@"image"];
-
+    
     req.defaultResponseEncoding = NSUTF8StringEncoding;
     
     [req setCompletionBlock:^{
         if (req.responseStatusCode == 200) {
-            NSString* resString = [req responseString];
-            [FTVImageProcEngine openSafari:resString];
             finishBlock(YES, req.responseString);
         } else {
             failedBlock(NO, req.responseString);
@@ -176,17 +174,21 @@
     }];
     
     // TODO: show progress or something...
-//    [req setUploadSizeIncrementedBlock:^(long long size) {
-//
-//    }];
+    //    [req setUploadSizeIncrementedBlock:^(long long size) {
+    //
+    //    }];
     
     [req startAsynchronous];
 }
 
-+ (void)openSafari:(NSString *)id
++ (NSString*)encapsulateById:(NSString*)id
 {
-    NSString *req_url = [NSString stringWithFormat:@"%@%@%@%@%@", BASEURL,@"/scan/scan.php?deviceid=",[FTVUser getId],@"&id=",id];
-    NSURL *url = [NSURL URLWithString:req_url];
+    return [NSString stringWithFormat:@"%@%@%@%@%@", BASEURL, @"/scan/scan.php?deviceid=", [FTVUser getId], @"&id=", id];
+}
+
++ (void)openSafari:(NSString *)urlString
+{
+    NSURL *url = [NSURL URLWithString:urlString];
     
     if (url != nil && ![[UIApplication sharedApplication] openURL:url]) {
         NSLog(@"%@%@",@"Failed to open url:",[url description]);
