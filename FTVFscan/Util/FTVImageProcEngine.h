@@ -15,7 +15,7 @@
 + (UIImage*)imageResize:(UIImage*)srcImage saveWithName:(NSString*)imgName usingJPEG:(BOOL)jpeg;
 
 
-+ (void)executeApi:(UIImage*)image;
++ (NSString*)executeApi:(UIImage*)image;
 
 + (void)postData:(NSData *)photoData
        withBrand:(NSString *)brand_slug

@@ -18,17 +18,16 @@
  *
  * workflow - 
  * 1. user select images from camera/gallery
- * 2. proc engine resize the images by ratio, constraint with CGSize(500, 500)
+ * 2. proc engine resize the images by ratio, WIDTH must be multiple of 4, and width/height ratio must be kept as original.
  * 3. store the processed image to photo album
  * 4. post the processed image to remote
- *
- * Currently, it only support resize to W500xH500 px.
  */
 @implementation FTVImageProcEngine
 
 + (UIImage*)imageResize:(UIImage*)srcImage
 {
-    return [srcImage resizedImageToFitInSize:CGSizeMake(500, 500) scaleIfSmaller:YES];
+    // workaround : we used a very never met height, so it will always constraint by the width.
+    return [srcImage resizedImageToFitInSize:CGSizeMake(496, 9999) scaleIfSmaller:YES];
 }
 
 + (UIImage*)imageResize:(UIImage*)srcImage saveWithName:(NSString*)imgName usingJPEG:(BOOL)jpeg
@@ -53,17 +52,12 @@
 
 // ------------- NEC Image Search Function ----------------
 // stolen from RTSearchApiTester
-+ (void)executeApi:(UIImage*)image
++ (NSString*)executeApi:(UIImage*)image
 {
-    /** Error **/
-    NSString *error;
-    
 //    UIImage *image = [UIImage imageNamed:@"NEC_new.jpg"];
-    
     int width = CGImageGetWidth(image.CGImage);
     int height = CGImageGetHeight(image.CGImage);
-    
-    //
+
     /************* Create API Instance ****************/
     RTSearchApi *api = [[RTSearchApi alloc] init];
     
@@ -72,11 +66,16 @@
     NSLog(@"authResult = %@", authResult);
     
     //if authentication succeeded, execute search.
-    if ([authResult isEqualToString:@"0000"]) {
-        NSString *featureFilePath = [[NSBundle mainBundle] pathForResource:@"FeatureDB.dic" ofType:nil];
-
-        NSString *appendFilePath = [[NSBundle mainBundle] pathForResource:@"AppendInfoFile.info" ofType:nil];
+    if ([authResult isEqualToString:AUTH_OK]) {
+        NSString *featureFilePath;
+        NSString *appendFilePath;
+        int imageSearchMode = SERVER_SERVICE_SEARCH;
         
+        if (imageSearchMode == CLIENT_SEARCH) {
+            // client search mode do not need the extra info
+            featureFilePath = [[NSBundle mainBundle] pathForResource:@"FeatureDB.dic" ofType:nil];
+            appendFilePath = [[NSBundle mainBundle] pathForResource:@"AppendInfoFile.info" ofType:nil];
+        }
         
         /************* Create Instance API ****************/
         RTFeatureSearcher *rtsearchlib = [api GetInstance:featureFilePath
@@ -86,31 +85,26 @@
         
         //if create instance failed, set error and write log.
         if (rtsearchlib == nil) {
-            error = @"GetInstance error...";
             NSLog(@"GetInstance error...");
-            return;
+            return nil;
         }
         
         /************* Image Search API ****************/
         //for calculation operation time
         NSDate *startTime = [NSDate date];
-        //NSMutableArray *resultArray = [[NSMutableArray alloc] init];
         
         NSMutableArray *resultArray = [rtsearchlib ExecuteSearchFromUIImage:image searchEnv:SERVER_SERVICE_SEARCH];
         NSLog(@"resultArray = %@", resultArray);
         
         //if search failed, set error.
         if (resultArray == nil) {
-            error = @"Failed ExecuteSearch";
             NSLog(@"Failed ExecuteSearch");
             //result count was 0
         } else if ([resultArray count] == 0) {
-            error = @"result count is 0. Don't HIT...";
             NSLog(@"result count is 0. Don't HIT...");
-            
             //result count was over 0
         } else {
-            error = nil;
+            // should never reach here
         }
         
         //for calculation operation time
@@ -118,12 +112,26 @@
         NSTimeInterval operationTime = [stopTime timeIntervalSinceDate:startTime];
         NSLog(@"Operation Time is %f", operationTime);
         
+        
+        NSDictionary *bland_dict = (NSDictionary *)[resultArray objectAtIndex: 0];
+        NSMutableArray *appendedInfos = (NSMutableArray *)[ bland_dict valueForKey:@"appendInfo"];
+        NSString *brand_slug = [ appendedInfos objectAtIndex:0];
+        DLog(brand_slug);
+        
+        return brand_slug;
+        
+        
         /************* Terminate API ****************/
         [rtsearchlib CloseFeatureSearcher];
         
     } else {
-        error = @"Non. Authentication Failed.";
+        // handle following errors
+//            #define AUTH_CONST_ERROR    @"0101"
+//            #define AUTH_OPE_ERROR      @"0201"
+//            #define AUTH_SRV_ERROR      @"0501"
+//            #define AUTH_CON_ERROR      @"0901"
     }
+    return nil;
 }
 
 + (void)postData:(NSData *)photoData
