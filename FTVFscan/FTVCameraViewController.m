@@ -69,7 +69,8 @@
     
     [photoPicker dismissViewControllerAnimated:NO completion:^{
         UIImage *pickedImage = (UIImage *)info[@"UIImagePickerControllerOriginalImage"];
-        
+        DLog(@"IMG pre proessed: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);
+
         //TODO: we can resize the image later, before post to the remote, so it will not harless the user experience.
         pickedImage = [FTVImageProcEngine imageResize:pickedImage saveWithName:[NSString genRandStringLength:10] usingJPEG:YES];
         

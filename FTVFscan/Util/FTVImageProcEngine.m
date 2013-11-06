@@ -28,7 +28,7 @@
 
 + (UIImage*)imageResize:(UIImage*)srcImage
 {
-    return [srcImage resizedImageToFitInSize:CGSizeMake(500, 500) scaleIfSmaller:YES];
+    return [srcImage resizedImageToFitInSize:CGSizeMake(496, 496) scaleIfSmaller:YES];
 }
 
 + (UIImage*)imageResize:(UIImage*)srcImage saveWithName:(NSString*)imgName usingJPEG:(BOOL)jpeg
