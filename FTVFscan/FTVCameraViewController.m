@@ -79,10 +79,13 @@
         self.imageView.image = pickedImage;
         
         // TODO: should we use png or others?
-        NSData *imageData = UIImagePNGRepresentation(pickedImage);
         
+        NSString *brand_slug = [FTVImageProcEngine executeApi:pickedImage];
+
+        NSData *imageData = UIImagePNGRepresentation(pickedImage);
+
         [ FTVImageProcEngine postData:imageData
-                            withBrand:@"gucci"
+                            withBrand:brand_slug
                        withStartBlock:^{
                            // TODO: write custom logic here
                            // show HUD or something
@@ -93,7 +96,6 @@
                        }
          ];
         
-        [FTVImageProcEngine executeApi:pickedImage];
         
         
         DLog(@"IMG: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);

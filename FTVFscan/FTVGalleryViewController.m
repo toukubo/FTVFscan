@@ -66,8 +66,11 @@
         
         NSData *imageData = UIImagePNGRepresentation(pickedImage);
         
-        [FTVImageProcEngine postData:imageData
-                            withBrand:@"gucci"
+        NSString *brand_slug = [FTVImageProcEngine executeApi:pickedImage];
+        
+        
+        [ FTVImageProcEngine postData:imageData
+                            withBrand:brand_slug
                        withStartBlock:^{
                            // TODO: write custom logic here
                            // show HUD or something
@@ -78,7 +81,7 @@
                        }
          ];
         
-        [FTVImageProcEngine executeApi:pickedImage];
+
     }];
 }
 

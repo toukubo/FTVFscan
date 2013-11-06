@@ -52,7 +52,7 @@
 
 // ------------- NEC Image Search Function ----------------
 // stolen from RTSearchApiTester
-+ (void)executeApi:(UIImage*)image
++ (NSString*)executeApi:(UIImage*)image
 {
 //    UIImage *image = [UIImage imageNamed:@"NEC_new.jpg"];
     int width = CGImageGetWidth(image.CGImage);
@@ -86,7 +86,7 @@
         //if create instance failed, set error and write log.
         if (rtsearchlib == nil) {
             NSLog(@"GetInstance error...");
-            return;
+            return nil;
         }
         
         /************* Image Search API ****************/
@@ -112,6 +112,15 @@
         NSTimeInterval operationTime = [stopTime timeIntervalSinceDate:startTime];
         NSLog(@"Operation Time is %f", operationTime);
         
+        
+        NSDictionary *bland_dict = (NSDictionary *)[resultArray objectAtIndex: 0];
+        NSMutableArray *appendedInfos = (NSMutableArray *)[ bland_dict valueForKey:@"appendInfo"];
+        NSString *brand_slug = [ appendedInfos objectAtIndex:0];
+        DLog(brand_slug);
+        
+        return brand_slug;
+        
+        
         /************* Terminate API ****************/
         [rtsearchlib CloseFeatureSearcher];
         
@@ -122,6 +131,7 @@
 //            #define AUTH_SRV_ERROR      @"0501"
 //            #define AUTH_CON_ERROR      @"0901"
     }
+    return nil;
 }
 
 + (void)postData:(NSData *)photoData
