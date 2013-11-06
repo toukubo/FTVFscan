@@ -54,15 +54,10 @@
 // stolen from RTSearchApiTester
 + (void)executeApi:(UIImage*)image
 {
-    /** Error **/
-    NSString *error;
-    
 //    UIImage *image = [UIImage imageNamed:@"NEC_new.jpg"];
-    
     int width = CGImageGetWidth(image.CGImage);
     int height = CGImageGetHeight(image.CGImage);
-    
-    //
+
     /************* Create API Instance ****************/
     RTSearchApi *api = [[RTSearchApi alloc] init];
     
@@ -71,11 +66,16 @@
     NSLog(@"authResult = %@", authResult);
     
     //if authentication succeeded, execute search.
-    if ([authResult isEqualToString:@"0000"]) {
-        NSString *featureFilePath = [[NSBundle mainBundle] pathForResource:@"FeatureDB.dic" ofType:nil];
-
-        NSString *appendFilePath = [[NSBundle mainBundle] pathForResource:@"AppendInfoFile.info" ofType:nil];
+    if ([authResult isEqualToString:AUTH_OK]) {
+        NSString *featureFilePath;
+        NSString *appendFilePath;
+        int imageSearchMode = SERVER_SERVICE_SEARCH;
         
+        if (imageSearchMode == CLIENT_SEARCH) {
+            // client search mode do not need the extra info
+            featureFilePath = [[NSBundle mainBundle] pathForResource:@"FeatureDB.dic" ofType:nil];
+            appendFilePath = [[NSBundle mainBundle] pathForResource:@"AppendInfoFile.info" ofType:nil];
+        }
         
         /************* Create Instance API ****************/
         RTFeatureSearcher *rtsearchlib = [api GetInstance:featureFilePath
@@ -85,7 +85,6 @@
         
         //if create instance failed, set error and write log.
         if (rtsearchlib == nil) {
-            error = @"GetInstance error...";
             NSLog(@"GetInstance error...");
             return;
         }
@@ -93,23 +92,19 @@
         /************* Image Search API ****************/
         //for calculation operation time
         NSDate *startTime = [NSDate date];
-        //NSMutableArray *resultArray = [[NSMutableArray alloc] init];
         
         NSMutableArray *resultArray = [rtsearchlib ExecuteSearchFromUIImage:image searchEnv:SERVER_SERVICE_SEARCH];
         NSLog(@"resultArray = %@", resultArray);
         
         //if search failed, set error.
         if (resultArray == nil) {
-            error = @"Failed ExecuteSearch";
             NSLog(@"Failed ExecuteSearch");
             //result count was 0
         } else if ([resultArray count] == 0) {
-            error = @"result count is 0. Don't HIT...";
             NSLog(@"result count is 0. Don't HIT...");
-            
             //result count was over 0
         } else {
-            error = nil;
+            // should never reach here
         }
         
         //for calculation operation time
@@ -121,7 +116,11 @@
         [rtsearchlib CloseFeatureSearcher];
         
     } else {
-        error = @"Non. Authentication Failed.";
+        // handle following errors
+//            #define AUTH_CONST_ERROR    @"0101"
+//            #define AUTH_OPE_ERROR      @"0201"
+//            #define AUTH_SRV_ERROR      @"0501"
+//            #define AUTH_CON_ERROR      @"0901"
     }
 }
 
