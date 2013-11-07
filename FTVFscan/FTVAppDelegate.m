@@ -38,6 +38,20 @@
     // set selected tab image tint color, dont use setTintColor directly, which will make whole bar to be rendered
     [[UITabBar appearance] setSelectedImageTintColor:[ColorUtil colorWithHexString:@"FF0080"]];
     
+    if ([[UINavigationBar appearance] respondsToSelector:@selector(setBarTintColor:)]) {
+        /*
+         The behavior of tintColor for bars has changed on iOS 7.0. It no longer affects the bar's background
+         and behaves as described for the tintColor property added to UIView.
+         To tint the bar's background, please use -barTintColor.
+         */
+        [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+    } else {
+        /*
+         * ios 5 - 6
+         */
+        [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+    }
+    
     return YES;
 }
 
