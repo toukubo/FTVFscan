@@ -4,5 +4,7 @@
     <string name="app_name">fscan</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="splash_activity">fscan.Splash</string>
+    <string name="main_activity">fscan.Main</string>
 
 </resources>
