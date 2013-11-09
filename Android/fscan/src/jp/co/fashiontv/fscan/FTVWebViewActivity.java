@@ -7,10 +7,11 @@ import jp.co.fashiontv.fscan.Common.FTVConstants;
 import jp.co.fashiontv.fscan.Common.FTVShareWebClient;
 
 /**
- * Created by veiz on 13-11-9.
+ * Created by Alsor Zhou on 13-11-9.
  */
 public class FTVWebViewActivity extends Activity {
     WebView webView;
+    String mUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,13 +19,35 @@ public class FTVWebViewActivity extends Activity {
 
         setContentView(R.layout.layout_webview);
 
+
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+            mUrl = extras.getString("url");
+        }
+
         setupWebView();
     }
 
     private void setupWebView() {
-        webView = (WebView) findViewById(R.id.webview);
-        webView.loadUrl(FTVConstants.urlHome);
+        String url = FTVConstants.urlHome;
 
+        if (!mUrl.isEmpty()) {
+            url = mUrl;
+        }
+        webView = (WebView) findViewById(R.id.webview);
+        webView.loadUrl(url);
         webView.setWebViewClient(new FTVShareWebClient(this, webView));
+    }
+
+    /**
+     * Load specific url
+     *
+     * @param url
+     */
+    public void loadUrl(String url) {
+        if (webView != null) {
+            webView.loadUrl(url);
+        }
     }
 }
