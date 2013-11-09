@@ -8,6 +8,9 @@
 
 #import "FTVRegisterViewController.h"
 
+#import "RegexKitLite.h"
+
+
 static NSString * const URL_REGISTRTION = @"/registration/index.php";
 
 @interface FTVRegisterViewController ()
@@ -53,4 +56,31 @@ static NSString * const URL_REGISTRTION = @"/registration/index.php";
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
+
+
+#pragma --
+#pragma webView delegates
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSString *urlString = request.URL.absoluteString;
+    DLog(@"%@", urlString);
+    if ([self needOpenExternalSafari:urlString]) {
+        [FTVImageProcEngine openSafari:urlString];
+    }
+    
+    return YES;
+}
+
+
+- (BOOL)needOpenExternalSafari:(NSString*)url
+{
+    if ([url isMatchedByRegex:@"target=_blank"]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+
 @end

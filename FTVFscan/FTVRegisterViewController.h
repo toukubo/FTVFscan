@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FTVRegisterViewController : UIViewController
+@interface FTVRegisterViewController : UIViewController<UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 - (IBAction)dismissModalController:(id)sender;
 
