@@ -26,7 +26,6 @@
 {
     NSString *UUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"uniqueUUID"];
     if (!UUID) {
-        DLog(UUID);
         CFUUIDRef theUUID = CFUUIDCreate(NULL);
         CFStringRef string = CFUUIDCreateString(NULL, theUUID);
         CFRelease(theUUID);
