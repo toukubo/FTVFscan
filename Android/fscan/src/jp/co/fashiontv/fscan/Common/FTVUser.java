@@ -7,7 +7,7 @@ import jp.co.fashiontv.fscan.FTVApplication;
 import java.util.UUID;
 
 /**
- * Created by veiz on 13-11-9.
+ * Created by Alsor Zhou on 13-11-9.
  */
 public class FTVUser {
 

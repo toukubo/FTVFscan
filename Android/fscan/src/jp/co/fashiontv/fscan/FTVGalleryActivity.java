@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
-import jp.co.fashiontv.fscan.ImgProc.DamyGaziring;
-import jp.co.fashiontv.fscan.Utils.BitmapUtil;
 
 public class FTVGalleryActivity extends Activity{
 
@@ -17,12 +15,10 @@ public class FTVGalleryActivity extends Activity{
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-		setContentView(R.layout.activity_main);
-		Intent intent = new Intent();  
+		Intent intent = new Intent();
 		intent.setType("image/*");
 		intent.setAction(Intent.ACTION_GET_CONTENT);
 		startActivityForResult(intent, REQUEST_GALLERY);
-		
 	}
 
 	@Override
@@ -30,9 +26,7 @@ public class FTVGalleryActivity extends Activity{
 			Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
 		if (requestCode == REQUEST_GALLERY && resultCode == RESULT_OK) {
-			byte[] imgData = BitmapUtil.getImageBytes(intent);
-			DamyGaziring damyGaziring = new DamyGaziring("http://fashiontv.co.jp", this);
-			//				Gaziring gaziring = new Gaziring(this, imgData);
+            // TODO : port here
 		}
 	}
 

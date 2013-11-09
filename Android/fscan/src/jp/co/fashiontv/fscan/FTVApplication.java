@@ -9,7 +9,7 @@ import android.view.WindowManager;
  * Created by Alsor Zhou on 13-11-9.
  */
 public class FTVApplication extends Application {
-    private static FTVApplication instance = null;
+    private static FTVApplication instance;
 
     private static Display display;
 

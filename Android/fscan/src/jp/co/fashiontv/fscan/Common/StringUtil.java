@@ -9,6 +9,8 @@ public class StringUtil {
     /**
      * Generate random string with specific length
      *
+     * http://stackoverflow.com/a/12116194
+     *
      * @param len random string length
      * @return random string
      */
@@ -31,5 +33,15 @@ public class StringUtil {
      */
     public static String randomFilename() {
         return randomString(8);
+    }
+
+    /**
+     * Check if url is malform
+     * @param url
+     * @return
+     */
+    public static boolean malformUrl(String url) {
+        // TODO : "(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
+        return true;
     }
 }
