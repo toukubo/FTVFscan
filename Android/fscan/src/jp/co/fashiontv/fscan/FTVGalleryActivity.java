@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
+import jp.co.fashiontv.fscan.ImgProc.DamyGaziring;
+import jp.co.fashiontv.fscan.Utils.BitmapUtil;
 
-public class Gallery extends Activity{
+public class FTVGalleryActivity extends Activity{
 
 	private static final int REQUEST_GALLERY = 0;
 
@@ -29,7 +31,7 @@ public class Gallery extends Activity{
 		super.onActivityResult(requestCode, resultCode, intent);
 		if (requestCode == REQUEST_GALLERY && resultCode == RESULT_OK) {
 			byte[] imgData = BitmapUtil.getImageBytes(intent);
-			DamyGaziring damyGaziring = new DamyGaziring("http://fashiontv.co.jp", this); 
+			DamyGaziring damyGaziring = new DamyGaziring("http://fashiontv.co.jp", this);
 			//				Gaziring gaziring = new Gaziring(this, imgData);
 		}
 	}

@@ -1,4 +1,4 @@
-package jp.co.fashiontv.fscan;
+package jp.co.fashiontv.fscan.Common;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import jp.co.fashiontv.fscan.Utils.MethodCall;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.io.InputStream;
 import java.util.Hashtable;
 import java.util.Iterator;
 
-public class OurWebClient extends WebViewClient {
+public class FTVShareWebClient extends WebViewClient {
     String hash = "jio00f7z";
     Activity activity = null;
     WebView webView;
@@ -24,7 +25,7 @@ public class OurWebClient extends WebViewClient {
     private Hashtable<String, String> attributeSet = new Hashtable<String, String>();
 
 
-    OurWebClient(Activity activity, WebView webView) {
+    public FTVShareWebClient(Activity activity, WebView webView) {
         this.activity = activity;
         this.webView = webView;
     }
@@ -35,6 +36,35 @@ public class OurWebClient extends WebViewClient {
         }
     }
 
+    @Override
+    public void onScaleChanged(WebView view, float oldScale, float newScale) {
+        // TODO : zoom changed
+        super.onScaleChanged(view, oldScale, newScale);
+    }
+
+    @Override
+    public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+        // TODO : connection error
+        super.onReceivedError(view, errorCode, description, failingUrl);
+    }
+
+    @Override
+    public void onPageFinished(WebView view, String url) {
+        // TODO : end hud
+        super.onPageFinished(view, url);
+    }
+
+    @Override
+    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        // TODO: show hud
+        Log.v("theurl", "========== the url loaded: E" + url);
+        view.requestFocus();
+
+        super.onPageStarted(view, url, favicon);
+
+    }
+
+    @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         if (url.startsWith("inapp-http")) {
             String uri = url.replaceAll("inapp-http://", "");
@@ -99,12 +129,6 @@ public class OurWebClient extends WebViewClient {
     public void setData(String action) {
         if (action.equals("score")) {
         }
-    }
-
-    public void onPageStarted(WebView view, String url, Bitmap favicon) {
-        Log.v("theurl", "========== the url loaded: E" + url);
-        view.requestFocus();
-
     }
 
     public void setAttribute(String string, String string2) {

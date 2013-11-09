@@ -5,12 +5,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.Window;
 import android.webkit.WebView;
-import android.widget.LinearLayout;
+import jp.co.fashiontv.fscan.Common.FTVConstants;
+import jp.co.fashiontv.fscan.Common.FTVShareWebClient;
 
 public class MainActivity extends Activity {
 
 	WebView webView = null;
-	OurWebClient webViewClient = null;
+	FTVShareWebClient webViewClient = null;
 
 
 	@Override
@@ -21,8 +22,8 @@ public class MainActivity extends Activity {
 //		LinearLayout linearLayout = new LinearLayout(this);
 		setContentView(R.layout.activity_main);
 		webView = (WebView) findViewById(R.id.main);;
-		webView.loadUrl("http://fashiontv.co.jp");
-		webViewClient = new OurWebClient(this,webView);
+		webView.loadUrl(FTVConstants.urlHome);
+		webViewClient = new FTVShareWebClient(this,webView);
 
 		WebView navWebView = (WebView) findViewById(R.id.navigation);
 		navWebView.setInitialScale(100);
@@ -32,7 +33,7 @@ public class MainActivity extends Activity {
 
 		webViewClient.shouldOverrideUrlLoading(navWebView, "file:///android_asset/navigation.html");
 
-//		new MethodCall("Camera", this);
+//		new MethodCall("FTVCameraActivity", this);
 
 	}
 

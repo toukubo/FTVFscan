@@ -1,4 +1,4 @@
-package jp.co.fashiontv.fscan;
+package jp.co.fashiontv.fscan.Utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
