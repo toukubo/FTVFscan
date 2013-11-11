@@ -3,6 +3,7 @@ package jp.co.fashiontv.fscan.Common;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.WebView;
@@ -67,6 +68,10 @@ public class FTVShareWebClient extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//        if (shouldNavigateInApp(url)) {
+//            // Do not override; let WebView load the page
+//            return false;
+//        }
         if (url.startsWith("inapp-http")) {
             String uri = url.replaceAll("inapp-http://", "");
             if (uri.startsWith("local/")) {
@@ -74,6 +79,8 @@ public class FTVShareWebClient extends WebViewClient {
             } else {
                 String tmpUrl = "http://" + uri;
                 webView.loadUrl(tmpUrl);
+
+                return false;
             }
         } else if (url.contains(".action")) {
             String[] paramsets = url.split("\\?");
@@ -136,6 +143,26 @@ public class FTVShareWebClient extends WebViewClient {
     public void setAttribute(String string, String string2) {
         Hashtable<String, String> hashtable = this.attributeSet;
         hashtable.put(string, string2);
+    }
+
+    /**
+     * Define if the url should be navigate inside app
+     *
+     * @param url destination url
+     * @return true if navigate in app
+     */
+    private boolean shouldNavigateInApp(String url) {
+        /**
+         * http://developer.android.com/guide/webapps/webview.html
+         *
+         * Now when the user clicks a link, the system calls shouldOverrideUrlLoading(), which
+         * checks whether the URL host matches a specific domain (as defined above). If it does match,
+         * then the method returns false in order to not override the URL loading (it allows the WebView to
+         * load the URL as usual). If the URL host does not match, then an Intent is created to launch the
+         * default Activity for handling URLs (which resolves to the user's default web browser).
+         * */
+        // TODO: update the rules based on demand
+        return Uri.parse(url).getHost().equals(FTVConstants.host);
     }
 
 }

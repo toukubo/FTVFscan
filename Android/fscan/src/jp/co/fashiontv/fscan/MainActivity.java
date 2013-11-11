@@ -14,7 +14,6 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import jp.co.fashiontv.fscan.Common.FTVConstants;
 import jp.co.fashiontv.fscan.Common.FTVShareWebClient;
 import jp.co.fashiontv.fscan.Common.FTVUser;
-import jp.co.fashiontv.fscan.Utils.MethodCall;
 import org.apache.http.Header;
 
 public class MainActivity extends Activity {
@@ -88,7 +87,7 @@ public class MainActivity extends Activity {
                     Log.d(TAG, "Device already registered!!");
                     setupWebView();
 
-                    new MethodCall("FTVCameraActivity", MainActivity.this);
+//                    new MethodCall("FTVCameraActivity", MainActivity.this);
                 } else {
                     showRegisterActivity();
                 }
