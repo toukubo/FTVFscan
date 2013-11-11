@@ -32,7 +32,7 @@ public class FTVWebViewActivity extends Activity {
     private void setupWebView() {
         String url = FTVConstants.urlHome;
 
-        if (!mUrl.isEmpty()) {
+        if (mUrl != null && !mUrl.isEmpty()) {
             url = mUrl;
         }
         webView = (WebView) findViewById(R.id.webview);

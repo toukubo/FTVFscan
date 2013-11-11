@@ -14,7 +14,6 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import jp.co.fashiontv.fscan.Common.FTVConstants;
 import jp.co.fashiontv.fscan.Common.FTVShareWebClient;
 import jp.co.fashiontv.fscan.Common.FTVUser;
-import jp.co.fashiontv.fscan.Utils.MethodCall;
 import org.apache.http.Header;
 
 public class MainActivity extends Activity {
@@ -38,9 +37,7 @@ public class MainActivity extends Activity {
 
         mContext = this;
 
-        // TODO: sync check credential
         checkLoginCredential();
-//        setupWebView();
     }
 
     @Override
@@ -51,7 +48,6 @@ public class MainActivity extends Activity {
 
     private void setupWebView() {
         webView = (WebView) findViewById(R.id.main);
-        ;
         webView.loadUrl(FTVConstants.urlHome);
         webViewClient = new FTVShareWebClient(this, webView);
 
@@ -61,13 +57,13 @@ public class MainActivity extends Activity {
         navWebView.getSettings().setJavaScriptEnabled(true);
         navWebView.setWebViewClient(webViewClient);
 
-        webViewClient.shouldOverrideUrlLoading(navWebView, "file:///android_asset/navigation.html");
+        webViewClient.shouldOverrideUrlLoading(navWebView, "http://zxc.cz/fscan-local-ui/navigation.html");
 
         Log.d(TAG, "UUID - " + FTVUser.getID());
     }
 
     private boolean checkLoginCredential() {
-        String url = String.format("%s%s%s", FTVConstants.baseUrl, "/registration/isRegistered.php?deviceid=", FTVUser.getID());
+        String url = String.format("%s%s%s", FTVConstants.baseUrl, "registration/isRegistered.php?deviceid=", FTVUser.getID());
 
         // start the progress dialog
         progressDialog = new ProgressDialog(this);
@@ -86,14 +82,15 @@ public class MainActivity extends Activity {
 
                 progressDialog.dismiss();
 
-                if (responseBody.length != 0 && responseBody.toString().equals("true")) {
-                    Log.d(TAG, "check credential success");
+                // TODO: test purpose
+//                if (responseBody.length != 0 && responseBody.toString().equals("true")) {
+//                    Log.d(TAG, "check credential success");
                     setupWebView();
 
-                    new MethodCall("FTVCameraActivity", MainActivity.this);
-                } else {
-                    showRegisterActivity();
-                }
+//                    new MethodCall("FTVCameraActivity", MainActivity.this);
+//                } else {
+//                    showRegisterActivity();
+//                }
             }
 
             @Override
@@ -110,7 +107,7 @@ public class MainActivity extends Activity {
     }
 
     private void showRegisterActivity() {
-        String registerUrl = String.format("%s%s%s%s", FTVConstants.baseUrl, "/registration/index.php?deviceid=", FTVUser.getID(), "&device_type=android");
+        String registerUrl = String.format("%s%s%s%s", FTVConstants.baseUrl, "registration/index.php?deviceid=", FTVUser.getID(), "&device_type=android");
 
         Intent intent = new Intent(mContext, FTVWebViewActivity.class);
         intent.putExtra("url", registerUrl);

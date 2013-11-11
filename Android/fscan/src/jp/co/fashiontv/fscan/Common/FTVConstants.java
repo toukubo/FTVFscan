@@ -5,7 +5,7 @@ package jp.co.fashiontv.fscan.Common;
  */
 public class FTVConstants {
     public static String urlHome = "http://fashiontv.co.jp";
-    public static String baseUrl = "http://zxc.cz/fscan-web/";
+    public static String baseUrl = "http://zxc.cz/fscan-web-staging/";
 
     public static int httpTimeout = 120;    // seconds
 }

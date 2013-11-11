@@ -2,61 +2,68 @@ package jp.co.fashiontv.fscan;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.Window;
-import jp.co.fashiontv.fscan.Common.StringUtil;
+import android.widget.ImageView;
+import jp.co.fashiontv.fscan.Common.DeviceUtil;
 import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
 
 public class FTVCameraActivity extends Activity {
     private static String TAG = "FTVCameraActivity";
+    private static final int CAMERA_REQUEST = 1888;
 
-	final int CAMERA_RESULT = 0;
+    private Uri fileUri;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    ImageView imageView;
 
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-		Intent intent = new Intent();
-		intent.setAction("android.media.action.IMAGE_CAPTURE"); 
-		startActivityForResult(intent, CAMERA_RESULT);
-	}
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.layout_camera);
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		super.onActivityResult(requestCode, resultCode, intent);
+//        imageView = (ImageView)findViewById(R.id.imageView);
 
-		if (requestCode == CAMERA_RESULT && resultCode == RESULT_OK) {
-            Bitmap originImage = (Bitmap) intent.getExtras().get("data");
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        fileUri = DeviceUtil.getOutputMediaFileUri(DeviceUtil.MEDIA_TYPE_IMAGE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
 
-            // resize image data
-            Bitmap resizedImage = FTVImageProcEngine.imageResize(originImage, StringUtil.randomFilename(), true);
+        startActivityForResult(intent, CAMERA_REQUEST);
 
-            // execute API in sync mode, call NEC stuff
-            String brand_slug = FTVImageProcEngine.executeApi(this, resizedImage);
-            Log.d(TAG, String.format("brand slug : %s", brand_slug));
+    }
 
-            if (brand_slug.isEmpty()) {
-                brand_slug = "GUCCI";
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.d(TAG, "Enter FTVCameraActivity");
+
+        if (fileUri != null) {
+            FTVImageProcEngine.commonProcess(this, fileUri);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAMERA_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                // Camera finished successful
+            } else if (resultCode == RESULT_CANCELED) {
+                // User cancelled the image capture
+            } else {
+                // Image capture failed, advise user
             }
+        }
+    }
 
-            // image post to our server
-            FTVImageProcEngine.postData(resizedImage, brand_slug);
-
-            // show webview activity
-            Intent is = new Intent(this, FTVWebViewActivity.class);
-            startActivity(is);
-		}
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 }

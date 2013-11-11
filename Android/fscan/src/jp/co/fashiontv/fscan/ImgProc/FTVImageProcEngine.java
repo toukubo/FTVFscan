@@ -3,20 +3,27 @@ package jp.co.fashiontv.fscan.ImgProc;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
+import android.util.Log;
+import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import jp.co.fashiontv.fscan.Common.DeviceUtil;
 import jp.co.fashiontv.fscan.Common.FTVConstants;
 import jp.co.fashiontv.fscan.Common.FTVUser;
+import jp.co.fashiontv.fscan.Common.StringUtil;
+import jp.co.fashiontv.fscan.FTVWebViewActivity;
 import jp.co.nec.gazirur.rtsearch.lib.bean.SearchResult;
 import jp.co.nec.gazirur.rtsearch.lib.clientapi.RTFeatureSearcher;
 import jp.co.nec.gazirur.rtsearch.lib.clientapi.RTSearchApi;
 import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.apache.http.Header;
+import android.webkit.URLUtil;
 
-import java.io.ByteArrayOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -145,13 +152,13 @@ public class FTVImageProcEngine {
             return brand_slug;
 
         } else if (resultCode.equals("0101")) {//0101 : サービス未契約 (認証処理􏰁終了したが、サーバから􏰀応答によりサービス未契約
-
+            Toast.makeText(context, "0101 : サービス未契約 (認証処理􏰁終了したが、サーバから􏰀応答によりサービス未契約", Toast.LENGTH_SHORT);
         } else if (resultCode.equals("0201")) {//0201 : 認証処理失敗 (認証に必要な情報が取得できない、サーバ側で認証に必要な情
-
+            Toast.makeText(context, "0201 : 認証処理失敗 (認証に必要な情報が取得できない、サーバ側で認証に必要な情", Toast.LENGTH_SHORT);
         } else if (resultCode.equals("0501")) {//0501 : サーバ通信失敗 (サーバから􏰀HTTPステータスが不正􏰀場合に返却される)
-
+            Toast.makeText(context, "0501 : サーバ通信失敗 (サーバから􏰀HTTPステータスが不正􏰀場合に返却される)", Toast.LENGTH_SHORT);
         } else if (resultCode.equals("0901")) {//0901 : 接続失敗 (圏外などでサーバへ􏰀接続ができない場合に返却される)
-
+            Toast.makeText(context, "0901 : 接続失敗 (圏外などでサーバへ􏰀接続ができない場合に返却される)", Toast.LENGTH_SHORT);
         }
 
         return null;
@@ -161,15 +168,21 @@ public class FTVImageProcEngine {
     /**
      * Async HTTP Post
      *
-     * @param bm
-     * @param brand_slug
+     * @param context
+     * @param
+     * @param brand_slug recognized brand from nec engine
      */
-    public static void postData(Bitmap bm, String brand_slug) {
-        // config params
+    public static void postData(final Context context, String brand_slug) {
         RequestParams params = new RequestParams();
         params.put("user_id", FTVUser.getID());
         params.put("brand_slug", brand_slug);
-        params.put("image", getBytesFromBitmap(bm));
+
+        File image = new File(DeviceUtil.photoDirectory() + "/resize.jpg");
+        try {
+            params.put("image", image);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         String url = String.format("%s%s", FTVConstants.baseUrl, "scan/post.php");
 
@@ -178,14 +191,72 @@ public class FTVImageProcEngine {
         client.post(url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                super.onSuccess(statusCode, headers, responseBody);
+                String url = encapsulateById(new String(responseBody));
+
+                if (URLUtil.isValidUrl(url)) {
+                    Intent is = new Intent(context, FTVWebViewActivity.class);
+                    is.putExtra("url", url);
+                    context.startActivity(is);
+                } else {
+                    Toast.makeText(context, "Malform url", Toast.LENGTH_SHORT);
+                }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                super.onFailure(statusCode, headers, responseBody, error);
+
             }
         });
+    }
+
+    public static void commonProcess(Context context, Uri uri) {
+        FileInputStream fis = null;
+        try {
+            String path = uri.toString();
+            if (path.startsWith("content://")) {
+                // gallery picker
+                path = StringUtil.getRealPathFromURI(context, uri);
+            } else {
+                // camera
+                path = StringUtil.getRealPathFromString(path);
+            }
+            Log.d(TAG, "Image Process Path - " + path);
+
+            fis = new FileInputStream(path);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        Bitmap originImage = BitmapFactory.decodeStream(fis);
+
+        // resize image data
+        Bitmap resizedImage = FTVImageProcEngine.imageResize(originImage, StringUtil.randomFilename(), true);
+
+        Log.d(TAG, String.format("resizedImage : w - %d, h - %d", resizedImage.getWidth(), resizedImage.getHeight()));
+
+        try {
+            FileOutputStream orig = new FileOutputStream(DeviceUtil.photoDirectory() + "/orig.jpg");
+            FileOutputStream resize = new FileOutputStream(DeviceUtil.photoDirectory() + "/resize.jpg");
+
+            originImage.compress(Bitmap.CompressFormat.JPEG, 90, orig);
+            orig.close();
+            resizedImage.compress(Bitmap.CompressFormat.JPEG, 90, resize);
+            resize.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // execute API in sync mode, call NEC stuff
+        String brand_slug = FTVImageProcEngine.executeApi(context, resizedImage);
+        Log.d(TAG, String.format("brand slug : %s", brand_slug));
+
+        if (brand_slug == null) {
+            brand_slug = "GUCCI";
+        }
+
+        // image post to our server
+        FTVImageProcEngine.postData(context, brand_slug);
     }
 
     /**
@@ -193,7 +264,7 @@ public class FTVImageProcEngine {
      * @return
      */
     public static String encapsulateById(String id) {
-        return String.format("%s%s%s%s%s", FTVConstants.baseUrl, "/scan/scan.php?deviceid=", FTVUser.getID(), "&id=", id);
+        return String.format("%s%s%s%s%s", FTVConstants.baseUrl, "scan/scan.php?deviceid=", FTVUser.getID(), "&id=", id);
     }
 
     /**
@@ -213,6 +284,7 @@ public class FTVImageProcEngine {
     private static byte[] getBytesFromBitmap(Bitmap bm) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+
         return stream.toByteArray();
     }
 }

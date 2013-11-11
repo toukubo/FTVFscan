@@ -16,6 +16,8 @@ import java.util.Hashtable;
 import java.util.Iterator;
 
 public class FTVShareWebClient extends WebViewClient {
+    private String TAG = "FTVShareWebClient";
+
     String hash = "jio00f7z";
     Activity activity = null;
     WebView webView;
@@ -57,7 +59,7 @@ public class FTVShareWebClient extends WebViewClient {
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
         // TODO: show hud
-        Log.v("theurl", "========== the url loaded: E" + url);
+        Log.v(TAG, "========== the url loaded: E" + url);
         view.requestFocus();
 
         super.onPageStarted(view, url, favicon);
@@ -74,7 +76,6 @@ public class FTVShareWebClient extends WebViewClient {
                 webView.loadUrl("http://" + uri);
             }
         } else if (url.contains(".action")) {
-            //              view.clearView();
             String[] paramsets = url.split("\\?");
             String actionuri = paramsets[0];
             String file = "";
@@ -86,13 +87,16 @@ public class FTVShareWebClient extends WebViewClient {
                 }
             }
 
-            //              view.loadData("<html><body bgcolor='black'></body></html> ", "text/html", "utf-8");
             String action = actionuri.replace(".action", "");
             action = action.split("/")[url.split("/").length - 1];
             action = action.replaceAll("file:///android_asset/", "");
+
+            if (action.equals("Camera")) action = "FTVCameraActivity";
+            if (action.equals("Gallery")) action = "FTVGalleryActivity";
+
             new MethodCall(action, activity);
 
-            Log.v("fscan", "========== the url loaded: E" + url);
+            Log.v(TAG, "========== the url loaded: E" + url);
         } else if (url.contains(".ahtml")) {
             String thefile = url.replace(".ahtml", "");
             thefile = thefile.replaceAll("file:///android_asset/", "");
@@ -107,9 +111,8 @@ public class FTVShareWebClient extends WebViewClient {
                     thehtml = thehtml.replaceAll("\\$\\{" + key + "\\}", value);
                 }
                 view.loadDataWithBaseURL("file:///android_asset/", thehtml, "text/html", "UTF-8", null);
-                //                  view.loadData(thehtml, "text/html", "utf-8");
-                return true;
 
+                return true;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -122,7 +125,7 @@ public class FTVShareWebClient extends WebViewClient {
     }
 
     public boolean shouldOverrideKeyEvent(WebView view, KeyEvent event) {
-        Log.v("evaid", String.valueOf(event.getKeyCode()));
+        Log.v(TAG, String.valueOf(event.getKeyCode()));
         return true;
     }
 

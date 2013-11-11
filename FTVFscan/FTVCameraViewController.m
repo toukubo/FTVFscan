@@ -117,9 +117,9 @@
         NSString *brand_slug = [FTVImageProcEngine executeApi:pickedImage];
         
         NSData *imageData = UIImagePNGRepresentation(pickedImage);
-        if ( brand_slug == nil){
-            
-        }else{
+//        if ( brand_slug == nil){
+//            
+//        }else{
             [ FTVImageProcEngine postData:imageData
                                 withBrand:brand_slug
                            withStartBlock:^{
@@ -140,7 +140,7 @@
                            } withFailedBlock:^(BOOL success, NSString *resp) {
                                [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_error", @"Error")];
                            }];
-        }
+//        }
         
         DLog(@"IMG: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);
     }];
