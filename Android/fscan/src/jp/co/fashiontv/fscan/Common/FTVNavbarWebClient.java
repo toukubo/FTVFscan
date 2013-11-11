@@ -43,13 +43,14 @@ public class FTVNavbarWebClient extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        Log.d(TAG, "TAB BAR URL - " + url);
+
         if (url.startsWith("inapp-http")) {
             String uri = url.replaceAll("inapp-http://", "");
             if (uri.startsWith("local/")) {
                 webView.loadUrl("file:///android_asset/" + uri.replaceAll("local/", ""));
             } else {
-                String tmpUrl = "http://" + uri;
-                webView.loadUrl(tmpUrl);
+                webView.loadUrl("http://" + uri);
             }
         } else if (url.contains(".action")) {
             String[] paramsets = url.split("\\?");
