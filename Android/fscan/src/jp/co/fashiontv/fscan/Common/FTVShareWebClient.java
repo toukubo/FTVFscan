@@ -59,7 +59,6 @@ public class FTVShareWebClient extends WebViewClient {
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
         // TODO: show hud
-        Log.v(TAG, "========== the url loaded: E" + url);
         view.requestFocus();
 
         super.onPageStarted(view, url, favicon);
@@ -73,7 +72,8 @@ public class FTVShareWebClient extends WebViewClient {
             if (uri.startsWith("local/")) {
                 webView.loadUrl("file:///android_asset/" + uri.replaceAll("local/", ""));
             } else {
-                webView.loadUrl("http://" + uri);
+                String tmpUrl = "http://" + uri;
+                webView.loadUrl(tmpUrl);
             }
         } else if (url.contains(".action")) {
             String[] paramsets = url.split("\\?");
@@ -96,7 +96,7 @@ public class FTVShareWebClient extends WebViewClient {
 
             new MethodCall(action, activity);
 
-            Log.v(TAG, "========== the url loaded: E" + url);
+            Log.v(TAG, "URL LOADED: E" + url);
         } else if (url.contains(".ahtml")) {
             String thefile = url.replace(".ahtml", "");
             thefile = thefile.replaceAll("file:///android_asset/", "");
@@ -119,7 +119,6 @@ public class FTVShareWebClient extends WebViewClient {
         } else {
             view.loadUrl(url);
             view.requestFocus();
-
         }
         return true;
     }

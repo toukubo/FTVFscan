@@ -14,6 +14,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import jp.co.fashiontv.fscan.Common.FTVConstants;
 import jp.co.fashiontv.fscan.Common.FTVShareWebClient;
 import jp.co.fashiontv.fscan.Common.FTVUser;
+import jp.co.fashiontv.fscan.Utils.MethodCall;
 import org.apache.http.Header;
 
 public class MainActivity extends Activity {
@@ -22,7 +23,7 @@ public class MainActivity extends Activity {
 
     private Context mContext;
 
-    WebView webView = null;
+    WebView mainWebView = null;
     FTVShareWebClient webViewClient = null;
     private ProgressDialog progressDialog;
 
@@ -47,17 +48,17 @@ public class MainActivity extends Activity {
     }
 
     private void setupWebView() {
-        webView = (WebView) findViewById(R.id.main);
-        webView.loadUrl(FTVConstants.urlHome);
-        webViewClient = new FTVShareWebClient(this, webView);
+        mainWebView = (WebView) findViewById(R.id.main);
+        mainWebView.loadUrl(FTVConstants.urlHome);
+        webViewClient = new FTVShareWebClient(this, mainWebView);
 
-        WebView navWebView = (WebView) findViewById(R.id.navigation);
-        navWebView.setInitialScale(100);
-        navWebView.setScrollBarStyle(WebView.SCROLLBARS_INSIDE_OVERLAY);
-        navWebView.getSettings().setJavaScriptEnabled(true);
-        navWebView.setWebViewClient(webViewClient);
+        WebView tabbarWebView = (WebView) findViewById(R.id.navigation);
+        tabbarWebView.setInitialScale(100);
+        tabbarWebView.setScrollBarStyle(WebView.SCROLLBARS_INSIDE_OVERLAY);
+        tabbarWebView.getSettings().setJavaScriptEnabled(true);
+        tabbarWebView.setWebViewClient(webViewClient);
 
-        webViewClient.shouldOverrideUrlLoading(navWebView, "http://zxc.cz/fscan-local-ui/navigation.html");
+        webViewClient.shouldOverrideUrlLoading(tabbarWebView, "http://zxc.cz/fscan-local-ui/navigation.html");
 
         Log.d(TAG, "UUID - " + FTVUser.getID());
     }
@@ -82,15 +83,15 @@ public class MainActivity extends Activity {
 
                 progressDialog.dismiss();
 
-                // TODO: test purpose
-//                if (responseBody.length != 0 && responseBody.toString().equals("true")) {
-//                    Log.d(TAG, "check credential success");
+                String resp = new String(responseBody);
+                if (resp != null && resp.equals("true")) {
+                    Log.d(TAG, "Device already registered!!");
                     setupWebView();
 
-//                    new MethodCall("FTVCameraActivity", MainActivity.this);
-//                } else {
-//                    showRegisterActivity();
-//                }
+                    new MethodCall("FTVCameraActivity", MainActivity.this);
+                } else {
+                    showRegisterActivity();
+                }
             }
 
             @Override
