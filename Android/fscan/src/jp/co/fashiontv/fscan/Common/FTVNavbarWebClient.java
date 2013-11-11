@@ -2,8 +2,6 @@ package jp.co.fashiontv.fscan.Common;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.WebView;
@@ -16,8 +14,13 @@ import java.io.InputStream;
 import java.util.Hashtable;
 import java.util.Iterator;
 
-public class FTVShareWebClient extends WebViewClient {
-    private String TAG = "FTVShareWebClient";
+/**
+ * Application view was mainly divided to two parts - Main View, and Navbar View (tab bar)
+ *
+ * This class controls the Navbar View web url redirection
+ */
+public class FTVNavbarWebClient extends WebViewClient {
+    private String TAG = "FTVNavbarWebClient";
 
     String hash = "jio00f7z";
     Activity activity = null;
@@ -27,8 +30,7 @@ public class FTVShareWebClient extends WebViewClient {
 
     private Hashtable<String, String> attributeSet = new Hashtable<String, String>();
 
-
-    public FTVShareWebClient(Activity activity, WebView webView) {
+    public FTVNavbarWebClient(Activity activity, WebView webView) {
         this.activity = activity;
         this.webView = webView;
     }
@@ -40,38 +42,7 @@ public class FTVShareWebClient extends WebViewClient {
     }
 
     @Override
-    public void onScaleChanged(WebView view, float oldScale, float newScale) {
-        // TODO : zoom changed
-        super.onScaleChanged(view, oldScale, newScale);
-    }
-
-    @Override
-    public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-        // TODO : connection error
-        super.onReceivedError(view, errorCode, description, failingUrl);
-    }
-
-    @Override
-    public void onPageFinished(WebView view, String url) {
-        // TODO : end hud
-        super.onPageFinished(view, url);
-    }
-
-    @Override
-    public void onPageStarted(WebView view, String url, Bitmap favicon) {
-        // TODO: show hud
-        view.requestFocus();
-
-        super.onPageStarted(view, url, favicon);
-
-    }
-
-    @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//        if (shouldNavigateInApp(url)) {
-//            // Do not override; let WebView load the page
-//            return false;
-//        }
         if (url.startsWith("inapp-http")) {
             String uri = url.replaceAll("inapp-http://", "");
             if (uri.startsWith("local/")) {
@@ -79,8 +50,6 @@ public class FTVShareWebClient extends WebViewClient {
             } else {
                 String tmpUrl = "http://" + uri;
                 webView.loadUrl(tmpUrl);
-
-                return false;
             }
         } else if (url.contains(".action")) {
             String[] paramsets = url.split("\\?");
@@ -143,26 +112,6 @@ public class FTVShareWebClient extends WebViewClient {
     public void setAttribute(String string, String string2) {
         Hashtable<String, String> hashtable = this.attributeSet;
         hashtable.put(string, string2);
-    }
-
-    /**
-     * Define if the url should be navigate inside app
-     *
-     * @param url destination url
-     * @return true if navigate in app
-     */
-    private boolean shouldNavigateInApp(String url) {
-        /**
-         * http://developer.android.com/guide/webapps/webview.html
-         *
-         * Now when the user clicks a link, the system calls shouldOverrideUrlLoading(), which
-         * checks whether the URL host matches a specific domain (as defined above). If it does match,
-         * then the method returns false in order to not override the URL loading (it allows the WebView to
-         * load the URL as usual). If the URL host does not match, then an Intent is created to launch the
-         * default Activity for handling URLs (which resolves to the user's default web browser).
-         * */
-        // TODO: update the rules based on demand
-        return Uri.parse(url).getHost().equals(FTVConstants.host);
     }
 
 }

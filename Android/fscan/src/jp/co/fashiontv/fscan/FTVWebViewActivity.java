@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.webkit.WebView;
 import jp.co.fashiontv.fscan.Common.FTVConstants;
-import jp.co.fashiontv.fscan.Common.FTVShareWebClient;
+import jp.co.fashiontv.fscan.Common.FTVNavbarWebClient;
 
 /**
  * Created by Alsor Zhou on 13-11-9.
@@ -37,7 +37,7 @@ public class FTVWebViewActivity extends Activity {
         }
         webView = (WebView) findViewById(R.id.webview);
         webView.loadUrl(url);
-        webView.setWebViewClient(new FTVShareWebClient(this, webView));
+        webView.setWebViewClient(new FTVNavbarWebClient(this, webView));
     }
 
     /**

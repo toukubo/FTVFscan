@@ -9,6 +9,10 @@ import android.view.WindowManager;
  * Created by Alsor Zhou on 13-11-9.
  */
 public class FTVApplication extends Application {
+    static {
+        System.loadLibrary("rtsearch");
+    }
+
     private static FTVApplication instance;
 
     private static Display display;

@@ -12,7 +12,8 @@ import android.webkit.WebView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import jp.co.fashiontv.fscan.Common.FTVConstants;
-import jp.co.fashiontv.fscan.Common.FTVShareWebClient;
+import jp.co.fashiontv.fscan.Common.FTVMainWebClient;
+import jp.co.fashiontv.fscan.Common.FTVNavbarWebClient;
 import jp.co.fashiontv.fscan.Common.FTVUser;
 import org.apache.http.Header;
 
@@ -23,7 +24,7 @@ public class MainActivity extends Activity {
     private Context mContext;
 
     WebView mainWebView = null;
-    FTVShareWebClient webViewClient = null;
+    FTVNavbarWebClient webViewClient = null;
     private ProgressDialog progressDialog;
 
 
@@ -49,12 +50,13 @@ public class MainActivity extends Activity {
     private void setupWebView() {
         mainWebView = (WebView) findViewById(R.id.main);
         mainWebView.loadUrl(FTVConstants.urlHome);
-        webViewClient = new FTVShareWebClient(this, mainWebView);
+        mainWebView.setWebViewClient(new FTVMainWebClient());
 
         WebView tabbarWebView = (WebView) findViewById(R.id.navigation);
         tabbarWebView.setInitialScale(100);
         tabbarWebView.setScrollBarStyle(WebView.SCROLLBARS_INSIDE_OVERLAY);
         tabbarWebView.getSettings().setJavaScriptEnabled(true);
+        webViewClient = new FTVNavbarWebClient(this, mainWebView);
         tabbarWebView.setWebViewClient(webViewClient);
 
         webViewClient.shouldOverrideUrlLoading(tabbarWebView, "http://zxc.cz/fscan-local-ui/navigation.html");

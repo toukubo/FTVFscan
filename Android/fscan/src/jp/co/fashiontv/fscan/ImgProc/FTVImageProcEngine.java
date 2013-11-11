@@ -57,26 +57,6 @@ public class FTVImageProcEngine {
         Bitmap resizedBitmap = Bitmap.createBitmap(srcImage, 0, 0, width, height, matrix, false);
 
         return resizedBitmap;
-
-//        int desiredHeight = (int) (height * factor);
-//        // make a Drawable from Bitmap to allow to set the BitMap
-//        // to the ImageView, ImageButton or what ever
-//        return resizedBitmap;
-//        Bitmap scaledBitmap = Bitmap.createBitmap(desiredWidth, desiredHeight, Bitmap.Config.ARGB_8888);
-//
-//        float ratioX = desiredWidth / (float) srcImage.getWidth();
-//        float ratioY = desiredHeight / (float) srcImage.getHeight();
-//        float middleX = desiredWidth / 2.0f;
-//        float middleY = desiredHeight / 2.0f;
-//
-//        Matrix scaleMatrix = new Matrix();
-//        scaleMatrix.setScale(ratioX, ratioY, middleX, middleY);
-//
-//        Canvas canvas = new Canvas(scaledBitmap);
-//        canvas.setMatrix(scaleMatrix);
-//        canvas.drawBitmap(srcImage, middleX - srcImage.getWidth() / 2, middleY - srcImage.getHeight() / 2, new Paint(Paint.FILTER_BITMAP_FLAG));
-//
-//        return srcImage;
     }
 
     /**
@@ -112,8 +92,7 @@ public class FTVImageProcEngine {
         RTSearchApi api = new RTSearchApi(context);
         String resultCode = api.RTSearchAuth();
 
-        if (!resultCode.isEmpty() && resultCode.equals("0000")) {
-            /************* Create Instance API ****************/
+        if (resultCode != null && resultCode.equals("0000")) {
             String inifilePath = "/mnt/sdcard/rtsearch/db/search.ini"; //画像識別用􏰀インスタンスを取得
             RTFeatureSearcher rtsearchlib = api.GetInstance(width, height, inifilePath);
 
@@ -122,11 +101,8 @@ public class FTVImageProcEngine {
                 return null;
             }
 
-            /************* Image Search API ****************/
             //for calculation operation time
             Date startTime = new Date();
-
-
             List<SearchResult> result = rtsearchlib.ExecuteFeatureSearch(getBytesFromBitmap(bm), RTFeatureSearcher.SERVER_SERVICE_SEARCH);
 
             String brand_slug = null;
@@ -146,7 +122,6 @@ public class FTVImageProcEngine {
             // count the operation duration
             DurationFormatUtils.formatDuration(startTime.getTime(), "H:mm:ss", true);
 
-            /************* Terminate API ****************/
             rtsearchlib.CloseFeatureSearcher();
 
             return brand_slug;
