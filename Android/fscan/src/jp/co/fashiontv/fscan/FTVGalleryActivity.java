@@ -12,6 +12,7 @@ public class FTVGalleryActivity extends Activity{
 	private static final int REQUEST_GALLERY = 0;
     private static final String TAG = "FTVGalleryActivity";
     private Uri fileUri;
+    FTVImageProcEngine engine = null;
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,7 @@ public class FTVGalleryActivity extends Activity{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.layout_camera);
+        this.engine = new FTVImageProcEngine();
 
 		Intent intent = new Intent();
 		intent.setType("image/*");
@@ -31,9 +33,8 @@ public class FTVGalleryActivity extends Activity{
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "Enter onResume");
-
-        if (fileUri != null) {
-            FTVImageProcEngine.commonProcess(this, fileUri);
+        if(this.engine.isProcessed()){
+        	finish();
         }
     }
 
@@ -42,6 +43,7 @@ public class FTVGalleryActivity extends Activity{
 		super.onActivityResult(requestCode, resultCode, intent);
 		if (requestCode == REQUEST_GALLERY && resultCode == RESULT_OK) {
             fileUri = intent.getData();
+            	this.engine.commonProcess(this, fileUri);
 		}
 	}
 

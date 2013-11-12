@@ -32,8 +32,17 @@ import java.util.List;
  * Created by Alsor Zhou on 13-11-9.
  */
 public class FTVImageProcEngine {
+	private boolean processed = false;
 
-    private static String TAG = "FTVImageProcEngine";
+    public boolean isProcessed() {
+		return processed;
+	}
+
+	public void setProcessed(boolean processed) {
+		this.processed = processed;
+	}
+
+	private static String TAG = "FTVImageProcEngine";
 
     /**
      * @param srcImage
@@ -147,10 +156,11 @@ public class FTVImageProcEngine {
      * @param
      * @param brand_slug recognized brand from nec engine
      */
-    public static void postData(final Context context, String brand_slug) {
+    public  void postData(final Context context, String brand_slug) {
         RequestParams params = new RequestParams();
         params.put("user_id", FTVUser.getID());
         params.put("brand_slug", brand_slug);
+        
 
         File image = new File(DeviceUtil.photoDirectory() + "/resize.png");
         try {
@@ -167,11 +177,13 @@ public class FTVImageProcEngine {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String url = encapsulateById(new String(responseBody));
-
+                
                 if (URLUtil.isValidUrl(url)) {
+                	processed=true;
                     Intent is = new Intent(context, FTVWebViewActivity.class);
                     is.putExtra("url", url);
                     context.startActivity(is);
+                    
                 } else {
                     Toast.makeText(context, "Malform url", Toast.LENGTH_SHORT);
                 }
@@ -184,7 +196,7 @@ public class FTVImageProcEngine {
         });
     }
 
-    public static void commonProcess(Context context, Uri uri) {
+    public  void commonProcess(Context context, Uri uri) {
         FileInputStream fis = null;
         try {
             String path = uri.toString();
@@ -231,7 +243,7 @@ public class FTVImageProcEngine {
         }
 
         // image post to our server
-        FTVImageProcEngine.postData(context, brand_slug);
+        postData(context, brand_slug);
     }
 
     /**
