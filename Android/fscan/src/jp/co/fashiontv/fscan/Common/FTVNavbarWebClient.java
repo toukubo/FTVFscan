@@ -52,8 +52,8 @@ public class FTVNavbarWebClient extends WebViewClient {
             } else {
             	/** @TODO this code, is NOT tested and being commited. */ 
             	if (url.contains("scan/list.php")) {
-                    view.loadUrl("http://" + url + "?deviceid="+FTVUser.getID());
-                    view.requestFocus();
+            		webView.loadUrl("http://" + uri + "?deviceid="+FTVUser.getID());
+//                    view.requestFocus();
                 }else{
                     webView.loadUrl("http://" + uri);
                 }
@@ -80,13 +80,12 @@ public class FTVNavbarWebClient extends WebViewClient {
             new MethodCall(action, activity);
 
             Log.v(TAG, "URL LOADED: E" + url);
-        } 
-        if (url.contains(".ahtml")) {
+        } else if (url.contains(".ahtml")) {
 //            String thefile = url.replace(".ahtml", "");
 //            thefile = thefile.replaceAll("file:///android_asset/", "");
 
             try {
-                setData(thefile);
+//                setData(thefile);
                 URL urlObject = new URL(url);
                 InputStream is = urlObject.openStream();
                 String thehtml = IOUtils.toString(is);
