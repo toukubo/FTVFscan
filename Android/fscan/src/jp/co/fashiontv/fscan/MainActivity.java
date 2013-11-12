@@ -39,6 +39,9 @@ public class MainActivity extends Activity {
         mContext = this;
 
         checkLoginCredential();
+        
+                // this must be a bug... how is it marked?
+
     }
 
     @Override
@@ -49,7 +52,7 @@ public class MainActivity extends Activity {
 
     private void setupWebView() {
         mainWebView = (WebView) findViewById(R.id.main);
-        mainWebView.loadUrl(FTVConstants.urlHome);
+//        mainWebView.loadUrl(FTVConstants.urlHome);
         mainWebView.setWebViewClient(new FTVMainWebClient());
 
         WebView tabbarWebView = (WebView) findViewById(R.id.navigation);
@@ -60,6 +63,7 @@ public class MainActivity extends Activity {
         tabbarWebView.setWebViewClient(webViewClient);
 
         webViewClient.shouldOverrideUrlLoading(tabbarWebView, "http://zxc.cz/fscan-local-ui/navigation.html");
+        webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlHome);
 
         Log.d(TAG, "UUID - " + FTVUser.getID());
     }
