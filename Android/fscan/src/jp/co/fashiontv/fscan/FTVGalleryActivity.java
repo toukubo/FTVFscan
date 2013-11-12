@@ -45,6 +45,8 @@ public class FTVGalleryActivity extends Activity{
             fileUri = intent.getData();
             	this.engine.commonProcess(this, fileUri);
 		}
+    	finish();
+
 	}
 
 }

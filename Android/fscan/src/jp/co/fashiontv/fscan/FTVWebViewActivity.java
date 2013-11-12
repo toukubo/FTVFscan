@@ -37,6 +37,8 @@ public class FTVWebViewActivity extends Activity {
         }
         webView = (WebView) findViewById(R.id.webview);
         webView.loadUrl(url);
+        webView.getSettings().setJavaScriptEnabled(true);
+
         webView.setWebViewClient(new FTVNavbarWebClient(this, webView));
     }
 

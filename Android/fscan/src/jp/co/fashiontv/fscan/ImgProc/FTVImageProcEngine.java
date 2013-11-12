@@ -258,11 +258,7 @@ public class FTVImageProcEngine {
      * @param context
      * @param url
      */
-    public static void openExternalBrowser(Context context, String url) {
-        Uri uri = Uri.parse(url);
-        Intent i = new Intent(Intent.ACTION_VIEW, uri);
-        context.startActivity(i);
-    }
+
 
     /**
      * @param bm
