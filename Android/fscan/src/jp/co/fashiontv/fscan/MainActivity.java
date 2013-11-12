@@ -53,8 +53,8 @@ public class MainActivity extends Activity {
     private void setupWebView() {
         mainWebView = (WebView) findViewById(R.id.main);
 //        mainWebView.loadUrl(FTVConstants.urlHome);
-        mainWebView.setWebViewClient(new FTVMainWebClient());
-
+        mainWebView.setWebViewClient(new FTVMainWebClient(this));
+        mainWebView.getSettings().setJavaScriptEnabled(true);
         WebView tabbarWebView = (WebView) findViewById(R.id.navigation);
         tabbarWebView.setInitialScale(100);
         tabbarWebView.setScrollBarStyle(WebView.SCROLLBARS_INSIDE_OVERLAY);

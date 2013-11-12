@@ -1,7 +1,9 @@
 package jp.co.fashiontv.fscan.Common;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.WebView;
@@ -45,7 +47,9 @@ public class FTVNavbarWebClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         Log.d(TAG, "TAB BAR URL - " + url);
-         if (url.startsWith("inapp-http")) {
+        if(url.contains("target=_blank")){
+        	openExternalBrowser(this.activity,url);
+        }else if (url.startsWith("inapp-http")) {
             String uri = url.replaceAll("inapp-http://", "");
             if (uri.startsWith("local/")) {
                 webView.loadUrl("file:///android_asset/" + uri.replaceAll("local/", ""));
@@ -121,7 +125,11 @@ public class FTVNavbarWebClient extends WebViewClient {
         Hashtable<String, String> hashtable = this.attributeSet;
         hashtable.put(string, string2);
     }
-
+    public static void openExternalBrowser(Context context, String url) {
+        Uri uri = Uri.parse(url);
+        Intent i = new Intent(Intent.ACTION_VIEW, uri);
+        context.startActivity(i);
+    }
 }
 
 

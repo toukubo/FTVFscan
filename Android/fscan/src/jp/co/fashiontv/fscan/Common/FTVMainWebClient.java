@@ -1,5 +1,8 @@
 package jp.co.fashiontv.fscan.Common;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -14,12 +17,23 @@ import android.webkit.WebViewClient;
  * This class controls the main view web url redirection
  */
 public class FTVMainWebClient extends WebViewClient {
+	private Activity activity;
+
+	public FTVMainWebClient(Activity activity){
+        this.activity = activity;
+
+	}
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        if(url.contains("target=_blank")){
+        	openExternalBrowser(this.activity,url);
+        }
+
         if (shouldNavigateInApp(url)) {
             // Do not override; let WebView load the page
             return false;
         }
+        
 
         return true;
     }
@@ -42,5 +56,11 @@ public class FTVMainWebClient extends WebViewClient {
          * */
         // TODO: update the rules based on demand
         return Uri.parse(url).getHost().equals(FTVConstants.host);
+    }
+    
+    public static void openExternalBrowser(Context context, String url) {
+        Uri uri = Uri.parse(url);
+        Intent i = new Intent(Intent.ACTION_VIEW, uri);
+        context.startActivity(i);
     }
 }

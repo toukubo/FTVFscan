@@ -61,7 +61,7 @@ public class FTVCameraActivity extends Activity {
                 }
 
             } else if (resultCode == RESULT_CANCELED) {
-                // User cancelled the image capture
+            	finish();
             } else {
                 // Image capture failed, advise user
             }
