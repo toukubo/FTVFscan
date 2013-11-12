@@ -93,7 +93,7 @@ public class FTVImageProcEngine {
         String resultCode = api.RTSearchAuth();
 
         if (resultCode != null && resultCode.equals("0000")) {
-            String inifilePath = "/mnt/sdcard/rtsearch/db/search.ini"; //画像識別用􏰀インスタンスを取得
+            String inifilePath = "/mnt/sdcard/rtsearch/db/search.ini"; //����������������������������������������������
             RTFeatureSearcher rtsearchlib = api.GetInstance(width, height, inifilePath);
 
             // if create instance failed, set error and write log.
@@ -126,14 +126,14 @@ public class FTVImageProcEngine {
 
             return brand_slug;
 
-        } else if (resultCode.equals("0101")) {//0101 : サービス未契約 (認証処理􏰁終了したが、サーバから􏰀応答によりサービス未契約
-            Toast.makeText(context, "0101 : サービス未契約 (認証処理􏰁終了したが、サーバから􏰀応答によりサービス未契約", Toast.LENGTH_SHORT);
-        } else if (resultCode.equals("0201")) {//0201 : 認証処理失敗 (認証に必要な情報が取得できない、サーバ側で認証に必要な情
-            Toast.makeText(context, "0201 : 認証処理失敗 (認証に必要な情報が取得できない、サーバ側で認証に必要な情", Toast.LENGTH_SHORT);
-        } else if (resultCode.equals("0501")) {//0501 : サーバ通信失敗 (サーバから􏰀HTTPステータスが不正􏰀場合に返却される)
-            Toast.makeText(context, "0501 : サーバ通信失敗 (サーバから􏰀HTTPステータスが不正􏰀場合に返却される)", Toast.LENGTH_SHORT);
-        } else if (resultCode.equals("0901")) {//0901 : 接続失敗 (圏外などでサーバへ􏰀接続ができない場合に返却される)
-            Toast.makeText(context, "0901 : 接続失敗 (圏外などでサーバへ􏰀接続ができない場合に返却される)", Toast.LENGTH_SHORT);
+        } else if (resultCode.equals("0101")) {//0101 : ��������������������� (�����������������������������������������������������������������������������������������
+            Toast.makeText(context, "0101 : ��������������������� (�����������������������������������������������������������������������������������������", Toast.LENGTH_SHORT);
+        } else if (resultCode.equals("0201")) {//0201 : ������������������ (������������������������������������������������������������������������������������
+            Toast.makeText(context, "0201 : ������������������ (������������������������������������������������������������������������������������", Toast.LENGTH_SHORT);
+        } else if (resultCode.equals("0501")) {//0501 : ��������������������� (�������������������HTTP����������������������������������������������������)
+            Toast.makeText(context, "0501 : ��������������������� (�������������������HTTP����������������������������������������������������)", Toast.LENGTH_SHORT);
+        } else if (resultCode.equals("0901")) {//0901 : ������������ (����������������������������������������������������������������������������)
+            Toast.makeText(context, "0901 : ������������ (����������������������������������������������������������������������������)", Toast.LENGTH_SHORT);
         }
 
         return null;
@@ -152,7 +152,7 @@ public class FTVImageProcEngine {
         params.put("user_id", FTVUser.getID());
         params.put("brand_slug", brand_slug);
 
-        File image = new File(DeviceUtil.photoDirectory() + "/resize.jpg");
+        File image = new File(DeviceUtil.photoDirectory() + "/resize.png");
         try {
             params.put("image", image);
         } catch (FileNotFoundException e) {
@@ -211,12 +211,12 @@ public class FTVImageProcEngine {
         Log.d(TAG, String.format("resizedImage : w - %d, h - %d", resizedImage.getWidth(), resizedImage.getHeight()));
 
         try {
-            FileOutputStream orig = new FileOutputStream(DeviceUtil.photoDirectory() + "/orig.jpg");
-            FileOutputStream resize = new FileOutputStream(DeviceUtil.photoDirectory() + "/resize.jpg");
+            FileOutputStream orig = new FileOutputStream(DeviceUtil.photoDirectory() + "/orig.png");
+            FileOutputStream resize = new FileOutputStream(DeviceUtil.photoDirectory() + "/resize.png");
 
-            originImage.compress(Bitmap.CompressFormat.JPEG, 90, orig);
+            originImage.compress(Bitmap.CompressFormat.PNG, 90, orig);
             orig.close();
-            resizedImage.compress(Bitmap.CompressFormat.JPEG, 90, resize);
+            resizedImage.compress(Bitmap.CompressFormat.PNG, 90, resize);
             resize.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -258,7 +258,7 @@ public class FTVImageProcEngine {
      */
     private static byte[] getBytesFromBitmap(Bitmap bm) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
 
         return stream.toByteArray();
     }
