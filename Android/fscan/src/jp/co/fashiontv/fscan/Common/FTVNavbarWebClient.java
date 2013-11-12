@@ -11,6 +11,7 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Hashtable;
 import java.util.Iterator;
 
@@ -44,13 +45,18 @@ public class FTVNavbarWebClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         Log.d(TAG, "TAB BAR URL - " + url);
-
-        if (url.startsWith("inapp-http")) {
+         if (url.startsWith("inapp-http")) {
             String uri = url.replaceAll("inapp-http://", "");
             if (uri.startsWith("local/")) {
                 webView.loadUrl("file:///android_asset/" + uri.replaceAll("local/", ""));
             } else {
-                webView.loadUrl("http://" + uri);
+            	/** @TODO this code, is NOT tested and being commited. */ 
+            	if (url.contains("scan/list.php")) {
+                    view.loadUrl("http://" + url + "?deviceid="+FTVUser.getID());
+                    view.requestFocus();
+                }else{
+                    webView.loadUrl("http://" + uri);
+                }
             }
         } else if (url.contains(".action")) {
             String[] paramsets = url.split("\\?");
@@ -74,13 +80,15 @@ public class FTVNavbarWebClient extends WebViewClient {
             new MethodCall(action, activity);
 
             Log.v(TAG, "URL LOADED: E" + url);
-        } else if (url.contains(".ahtml")) {
-            String thefile = url.replace(".ahtml", "");
-            thefile = thefile.replaceAll("file:///android_asset/", "");
+        } 
+        if (url.contains(".ahtml")) {
+//            String thefile = url.replace(".ahtml", "");
+//            thefile = thefile.replaceAll("file:///android_asset/", "");
 
             try {
                 setData(thefile);
-                InputStream is = this.activity.getAssets().open(thefile + ".ahtml");
+                URL urlObject = new URL(url);
+                InputStream is = urlObject.openStream();
                 String thehtml = IOUtils.toString(is);
                 for (Iterator iterator = this.attributeSet.keySet().iterator(); iterator.hasNext(); ) {
                     String key = (String) iterator.next();
