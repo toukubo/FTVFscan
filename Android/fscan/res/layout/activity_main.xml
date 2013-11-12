@@ -2,13 +2,13 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:orientation="vertical"
-              android:weightSum="5">
+              android:weightSum="8">
 
     <WebView android:id="@+id/main"
              android:layout_width="fill_parent"
              android:layout_height="0dp"
              android:text="aaa"
-             android:layout_weight="4"/>
+             android:layout_weight="7"/>
 
     <WebView android:id="@+id/navigation"
              android:layout_width="fill_parent"
