@@ -4,29 +4,32 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.Window;
 import android.webkit.WebView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import jp.co.fashiontv.fscan.Common.FTVConstants;
-import jp.co.fashiontv.fscan.Common.FTVMainWebClient;
-import jp.co.fashiontv.fscan.Common.FTVNavbarWebClient;
-import jp.co.fashiontv.fscan.Common.FTVUser;
+import jp.co.fashiontv.fscan.Common.*;
+import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
 import org.apache.http.Header;
+
 
 public class MainActivity extends Activity {
 
     private static String TAG = "MainActivity";
 
     private Context mContext;
-
-    WebView mainWebView = null;
-    FTVNavbarWebClient webViewClient = null;
+    private WebView mainWebView = null;
+    private FTVNavbarWebClient webViewClient = null;
     private ProgressDialog progressDialog;
+    private Uri fileUri;
 
+    private int stage = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +40,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         mContext = this;
-
-        checkLoginCredential();
-        
-                // this must be a bug... how is it marked?
-
     }
 
     @Override
@@ -93,7 +91,7 @@ public class MainActivity extends Activity {
                     Log.d(TAG, "Device already registered!!");
                     setupWebView();
 
-//                    new MethodCall("FTVCameraActivity", MainActivity.this);
+                    startActivityCamera();
                 } else {
                     showRegisterActivity();
                 }
@@ -112,11 +110,104 @@ public class MainActivity extends Activity {
         return true;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(TAG, "REQUEST CODE - " + requestCode);
+        if (requestCode == FTVConstants.activityRequestCodeCamera) {
+            // return from camera
+            if (resultCode == RESULT_OK) {
+                if (fileUri != null) {
+//                    FTVImageProcEngine.commonProcess(this, fileUri);
+                    new CommonProcessTask().execute(new SearchParams(this, fileUri));
+                }
+            } else if (resultCode == RESULT_CANCELED) {
+                //TODO: what should do when user cancelled the camera
+                Log.d(TAG, "camera cancelled");
+            } else {
+                Log.e(TAG, "CAMERA - SHOULD NEVER REACH");
+            }
+        } else if (requestCode == FTVConstants.activityRequestCodeGallery) {
+            // return from gallery
+            if (resultCode == RESULT_OK) {
+                fileUri = data.getData();
+                if (fileUri != null) {
+//                    FTVImageProcEngine.commonProcess(this, fileUri);
+                    new CommonProcessTask().execute(new SearchParams(this, fileUri));
+                }
+            } else if (resultCode == RESULT_CANCELED) {
+                //TODO: what should do when user cancelled the gallery
+                Log.d(TAG, "gallery cancelled");
+            } else {
+                Log.e(TAG, "GALLERY - SHOULD NEVER REACH");
+            }
+        } else {
+            // never reach
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (stage == FTVConstants.activityRequestCodeCamera || stage == FTVConstants.activityRequestCodeGallery) {
+            Log.d(TAG, "return from camera/gallery");
+        } else {
+            Log.d(TAG, "need register check");
+            checkLoginCredential();
+        }
+
+        Log.d(TAG, "onResume");
+    }
+
     private void showRegisterActivity() {
-        String registerUrl = String.format("%s%s%s%s", FTVConstants.baseUrl, "registration/index.php?deviceid=", FTVUser.getID(), "&device_type=android");
+        String registerUrl = String.format("%s%s%s%s", FTVConstants.baseUrl,
+            "registration/index.php?deviceid=", FTVUser.getID(), "&device_type=android");
 
         Intent intent = new Intent(mContext, FTVWebViewActivity.class);
         intent.putExtra("url", registerUrl);
         startActivity(intent);
+    }
+
+    public void setStage(int s) {
+        this.stage = s;
+    }
+
+    public void startActivityGallery() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+
+        setStage(FTVConstants.activityRequestCodeGallery);
+        startActivityForResult(intent, FTVConstants.activityRequestCodeGallery);
+    }
+
+    public void startActivityCamera() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        fileUri = DeviceUtil.getOutputMediaFileUri(DeviceUtil.MEDIA_TYPE_IMAGE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+
+        setStage(FTVConstants.activityRequestCodeCamera);
+        startActivityForResult(intent, FTVConstants.activityRequestCodeCamera);
+    }
+
+    private class CommonProcessTask extends AsyncTask<SearchParams, Void, Void> {
+        /**
+         * The system calls this to perform work in a worker thread and delivers
+         * it the parameters given to AsyncTask.execute()
+         */
+        protected Void doInBackground(SearchParams... params) {
+            return FTVImageProcEngine.commonProcess(params[0]);
+        }
+
+
+        /**
+         * The system calls this to perform work in the UI thread and delivers
+         * the result from doInBackground()
+         */
+        protected void onPostExecute() {
+        }
     }
 }

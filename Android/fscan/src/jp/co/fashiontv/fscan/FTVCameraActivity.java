@@ -10,12 +10,11 @@ import android.view.Menu;
 import android.view.Window;
 import android.widget.ImageView;
 import jp.co.fashiontv.fscan.Common.DeviceUtil;
-import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
 
 public class FTVCameraActivity extends Activity {
     private static String TAG = "FTVCameraActivity";
     private static final int CAMERA_REQUEST = 1888;
-    FTVImageProcEngine engine = null;
+//    FTVImageProcEngine engine = null;
 
     private Uri fileUri;
 
@@ -28,7 +27,7 @@ public class FTVCameraActivity extends Activity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.layout_camera);
-        this.engine = new FTVImageProcEngine();
+//        this.engine = new FTVImageProcEngine();
 
 //        imageView = (ImageView)findViewById(R.id.imageView);
 
@@ -45,9 +44,9 @@ public class FTVCameraActivity extends Activity {
         super.onResume();
 
         Log.d(TAG, "Enter FTVCameraActivity");
-        if(this.engine.isProcessed()){
-        	finish();
-        }
+//        if(this.engine.isProcessed()){
+//        	finish();
+//        }
     }
 
 
@@ -56,9 +55,9 @@ public class FTVCameraActivity extends Activity {
         if (requestCode == CAMERA_REQUEST) {
             if (resultCode == RESULT_OK) {
                 // Camera finished successful
-                if (fileUri != null) {
-                	this.engine.commonProcess(this, fileUri);
-                }
+//                if (fileUri != null) {
+//                	this.engine.commonProcess(this, fileUri);
+//                }
 
             } else if (resultCode == RESULT_CANCELED) {
             	finish();

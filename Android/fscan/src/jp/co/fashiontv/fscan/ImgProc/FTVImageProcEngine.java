@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.util.Log;
+import android.webkit.URLUtil;
 import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -16,12 +17,12 @@ import jp.co.fashiontv.fscan.Common.FTVConstants;
 import jp.co.fashiontv.fscan.Common.FTVUser;
 import jp.co.fashiontv.fscan.Common.StringUtil;
 import jp.co.fashiontv.fscan.FTVWebViewActivity;
+import jp.co.fashiontv.fscan.SearchParams;
 import jp.co.nec.gazirur.rtsearch.lib.bean.SearchResult;
 import jp.co.nec.gazirur.rtsearch.lib.clientapi.RTFeatureSearcher;
 import jp.co.nec.gazirur.rtsearch.lib.clientapi.RTSearchApi;
 import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.apache.http.Header;
-import android.webkit.URLUtil;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -95,14 +96,14 @@ public class FTVImageProcEngine {
      * @return
      */
     public static String executeApi(Context context, Bitmap bm) {
-        int width = 0;
-        int height = 0;
+        int width = bm.getWidth();
+        int height = bm.getHeight();
 
         RTSearchApi api = new RTSearchApi(context);
         String resultCode = api.RTSearchAuth();
 
         if (resultCode != null && resultCode.equals("0000")) {
-            String inifilePath = "/mnt/sdcard/rtsearch/db/search.ini"; //����������������������������������������������
+            String inifilePath = "/mnt/sdcard/rtsearch/db/search.ini";
             RTFeatureSearcher rtsearchlib = api.GetInstance(width, height, inifilePath);
 
             // if create instance failed, set error and write log.
@@ -135,14 +136,14 @@ public class FTVImageProcEngine {
 
             return brand_slug;
 
-        } else if (resultCode.equals("0101")) {//0101 : ��������������������� (�����������������������������������������������������������������������������������������
-            Toast.makeText(context, "0101 : ��������������������� (�����������������������������������������������������������������������������������������", Toast.LENGTH_SHORT);
+        } else if (resultCode.equals("0101")) {
+//            Toast.makeText(context, "0101 : ��������������������� (�����������������������������������������������������������������������������������������", Toast.LENGTH_SHORT);
         } else if (resultCode.equals("0201")) {//0201 : ������������������ (������������������������������������������������������������������������������������
-            Toast.makeText(context, "0201 : ������������������ (������������������������������������������������������������������������������������", Toast.LENGTH_SHORT);
+//            Toast.makeText(context, "0201 : ������������������ (������������������������������������������������������������������������������������", Toast.LENGTH_SHORT);
         } else if (resultCode.equals("0501")) {//0501 : ��������������������� (�������������������HTTP����������������������������������������������������)
-            Toast.makeText(context, "0501 : ��������������������� (�������������������HTTP����������������������������������������������������)", Toast.LENGTH_SHORT);
+//            Toast.makeText(context, "0501 : ��������������������� (�������������������HTTP����������������������������������������������������)", Toast.LENGTH_SHORT);
         } else if (resultCode.equals("0901")) {//0901 : ������������ (����������������������������������������������������������������������������)
-            Toast.makeText(context, "0901 : ������������ (����������������������������������������������������������������������������)", Toast.LENGTH_SHORT);
+//            Toast.makeText(context, "0901 : ������������ (����������������������������������������������������������������������������)", Toast.LENGTH_SHORT);
         }
 
         return null;
@@ -177,13 +178,13 @@ public class FTVImageProcEngine {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String url = encapsulateById(new String(responseBody));
-                
+
                 if (URLUtil.isValidUrl(url)) {
-                	processed=true;
+                    processed = true;
                     Intent is = new Intent(context, FTVWebViewActivity.class);
                     is.putExtra("url", url);
                     context.startActivity(is);
-                    
+
                 } else {
                     Toast.makeText(context, "Malform url", Toast.LENGTH_SHORT);
                 }
@@ -196,7 +197,10 @@ public class FTVImageProcEngine {
         });
     }
 
-    public  void commonProcess(Context context, Uri uri) {
+    public static Void commonProcess(SearchParams param) {
+        Context context = param.context;
+        Uri uri = param.uri;
+
         FileInputStream fis = null;
         try {
             String path = uri.toString();
@@ -212,7 +216,7 @@ public class FTVImageProcEngine {
             fis = new FileInputStream(path);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            return;
+            return null;
         }
 
         Bitmap originImage = BitmapFactory.decodeStream(fis);
@@ -243,7 +247,9 @@ public class FTVImageProcEngine {
         }
 
         // image post to our server
-        postData(context, brand_slug);
+//        postData(context, brand_slug);
+
+        return null;
     }
 
     /**
@@ -270,4 +276,56 @@ public class FTVImageProcEngine {
 
         return stream.toByteArray();
     }
+
+//    private class ExecuteImageSearchTask extends
+//        AsyncTask<Void, Void, ArrayList<Offer>> {
+//
+//        /**
+//         * The system calls this to perform work in a worker thread and delivers
+//         * it the parameters given to AsyncTask.execute()
+//         */
+//        protected ArrayList<Offer> doInBackground(Void... voids) {
+//            return CapaProcess.obtainOffers();
+//        }
+//
+//        private boolean isToday(Date date) {
+//            return DateUtils.isToday(date.getTime());
+//        }
+//
+//        /**
+//         * The system calls this to perform work in the UI thread and delivers
+//         * the result from doInBackground()
+//         */
+//        protected void onPostExecute(ArrayList<Offer> result) {
+//            for (Offer of : result) {
+//                if (isToday(of.departureDate)) {
+//                    // TODO : there is only ONE deal each day, so just find out "TODAY".
+//                    mOffer = of;
+//
+//                    // Rellenamos los controles en pantalla
+//                    FillData();
+//
+//                    // Escondemos el progress dialog
+//                    pdLoading.dismiss();
+//
+//                    tracker.trackEvent("TodayFragment", "ObtenerOferta", "Mostramos la oferta del d�a: " + mOffer.title, null);
+//
+//                    // Actualizamos el toast
+//                    // Si lo hacemos sin retraso no se muestra. Se supone pq se
+//                    // solapa con el di�logo
+//                    final Handler handler = new Handler();
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Toast.makeText(mContext, R.string.disfruta_oferta,
+//                                Toast.LENGTH_SHORT).show();
+//                        }
+//                    }, 100);
+//
+//                    return;
+//                }
+//            }
+//        }
+//    }
+
 }

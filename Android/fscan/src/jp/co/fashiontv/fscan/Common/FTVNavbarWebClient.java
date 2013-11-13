@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import jp.co.fashiontv.fscan.Utils.MethodCall;
+import jp.co.fashiontv.fscan.MainActivity;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -19,21 +19,21 @@ import java.util.Iterator;
 
 /**
  * Application view was mainly divided to two parts - Main View, and Navbar View (tab bar)
- *
+ * <p/>
  * This class controls the Navbar View web url redirection
  */
 public class FTVNavbarWebClient extends WebViewClient {
     private String TAG = "FTVNavbarWebClient";
 
     String hash = "jio00f7z";
-    Activity activity = null;
+    MainActivity activity = null;
     WebView webView;
     public static final int REQUEST_CODE = 0;
     public static final int QR_REQUEST_CODE = 1;
 
     private Hashtable<String, String> attributeSet = new Hashtable<String, String>();
 
-    public FTVNavbarWebClient(Activity activity, WebView webView) {
+    public FTVNavbarWebClient(MainActivity activity, WebView webView) {
         this.activity = activity;
         this.webView = webView;
     }
@@ -47,6 +47,7 @@ public class FTVNavbarWebClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         Log.d(TAG, "TAB BAR URL - " + url);
+
         if(url.contains("target=_blank")){
         	openExternalBrowser(this.activity,url);
         }else if (url.startsWith("inapp-http")) {
@@ -54,11 +55,11 @@ public class FTVNavbarWebClient extends WebViewClient {
             if (uri.startsWith("local/")) {
                 webView.loadUrl("file:///android_asset/" + uri.replaceAll("local/", ""));
             } else {
-            	/** @TODO this code, is NOT tested and being commited. */ 
-            	if (url.contains("scan/list.php")) {
-            		webView.loadUrl("http://" + uri + "?deviceid="+FTVUser.getID());
+                /** @TODO this code, is NOT tested and being commited. */
+                if (url.contains("scan/list.php")) {
+                    webView.loadUrl("http://" + uri + "?deviceid=" + FTVUser.getID());
 //                    view.requestFocus();
-                }else{
+                } else {
                     webView.loadUrl("http://" + uri);
                 }
             }
@@ -78,10 +79,12 @@ public class FTVNavbarWebClient extends WebViewClient {
             action = action.split("/")[url.split("/").length - 1];
             action = action.replaceAll("file:///android_asset/", "");
 
-            if (action.equals("Camera")) action = "FTVCameraActivity";
-            if (action.equals("Gallery")) action = "FTVGalleryActivity";
-
-            new MethodCall(action, activity);
+            if (action.equals("Camera")) {
+                activity.startActivityCamera();
+            }
+            if (action.equals("Gallery")) {
+                activity.startActivityGallery();
+            }
 
             Log.v(TAG, "URL LOADED: E" + url);
         } else if (url.contains(".ahtml")) {
