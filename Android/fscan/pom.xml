@@ -10,8 +10,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <platform.version>4.3_r2</platform.version>
+        <platform.version>4.4_r1</platform.version>
         <android.plugin.version>3.6.0</android.plugin.version>
+        <volley.version>1.0.0-SNAPSHOT</volley.version>
     </properties>
 
     <dependencies>
@@ -31,6 +32,22 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.1</version>
+        </dependency>
+        <!--volley is terrible for using as post files-->
+        <!--<dependency>-->
+            <!--<groupId>com.google</groupId>-->
+            <!--<artifactId>volley</artifactId>-->
+            <!--<version>${volley.version}</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>com.loopj.android</groupId>
+            <artifactId>android-async-http</artifactId>
+            <version>1.4.4</version>
         </dependency>
     </dependencies>
     <build>

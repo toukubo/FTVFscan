@@ -1,15 +1,18 @@
 package jp.co.fashiontv.fscan.Utils;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+
+/**
+ * THIS CLASS WAS NOT USED IN OTHER PLACE
+ */
 public class BitmapUtil {
 
 	public static Bitmap getData(Intent data) {

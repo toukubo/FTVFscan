@@ -2,54 +2,74 @@ package jp.co.fashiontv.fscan;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.Window;
-import jp.co.fashiontv.fscan.Utils.BitmapUtil;
+import android.widget.ImageView;
+import jp.co.fashiontv.fscan.Common.DeviceUtil;
 
 public class FTVCameraActivity extends Activity {
-	final int CAMERA_RESULT = 0;
+    private static String TAG = "FTVCameraActivity";
+    private static final int CAMERA_REQUEST = 1888;
+//    FTVImageProcEngine engine = null;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    private Uri fileUri;
 
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+    ImageView imageView;
+	private boolean processed = false;
 
-//		setContentView(R.layout.activity_main);
-		Intent intent = new Intent();  
-		intent.setAction("android.media.action.IMAGE_CAPTURE"); 
-		startActivityForResult(intent, CAMERA_RESULT);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-	}
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.layout_camera);
+//        this.engine = new FTVImageProcEngine();
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		super.onActivityResult(requestCode, resultCode, intent);
+//        imageView = (ImageView)findViewById(R.id.imageView);
 
-		if (requestCode == CAMERA_RESULT && resultCode == RESULT_OK) {
-			byte[] imgData = BitmapUtil.getImageBytes(intent);
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        fileUri = DeviceUtil.getOutputMediaFileUri(DeviceUtil.MEDIA_TYPE_IMAGE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
 
-            // TODO: resize image data
+        startActivityForResult(intent, CAMERA_REQUEST);
 
-            // TODO: execute API in sync mode, call NEC stuff
+    }
 
-            // TODO: image post to our server
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-            // TODO: show webview activity
+        Log.d(TAG, "Enter FTVCameraActivity");
+//        if(this.engine.isProcessed()){
+//        	finish();
+//        }
+    }
 
-            Intent is = new Intent(this, FTVWebViewActivity.class);
-            startActivity(is);
-//			DamyGaziring damyGaziring = new DamyGaziring("http://fashiontv.co.jp", this);
-            // damyGaziring.
-		}
-	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAMERA_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                // Camera finished successful
+//                if (fileUri != null) {
+//                	this.engine.commonProcess(this, fileUri);
+//                }
 
+            } else if (resultCode == RESULT_CANCELED) {
+            	finish();
+            } else {
+                // Image capture failed, advise user
+            }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 }

@@ -6,5 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="splash_activity">fscan.Splash</string>
     <string name="main_activity">fscan.Main</string>
+    <string name="info_title_check_credential">Check Credential</string>
+    <string name="info_check_credential">Checking creadential</string>
 
 </resources>

@@ -1,31 +1,39 @@
 package jp.co.fashiontv.fscan.Common;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import jp.co.fashiontv.fscan.Utils.MethodCall;
+import jp.co.fashiontv.fscan.MainActivity;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Hashtable;
 import java.util.Iterator;
 
-public class FTVShareWebClient extends WebViewClient {
+/**
+ * Application view was mainly divided to two parts - Main View, and Navbar View (tab bar)
+ * <p/>
+ * This class controls the Navbar View web url redirection
+ */
+public class FTVNavbarWebClient extends WebViewClient {
+    private String TAG = "FTVNavbarWebClient";
+
     String hash = "jio00f7z";
-    Activity activity = null;
+    MainActivity activity = null;
     WebView webView;
     public static final int REQUEST_CODE = 0;
     public static final int QR_REQUEST_CODE = 1;
 
     private Hashtable<String, String> attributeSet = new Hashtable<String, String>();
 
-
-    public FTVShareWebClient(Activity activity, WebView webView) {
+    public FTVNavbarWebClient(MainActivity activity, WebView webView) {
         this.activity = activity;
         this.webView = webView;
     }
@@ -37,44 +45,25 @@ public class FTVShareWebClient extends WebViewClient {
     }
 
     @Override
-    public void onScaleChanged(WebView view, float oldScale, float newScale) {
-        // TODO : zoom changed
-        super.onScaleChanged(view, oldScale, newScale);
-    }
-
-    @Override
-    public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-        // TODO : connection error
-        super.onReceivedError(view, errorCode, description, failingUrl);
-    }
-
-    @Override
-    public void onPageFinished(WebView view, String url) {
-        // TODO : end hud
-        super.onPageFinished(view, url);
-    }
-
-    @Override
-    public void onPageStarted(WebView view, String url, Bitmap favicon) {
-        // TODO: show hud
-        Log.v("theurl", "========== the url loaded: E" + url);
-        view.requestFocus();
-
-        super.onPageStarted(view, url, favicon);
-
-    }
-
-    @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        if (url.startsWith("inapp-http")) {
+        Log.d(TAG, "TAB BAR URL - " + url);
+
+        if(url.contains("target=_blank")){
+        	openExternalBrowser(this.activity,url);
+        }else if (url.startsWith("inapp-http")) {
             String uri = url.replaceAll("inapp-http://", "");
             if (uri.startsWith("local/")) {
                 webView.loadUrl("file:///android_asset/" + uri.replaceAll("local/", ""));
             } else {
-                webView.loadUrl("http://" + uri);
+                /** @TODO this code, is NOT tested and being commited. */
+                if (url.contains("scan/list.php")) {
+                    webView.loadUrl("http://" + uri + "?deviceid=" + FTVUser.getID());
+//                    view.requestFocus();
+                } else {
+                    webView.loadUrl("http://" + uri);
+                }
             }
         } else if (url.contains(".action")) {
-            //              view.clearView();
             String[] paramsets = url.split("\\?");
             String actionuri = paramsets[0];
             String file = "";
@@ -86,20 +75,26 @@ public class FTVShareWebClient extends WebViewClient {
                 }
             }
 
-            //              view.loadData("<html><body bgcolor='black'></body></html> ", "text/html", "utf-8");
             String action = actionuri.replace(".action", "");
             action = action.split("/")[url.split("/").length - 1];
             action = action.replaceAll("file:///android_asset/", "");
-            new MethodCall(action, activity);
 
-            Log.v("fscan", "========== the url loaded: E" + url);
+            if (action.equals("Camera")) {
+                activity.startActivityCamera();
+            }
+            if (action.equals("Gallery")) {
+                activity.startActivityGallery();
+            }
+
+            Log.v(TAG, "URL LOADED: E" + url);
         } else if (url.contains(".ahtml")) {
-            String thefile = url.replace(".ahtml", "");
-            thefile = thefile.replaceAll("file:///android_asset/", "");
+//            String thefile = url.replace(".ahtml", "");
+//            thefile = thefile.replaceAll("file:///android_asset/", "");
 
             try {
-                setData(thefile);
-                InputStream is = this.activity.getAssets().open(thefile + ".ahtml");
+//                setData(thefile);
+                URL urlObject = new URL(url);
+                InputStream is = urlObject.openStream();
                 String thehtml = IOUtils.toString(is);
                 for (Iterator iterator = this.attributeSet.keySet().iterator(); iterator.hasNext(); ) {
                     String key = (String) iterator.next();
@@ -107,22 +102,20 @@ public class FTVShareWebClient extends WebViewClient {
                     thehtml = thehtml.replaceAll("\\$\\{" + key + "\\}", value);
                 }
                 view.loadDataWithBaseURL("file:///android_asset/", thehtml, "text/html", "UTF-8", null);
-                //                  view.loadData(thehtml, "text/html", "utf-8");
-                return true;
 
+                return true;
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
             view.loadUrl(url);
             view.requestFocus();
-
         }
         return true;
     }
 
     public boolean shouldOverrideKeyEvent(WebView view, KeyEvent event) {
-        Log.v("evaid", String.valueOf(event.getKeyCode()));
+        Log.v(TAG, String.valueOf(event.getKeyCode()));
         return true;
     }
 
@@ -135,7 +128,11 @@ public class FTVShareWebClient extends WebViewClient {
         Hashtable<String, String> hashtable = this.attributeSet;
         hashtable.put(string, string2);
     }
-
+    public static void openExternalBrowser(Context context, String url) {
+        Uri uri = Uri.parse(url);
+        Intent i = new Intent(Intent.ACTION_VIEW, uri);
+        context.startActivity(i);
+    }
 }
 
 
