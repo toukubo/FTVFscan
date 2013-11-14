@@ -163,16 +163,19 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onResume() {
+        Log.d(TAG, "onResume");
+
         super.onResume();
 
         if (stage == FTVConstants.activityRequestCodeCamera || stage == FTVConstants.activityRequestCodeGallery) {
             Log.d(TAG, "return from camera/gallery");
+
+            // on camera screen, if you push the back hardware button, then the brands page should be displays.
+            webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlBrands);
         } else {
             Log.d(TAG, "need register check");
             checkLoginCredential();
         }
-
-        Log.d(TAG, "onResume");
     }
 
     private void showRegisterActivity() {

@@ -23,7 +23,7 @@ public class FTVMainWebClient extends WebViewClient {
         this.activity = activity;
 
 	}
-    @Override
+
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         if(url.contains("target=_blank")){
         	openExternalBrowser(this.activity,url);

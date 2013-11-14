@@ -8,6 +8,8 @@ public class FTVConstants {
     public static String host = "zxc.cz";
     public static String baseUrl = "http://zxc.cz/fscan-web/";
 
+    public static String urlBrands = "http://zxc.cz/fdb/category/brands/";
+
     public static int httpTimeout = 120;    // seconds
 
     public static int activityRequestCodeCamera =   2;  // 3rd tab
