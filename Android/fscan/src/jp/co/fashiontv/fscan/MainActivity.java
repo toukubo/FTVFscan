@@ -58,7 +58,6 @@ public class MainActivity extends Activity {
 
     private void setupWebView() {
         mainWebView = (WebView) findViewById(R.id.main);
-//        mainWebView.loadUrl(FTVConstants.urlHome);
         mainWebView.setWebViewClient(new FTVMainWebClient(this));
         mainWebView.getSettings().setJavaScriptEnabled(true);
         mainWebView.getSettings().setPluginState(PluginState.ON);
@@ -104,7 +103,8 @@ public class MainActivity extends Activity {
                     Log.d(TAG, "Device already registered!!");
                     setupWebView();
 
-                    startActivityCamera();
+// FIXME: test purpose
+//                    startActivityCamera();
                 } else {
                     showRegisterActivity();
                 }
@@ -130,12 +130,12 @@ public class MainActivity extends Activity {
             // return from camera
             if (resultCode == RESULT_OK) {
                 if (fileUri != null) {
-//                    FTVImageProcEngine.commonProcess(this, fileUri);
                     new CommonProcessTask().execute(new SearchParams(this, fileUri));
                 }
             } else if (resultCode == RESULT_CANCELED) {
-                //TODO: what should do when user cancelled the camera
                 Log.d(TAG, "camera cancelled");
+                // on camera screen, if you push the back hardware button, then the brands page should be displays.
+                webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlBrands);
             } else {
                 Log.e(TAG, "CAMERA - SHOULD NEVER REACH");
             }
@@ -144,17 +144,18 @@ public class MainActivity extends Activity {
             if (resultCode == RESULT_OK) {
                 fileUri = data.getData();
                 if (fileUri != null) {
-//                    FTVImageProcEngine.commonProcess(this, fileUri);
                     new CommonProcessTask().execute(new SearchParams(this, fileUri));
                 }
             } else if (resultCode == RESULT_CANCELED) {
-                //TODO: what should do when user cancelled the gallery
                 Log.d(TAG, "gallery cancelled");
+                // on camera screen, if you push the back hardware button, then the brands page should be displays.
+                webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlBrands);
             } else {
                 Log.e(TAG, "GALLERY - SHOULD NEVER REACH");
             }
         } else {
             // never reach
+            Log.e(TAG, "onActivityResult SHOULD NEVER REACH");
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -169,9 +170,6 @@ public class MainActivity extends Activity {
 
         if (stage == FTVConstants.activityRequestCodeCamera || stage == FTVConstants.activityRequestCodeGallery) {
             Log.d(TAG, "return from camera/gallery");
-
-            // on camera screen, if you push the back hardware button, then the brands page should be displays.
-            webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlBrands);
         } else {
             Log.d(TAG, "need register check");
             checkLoginCredential();
@@ -210,6 +208,12 @@ public class MainActivity extends Activity {
     }
 
     private class CommonProcessTask extends AsyncTask<SearchParams, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // TODO: show HUD or whatever to tell user progress
+        }
+
         /**
          * The system calls this to perform work in a worker thread and delivers
          * it the parameters given to AsyncTask.execute()
@@ -218,12 +222,12 @@ public class MainActivity extends Activity {
             return FTVImageProcEngine.commonProcess(params[0]);
         }
 
-
         /**
          * The system calls this to perform work in the UI thread and delivers
          * the result from doInBackground()
          */
         protected void onPostExecute() {
+            // TODO: dismiss HUD or whatever to tell user progress
         }
     }
 }

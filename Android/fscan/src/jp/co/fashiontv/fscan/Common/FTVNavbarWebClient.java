@@ -128,6 +128,7 @@ public class FTVNavbarWebClient extends WebViewClient {
         Hashtable<String, String> hashtable = this.attributeSet;
         hashtable.put(string, string2);
     }
+
     public static void openExternalBrowser(Context context, String url) {
         Uri uri = Uri.parse(url);
         Intent i = new Intent(Intent.ACTION_VIEW, uri);
