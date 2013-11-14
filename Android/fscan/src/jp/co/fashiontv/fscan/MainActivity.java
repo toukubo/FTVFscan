@@ -1,5 +1,14 @@
 package jp.co.fashiontv.fscan;
 
+import jp.co.fashiontv.fscan.Common.DeviceUtil;
+import jp.co.fashiontv.fscan.Common.FTVConstants;
+import jp.co.fashiontv.fscan.Common.FTVMainWebClient;
+import jp.co.fashiontv.fscan.Common.FTVNavbarWebClient;
+import jp.co.fashiontv.fscan.Common.FTVUser;
+import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
+
+import org.apache.http.Header;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -11,12 +20,12 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.Window;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import jp.co.fashiontv.fscan.Common.*;
-import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
-import org.apache.http.Header;
 
 
 public class MainActivity extends Activity {
@@ -53,12 +62,17 @@ public class MainActivity extends Activity {
 //        mainWebView.loadUrl(FTVConstants.urlHome);
         mainWebView.setWebViewClient(new FTVMainWebClient(this));
         mainWebView.getSettings().setJavaScriptEnabled(true);
+        mainWebView.getSettings().setPluginState(PluginState.ON);
+        mainWebView.setWebChromeClient(new WebChromeClient());
+
         WebView tabbarWebView = (WebView) findViewById(R.id.navigation);
         tabbarWebView.setInitialScale(100);
         tabbarWebView.setScrollBarStyle(WebView.SCROLLBARS_INSIDE_OVERLAY);
         tabbarWebView.getSettings().setJavaScriptEnabled(true);
         webViewClient = new FTVNavbarWebClient(this, mainWebView);
         tabbarWebView.setWebViewClient(webViewClient);
+        tabbarWebView.setWebChromeClient(new WebChromeClient());
+
 
         webViewClient.shouldOverrideUrlLoading(tabbarWebView, "http://zxc.cz/fscan-local-ui/navigation.html");
         webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlHome);
