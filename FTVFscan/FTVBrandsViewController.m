@@ -70,6 +70,7 @@
     DLog(@"%@", urlString);
     if ([self needOpenExternalSafari:urlString]) {
         [FTVImageProcEngine openSafari:urlString];
+        return NO;
     }
     
     return YES;

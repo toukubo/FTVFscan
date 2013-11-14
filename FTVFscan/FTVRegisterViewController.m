@@ -67,6 +67,7 @@ static NSString * const URL_REGISTRTION = @"/registration/index.php";
     DLog(@"%@", urlString);
     if ([self needOpenExternalSafari:urlString]) {
         [FTVImageProcEngine openSafari:urlString];
+        return NO;
     }
     
     return YES;
