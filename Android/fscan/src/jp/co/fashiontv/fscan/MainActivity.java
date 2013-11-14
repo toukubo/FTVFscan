@@ -1,10 +1,6 @@
 package jp.co.fashiontv.fscan;
 
-import jp.co.fashiontv.fscan.Common.DeviceUtil;
-import jp.co.fashiontv.fscan.Common.FTVConstants;
-import jp.co.fashiontv.fscan.Common.FTVMainWebClient;
-import jp.co.fashiontv.fscan.Common.FTVNavbarWebClient;
-import jp.co.fashiontv.fscan.Common.FTVUser;
+import jp.co.fashiontv.fscan.Common.*;
 import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
 
 import org.apache.http.Header;
@@ -49,6 +45,9 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         mContext = this;
+
+        // assets/dic/subordinates is arrangement in local
+        FTVUtil.assets2Local(this);
     }
 
     @Override

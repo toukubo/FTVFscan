@@ -12,10 +12,7 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import jp.co.fashiontv.fscan.Common.DeviceUtil;
-import jp.co.fashiontv.fscan.Common.FTVConstants;
-import jp.co.fashiontv.fscan.Common.FTVUser;
-import jp.co.fashiontv.fscan.Common.StringUtil;
+import jp.co.fashiontv.fscan.Common.*;
 import jp.co.fashiontv.fscan.FTVWebViewActivity;
 import jp.co.fashiontv.fscan.SearchParams;
 import jp.co.nec.gazirur.rtsearch.lib.bean.SearchResult;
@@ -103,7 +100,8 @@ public class FTVImageProcEngine {
         String resultCode = api.RTSearchAuth();
 
         if (resultCode != null && resultCode.equals("0000")) {
-            String inifilePath = "/mnt/sdcard/rtsearch/db/search.ini";
+//            String inifilePath = "/mnt/sdcard/rtsearch/db/search.ini";
+            String inifilePath = FTVUtil.getAssetsDicPath(context);
             RTFeatureSearcher rtsearchlib = api.GetInstance(width, height, inifilePath);
 
             // if create instance failed, set error and write log.
@@ -113,7 +111,9 @@ public class FTVImageProcEngine {
 
             //for calculation operation time
             Date startTime = new Date();
-            List<SearchResult> result = rtsearchlib.ExecuteFeatureSearch(getBytesFromBitmap(bm), RTFeatureSearcher.SERVER_SERVICE_SEARCH);
+            byte[] bytes = getBytesFromBitmap(bm);
+
+            List<SearchResult> result = rtsearchlib.ExecuteFeatureSearch(bytes, RTFeatureSearcher.SERVER_SERVICE_SEARCH);
 
             String brand_slug = null;
 
@@ -137,13 +137,13 @@ public class FTVImageProcEngine {
             return brand_slug;
 
         } else if (resultCode.equals("0101")) {
-//            Toast.makeText(context, "0101 : ��������������������� (�����������������������������������������������������������������������������������������", Toast.LENGTH_SHORT);
-        } else if (resultCode.equals("0201")) {//0201 : ������������������ (������������������������������������������������������������������������������������
-//            Toast.makeText(context, "0201 : ������������������ (������������������������������������������������������������������������������������", Toast.LENGTH_SHORT);
-        } else if (resultCode.equals("0501")) {//0501 : ��������������������� (�������������������HTTP����������������������������������������������������)
-//            Toast.makeText(context, "0501 : ��������������������� (�������������������HTTP����������������������������������������������������)", Toast.LENGTH_SHORT);
-        } else if (resultCode.equals("0901")) {//0901 : ������������ (����������������������������������������������������������������������������)
-//            Toast.makeText(context, "0901 : ������������ (����������������������������������������������������������������������������)", Toast.LENGTH_SHORT);
+
+        } else if (resultCode.equals("0201")) {
+
+        } else if (resultCode.equals("0501")) {
+
+        } else if (resultCode.equals("0901")) {
+
         }
 
         return null;
@@ -261,18 +261,14 @@ public class FTVImageProcEngine {
     }
 
     /**
-     * @param context
-     * @param url
-     */
-
-
-    /**
-     * @param bm
-     * @return
+     * Get bitmap in bytes
+     *
+     * @param bm target bitmap
+     * @return bytes representation of bitmap
      */
     private static byte[] getBytesFromBitmap(Bitmap bm) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 
         return stream.toByteArray();
     }

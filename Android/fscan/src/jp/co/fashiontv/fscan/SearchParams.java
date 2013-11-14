@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 
 /**
-* Created by veiz on 13-11-13.
+* Created by Alsor Zhou on 13-11-13.
 */
 public class SearchParams {
     public Context context;
