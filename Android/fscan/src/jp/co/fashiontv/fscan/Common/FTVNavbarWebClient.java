@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import jp.co.fashiontv.fscan.MainActivity;
+import jp.co.fashiontv.fscan.Activities.MainActivity;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;

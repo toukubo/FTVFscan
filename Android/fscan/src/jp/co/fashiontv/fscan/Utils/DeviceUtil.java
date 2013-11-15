@@ -1,9 +1,9 @@
-package jp.co.fashiontv.fscan.Common;
+package jp.co.fashiontv.fscan.Utils;
 
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
-import jp.co.fashiontv.fscan.FTVApplication;
+import jp.co.fashiontv.fscan.Core.FTVApplication;
 import jp.co.fashiontv.fscan.R;
 
 import java.io.File;

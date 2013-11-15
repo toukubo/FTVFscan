@@ -19,12 +19,12 @@
     <uses-feature android:name="android.hardware.camera.autofocus"/>
 
     <application android:allowBackup="true"
-                 android:name=".FTVApplication"
+                 android:name=".Core.FTVApplication"
                  android:icon="@drawable/ic_launcher"
                  android:label="@string/app_name"
                  android:theme="@style/AppTheme">
 
-        <activity android:name=".SplashActivity"
+        <activity android:name=".Activities.SplashActivity"
                   android:label="@string/app_name"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
@@ -34,12 +34,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="jp.co.fashiontv.fscan.MainActivity"
+        <activity android:name=".Activities.MainActivity"
                   android:label="@string/main_activity"
                   android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name=".FTVWebViewActivity"/>
+        <activity android:name=".Activities.FTVWebViewActivity"/>
 
     </application>
 </manifest>

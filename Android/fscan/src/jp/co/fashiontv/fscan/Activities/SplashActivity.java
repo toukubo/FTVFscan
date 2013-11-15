@@ -1,10 +1,11 @@
-package jp.co.fashiontv.fscan;
+package jp.co.fashiontv.fscan.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
+import jp.co.fashiontv.fscan.R;
 
 public class SplashActivity extends Activity {
 	private static final int SPLASHTIME = 5;

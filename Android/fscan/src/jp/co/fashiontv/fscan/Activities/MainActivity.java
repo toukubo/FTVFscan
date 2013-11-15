@@ -1,8 +1,11 @@
-package jp.co.fashiontv.fscan;
+package jp.co.fashiontv.fscan.Activities;
 
 import jp.co.fashiontv.fscan.Common.*;
 import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
 
+import jp.co.fashiontv.fscan.R;
+import jp.co.fashiontv.fscan.Utils.DeviceUtil;
+import jp.co.fashiontv.fscan.Utils.FTVUtil;
 import org.apache.http.Header;
 
 import android.app.Activity;
@@ -35,6 +38,9 @@ public class MainActivity extends Activity {
     private Uri fileUri;
 
     private int stage = 0;
+    public void setStage(int s) {
+        this.stage = s;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,7 +136,7 @@ public class MainActivity extends Activity {
             // return from camera
             if (resultCode == RESULT_OK) {
                 if (fileUri != null) {
-                    new CommonProcessTask().execute(new SearchParams(this, fileUri));
+                    new CommonProcessTask().execute(new GaziruSearchParams(this, fileUri));
                 }
             } else if (resultCode == RESULT_CANCELED) {
                 Log.d(TAG, "camera cancelled");
@@ -144,7 +150,7 @@ public class MainActivity extends Activity {
             if (resultCode == RESULT_OK) {
                 fileUri = data.getData();
                 if (fileUri != null) {
-                    new CommonProcessTask().execute(new SearchParams(this, fileUri));
+                    new CommonProcessTask().execute(new GaziruSearchParams(this, fileUri));
                 }
             } else if (resultCode == RESULT_CANCELED) {
                 Log.d(TAG, "gallery cancelled");
@@ -185,9 +191,6 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
-    public void setStage(int s) {
-        this.stage = s;
-    }
 
     public void startActivityGallery() {
         Intent intent = new Intent();
@@ -207,7 +210,10 @@ public class MainActivity extends Activity {
         startActivityForResult(intent, FTVConstants.activityRequestCodeCamera);
     }
 
-    private class CommonProcessTask extends AsyncTask<SearchParams, Void, Void> {
+    /**
+     * Gaziru : image search task should never be executed from ui thread. Library has enabled the STRICT_MODE.
+     */
+    private class CommonProcessTask extends AsyncTask<GaziruSearchParams, Void, Void> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -218,7 +224,7 @@ public class MainActivity extends Activity {
          * The system calls this to perform work in a worker thread and delivers
          * it the parameters given to AsyncTask.execute()
          */
-        protected Void doInBackground(SearchParams... params) {
+        protected Void doInBackground(GaziruSearchParams... params) {
             return FTVImageProcEngine.commonProcess(params[0]);
         }
 

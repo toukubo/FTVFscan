@@ -1,4 +1,4 @@
-package jp.co.fashiontv.fscan.Common;
+package jp.co.fashiontv.fscan.Utils;
 
 import android.content.Context;
 import android.database.Cursor;

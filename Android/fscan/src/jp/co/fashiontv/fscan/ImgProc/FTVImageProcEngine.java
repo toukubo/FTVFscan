@@ -13,8 +13,11 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import jp.co.fashiontv.fscan.Common.*;
-import jp.co.fashiontv.fscan.FTVWebViewActivity;
-import jp.co.fashiontv.fscan.SearchParams;
+import jp.co.fashiontv.fscan.Activities.FTVWebViewActivity;
+import jp.co.fashiontv.fscan.Common.GaziruSearchParams;
+import jp.co.fashiontv.fscan.Utils.DeviceUtil;
+import jp.co.fashiontv.fscan.Utils.FTVUtil;
+import jp.co.fashiontv.fscan.Utils.StringUtil;
 import jp.co.nec.gazirur.rtsearch.lib.bean.SearchResult;
 import jp.co.nec.gazirur.rtsearch.lib.clientapi.RTFeatureSearcher;
 import jp.co.nec.gazirur.rtsearch.lib.clientapi.RTSearchApi;
@@ -30,17 +33,17 @@ import java.util.List;
  * Created by Alsor Zhou on 13-11-9.
  */
 public class FTVImageProcEngine {
-	private boolean processed = false;
+    private boolean processed = false;
 
     public boolean isProcessed() {
-		return processed;
-	}
+        return processed;
+    }
 
-	public void setProcessed(boolean processed) {
-		this.processed = processed;
-	}
+    public void setProcessed(boolean processed) {
+        this.processed = processed;
+    }
 
-	private static String TAG = "FTVImageProcEngine";
+    private static String TAG = "FTVImageProcEngine";
 
     /**
      * @param srcImage
@@ -75,10 +78,12 @@ public class FTVImageProcEngine {
     }
 
     /**
-     * @param srcImage
-     * @param saveWithName
-     * @param useJpeg
-     * @return
+     * Resize Image and save to album
+     *
+     * @param srcImage     source image
+     * @param saveWithName image name
+     * @param useJpeg      need jpeg format or else
+     * @return resized image
      */
     public static Bitmap imageResize(Bitmap srcImage, String saveWithName, boolean useJpeg) {
         Bitmap bm = imageResize(srcImage);
@@ -88,9 +93,13 @@ public class FTVImageProcEngine {
     }
 
     /**
-     * @param context
-     * @param bm
-     * @return
+     * Execute Image Feature Search with NEC Gaziru library.
+     * <p/>
+     * Important: must NOT be invoked from ui(main) thread, otherwise crash will be encountered. The library enabled STRICT_MODE.
+     *
+     * @param context application context
+     * @param bm      target bitmap
+     * @return brand slug
      */
     public static String executeApi(Context context, Bitmap bm) {
         int width = bm.getWidth();
@@ -110,15 +119,18 @@ public class FTVImageProcEngine {
 
             //for calculation operation time
             Date startTime = new Date();
-            byte[] bytes = getBytesFromBitmap(bm);
-//            byte[] yuv = FTVUtil.colorconvertRGB_IYUV_I420(bytes, width, height);
+            int[] ints = getIntsFromBitmap(bm);
+
+            byte[] bytes = new byte[width * height * 4];
+
+            // Important : gaziru need YUV420 for image search
+            FTVUtil.encodeYUV420SP(bytes, ints, width, height);
+
             List<SearchResult> result = rtsearchlib.ExecuteFeatureSearch(bytes, RTFeatureSearcher.SERVER_SERVICE_SEARCH);
 
             String brand_slug = null;
 
-            //if search failed, set error.
             if (result == null) {
-                //result count was 0
                 brand_slug = "failure";
             } else if (result.size() == 0) {
                 brand_slug = "failure";
@@ -156,11 +168,11 @@ public class FTVImageProcEngine {
      * @param
      * @param brand_slug recognized brand from nec engine
      */
-    public  void postData(final Context context, String brand_slug) {
+    public void postData(final Context context, String brand_slug) {
         RequestParams params = new RequestParams();
         params.put("user_id", FTVUser.getID());
         params.put("brand_slug", brand_slug);
-        
+
 
         File image = new File(DeviceUtil.photoDirectory() + "/resize.png");
         try {
@@ -196,7 +208,7 @@ public class FTVImageProcEngine {
         });
     }
 
-    public static Void commonProcess(SearchParams param) {
+    public static Void commonProcess(GaziruSearchParams param) {
         Context context = param.context;
         Uri uri = param.uri;
 
@@ -272,4 +284,11 @@ public class FTVImageProcEngine {
         return stream.toByteArray();
     }
 
+    private static int[] getIntsFromBitmap(Bitmap bm) {
+        int[] intArray = new int[bm.getWidth() * bm.getHeight()];
+
+        //copy pixel data from the Bitmap into the 'intArray' array
+        bm.getPixels(intArray, 0, bm.getWidth(), 0, 0, bm.getWidth(), bm.getHeight());
+        return intArray;
+    }
 }

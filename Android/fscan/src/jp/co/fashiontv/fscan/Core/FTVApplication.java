@@ -1,4 +1,4 @@
-package jp.co.fashiontv.fscan;
+package jp.co.fashiontv.fscan.Core;
 
 import android.app.Application;
 import android.content.Context;

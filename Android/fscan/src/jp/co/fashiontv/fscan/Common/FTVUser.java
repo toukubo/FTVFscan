@@ -2,7 +2,7 @@ package jp.co.fashiontv.fscan.Common;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;
-import jp.co.fashiontv.fscan.FTVApplication;
+import jp.co.fashiontv.fscan.Core.FTVApplication;
 
 import java.util.UUID;
 

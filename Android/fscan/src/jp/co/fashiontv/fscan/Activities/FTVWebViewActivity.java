@@ -1,10 +1,11 @@
-package jp.co.fashiontv.fscan;
+package jp.co.fashiontv.fscan.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
 import android.webkit.WebView;
 import jp.co.fashiontv.fscan.Common.FTVConstants;
+import jp.co.fashiontv.fscan.R;
 
 /**
  * Created by Alsor Zhou on 13-11-9.
