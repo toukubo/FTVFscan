@@ -100,7 +100,6 @@ public class FTVImageProcEngine {
         String resultCode = api.RTSearchAuth();
 
         if (resultCode != null && resultCode.equals("0000")) {
-//            String inifilePath = "/mnt/sdcard/rtsearch/db/search.ini";
             String inifilePath = FTVUtil.getAssetsDicPath(context);
             RTFeatureSearcher rtsearchlib = api.GetInstance(width, height, inifilePath);
 
@@ -112,7 +111,7 @@ public class FTVImageProcEngine {
             //for calculation operation time
             Date startTime = new Date();
             byte[] bytes = getBytesFromBitmap(bm);
-
+//            byte[] yuv = FTVUtil.colorconvertRGB_IYUV_I420(bytes, width, height);
             List<SearchResult> result = rtsearchlib.ExecuteFeatureSearch(bytes, RTFeatureSearcher.SERVER_SERVICE_SEARCH);
 
             String brand_slug = null;
@@ -272,56 +271,5 @@ public class FTVImageProcEngine {
 
         return stream.toByteArray();
     }
-
-//    private class ExecuteImageSearchTask extends
-//        AsyncTask<Void, Void, ArrayList<Offer>> {
-//
-//        /**
-//         * The system calls this to perform work in a worker thread and delivers
-//         * it the parameters given to AsyncTask.execute()
-//         */
-//        protected ArrayList<Offer> doInBackground(Void... voids) {
-//            return CapaProcess.obtainOffers();
-//        }
-//
-//        private boolean isToday(Date date) {
-//            return DateUtils.isToday(date.getTime());
-//        }
-//
-//        /**
-//         * The system calls this to perform work in the UI thread and delivers
-//         * the result from doInBackground()
-//         */
-//        protected void onPostExecute(ArrayList<Offer> result) {
-//            for (Offer of : result) {
-//                if (isToday(of.departureDate)) {
-//                    // TODO : there is only ONE deal each day, so just find out "TODAY".
-//                    mOffer = of;
-//
-//                    // Rellenamos los controles en pantalla
-//                    FillData();
-//
-//                    // Escondemos el progress dialog
-//                    pdLoading.dismiss();
-//
-//                    tracker.trackEvent("TodayFragment", "ObtenerOferta", "Mostramos la oferta del d�a: " + mOffer.title, null);
-//
-//                    // Actualizamos el toast
-//                    // Si lo hacemos sin retraso no se muestra. Se supone pq se
-//                    // solapa con el di�logo
-//                    final Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            Toast.makeText(mContext, R.string.disfruta_oferta,
-//                                Toast.LENGTH_SHORT).show();
-//                        }
-//                    }, 100);
-//
-//                    return;
-//                }
-//            }
-//        }
-//    }
 
 }
