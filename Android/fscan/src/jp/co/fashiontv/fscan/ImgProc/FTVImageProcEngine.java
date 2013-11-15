@@ -189,6 +189,8 @@ public class FTVImageProcEngine {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String url = encapsulateById(new String(responseBody));
 
+                Log.d(TAG, "URL - " + url);
+
                 if (URLUtil.isValidUrl(url)) {
                     Intent is = new Intent(context, FTVWebViewActivity.class);
                     is.putExtra("url", url);

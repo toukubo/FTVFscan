@@ -13,6 +13,7 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -26,14 +27,14 @@ public class FTVNavbarWebClient extends WebViewClient {
     private String TAG = "FTVNavbarWebClient";
 
     String hash = "jio00f7z";
-    MainActivity activity = null;
+    Activity activity = null;
     WebView webView;
     public static final int REQUEST_CODE = 0;
     public static final int QR_REQUEST_CODE = 1;
 
     private Hashtable<String, String> attributeSet = new Hashtable<String, String>();
 
-    public FTVNavbarWebClient(MainActivity activity, WebView webView) {
+    public FTVNavbarWebClient(Activity activity, WebView webView) {
         this.activity = activity;
         this.webView = webView;
     }
@@ -48,9 +49,9 @@ public class FTVNavbarWebClient extends WebViewClient {
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         Log.d(TAG, "TAB BAR URL - " + url);
 
-        if(url.contains("target=_blank")){
-        	openExternalBrowser(this.activity,url);
-        }else if (url.startsWith("inapp-http")) {
+        if (url.contains("target=_blank")) {
+            openExternalBrowser(this.activity, url);
+        } else if (url.startsWith("inapp-http")) {
             String uri = url.replaceAll("inapp-http://", "");
             if (uri.startsWith("local/")) {
                 webView.loadUrl("file:///android_asset/" + uri.replaceAll("local/", ""));
@@ -80,37 +81,47 @@ public class FTVNavbarWebClient extends WebViewClient {
             action = action.replaceAll("file:///android_asset/", "");
 
             if (action.equals("Camera")) {
-                activity.startActivityCamera();
+                ((MainActivity) activity).startActivityCamera();
             }
             if (action.equals("Gallery")) {
-                activity.startActivityGallery();
+                ((MainActivity) activity).startActivityGallery();
             }
 
             Log.v(TAG, "URL LOADED: E" + url);
         } else if (url.contains(".ahtml")) {
-//            String thefile = url.replace(".ahtml", "");
-//            thefile = thefile.replaceAll("file:///android_asset/", "");
-
+            URL urlObject = null;
             try {
-//                setData(thefile);
-                URL urlObject = new URL(url);
-                InputStream is = urlObject.openStream();
-                String thehtml = IOUtils.toString(is);
-                for (Iterator iterator = this.attributeSet.keySet().iterator(); iterator.hasNext(); ) {
-                    String key = (String) iterator.next();
-                    String value = this.attributeSet.get(key);
-                    thehtml = thehtml.replaceAll("\\$\\{" + key + "\\}", value);
-                }
-                view.loadDataWithBaseURL("file:///android_asset/", thehtml, "text/html", "UTF-8", null);
-
-                return true;
+                urlObject = new URL(url);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            InputStream is = null;
+            try {
+                is = urlObject.openStream();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            String thehtml = null;
+            try {
+                thehtml = IOUtils.toString(is);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            for (Iterator iterator = this.attributeSet.keySet().iterator(); iterator.hasNext(); ) {
+                String key = (String) iterator.next();
+                String value = this.attributeSet.get(key);
+                thehtml = thehtml.replaceAll("\\$\\{" + key + "\\}", value);
+            }
+            view.loadDataWithBaseURL("file:///android_asset/", thehtml, "text/html", "UTF-8", null);
+
+            return true;
+
         } else {
             view.loadUrl(url);
             view.requestFocus();
         }
+
         return true;
     }
 
