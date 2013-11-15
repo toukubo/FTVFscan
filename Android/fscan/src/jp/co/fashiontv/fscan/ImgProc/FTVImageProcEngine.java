@@ -21,6 +21,7 @@ import jp.co.fashiontv.fscan.Utils.StringUtil;
 import jp.co.nec.gazirur.rtsearch.lib.bean.SearchResult;
 import jp.co.nec.gazirur.rtsearch.lib.clientapi.RTFeatureSearcher;
 import jp.co.nec.gazirur.rtsearch.lib.clientapi.RTSearchApi;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.apache.http.Header;
 
@@ -162,17 +163,15 @@ public class FTVImageProcEngine {
     }
 
     /**
-     * Async HTTP Post
+     * Post resized image to our server in async mode
      *
-     * @param context
-     * @param
-     * @param brand_slug recognized brand from nec engine
+     * @param context    application context
+     * @param brand_slug recognized brand from gaziru engine
      */
-    public void postData(final Context context, String brand_slug) {
+    public static void postData(final Context context, String brand_slug) {
         RequestParams params = new RequestParams();
         params.put("user_id", FTVUser.getID());
         params.put("brand_slug", brand_slug);
-
 
         File image = new File(DeviceUtil.photoDirectory() + "/resize.png");
         try {
@@ -191,7 +190,6 @@ public class FTVImageProcEngine {
                 String url = encapsulateById(new String(responseBody));
 
                 if (URLUtil.isValidUrl(url)) {
-                    processed = true;
                     Intent is = new Intent(context, FTVWebViewActivity.class);
                     is.putExtra("url", url);
                     context.startActivity(is);
@@ -208,13 +206,20 @@ public class FTVImageProcEngine {
         });
     }
 
+    /**
+     * Processor to execute image search and upload to our server
+     *
+     * @param param Gaziru needed search parameter
+     * @return Void
+     */
     public static Void commonProcess(GaziruSearchParams param) {
         Context context = param.context;
         Uri uri = param.uri;
 
         FileInputStream fis = null;
+        String path = uri.toString();
+
         try {
-            String path = uri.toString();
             if (path.startsWith("content://")) {
                 // gallery picker
                 path = StringUtil.getRealPathFromURI(context, uri);
@@ -237,9 +242,10 @@ public class FTVImageProcEngine {
 
         Log.d(TAG, String.format("resizedImage : w - %d, h - %d", resizedImage.getWidth(), resizedImage.getHeight()));
 
+        String bname = FilenameUtils.getBaseName(path);
         try {
-            FileOutputStream orig = new FileOutputStream(DeviceUtil.photoDirectory() + "/orig.png");
-            FileOutputStream resize = new FileOutputStream(DeviceUtil.photoDirectory() + "/resize.png");
+            FileOutputStream orig = new FileOutputStream(DeviceUtil.photoDirectory() + "/" + bname + "-orig.png");
+            FileOutputStream resize = new FileOutputStream(DeviceUtil.photoDirectory() + "/" + bname + "-resize.png");
 
             originImage.compress(Bitmap.CompressFormat.PNG, 90, orig);
             orig.close();
@@ -251,21 +257,23 @@ public class FTVImageProcEngine {
 
         // execute API in sync mode, call NEC stuff
         String brand_slug = FTVImageProcEngine.executeApi(context, resizedImage);
-        Log.d(TAG, String.format("brand slug : %s", brand_slug));
+        Log.d(TAG, String.format("BRAND SLUG - %s\n", brand_slug));
 
         if (brand_slug == null) {
-            brand_slug = "GUCCI";
+            brand_slug = "UNKNOWN";
         }
 
         // image post to our server
-//        postData(context, brand_slug);
+        postData(context, brand_slug);
 
         return null;
     }
 
     /**
-     * @param id
-     * @return
+     * Formated URL
+     *
+     * @param id post id from server response
+     * @return url to redirect
      */
     public static String encapsulateById(String id) {
         return String.format("%s%s%s%s%s", FTVConstants.baseUrl, "scan/scan.php?deviceid=", FTVUser.getID(), "&id=", id);
@@ -279,11 +287,17 @@ public class FTVImageProcEngine {
      */
     private static byte[] getBytesFromBitmap(Bitmap bm) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
 
         return stream.toByteArray();
     }
 
+    /**
+     * Get bitmap in int[]
+     *
+     * @param bm target bitmap
+     * @return bytes in int[]
+     */
     private static int[] getIntsFromBitmap(Bitmap bm) {
         int[] intArray = new int[bm.getWidth() * bm.getHeight()];
 
