@@ -14,6 +14,7 @@
 #define IPHONE_HEIGHT 480
 #define MAX_PAGE      10
 
+#define TEST_TIME       1   // change to other integer for performance test purpose
 
 // ---------------------- Notification Names ----------------
 #define kNotifyRegisterFinished @"kNotifyRegisterFinished"

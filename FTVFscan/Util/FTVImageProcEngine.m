@@ -54,16 +54,12 @@
 // stolen from RTSearchApiTester
 + (NSString*)executeApi:(UIImage*)image
 {
-    //    UIImage *image = [UIImage imageNamed:@"NEC_new.jpg"];
     int width = CGImageGetWidth(image.CGImage);
     int height = CGImageGetHeight(image.CGImage);
     
-    /************* Create API Instance ****************/
     RTSearchApi *api = [[RTSearchApi alloc] init];
     
-    /************* Execute Authentication API ****************/
     NSString *authResult = [api RTSearchAuth];
-    NSLog(@"authResult = %@", authResult);
     
     //if authentication succeeded, execute search.
     if ([authResult isEqualToString:AUTH_OK]) {
@@ -94,7 +90,6 @@
         NSDate *startTime = [NSDate date];
         
         NSMutableArray *resultArray = [rtsearchlib ExecuteSearchFromUIImage:image searchEnv:SERVER_SERVICE_SEARCH];
-        NSLog(@"resultArray = %@", resultArray);
         
         NSString *brand_slug = nil;
         
@@ -118,9 +113,8 @@
         //for calculation operation time
         NSDate *stopTime = [NSDate date];
         NSTimeInterval operationTime = [stopTime timeIntervalSinceDate:startTime];
-        NSLog(@"Operation Time is %f", operationTime);
+        NSLog(@"executeApi Operation Time is %f", operationTime);
         
-        /************* Terminate API ****************/
         [rtsearchlib CloseFeatureSearcher];
         
         return brand_slug;

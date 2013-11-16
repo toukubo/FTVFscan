@@ -87,7 +87,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSString *urlString = request.URL.absoluteString;
-    DLog(@"%@", urlString);
+//    DLog(@"%@", urlString);
     if ([self needOpenExternalSafari:urlString]) {
         [FTVImageProcEngine openSafari:urlString];
         return NO;

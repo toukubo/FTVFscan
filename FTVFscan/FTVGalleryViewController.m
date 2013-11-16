@@ -56,6 +56,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     if (returnFromPicker) returnFromPicker = NO;
+    
+    [SVProgressHUD dismiss];
 }
 
 #pragma mark -
@@ -69,11 +71,13 @@
         UIImage *pickedImage = (UIImage *)info[@"UIImagePickerControllerOriginalImage"];
         
         //TODO: we can resize the image later, before post to the remote, so it will not harless the user experience.
+        NSDate *start = [NSDate date];
         pickedImage = [FTVImageProcEngine imageResize:pickedImage saveWithName:[NSString genRandStringLength:10] usingJPEG:YES];
-        
         NSData *imageData = UIImagePNGRepresentation(pickedImage);
         
         NSString *brand_slug = [FTVImageProcEngine executeApi:pickedImage];
+        NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
+        NSLog(@"executeApi Execution Time: %f", executionTime);
         
         if (IsEmpty(brand_slug) || [brand_slug isEqualToString:@"failure"]) {
             [appDelegate showModalPopupWindow];
@@ -88,6 +92,9 @@
                           } withFinishBlock:^(BOOL success, NSString *resp) {
                               if (success) {
                                   [SVProgressHUD dismiss];
+                                  
+                                  NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
+                                  NSLog(@"postData Execution Time: %f", executionTime);
                                   
                                   redirectUrl = [FTVImageProcEngine encapsulateById:resp];
                                   if (![redirectUrl isMalform]) {

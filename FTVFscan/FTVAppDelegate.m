@@ -137,7 +137,7 @@
 - (BOOL)checkLoginCredential {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@%@", BASEURL, @"registration/isRegistered.php?deviceid=", [FTVUser getId]];
     DLog(@"%@", urlStr);
-    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+//    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
     __block BOOL retval = NO;
     
     NSMutableURLRequest* request2 = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
@@ -213,7 +213,6 @@
     UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 310)];
     FTVDelayJobWebViewController *vc = [[FTVDelayJobWebViewController alloc] initWithFrame:contentView.frame];
     NSString *url = [NSString stringWithFormat:@"%@%@", BASEURL, @"search"];
-    DLog(@"showModalPopupWindow, redirect url to %@", url);
     [contentView addSubview:vc.view];
     
     [vc loadUrl:url];
