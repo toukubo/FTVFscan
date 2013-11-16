@@ -12,14 +12,10 @@
 
 @interface FTVCameraViewController ()
 {
-    FTVAppDelegate *appDelegate;
-    
-    // Workaround while this workflow is not completed
-    BOOL returnFromPicker;
-    
-    UIImagePickerController *photoPicker;
-    
-    NSString                *redirectUrl;
+    FTVAppDelegate              *appDelegate;
+    BOOL                        returnFromPicker;      // Workaround while this workflow is not completed
+    UIImagePickerController     *photoPicker;
+    NSString                    *redirectUrl;
 }
 
 @end
@@ -89,8 +85,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    if (returnFromPicker)
-        returnFromPicker = NO;
+    if (returnFromPicker) returnFromPicker = NO;
 }
 
 #pragma mark -
@@ -100,7 +95,6 @@
 {
     returnFromPicker = YES;
     
-    
     [photoPicker dismissViewControllerAnimated:NO completion:^{
         UIImage *pickedImage = (UIImage *)info[@"UIImagePickerControllerOriginalImage"];
         DLog(@"IMG pre proessed: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);
@@ -108,43 +102,42 @@
         //TODO: we can resize the image later, before post to the remote, so it will not harless the user experience.
         pickedImage = [FTVImageProcEngine imageResize:pickedImage saveWithName:[NSString genRandStringLength:10] usingJPEG:YES];
         
-        // In production remove imageView from storyboard and open new workflow view there in main thread
-        //        self.imageView.contentMode = UIViewContentModeCenter;   // disbale auto enlarge
-        //        self.imageView.image = pickedImage;
-        
         // TODO: should we use png or others?
         
         NSString *brand_slug = [FTVImageProcEngine executeApi:pickedImage];
         
         NSData *imageData = UIImagePNGRepresentation(pickedImage);
-//        if ( brand_slug == nil){
-//            
-//        }else{
-            [ FTVImageProcEngine postData:imageData
-                                withBrand:brand_slug
-                           withStartBlock:^{
-                               // TODO: write custom logic here
-                               // show HUD or something
-//                               [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_loading", @"Loading")];
-                               [SVProgressHUD show];
-                           } withFinishBlock:^(BOOL success, NSString *resp) {
-                               if (success) {
-                                   redirectUrl = [FTVImageProcEngine encapsulateById:resp];
-                                   if (![redirectUrl isMalform]) {
-                                       [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
-                                       [SVProgressHUD dismiss];
-                                   }
-                               } else {
-                                   [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_malform", @"Malform")];
-                               }
-                           } withFailedBlock:^(BOOL success, NSString *resp) {
-                               [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_error", @"Error")];
-                           }];
-//        }
         
-        DLog(@"IMG: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);
+        if (IsEmpty(brand_slug) || [brand_slug isEqualToString:@"failure"]) {
+            [appDelegate showModalPopupWindow];
+        } else {
+            //FIXME: should we continue post data if BRAND was failure
+            [FTVImageProcEngine postData:imageData
+                               withBrand:brand_slug
+                          withStartBlock:^{
+                              // TODO: write custom logic here
+                              // show HUD or something
+                              [SVProgressHUD show];
+                          } withFinishBlock:^(BOOL success, NSString *resp) {
+                              if (success) {
+                                  [SVProgressHUD dismiss];
+                                  
+                                  redirectUrl = [FTVImageProcEngine encapsulateById:resp];
+                                  if (![redirectUrl isMalform]) {
+                                      [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
+                                  }
+                              } else {
+                                  [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_malform", @"Malform")];
+                              }
+                          } withFailedBlock:^(BOOL success, NSString *resp) {
+                              [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_error", @"Error")];
+                          }];
+            
+            
+            DLog(@"IMG: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);
+        }
     }];
-    DLog(@"info: %@",info);
+//    DLog(@"info: %@",info);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

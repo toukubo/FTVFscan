@@ -98,7 +98,6 @@
         
         NSString *brand_slug = nil;
         
-        
         //if search failed, set error.
         if (resultArray == nil) {
             NSLog(@"Failed ExecuteSearch");
@@ -110,29 +109,21 @@
             //result count was over 0
             brand_slug = @"failure";
         } else {
-            
-            
             NSDictionary *bland_dict = (NSDictionary *)[resultArray objectAtIndex: 0];
             NSMutableArray *appendedInfos = (NSMutableArray *)[ bland_dict valueForKey:@"appendInfo"];
             brand_slug = [ appendedInfos objectAtIndex:0];
-            DLog(brand_slug);
-            
-            
-            // should never reach here
+            DLog(@"BRAND SLUG - %@", brand_slug);
         }
-        
-        return brand_slug;
-        
         
         //for calculation operation time
         NSDate *stopTime = [NSDate date];
         NSTimeInterval operationTime = [stopTime timeIntervalSinceDate:startTime];
         NSLog(@"Operation Time is %f", operationTime);
         
-        
         /************* Terminate API ****************/
         [rtsearchlib CloseFeatureSearcher];
         
+        return brand_slug;
     } else {
         // handle following errors
         //            #define AUTH_CONST_ERROR    @"0101"

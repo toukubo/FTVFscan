@@ -212,11 +212,14 @@
 {
     UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 310)];
     FTVDelayJobWebViewController *vc = [[FTVDelayJobWebViewController alloc] initWithFrame:contentView.frame];
-    vc.redirectUrl = [NSString stringWithFormat:@"%@%@", BASEURL, @"/search"];
-    DLog(@"showModalPopupWindow, redirect url to %@", vc.redirectUrl);
+    NSString *url = [NSString stringWithFormat:@"%@%@", BASEURL, @"search"];
+    DLog(@"showModalPopupWindow, redirect url to %@", url);
     [contentView addSubview:vc.view];
     
+    [vc loadUrl:url];
+    
     [[KGModal sharedInstance] showWithContentView:contentView andAnimated:YES];
+    [self.window.rootViewController addChildViewController:vc];
 }
 
 - (BOOL)prefersStatusBarHidden {

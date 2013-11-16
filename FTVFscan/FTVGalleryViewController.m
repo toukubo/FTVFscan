@@ -13,13 +13,10 @@
 
 @interface FTVGalleryViewController ()
 {
-    FTVAppDelegate *appDelegate;
-    
-    BOOL returnFromPicker;
-    
-    UIImagePickerController *galleryPicker;
-    
-    NSString                *redirectUrl;
+    FTVAppDelegate              *appDelegate;
+    BOOL                        returnFromPicker;
+    UIImagePickerController     *galleryPicker;
+    NSString                    *redirectUrl;
 }
 
 @end
@@ -30,13 +27,10 @@
 {
     [super viewDidLoad];
     
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])
-    {
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         [self prefersStatusBarHidden];
         [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    }
-    else
-    {
+    } else {
         // iOS 6
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
@@ -61,8 +55,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    if (returnFromPicker)
-        returnFromPicker = NO;
+    if (returnFromPicker) returnFromPicker = NO;
 }
 
 #pragma mark -
@@ -82,28 +75,35 @@
         
         NSString *brand_slug = [FTVImageProcEngine executeApi:pickedImage];
         
-        [FTVImageProcEngine postData:imageData
-                           withBrand:brand_slug
-                      withStartBlock:^{
-                          // TODO: write custom logic here
-                          // show HUD or something
-//                          [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_loading", @"Loading")];
-                          [SVProgressHUD show];
-                      } withFinishBlock:^(BOOL success, NSString *resp) {
-                          if (success) {
-                              redirectUrl = [FTVImageProcEngine encapsulateById:resp];
-                              if (![redirectUrl isMalform]) {
-                                  [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
+        if (IsEmpty(brand_slug) || [brand_slug isEqualToString:@"failure"]) {
+            [appDelegate showModalPopupWindow];
+        } else {
+            //FIXME: should we continue post data if BRAND was failure
+            [FTVImageProcEngine postData:imageData
+                               withBrand:brand_slug
+                          withStartBlock:^{
+                              // TODO: write custom logic here
+                              // show HUD or something
+                              [SVProgressHUD show];
+                          } withFinishBlock:^(BOOL success, NSString *resp) {
+                              if (success) {
                                   [SVProgressHUD dismiss];
+                                  
+                                  redirectUrl = [FTVImageProcEngine encapsulateById:resp];
+                                  if (![redirectUrl isMalform]) {
+                                      [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
+                                  }
+                              } else {
+                                  [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_malform", @"Malform")];
                               }
-                          } else {
-                              [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_malform", @"Malform")];
-                          }
-                      } withFailedBlock:^(BOOL success, NSString *resp) {
-                          [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_error", @"Error")];
-                      }];
+                          } withFailedBlock:^(BOOL success, NSString *resp) {
+                              [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_error", @"Error")];
+                          }];
+        }
     }];
 }
+
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

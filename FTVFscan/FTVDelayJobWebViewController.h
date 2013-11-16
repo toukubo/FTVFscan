@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FTVDelayJobWebViewController : UIViewController
+@interface FTVDelayJobWebViewController : UIViewController<UIWebViewDelegate>
 
 @property (nonatomic, retain) NSString *redirectUrl;
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (nonatomic, retain) IBOutlet UIWebView *webView;
+
 - (IBAction)dismissModalView:(id)sender;
 
-
+- (id)initWithFrame:(CGRect)frame;
+- (void)loadUrl:(NSString*)url;
 @end
