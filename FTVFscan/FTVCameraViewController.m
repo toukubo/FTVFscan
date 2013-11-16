@@ -118,6 +118,7 @@
             if (IsEmpty(brand_slug) || [brand_slug isEqualToString:@"failure"]) {
                 [appDelegate showModalPopupWindow];
             } else {
+                NSDate *start = [NSDate date];
                 //FIXME: should we continue post data if BRAND was failure
                 [FTVImageProcEngine postData:imageData
                                    withBrand:brand_slug
@@ -129,6 +130,8 @@
                                   if (success) {
                                       [SVProgressHUD dismiss];
                                       
+                                      NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
+                                      NSLog(@"postData Execution Time: %f", executionTime);
                                       redirectUrl = [FTVImageProcEngine encapsulateById:resp];
                                       if (![redirectUrl isMalform]) {
                                           [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
