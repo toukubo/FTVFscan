@@ -30,6 +30,7 @@
 
 #import "FTVUser.h"
 
+#import "KGModal.h"
 
 // ----------------- 3rd party -----------------
 #import "ASIHTTPRequest.h"

@@ -12,9 +12,5 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-// Making pickers there cos is damn init
-@property (strong, nonatomic) UIImagePickerController *photoPicker;
-@property (strong, nonatomic) UIImagePickerController *galleryPicker;
-
-
+- (void)showModalPopupWindow;
 @end

@@ -11,6 +11,8 @@
 
 #import "FTVUser.h"
 
+#import "FTVDelayJobWebViewController.h"
+
 @implementation FTVAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -134,12 +136,9 @@
 #pragma mark - Helper
 - (BOOL)checkLoginCredential {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@%@", BASEURL, @"registration/isRegistered.php?deviceid=", [FTVUser getId]];
-    DLog(urlStr);
+    DLog(@"%@", urlStr);
     __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
     __block BOOL retval = NO;
-    
-    
-
     
     NSMutableURLRequest* request2 = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
 	[request2 setHTTPMethod:@"GET"];
@@ -150,7 +149,7 @@
 	NSData *dataReplay = [NSURLConnection sendSynchronousRequest:request2
 									   returningResponse:&response error:&error];
 	NSString *receivedString = [[NSString alloc] initWithData:dataReplay encoding:NSUTF8StringEncoding];
-	NSLog(receivedString);
+	DLog(@"%@", receivedString);
     if ([receivedString isEqualToString:@"true"]) {
         retval = YES;
     } else {
@@ -206,6 +205,19 @@
     return retval;
 }
 
+/**
+ * Utility Function, invoked by Camera/Gallery controller
+ */
+- (void)showModalPopupWindow
+{
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 310)];
+    FTVDelayJobWebViewController *vc = [[FTVDelayJobWebViewController alloc] initWithFrame:contentView.frame];
+    vc.redirectUrl = [NSString stringWithFormat:@"%@%@", BASEURL, @"/search"];
+    DLog(@"showModalPopupWindow, redirect url to %@", vc.redirectUrl);
+    [contentView addSubview:vc.view];
+    
+    [[KGModal sharedInstance] showWithContentView:contentView andAnimated:YES];
+}
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
