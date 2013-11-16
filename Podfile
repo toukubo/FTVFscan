@@ -34,3 +34,6 @@ pod 'UIImage-Resize'
 
 # Lightweight Objective-C Regular Expressions using the ICU Library.
 pod 'RegexKitLite'
+
+# KGModal is an easy drop in control that allows you to display any view in a modal popup.
+pod 'KGModal'

@@ -11,6 +11,7 @@ PODS:
   - ASIHTTPRequest/S3 (1.8.1):
     - Reachability
   - Harpy (2.3.9)
+  - KGModal (0.0.1)
   - NSTimer-Blocks (0.0.1)
   - Reachability (3.1.1)
   - RegexKitLite (4.0)
@@ -26,6 +27,7 @@ PODS:
 DEPENDENCIES:
   - ASIHTTPRequest
   - Harpy
+  - KGModal
   - NSTimer-Blocks
   - RegexKitLite
   - SFHFKeychainUtils
@@ -40,8 +42,9 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ASIHTTPRequest: 162783e0cd71bdd3ff1ceed0cd5fa9505e0116a8
   Harpy: 7bc05e9a13bf1e930ede68075f9e224a46bc3727
+  KGModal: d52efa48b6bb232ea5ed002b511cef115c81e4a0
   NSTimer-Blocks: 99f52d61c29429d7e8ef0c82e596f317addb9421
-  Reachability: 2be6bc2fd2bd31d97f5db33e75e4b29c79e95883
+  Reachability: be4883bb93f31e38266ae3365e5600a317aae735
   RegexKitLite: f7af7b4d2b675cd2ec9a4abab6aad6ae1f6499c0
   SFHFKeychainUtils: e828dbd9eaa509486acf95d8de2ebd414c4b7451
   SVProgressHUD: 592da548680cd3613923b5f98113add52ad30cc2
