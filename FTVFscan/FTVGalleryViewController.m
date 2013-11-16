@@ -70,7 +70,6 @@
         // Should do something with it )))
         UIImage *pickedImage = (UIImage *)info[@"UIImagePickerControllerOriginalImage"];
         
-        //TODO: we can resize the image later, before post to the remote, so it will not harless the user experience.
         NSDate *start = [NSDate date];
         pickedImage = [FTVImageProcEngine imageResize:pickedImage saveWithName:[NSString genRandStringLength:10] usingJPEG:YES];
         NSData *imageData = UIImagePNGRepresentation(pickedImage);
@@ -82,12 +81,10 @@
         if (IsEmpty(brand_slug) || [brand_slug isEqualToString:@"failure"]) {
             [appDelegate showModalPopupWindow];
         } else {
-            //FIXME: should we continue post data if BRAND was failure
+            // no need to post data if BRAND was failure
             [FTVImageProcEngine postData:imageData
                                withBrand:brand_slug
                           withStartBlock:^{
-                              // TODO: write custom logic here
-                              // show HUD or something
                               [SVProgressHUD show];
                           } withFinishBlock:^(BOOL success, NSString *resp) {
                               if (success) {
