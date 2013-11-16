@@ -109,3 +109,5 @@ CGRect RectInset(CGRect rect, UIEdgeInsets insets);
 
 
 NSString *MD5HexDigest(NSString *input);
+
+BOOL IsEmpty(NSObject *obj);

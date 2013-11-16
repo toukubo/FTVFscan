@@ -26,15 +26,6 @@ static NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
     return randomString;
 }
 
-- (BOOL)isEmpty
-{
-    return self == nil
-    || ([self respondsToSelector:@selector(length)]
-        && [(NSData *)self length] == 0)
-    || ([self respondsToSelector:@selector(count)]
-        && [(NSArray *)self count] == 0);
-}
-
 - (NSString*)encodeAsURIComponent
 {
 	const char* p = [self UTF8String];

@@ -143,3 +143,12 @@ NSString *MD5HexDigest(NSString *input) {
     }
     return ret;
 }
+
+BOOL IsEmpty(NSObject *obj)
+{
+    return obj == nil
+    || ([obj respondsToSelector:@selector(length)]
+        && [(NSData *)obj length] == 0)
+    || ([obj respondsToSelector:@selector(count)]
+        && [(NSArray *)obj count] == 0);
+}
