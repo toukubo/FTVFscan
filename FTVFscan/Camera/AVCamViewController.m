@@ -1,21 +1,5 @@
 #import "AVCamViewController.h"
 #import "AVCamCaptureManager.h"
-#import "UIImage+Resize.h"
-
-static const CGFloat indicatorNormalAppearTI        = 0.2;
-static const CGFloat indicatorNormalDisappearTI     = 0.2;
-static const CGFloat indicatorCompleteDisappearTI   = 0.2;
-static const CGFloat maskAreaBottomOrignY           = 343;
-static const CGFloat maskAreaTopOrignY              = 77;
-static const NSUInteger commentsViewTag             = 10001;
-static const CGFloat overlayMarginHorizontal        = 5;
-static const CGFloat overlayMarginVertical          = 5;
-static const NSUInteger videoBgViewTag              = 20002;
-
-// camera visiable overlay
-static const CGFloat kCameraOverlayVisiableWidth    =   280;
-static const CGFloat kCameraOverlayVisiableHeight   =   210;
-static const CGFloat kCameraOverlayVisibleOrignY    =   100;
 
 static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 
@@ -33,7 +17,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 
 
 @implementation AVCamViewController
-@synthesize captureManager, videoPreviewView, captureVideoPreviewLayer, delegate, imagePath;
+@synthesize captureManager, videoPreviewView, captureVideoPreviewLayer, delegate;
 
 #pragma mark -
 #pragma mark Initialization
@@ -46,12 +30,10 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    //    [imagePath release];
     [captureManager release];
     [videoPreviewView release];
     [captureVideoPreviewLayer release];
     [indicator release];
-    [toolBar release];
     
     [super dealloc];
 }
@@ -60,40 +42,35 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
-        // TODO: add the still button and home button to self.view
-        toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, 480 - 52.0, 320.0, 52.0)];
-        toolBar.userInteractionEnabled = YES;
-        toolBar.backgroundColor = [UIColor clearColor];
-        UIImageView *bg = [[UIImageView alloc] initWithFrame:toolBar.bounds];
-        bg.image = [[UIImage imageNamed:@"toolbar.png"] stretchableImageWithLeftCapWidth:1.0 topCapHeight:52.0];
-        [toolBar addSubview:bg];
-        [bg release];
-        
         // take photo button
         stillButton = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        [stillButton setFrame:CGRectMake(113.0, 8.0, 95.0, 36.0)];
-        [stillButton setImage:[UIImage imageNamed:@"shutter_btn_1.png"] forState:UIControlStateNormal];
-        [stillButton setImage:[UIImage imageNamed:@"shutter_btn_2.png"] forState:UIControlStateHighlighted];
+        UIImage *shutterImageNormal = [UIImage imageNamed:@"shutter_btn_1.png"];
+        UIImage *shutterImagePressed = [UIImage imageNamed:@"shutter_btn_2.png"];
+        [stillButton setFrame:CGRectMake((self.view.frameSizeWidth - shutterImageNormal.size.width) / 2,
+                                         self.view.frameSizeHeight - shutterImageNormal.size.height - 60,
+                                         shutterImageNormal.size.width,
+                                         shutterImageNormal.size.height)];
+        [stillButton setImage:shutterImageNormal forState:UIControlStateNormal];
+        [stillButton setImage:shutterImagePressed forState:UIControlStateHighlighted];
         [stillButton setBackgroundColor:[UIColor clearColor]];
         [stillButton addTarget:self action:@selector(captureStillImage:) forControlEvents:UIControlEventTouchUpInside];
-        [toolBar addSubview:stillButton];
+        [self.view addSubview:stillButton];
         
-        // cancel button
-        UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [closeButton setFrame:CGRectMake(5.0, 6.0, 42.0, 42.0)];
-        [closeButton setImage:[UIImage imageNamed:@"delete_btn_1.png"] forState:UIControlStateNormal];
-        [closeButton setImage:[UIImage imageNamed:@"delete_btn_2.png"] forState:UIControlStateHighlighted];
-        
-        [closeButton setBackgroundColor:[UIColor clearColor]];
-        [closeButton addTarget:self action:@selector(cancelShooting) forControlEvents:UIControlEventTouchUpInside];
-        [toolBar addSubview:closeButton];
-        
-        [self.view addSubview:toolBar];
-        
-        step = 0;       // initially, show the price
+        homeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *homeImageNormal = [UIImage imageNamed:@"shutter_btn_1.png"];
+        UIImage *homeImagePressed = [UIImage imageNamed:@"shutter_btn_2.png"];
+        [homeButton setFrame:CGRectMake(30,
+                                        self.view.frameSizeHeight - homeImageNormal.size.height - 20,
+                                        homeImageNormal.size.width,
+                                        homeImageNormal.size.height)];
+        [homeButton setImage:homeImageNormal forState:UIControlStateNormal];
+        [homeButton setImage:homeImagePressed forState:UIControlStateHighlighted];
+        [homeButton setBackgroundColor:[UIColor clearColor]];
+        [homeButton addTarget:self action:@selector(homeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:homeButton];
     }
+    
     return self;
 }
 
@@ -101,15 +78,19 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 #pragma mark View
 - (void)viewDidLoad
 {
-    indicator = [[UIImageView alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:indicator];
-    
     [super viewDidLoad];
 }
 
 - (void)viewDidUnload {
     
     [super viewDidUnload];
+}
+
+#pragma mark - Helper
+- (void)homeButtonPressed:(id)sender
+{
+    // TODO:
+    DLine;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -149,7 +130,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
             bounds = CGRectMake(bounds.origin.x,
                                 bounds.origin.y,
                                 bounds.size.width,
-                                bounds.size.height - toolBar.frame.size.height + 2);
+                                bounds.size.height);
             [newCaptureVideoPreviewLayer setFrame:bounds];
             
             if ([newCaptureVideoPreviewLayer isOrientationSupported]) {
@@ -302,7 +283,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     }
     
     [self dismissViewControllerAnimated:YES completion:^{
-
+        
     }];
 }
 
@@ -315,7 +296,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     }
     
     [self dismissViewControllerAnimated:YES completion:^{
-
+        
     }];
 }
 

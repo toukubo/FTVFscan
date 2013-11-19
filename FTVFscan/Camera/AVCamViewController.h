@@ -22,15 +22,12 @@
     UIImageView             *indicator;
     
     UIButton                *stillButton;
-    UIView                  *toolBar;
-    
-    NSUInteger              step;
+    UIButton                *homeButton;
 }
 
 @property (nonatomic, retain) AVCamCaptureManager           *captureManager;
 @property (nonatomic, retain) UIView                        *videoPreviewView;
 @property (nonatomic, retain) AVCaptureVideoPreviewLayer    *captureVideoPreviewLayer;
 @property (nonatomic, assign) id                            delegate;
-@property (nonatomic, retain) NSString                      *imagePath;
 @end
 
