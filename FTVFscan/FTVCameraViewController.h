@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FTVCameraViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface FTVCameraViewController : UIViewController <UINavigationControllerDelegate>
 
 @property (strong) UIPopoverController *popoverHolder;
 

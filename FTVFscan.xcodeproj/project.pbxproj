@@ -18,6 +18,18 @@
 		39B30007182A927800CB13EE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B30006182A927800CB13EE /* libicucore.dylib */; };
 		39B391AB182782A300BD2D3B /* NEC_new.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 39B391A9182782A300BD2D3B /* NEC_new.jpg */; };
 		39B391AC182782A300BD2D3B /* NEC_old.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 39B391AA182782A300BD2D3B /* NEC_old.jpg */; };
+		39E256B6183BA9A0001AD412 /* AVCamCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E256AC183BA9A0001AD412 /* AVCamCaptureManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		39E256B7183BA9A0001AD412 /* AVCamUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E256AE183BA9A0001AD412 /* AVCamUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		39E256B8183BA9A0001AD412 /* AVCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E256B0183BA9A0001AD412 /* AVCamViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		39E256BA183BA9A0001AD412 /* FTVCamOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E256B3183BA9A0001AD412 /* FTVCamOverlayView.m */; };
+		39E256DB183BAD0A001AD412 /* Debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 39E256D3183BAD0A001AD412 /* Debug.c */; };
+		39E256DC183BAD0A001AD412 /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E256D6183BAD0A001AD412 /* EAGLView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		39E256DD183BAD0A001AD412 /* Imaging.c in Sources */ = {isa = PBXBuildFile; fileRef = 39E256D7183BAD0A001AD412 /* Imaging.c */; };
+		39E256DE183BAD0A001AD412 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E256DA183BAD0A001AD412 /* Texture.m */; };
+		39E256F0183BB9DF001AD412 /* shutter_btn_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E256EE183BB9DF001AD412 /* shutter_btn_1@2x.png */; };
+		39E256F1183BB9DF001AD412 /* shutter_btn_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E256EF183BB9DF001AD412 /* shutter_btn_2@2x.png */; };
+		39E256F4183BBA21001AD412 /* delete_btn_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E256F2183BBA21001AD412 /* delete_btn_1@2x.png */; };
+		39E256F5183BBA21001AD412 /* delete_btn_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E256F3183BBA21001AD412 /* delete_btn_2@2x.png */; };
 		39E32CB5181FA6D2009C911F /* FTVRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */; };
 		39E32CBA181FB77D009C911F /* FTVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E32CB9181FB77D009C911F /* FTVUser.m */; };
 		39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E39D211820F4BB003D023E /* FTVImageProcEngine.m */; };
@@ -87,6 +99,26 @@
 		39B30006182A927800CB13EE /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		39B391A9182782A300BD2D3B /* NEC_new.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NEC_new.jpg; sourceTree = "<group>"; };
 		39B391AA182782A300BD2D3B /* NEC_old.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NEC_old.jpg; sourceTree = "<group>"; };
+		39E256AB183BA9A0001AD412 /* AVCamCaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamCaptureManager.h; sourceTree = "<group>"; };
+		39E256AC183BA9A0001AD412 /* AVCamCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamCaptureManager.m; sourceTree = "<group>"; };
+		39E256AD183BA9A0001AD412 /* AVCamUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamUtilities.h; sourceTree = "<group>"; };
+		39E256AE183BA9A0001AD412 /* AVCamUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamUtilities.m; sourceTree = "<group>"; };
+		39E256AF183BA9A0001AD412 /* AVCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamViewController.h; sourceTree = "<group>"; };
+		39E256B0183BA9A0001AD412 /* AVCamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamViewController.m; sourceTree = "<group>"; };
+		39E256B2183BA9A0001AD412 /* FTVCamOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVCamOverlayView.h; sourceTree = "<group>"; };
+		39E256B3183BA9A0001AD412 /* FTVCamOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVCamOverlayView.m; sourceTree = "<group>"; };
+		39E256D3183BAD0A001AD412 /* Debug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Debug.c; sourceTree = "<group>"; };
+		39E256D4183BAD0A001AD412 /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
+		39E256D5183BAD0A001AD412 /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
+		39E256D6183BAD0A001AD412 /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLView.m; sourceTree = "<group>"; };
+		39E256D7183BAD0A001AD412 /* Imaging.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Imaging.c; sourceTree = "<group>"; };
+		39E256D8183BAD0A001AD412 /* Imaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Imaging.h; sourceTree = "<group>"; };
+		39E256D9183BAD0A001AD412 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		39E256DA183BAD0A001AD412 /* Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture.m; sourceTree = "<group>"; };
+		39E256EE183BB9DF001AD412 /* shutter_btn_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shutter_btn_1@2x.png"; sourceTree = "<group>"; };
+		39E256EF183BB9DF001AD412 /* shutter_btn_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shutter_btn_2@2x.png"; sourceTree = "<group>"; };
+		39E256F2183BBA21001AD412 /* delete_btn_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete_btn_1@2x.png"; sourceTree = "<group>"; };
+		39E256F3183BBA21001AD412 /* delete_btn_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete_btn_2@2x.png"; sourceTree = "<group>"; };
 		39E32CAE181F990B009C911F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		39E32CB3181FA6D2009C911F /* FTVRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVRegisterViewController.h; sourceTree = "<group>"; };
 		39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVRegisterViewController.m; sourceTree = "<group>"; };
@@ -199,6 +231,37 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		39E256AA183BA9A0001AD412 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				39E256D2183BAD0A001AD412 /* ImageProcessing */,
+				39E256AB183BA9A0001AD412 /* AVCamCaptureManager.h */,
+				39E256AC183BA9A0001AD412 /* AVCamCaptureManager.m */,
+				39E256AD183BA9A0001AD412 /* AVCamUtilities.h */,
+				39E256AE183BA9A0001AD412 /* AVCamUtilities.m */,
+				39E256AF183BA9A0001AD412 /* AVCamViewController.h */,
+				39E256B0183BA9A0001AD412 /* AVCamViewController.m */,
+				39E256B2183BA9A0001AD412 /* FTVCamOverlayView.h */,
+				39E256B3183BA9A0001AD412 /* FTVCamOverlayView.m */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		39E256D2183BAD0A001AD412 /* ImageProcessing */ = {
+			isa = PBXGroup;
+			children = (
+				39E256D3183BAD0A001AD412 /* Debug.c */,
+				39E256D4183BAD0A001AD412 /* Debug.h */,
+				39E256D5183BAD0A001AD412 /* EAGLView.h */,
+				39E256D6183BAD0A001AD412 /* EAGLView.m */,
+				39E256D7183BAD0A001AD412 /* Imaging.c */,
+				39E256D8183BAD0A001AD412 /* Imaging.h */,
+				39E256D9183BAD0A001AD412 /* Texture.h */,
+				39E256DA183BAD0A001AD412 /* Texture.m */,
+			);
+			path = ImageProcessing;
+			sourceTree = "<group>";
+		};
 		39E32CAF181F9BAE009C911F /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +343,7 @@
 		8465C64017F5D1B500A00460 /* FTVFscan */ = {
 			isa = PBXGroup;
 			children = (
+				39E256AA183BA9A0001AD412 /* Camera */,
 				DEB4B8441821A0AB0050FA49 /* Images */,
 				39E32CB7181FB33D009C911F /* Util */,
 				39E32CAF181F9BAE009C911F /* Library */,
@@ -342,6 +406,8 @@
 		DEB4B8441821A0AB0050FA49 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				39E256F2183BBA21001AD412 /* delete_btn_1@2x.png */,
+				39E256F3183BBA21001AD412 /* delete_btn_2@2x.png */,
 				DEB4B8451821A0D70050FA49 /* bookmark-icon.png */,
 				DEB4B8461821A0D70050FA49 /* bookmark-icon@2x.png */,
 				DEB4B8471821A0D70050FA49 /* camera-icon.png */,
@@ -352,6 +418,8 @@
 				DEB4B84C1821A0D70050FA49 /* list-icon@2x.png */,
 				DEB4B84D1821A0D70050FA49 /* tour-icon.png */,
 				DEB4B84E1821A0D70050FA49 /* tour-icon@2x.png */,
+				39E256EE183BB9DF001AD412 /* shutter_btn_1@2x.png */,
+				39E256EF183BB9DF001AD412 /* shutter_btn_2@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -436,13 +504,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39E256F5183BBA21001AD412 /* delete_btn_2@2x.png in Resources */,
 				3964FC59182A6ECE0035B187 /* Localizable.strings in Resources */,
 				DEB4B84F1821A0D70050FA49 /* bookmark-icon.png in Resources */,
 				DEB4B8531821A0D70050FA49 /* gallery-icon.png in Resources */,
 				8465C65617F5D1B500A00460 /* Images.xcassets in Resources */,
+				39E256F4183BBA21001AD412 /* delete_btn_1@2x.png in Resources */,
 				DEB4B8521821A0D70050FA49 /* camera-icon@2x.png in Resources */,
 				39B391AB182782A300BD2D3B /* NEC_new.jpg in Resources */,
 				DEB4B8561821A0D70050FA49 /* list-icon@2x.png in Resources */,
+				39E256F1183BB9DF001AD412 /* shutter_btn_2@2x.png in Resources */,
 				DEB4B8551821A0D70050FA49 /* list-icon.png in Resources */,
 				DEB4B8501821A0D70050FA49 /* bookmark-icon@2x.png in Resources */,
 				DEB4B8511821A0D70050FA49 /* camera-icon.png in Resources */,
@@ -453,6 +524,7 @@
 				3964FC56182A6D590035B187 /* MainStoryboard.storyboard in Resources */,
 				DEB4B8541821A0D70050FA49 /* gallery-icon@2x.png in Resources */,
 				39B391AC182782A300BD2D3B /* NEC_old.jpg in Resources */,
+				39E256F0183BB9DF001AD412 /* shutter_btn_1@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,10 +577,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				39F4936D1821427E00093167 /* REString.m in Sources */,
+				39E256B6183BA9A0001AD412 /* AVCamCaptureManager.m in Sources */,
 				39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */,
 				39F4936018213B3000093167 /* DeviceUtil.m in Sources */,
 				39F4936E1821427E00093167 /* StringUtil.m in Sources */,
 				3964FC60182A8AEF0035B187 /* FTVDelayJobWebViewController.m in Sources */,
+				39E256DC183BAD0A001AD412 /* EAGLView.m in Sources */,
+				39E256B8183BA9A0001AD412 /* AVCamViewController.m in Sources */,
+				39E256DB183BAD0A001AD412 /* Debug.c in Sources */,
 				39E32CB5181FA6D2009C911F /* FTVRegisterViewController.m in Sources */,
 				39F4936118213B3000093167 /* GlobalCore.m in Sources */,
 				39E32CBA181FB77D009C911F /* FTVUser.m in Sources */,
@@ -519,10 +595,14 @@
 				39F4936C1821427E00093167 /* QuartzUtils.c in Sources */,
 				8465C67717F5D73B00A00460 /* FTVGalleryViewController.m in Sources */,
 				39F4936218213B3000093167 /* ImageUtils.m in Sources */,
+				39E256DE183BAD0A001AD412 /* Texture.m in Sources */,
 				8465C67A17F5D74C00A00460 /* FTVBrandsViewController.m in Sources */,
+				39E256B7183BA9A0001AD412 /* AVCamUtilities.m in Sources */,
+				39E256DD183BAD0A001AD412 /* Imaging.c in Sources */,
 				8465C67417F5D69300A00460 /* FTVCameraViewController.m in Sources */,
 				8465C64B17F5D1B500A00460 /* FTVAppDelegate.m in Sources */,
 				39F4936418213B3000093167 /* UIDevice+Identifier.m in Sources */,
+				39E256BA183BA9A0001AD412 /* FTVCamOverlayView.m in Sources */,
 				8465C65417F5D1B500A00460 /* FTVScansViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
