@@ -114,6 +114,8 @@
             
             NSData *imageData = UIImagePNGRepresentation(pickedImage);
             
+            DLog(@"image data size - %d KB", imageData.length / 1024);
+            
             if (IsEmpty(brand_slug) || [brand_slug isEqualToString:@"failure"]) {
                 [appDelegate showModalPopupWindow];
             } else {
