@@ -128,6 +128,10 @@
     return nil;
 }
 
+/**
+ * Post brand or photo data to our server
+ * either photo or band can be nil, but not both. (IMPORTANT!!!)
+ */
 + (void)postData:(NSData *)photoData
        withBrand:(NSString *)brandSlug
   withStartBlock:(void (^)(void))startBlock
@@ -135,14 +139,26 @@
  withFailedBlock:(void (^)(BOOL success, NSString *resp))failedBlock
 
 {
-    __weak NSString *urlStr = [NSString stringWithFormat:@"%@%@", BASEURL, @"scan/post.php"];
-    __weak ASIFormDataRequest* req = [ASIFormDataRequest
-                                      requestWithURL:[NSURL URLWithString:urlStr]];
+    NSString *url = @"scan/post.php";
+    
+    if (!IsEmpty(photoData)) {
+        url = @"scan/postPhoto.php";
+    }
+    
+    __weak NSString *urlStr = [NSString stringWithFormat:@"%@%@", BASEURL, url];
+    
+    __weak ASIFormDataRequest* req = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    
     [req setTimeOutSeconds:120];
     [req addPostValue:[FTVUser getId] forKey:@"user_id"];
-    [req addPostValue:brandSlug forKey:@"brand_slug"];
     
-//    [req setData:photoData withFileName:@"image.png" andContentType:@"image/png" forKey:@"image"];
+    if (!IsEmpty(brandSlug)) {
+        [req addPostValue:brandSlug forKey:@"brand_slug"];
+    }
+    
+    if (!IsEmpty(photoData)) {
+        [req setData:photoData withFileName:@"image.png" andContentType:@"image/png" forKey:@"image"];
+    }
     
     req.defaultResponseEncoding = NSUTF8StringEncoding;
     
