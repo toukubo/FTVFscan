@@ -142,7 +142,7 @@
     [req addPostValue:[FTVUser getId] forKey:@"user_id"];
     [req addPostValue:brandSlug forKey:@"brand_slug"];
     
-    [req setData:photoData withFileName:@"image.png" andContentType:@"image/png" forKey:@"image"];
+//    [req setData:photoData withFileName:@"image.png" andContentType:@"image/png" forKey:@"image"];
     
     req.defaultResponseEncoding = NSUTF8StringEncoding;
     

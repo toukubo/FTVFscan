@@ -162,16 +162,16 @@
 - (BOOL)checkLoginCredential {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@%@", BASEURL, @"registration/isRegistered.php?deviceid=", [FTVUser getId]];
     DLog(@"%@", urlStr);
-//    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    
     __block BOOL retval = NO;
     
-    NSMutableURLRequest* request2 = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-	[request2 setHTTPMethod:@"GET"];
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+	[request setHTTPMethod:@"GET"];
 	//リクエストしてデータを取得
 	
 	NSURLResponse *response;
 	NSError *error;
-	NSData *dataReplay = [NSURLConnection sendSynchronousRequest:request2
+	NSData *dataReplay = [NSURLConnection sendSynchronousRequest:request
 									   returningResponse:&response error:&error];
 	NSString *receivedString = [[NSString alloc] initWithData:dataReplay encoding:NSUTF8StringEncoding];
 	DLog(@"%@", receivedString);
@@ -180,53 +180,8 @@
     } else {
         retval = NO;
     }
-
-    
-    
-    
-    /**
-    
-    
-    
-    
-    [request setStartedBlock:^{
-        [SVProgressHUD show];
-    }];
-    [request setCompletionBlock:^{
-        [SVProgressHUD dismiss];
-        
-        NSString *resp = [request responseString];
-        DLog(resp);
-        UIAlertView *alert2 =
-        [[UIAlertView alloc] initWithTitle:@"debug" message:resp
-                                  delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
-        [alert2 show];
-        if ([resp isEqualToString:@"true"]) {
-            retval = YES;
-        } else {
-            retval = NO;
-        }
-    }];
-    [request setFailedBlock:^{
-        [SVProgressHUD dismiss];
-        retval = NO;
-        UIAlertView *alert4 =
-        [[UIAlertView alloc] initWithTitle:@"netowork fail" message:@"network接続に失敗しました。"
-                                  delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
-        [alert4 show];
-
-    }];
-    
-    // wait on registraton validation
-    [request startSynchronous];
-    UIAlertView *alert3 =
-    [[UIAlertView alloc] initWithTitle:@"debug" message:@"check ending"
-                              delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
-    [alert3 show];
-*/
     
     //TODO: simple change retval to NO to quick test register process
-//    return YES;
     return retval;
 }
 

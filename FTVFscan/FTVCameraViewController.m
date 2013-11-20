@@ -12,11 +12,13 @@
 #import "MSNavigationPaneViewController.h"
 #import "DDMenuController.h"
 
-@interface FTVCameraViewController ()
+#import "AVCamViewController.h"
+
+@interface FTVCameraViewController () <AVCamViewControllerDelegate>
 {
     FTVAppDelegate              *appDelegate;
+    
     BOOL                        returnFromPicker;      // Workaround while this workflow is not completed
-    UIImagePickerController     *photoPicker;
     NSString                    *redirectUrl;
 }
 
@@ -29,6 +31,8 @@
 {
     [super viewDidLoad];
     
+    [self.view setBackgroundColor:[UIColor blackColor]];
+    
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])
     {
         [self prefersStatusBarHidden];
@@ -38,116 +42,93 @@
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
     
-    if (!photoPicker) {
-        photoPicker = [[UIImagePickerController alloc] init];
-        
-        UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        
-        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
-            sourceType = UIImagePickerControllerSourceTypeCamera;
-        }
-        
-        [photoPicker setSourceType: sourceType];
-        
-        [photoPicker setMediaTypes: @[(NSString *)kUTTypeImage]];
-    }
-    
     appDelegate = (FTVAppDelegate *)[UIApplication sharedApplication].delegate;
     returnFromPicker = NO;
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if(photoPicker && !returnFromPicker){
-        photoPicker.delegate = self;
+    if(!returnFromPicker){
+        AVCamViewController *avCamera = [[AVCamViewController alloc] init];
+        [avCamera setDelegate:self];
         
-        if (IS_IPAD) {
-            // http://stackoverflow.com/a/5546679
-            UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:photoPicker];
-            self.popoverHolder = popover;
-            
-            popover.popoverContentSize = self.view.frame.size;
-            int tabBarItemWidth = self.tabBarController.tabBar.frame.size.width / [self.tabBarController.tabBar.items count];
-            int x = tabBarItemWidth * 2;
-            
-            CGRect rect = CGRectMake(x, 0, tabBarItemWidth, self.view.frameSizeHeight - self.tabBarController.tabBar.frame.size.height);
-            
-            [self.popoverHolder presentPopoverFromRect:rect
-                                                inView:self.tabBarController.tabBar
-                              permittedArrowDirections:UIPopoverArrowDirectionAny
-                                              animated:NO];
-        } else {
-            [self presentViewController:photoPicker
-                               animated:NO
-                             completion:nil];
-        }
+        [self presentViewController:avCamera animated:YES completion:nil];
     }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    if (returnFromPicker) returnFromPicker = NO;
+    if (returnFromPicker) {
+        returnFromPicker = NO;
+    }
     
     [SVProgressHUD dismiss];
 }
 
-#pragma mark -
-#pragma UIImagePickerController delegate methods
-// Here we have an image from camera for later use
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+- (void)doImageProcessInBackgroundWithPath:(NSString*)imagePath
+{
+    UIImage *pickedImage = [UIImage imageWithContentsOfFile:imagePath];
+    
+    DLog(@"IMG pre proessed: W - %0.f px, H - %0.f px", pickedImage.size.width, pickedImage.size.height);
+    
+    for (int i = 0; i < TEST_TIME; i++) {
+        NSDate *start = [NSDate date];
+        pickedImage = [FTVImageProcEngine imageResize:pickedImage saveWithName:[NSString genRandStringLength:10] usingJPEG:YES];
+        NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
+        NSLog(@"imageResize Execution Time: %f", executionTime);
+    }
+    
+    for (int i = 0; i < TEST_TIME; i++) {
+        NSString *brand_slug = [FTVImageProcEngine executeApi:pickedImage];
+        
+        NSData *imageData = UIImagePNGRepresentation(pickedImage);
+        
+        DLog(@"image data size - %d KB", imageData.length / 1024);
+        
+        if (IsEmpty(brand_slug) || [brand_slug isEqualToString:@"failure"]) {
+            [appDelegate performSelectorOnMainThread:@selector(showModalPopupWindow) withObject:nil waitUntilDone:NO];
+        } else {
+            NSDate *start = [NSDate date];
+            // no need to post data if BRAND was failure
+            [FTVImageProcEngine postData:imageData
+                               withBrand:brand_slug
+                          withStartBlock:^{
+                          } withFinishBlock:^(BOOL success, NSString *resp) {
+                              if (success) {
+                                  NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
+                                  NSLog(@"postData Execution Time: %f", executionTime);
+                                  redirectUrl = [FTVImageProcEngine encapsulateById:resp];
+                                  if (![redirectUrl isMalform]) {
+                                      [self performSelectorOnMainThread:@selector(switchSceneToResultController) withObject:nil waitUntilDone:NO];
+                                  }
+                              }
+                          } withFailedBlock:^(BOOL success, NSString *resp) {
+                          }];
+            
+            
+            DLog(@"IMG: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);
+        }
+    }
+}
+
+- (void)switchSceneToResultController
+{
+    [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
+}
+#pragma mark - AVCamViewControllerDelegate
+- (void)didFinishedTakenPictureWithPath:(NSString*)imagePath
 {
     returnFromPicker = YES;
     
-    [photoPicker dismissViewControllerAnimated:NO completion:^{
-        UIImage *pickedImage = (UIImage *)info[@"UIImagePickerControllerOriginalImage"];
-        DLog(@"IMG pre proessed: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);
-        
-        for (int i = 0; i < TEST_TIME; i++) {
-            NSDate *start = [NSDate date];
-            pickedImage = [FTVImageProcEngine imageResize:pickedImage saveWithName:[NSString genRandStringLength:10] usingJPEG:YES];
-            NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
-            NSLog(@"imageResize Execution Time: %f", executionTime);
-        }
-        
-        // TODO: should we use png or others?
-        for (int i = 0; i < TEST_TIME; i++) {
-            NSString *brand_slug = [FTVImageProcEngine executeApi:pickedImage];
-            
-            NSData *imageData = UIImagePNGRepresentation(pickedImage);
-            
-            if (IsEmpty(brand_slug) || [brand_slug isEqualToString:@"failure"]) {
-                [appDelegate showModalPopupWindow];
-            } else {
-                NSDate *start = [NSDate date];
-                // no need to post data if BRAND was failure
-                [FTVImageProcEngine postData:imageData
-                                   withBrand:brand_slug
-                              withStartBlock:^{
-                                  [SVProgressHUD show];
-                              } withFinishBlock:^(BOOL success, NSString *resp) {
-                                  if (success) {
-                                      [SVProgressHUD dismiss];
-                                      
-                                      NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
-                                      NSLog(@"postData Execution Time: %f", executionTime);
-                                      redirectUrl = [FTVImageProcEngine encapsulateById:resp];
-                                      if (![redirectUrl isMalform]) {
-                                          [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
-                                      }
-                                  } else {
-                                      [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_malform", @"Malform")];
-                                  }
-                              } withFailedBlock:^(BOOL success, NSString *resp) {
-                                  [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_error", @"Error")];
-                              }];
-                
-                
-                DLog(@"IMG: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);
-            }
-        }
-    }];
-    //    DLog(@"info: %@",info);
+    [SVProgressHUD show];
+    [self performSelectorInBackground:@selector(doImageProcessInBackgroundWithPath:) withObject:imagePath];
+}
+
+- (void)didCancelCamera
+{
+    // TODO: should we support cancel ?
+    returnFromPicker = YES;
+//    self.tabBarController.selectedIndex = 0;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
