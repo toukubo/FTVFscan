@@ -363,6 +363,10 @@
     <resources>
         <image name="camera-icon" width="30" height="30"/>
         <image name="menuIcon.png" width="35" height="30"/>
+        <image name="menuIcon.png" width="35" height="30"/>
+        <image name="menuIcon.png" width="35" height="30"/>
+        <image name="menuIcon.png" width="35" height="30"/>
+        <image name="menuIcon.png" width="35" height="30"/>
         <image name="scans-icon" width="18" height="16"/>
         <image name="tour-icon.png" width="30" height="30"/>
     </resources>
