@@ -45,8 +45,8 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
         // take photo button
         stillButton = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        UIImage *shutterImageNormal = [UIImage imageNamed:@"shutter_btn_1.png"];
-        UIImage *shutterImagePressed = [UIImage imageNamed:@"shutter_btn_2.png"];
+        UIImage *shutterImageNormal = [UIImage imageNamed:@"go-camera.png"];
+        UIImage *shutterImagePressed = [UIImage imageNamed:@"go-camera.png"];
         [stillButton setFrame:CGRectMake((self.view.frameSizeWidth - shutterImageNormal.size.width) / 2,
                                          self.view.frameSizeHeight - shutterImageNormal.size.height - 60,
                                          shutterImageNormal.size.width,
@@ -58,8 +58,8 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
         [self.view addSubview:stillButton];
         
         homeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *homeImageNormal = [UIImage imageNamed:@"shutter_btn_1.png"];
-        UIImage *homeImagePressed = [UIImage imageNamed:@"shutter_btn_2.png"];
+        UIImage *homeImageNormal = [UIImage imageNamed:@"home.png"];
+        UIImage *homeImagePressed = [UIImage imageNamed:@"home.png"];
         [homeButton setFrame:CGRectMake(30,
                                         self.view.frameSizeHeight - homeImageNormal.size.height - 20,
                                         homeImageNormal.size.width,

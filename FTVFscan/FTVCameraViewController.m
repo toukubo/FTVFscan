@@ -142,16 +142,6 @@
         }
     }
 }
-// user pressed "Cancel" So returning to first tab of the app
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    returnFromPicker = YES;
-    [photoPicker dismissViewControllerAnimated:NO completion:^{
-    }];
-    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
-    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVTourViewController"];
-    [menuController setRootController:controller animated:YES];
-}
 
 - (void)didReceiveMemoryWarning
 {
