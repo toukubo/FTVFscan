@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
-@interface FTVGalleryViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+@interface FTVGalleryViewController : UIViewController <UICollectionViewDataSource, UIBarPositioningDelegate>
+
+@property (nonatomic, retain) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *assets;
+@property (nonatomic, strong) ALAssetsGroup *assetsGroup;
 
 -(IBAction)OpenMenu:(id)sender;
 @end
