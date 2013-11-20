@@ -1,23 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Z2P-zm-HSX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Z2P-zm-HSX">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
+        <!--Menu View Controller-->
+        <scene sceneID="C7t-HG-dei">
+            <objects>
+                <viewController storyboardIdentifier="FTVMenuViewController" id="KMq-77-5nP" customClass="FTVMenuViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Wt-YT-YKo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Q9w-Zs-lZd">
+                                <rect key="frame" x="50" y="45" width="270" height="317"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="KMq-77-5nP" id="fKe-xy-pWH"/>
+                                    <outlet property="delegate" destination="KMq-77-5nP" id="Ziw-JL-W2X"/>
+                                </connections>
+                            </tableView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Dyz-uk-2gQ">
+                                <rect key="frame" x="78" y="69" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tour:" destination="KMq-77-5nP" eventType="touchUpInside" id="qdo-ie-jry"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="menuTableView" destination="Q9w-Zs-lZd" id="NuC-5S-55y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VXM-CN-5K2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1255" y="164"/>
+        </scene>
         <!--Tour View Controller-->
         <scene sceneID="r45-7h-MFj">
             <objects>
-                <viewController title="Tour" id="oRQ-Rh-n7p" userLabel="Tour View Controller" customClass="FTVTourViewController" colorLabel="IBBuiltInLabel-Red" sceneMemberID="viewController">
-                    <webView key="view" contentMode="scaleToFill" id="9Lk-3x-nL6">
+                <viewController storyboardIdentifier="FTVTourViewController" title="Tour" id="oRQ-Rh-n7p" userLabel="Tour View Controller" customClass="FTVTourViewController" colorLabel="IBBuiltInLabel-Red" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UjY-Nf-u5e">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </webView>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="LkV-e4-KL5">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="oRQ-Rh-n7p" id="Sby-h0-aIe"/>
+                                </connections>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uQ7-9u-QK0">
+                                <rect key="frame" x="278" y="7" width="35" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="menuIcon.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="OpenMenu:" destination="oRQ-Rh-n7p" eventType="touchUpInside" id="XHl-TU-XkT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <tabBarItem key="tabBarItem" title="tour" image="tour-icon.png" id="Upv-6E-z2M"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="tourWebView" destination="9Lk-3x-nL6" id="P9w-16-yeT"/>
+                        <outlet property="tourWebView" destination="LkV-e4-KL5" id="cDj-13-tfA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ihC-Mt-IJz" sceneMemberID="firstResponder"/>
@@ -27,19 +87,43 @@
         <!--Camera View Controller-->
         <scene sceneID="tsT-3B-tG4">
             <objects>
-                <viewController title="Camera" id="N9c-jv-3Vk" userLabel="Camera View Controller" customClass="FTVCameraViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FTVCameraViewController" title="Camera" id="N9c-jv-3Vk" userLabel="Camera View Controller" customClass="FTVCameraViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t4B-4l-Abe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="aaQ-bu-HIt">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="45" width="320" height="523"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="h17-zo-0LC">
+                                <rect key="frame" x="278" y="7" width="35" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="menuIcon.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="OpenMenu:" destination="oRQ-Rh-n7p" eventType="touchUpInside" id="iG3-3f-RPl"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7PC-q3-PRG">
+                                <rect key="frame" x="129" y="11" width="80" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="21"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="O5r-jY-9Sf">
+                                <rect key="frame" x="15" y="7" width="34" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="camera-icon">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="FTVFscan" image="camera-icon.png" id="0MO-hz-DOj"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -54,13 +138,24 @@
         <!--Gallery View Controller-->
         <scene sceneID="Pjc-xg-WUr">
             <objects>
-                <viewController title="Gallery" id="Fex-8f-6uC" userLabel="Gallery View Controller" customClass="FTVGalleryViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FTVGalleryViewController" title="Gallery" id="Fex-8f-6uC" userLabel="Gallery View Controller" customClass="FTVGalleryViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rcx-fr-OgZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nm6-Ty-lme">
+                                <rect key="frame" x="278" y="7" width="35" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="menuIcon.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="OpenMenu:" destination="Fex-8f-6uC" eventType="touchUpInside" id="Njr-PO-GXu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="gallery" image="gallery-icon.png" id="l5C-6t-ysy"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -69,7 +164,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XWl-UR-4E8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="665" y="-573"/>
+            <point key="canvasLocation" x="675" y="-532"/>
         </scene>
         <!--Delay Job Web View Controller-->
         <scene sceneID="oYl-3E-Imx">
@@ -105,7 +200,7 @@
         <!--Bookmarks View Controller-->
         <scene sceneID="zVU-1a-4CF">
             <objects>
-                <viewController title="Scans" id="8PL-Ld-0Ay" userLabel="Bookmarks View Controller" customClass="FTVScansViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FTVScansViewController" title="Scans" id="8PL-Ld-0Ay" userLabel="Bookmarks View Controller" customClass="FTVScansViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zkz-nd-xDF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,13 +208,27 @@
                             <webView contentMode="scaleToFill" id="Tnl-30-tPb">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dgw-lm-rZY">
+                                <rect key="frame" x="278" y="13" width="35" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="menuIcon.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="OpenMenu:" destination="oRQ-Rh-n7p" eventType="touchUpInside" id="4Ip-5K-ZvR"/>
+                                    <action selector="OpenMenu:" destination="8PL-Ld-0Ay" eventType="touchUpInside" id="h6M-L1-fwe"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" title="history" image="scans-icon" id="s9c-9k-lkn"/>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="scansWebView" destination="Tnl-30-tPb" id="TjG-4B-dux"/>
                     </connections>
@@ -139,13 +248,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
-                    <connections>
-                        <segue destination="oRQ-Rh-n7p" kind="relationship" relationship="viewControllers" id="AMI-2T-6Uu"/>
-                        <segue destination="8PL-Ld-0Ay" kind="relationship" relationship="viewControllers" id="1LC-Cj-biz"/>
-                        <segue destination="N9c-jv-3Vk" kind="relationship" relationship="viewControllers" id="oaz-xD-6T7"/>
-                        <segue destination="Fex-8f-6uC" kind="relationship" relationship="viewControllers" id="elR-AP-nW4"/>
-                        <segue destination="T5l-9P-bwT" kind="relationship" relationship="viewControllers" id="qJ8-zp-t1l"/>
-                    </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iwV-Xn-P0S" sceneMemberID="firstResponder"/>
             </objects>
@@ -202,23 +304,33 @@
         <!--Brands View Controller-->
         <scene sceneID="e7w-tO-jhr">
             <objects>
-                <viewController title="Brands" id="T5l-9P-bwT" userLabel="Brands View Controller" customClass="FTVBrandsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FTVBrandsViewController" title="Brands" id="T5l-9P-bwT" userLabel="Brands View Controller" customClass="FTVBrandsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZA8-Vp-fT4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" id="Bl3-xI-RMC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="T5l-9P-bwT" id="Tee-3U-F5r"/>
                                 </connections>
                             </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZSj-HC-cHJ">
+                                <rect key="frame" x="278" y="11" width="35" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="menuIcon.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="OpenMenu:" destination="oRQ-Rh-n7p" eventType="touchUpInside" id="BXd-va-vOG"/>
+                                    <action selector="OpenMenu:" destination="T5l-9P-bwT" eventType="touchUpInside" id="mHa-WZ-5wb"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="brands" image="list-icon.png" id="wrW-gG-kZc"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -249,9 +361,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera-icon.png" width="30" height="30"/>
-        <image name="gallery-icon.png" width="30" height="30"/>
-        <image name="list-icon.png" width="30" height="30"/>
+        <image name="camera-icon" width="30" height="30"/>
+        <image name="menuIcon.png" width="35" height="30"/>
         <image name="scans-icon" width="18" height="16"/>
         <image name="tour-icon.png" width="30" height="30"/>
     </resources>
@@ -261,6 +372,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="imu-oV-QJI"/>
+        <segue reference="OU8-Ov-bC0"/>
     </inferredMetricsTieBreakers>
 </document>

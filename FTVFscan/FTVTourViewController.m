@@ -10,6 +10,8 @@
 #import "FTVAppDelegate.h"
 
 #import "RegexKitLite.h"
+#import "MSNavigationPaneViewController.h"
+#import "DDMenuController.h"
 
 
 @interface FTVTourViewController ()
@@ -80,4 +82,11 @@
     return NO;
 }
 
+
+-(IBAction)OpenMenu:(id)sender
+{
+    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    [menuController showRightController:YES];
+
+}
 @end

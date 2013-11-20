@@ -1,0 +1,20 @@
+//
+//  FTVMenuViewController.h
+//  FTVFscan
+//
+//  Created by Sarkar Raj on 11/19/13.
+//  Copyright (c) 2013 T2. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface FTVMenuViewController : UIViewController<UITableViewDelegate>
+{
+    IBOutlet UITableView *menuTableView;
+    NSMutableArray *menuItems;
+    NSMutableArray *menuItemsIcoons;
+    NSMutableArray *menuItemViewId;
+}
+
+-(IBAction)tour:(id)sender;
+@end

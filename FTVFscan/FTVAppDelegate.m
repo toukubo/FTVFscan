@@ -13,7 +13,16 @@
 
 #import "FTVDelayJobWebViewController.h"
 
+#import "MSNavigationPaneViewController.h"
+#import "SVLeftMenuViewController.h"
+#import "DDMenuController.h"
+
+
+
 @implementation FTVAppDelegate
+
+@synthesize menuController = _menuController;
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -33,28 +42,32 @@
         [self switchSceneToTabController];
         DLog(@"but true");
     } else {
-        [self switchSceneToRegisterController];
+        [self switchSceneToTabController];
+
+//        [self switchSceneToRegisterController];
         DLog(@"but false. going to regist ");
     }
     
-    // set selected tab image tint color, dont use setTintColor directly, which will make whole bar to be rendered
-    [[UITabBar appearance] setSelectedImageTintColor:[ColorUtil colorWithHexString:@"FF0080"]];
+    application.statusBarHidden = YES;
     
-    // http://stackoverflow.com/a/19029973
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7")) {
-        /*
-         The behavior of tintColor for bars has changed on iOS 7.0. It no longer affects the bar's background
-         and behaves as described for the tintColor property added to UIView.
-         To tint the bar's background, please use -barTintColor.
-         */
-        [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
-        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    } else {
-        /*
-         * ios 5 - 6
-         */
-        [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
-    }
+    // set selected tab image tint color, dont use setTintColor directly, which will make whole bar to be rendered
+//    [[UITabBar appearance] setSelectedImageTintColor:[ColorUtil colorWithHexString:@"FF0080"]];
+//    
+//    // http://stackoverflow.com/a/19029973
+//    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7")) {
+//        /*
+//         The behavior of tintColor for bars has changed on iOS 7.0. It no longer affects the bar's background
+//         and behaves as described for the tintColor property added to UIView.
+//         To tint the bar's background, please use -barTintColor.
+//         */
+//        [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+//        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+//    } else {
+//        /*
+//         * ios 5 - 6
+//         */
+//        [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+//    }
     
     return YES;
 }
@@ -92,17 +105,29 @@
 - (void)switchSceneToTabController
 {
     UIViewController *mvc = (UIViewController *)self.window.rootViewController;
-    UITabBarController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"ftvTabController"];
-    controller.selectedIndex = 2;
+    UIViewController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
+
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
+    nav.navigationBar.barStyle = UIBarStyleBlack;
     
-    // programly set the tab bar item title
-    ((UITabBarItem *)controller.tabBar.items[0]).title = NSLocalizedString(@"tabbar_item_title_tour", @"Tour");
-    ((UITabBarItem *)controller.tabBar.items[1]).title = NSLocalizedString(@"tabbar_item_title_history", @"History");
-    ((UITabBarItem *)controller.tabBar.items[2]).title = NSLocalizedString(@"tabbar_item_title_ftvscan", @"FTVFscan");
-    ((UITabBarItem *)controller.tabBar.items[3]).title = NSLocalizedString(@"tabbar_item_title_gallery", @"Gallery");
-    ((UITabBarItem *)controller.tabBar.items[4]).title = NSLocalizedString(@"tabbar_item_title_brands", @"Brands");
+    DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:nav];
+    _menuController = rootController;
+	
     
-    [self.window setRootViewController:controller];
+    UIViewController *controllerRight = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVMenuViewController"];
+    rootController.rightViewController = controllerRight;
+    
+    self.window.rootViewController = rootController;
+    [self.window makeKeyAndVisible];
+}
+
+
+-(void)setViewFromMenu:(NSString *)storyBoardId
+{
+//    UIViewController *mvc = (UIViewController *)self.window.rootViewController;
+//    UIViewController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVTourViewController"];
+//    [self.navigationPaneViewController setPaneViewController:controller];
+    [self.navigationPaneViewController setPaneState:MSNavigationPaneStateClosed animated:YES completion:nil];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -224,4 +249,11 @@
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
+
+
+- (void)application:(UIApplication *)application didChangeStatusBarFrame:(CGRect)oldStatusBarFrame
+{
+    [application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+}
+
 @end

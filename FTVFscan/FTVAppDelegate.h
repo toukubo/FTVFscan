@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class MSNavigationPaneViewController;
+@class DDMenuController;
+
 @interface FTVAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) MSNavigationPaneViewController *navigationPaneViewController;
+@property (strong, nonatomic) DDMenuController *menuController;
+
 
 - (void)showModalPopupWindow;
+-(void)setViewFromMenu:(NSString *)storyBoardId;
+- (void)switchSceneToTabController;
 @end

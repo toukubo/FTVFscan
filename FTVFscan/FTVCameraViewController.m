@@ -9,6 +9,8 @@
 
 #import "FTVCameraViewController.h"
 #import "FTVDelayJobWebViewController.h"
+#import "MSNavigationPaneViewController.h"
+#import "DDMenuController.h"
 
 @interface FTVCameraViewController ()
 {
@@ -165,7 +167,9 @@
     returnFromPicker = YES;
     [photoPicker dismissViewControllerAnimated:NO completion:^{
     }];
-    self.tabBarController.selectedIndex = 0;
+    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVTourViewController"];
+    [menuController setRootController:controller animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -176,5 +180,13 @@
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
+
+-(IBAction)OpenMenu:(id)sender
+{
+    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    [menuController showRightController:YES];
+    
+}
+
 
 @end

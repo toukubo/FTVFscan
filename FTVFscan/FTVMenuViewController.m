@@ -1,0 +1,121 @@
+//
+//  FTVMenuViewController.m
+//  FTVFscan
+//
+//  Created by Sarkar Raj on 11/19/13.
+//  Copyright (c) 2013 T2. All rights reserved.
+//
+
+#import "FTVMenuViewController.h"
+
+#import "DDMenuController.h"
+
+@interface FTVMenuViewController ()
+
+@end
+
+@implementation FTVMenuViewController
+
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+    [menuTableView setSeparatorInset:UIEdgeInsetsZero];
+    menuItems = [[NSMutableArray alloc] init];
+    [menuItems addObject:@"TOUR"];
+    [menuItems addObject:@"HISTORY"];
+    [menuItems addObject:@"CAMERA"];
+    [menuItems addObject:@"GALLERY"];
+    [menuItems addObject:@"BRANDS"];
+    
+    menuItemsIcoons = [[NSMutableArray alloc] init];
+    [menuItemsIcoons addObject:@"tour-icon.png"];
+    [menuItemsIcoons addObject:@"bookmark-icon.png"];
+    [menuItemsIcoons addObject:@"camera-icon.png"];
+    [menuItemsIcoons addObject:@"gallery-icon.png"];
+    [menuItemsIcoons addObject:@"list-icon.png"];
+    
+    menuItemViewId = [[NSMutableArray alloc] init];
+    [menuItemViewId addObject:@"FTVTourViewController"];
+    [menuItemViewId addObject:@"FTVScansViewController"];
+    [menuItemViewId addObject:@"FTVCameraViewController"];
+    [menuItemViewId addObject:@"FTVGalleryViewController"];
+    [menuItemViewId addObject:@"FTVBrandsViewController"];
+    
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+-(IBAction)tour:(id)sender
+{
+    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
+    [menuController setRootController:controller animated:YES];
+}
+
+
+#pragma -- Table View Delegates
+
+// Customize the number of sections in the table view.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+    
+}
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [menuItems count];
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+	NSLog(@"In the table view");
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyIdentifier"];
+    static NSString *CellIdentifier = @"Cell";
+    // Load the top-level objects from the custom cell XIB.
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] ;
+    cell.backgroundColor = [UIColor blackColor];
+    cell.imageView.image = [UIImage imageNamed:[menuItemsIcoons objectAtIndex:indexPath.row]];
+    cell.textLabel.text = [menuItems objectAtIndex:indexPath.row];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //Do some code here
+    
+    return cell;    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // cell height
+	return 43;
+}
+
+// If the tableView Cell is selected
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Do some code here
+    
+    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:[menuItemViewId objectAtIndex:indexPath.row]];
+    [menuController setRootViewController:controller];
+    [menuController showRootController:YES];
+}
+
+// For deleteing any row from the table
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle) editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // Do some code here
+    
+}
+
+
+
+@end

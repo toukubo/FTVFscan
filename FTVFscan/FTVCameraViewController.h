@@ -13,4 +13,6 @@
 @property (strong) UIPopoverController *popoverHolder;
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+
+-(IBAction)OpenMenu:(id)sender;
 @end

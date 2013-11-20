@@ -12,5 +12,5 @@
 
 @property (strong, nonatomic) IBOutlet UIWebView *brandsWebView;
 
-
+-(IBAction)OpenMenu:(id)sender;
 @end

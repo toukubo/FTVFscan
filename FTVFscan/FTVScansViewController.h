@@ -12,5 +12,5 @@
 
 @property (strong, nonatomic) IBOutlet UIWebView *scansWebView;
 
-
+-(IBAction)OpenMenu:(id)sender;
 @end

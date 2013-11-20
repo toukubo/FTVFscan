@@ -105,6 +105,12 @@
                           }];
         }
     }];
+    
+    
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        
+        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    }
 }
 
 
@@ -127,7 +133,6 @@
     
     [galleryPicker dismissViewControllerAnimated:NO completion:nil];
     
-    self.tabBarController.selectedIndex = 0;
 }
 
 
@@ -139,5 +144,13 @@
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
+
+-(IBAction)OpenMenu:(id)sender
+{
+    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    [menuController showRightController:YES];
+    
+}
+
 
 @end

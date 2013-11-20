@@ -10,4 +10,5 @@
 
 @interface FTVGalleryViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
+-(IBAction)OpenMenu:(id)sender;
 @end

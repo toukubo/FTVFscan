@@ -49,6 +49,16 @@
 		8465C67717F5D73B00A00460 /* FTVGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C67617F5D73B00A00460 /* FTVGalleryViewController.m */; };
 		8465C67A17F5D74C00A00460 /* FTVBrandsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C67917F5D74C00A00460 /* FTVBrandsViewController.m */; };
 		8465C67C17F5F30000A00460 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C67B17F5F30000A00460 /* MobileCoreServices.framework */; };
+		DE16336D183B493B007EF946 /* MSNavigationPaneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163368183B493B007EF946 /* MSNavigationPaneViewController.m */; };
+		DE16336E183B493B007EF946 /* PRTween.m in Sources */ = {isa = PBXBuildFile; fileRef = DE16336A183B493B007EF946 /* PRTween.m */; };
+		DE16336F183B493B007EF946 /* PRTweenTimingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = DE16336C183B493B007EF946 /* PRTweenTimingFunctions.m */; };
+		DE163377183B4953007EF946 /* SVLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163372183B4953007EF946 /* SVLeftMenuViewController.m */; };
+		DE163378183B4953007EF946 /* SVUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163374183B4953007EF946 /* SVUtilities.m */; };
+		DE163379183B4953007EF946 /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163376183B4953007EF946 /* SVWebViewController.m */; };
+		DE16337C183B4EB9007EF946 /* menuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DE16337A183B4EB9007EF946 /* menuIcon.png */; };
+		DE16337D183B4EB9007EF946 /* menuIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE16337B183B4EB9007EF946 /* menuIcon@2x.png */; };
+		DE163383183B617A007EF946 /* DDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163382183B617A007EF946 /* DDMenuController.m */; };
+		DE163386183B665A007EF946 /* FTVMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163385183B665A007EF946 /* FTVMenuViewController.m */; };
 		DEB4B84F1821A0D70050FA49 /* bookmark-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8451821A0D70050FA49 /* bookmark-icon.png */; };
 		DEB4B8501821A0D70050FA49 /* bookmark-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8461821A0D70050FA49 /* bookmark-icon@2x.png */; };
 		DEB4B8511821A0D70050FA49 /* camera-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8471821A0D70050FA49 /* camera-icon.png */; };
@@ -146,6 +156,24 @@
 		8465C67817F5D74C00A00460 /* FTVBrandsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVBrandsViewController.h; sourceTree = "<group>"; };
 		8465C67917F5D74C00A00460 /* FTVBrandsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVBrandsViewController.m; sourceTree = "<group>"; };
 		8465C67B17F5F30000A00460 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		DE163367183B493B007EF946 /* MSNavigationPaneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSNavigationPaneViewController.h; sourceTree = "<group>"; };
+		DE163368183B493B007EF946 /* MSNavigationPaneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSNavigationPaneViewController.m; sourceTree = "<group>"; };
+		DE163369183B493B007EF946 /* PRTween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTween.h; sourceTree = "<group>"; };
+		DE16336A183B493B007EF946 /* PRTween.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTween.m; sourceTree = "<group>"; };
+		DE16336B183B493B007EF946 /* PRTweenTimingFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTweenTimingFunctions.h; sourceTree = "<group>"; };
+		DE16336C183B493B007EF946 /* PRTweenTimingFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTweenTimingFunctions.m; sourceTree = "<group>"; };
+		DE163371183B4953007EF946 /* SVLeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVLeftMenuViewController.h; sourceTree = "<group>"; };
+		DE163372183B4953007EF946 /* SVLeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVLeftMenuViewController.m; sourceTree = "<group>"; };
+		DE163373183B4953007EF946 /* SVUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVUtilities.h; sourceTree = "<group>"; };
+		DE163374183B4953007EF946 /* SVUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVUtilities.m; sourceTree = "<group>"; };
+		DE163375183B4953007EF946 /* SVWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewController.h; sourceTree = "<group>"; };
+		DE163376183B4953007EF946 /* SVWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewController.m; sourceTree = "<group>"; };
+		DE16337A183B4EB9007EF946 /* menuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuIcon.png; sourceTree = "<group>"; };
+		DE16337B183B4EB9007EF946 /* menuIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuIcon@2x.png"; sourceTree = "<group>"; };
+		DE163381183B617A007EF946 /* DDMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMenuController.h; sourceTree = "<group>"; };
+		DE163382183B617A007EF946 /* DDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMenuController.m; sourceTree = "<group>"; };
+		DE163384183B665A007EF946 /* FTVMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVMenuViewController.h; sourceTree = "<group>"; };
+		DE163385183B665A007EF946 /* FTVMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVMenuViewController.m; sourceTree = "<group>"; };
 		DEB4B8451821A0D70050FA49 /* bookmark-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark-icon.png"; sourceTree = "<group>"; };
 		DEB4B8461821A0D70050FA49 /* bookmark-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark-icon@2x.png"; sourceTree = "<group>"; };
 		DEB4B8471821A0D70050FA49 /* camera-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-icon.png"; sourceTree = "<group>"; };
@@ -280,6 +308,10 @@
 		8465C64017F5D1B500A00460 /* FTVFscan */ = {
 			isa = PBXGroup;
 			children = (
+				DE163381183B617A007EF946 /* DDMenuController.h */,
+				DE163382183B617A007EF946 /* DDMenuController.m */,
+				DE163370183B4943007EF946 /* LeftMenu */,
+				DE163366183B4901007EF946 /* MSNavigationPane */,
 				DEB4B8441821A0AB0050FA49 /* Images */,
 				39E32CB7181FB33D009C911F /* Util */,
 				39E32CAF181F9BAE009C911F /* Library */,
@@ -299,6 +331,8 @@
 				8465C67617F5D73B00A00460 /* FTVGalleryViewController.m */,
 				8465C67817F5D74C00A00460 /* FTVBrandsViewController.h */,
 				8465C67917F5D74C00A00460 /* FTVBrandsViewController.m */,
+				DE163384183B665A007EF946 /* FTVMenuViewController.h */,
+				DE163385183B665A007EF946 /* FTVMenuViewController.m */,
 				8465C65517F5D1B500A00460 /* Images.xcassets */,
 				8465C64117F5D1B500A00460 /* Supporting Files */,
 			);
@@ -339,9 +373,37 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		DE163366183B4901007EF946 /* MSNavigationPane */ = {
+			isa = PBXGroup;
+			children = (
+				DE163367183B493B007EF946 /* MSNavigationPaneViewController.h */,
+				DE163368183B493B007EF946 /* MSNavigationPaneViewController.m */,
+				DE163369183B493B007EF946 /* PRTween.h */,
+				DE16336A183B493B007EF946 /* PRTween.m */,
+				DE16336B183B493B007EF946 /* PRTweenTimingFunctions.h */,
+				DE16336C183B493B007EF946 /* PRTweenTimingFunctions.m */,
+			);
+			name = MSNavigationPane;
+			sourceTree = "<group>";
+		};
+		DE163370183B4943007EF946 /* LeftMenu */ = {
+			isa = PBXGroup;
+			children = (
+				DE163371183B4953007EF946 /* SVLeftMenuViewController.h */,
+				DE163372183B4953007EF946 /* SVLeftMenuViewController.m */,
+				DE163373183B4953007EF946 /* SVUtilities.h */,
+				DE163374183B4953007EF946 /* SVUtilities.m */,
+				DE163375183B4953007EF946 /* SVWebViewController.h */,
+				DE163376183B4953007EF946 /* SVWebViewController.m */,
+			);
+			name = LeftMenu;
+			sourceTree = "<group>";
+		};
 		DEB4B8441821A0AB0050FA49 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DE16337A183B4EB9007EF946 /* menuIcon.png */,
+				DE16337B183B4EB9007EF946 /* menuIcon@2x.png */,
 				DEB4B8451821A0D70050FA49 /* bookmark-icon.png */,
 				DEB4B8461821A0D70050FA49 /* bookmark-icon@2x.png */,
 				DEB4B8471821A0D70050FA49 /* camera-icon.png */,
@@ -449,7 +511,9 @@
 				DEB4B8571821A0D70050FA49 /* tour-icon.png in Resources */,
 				DEB4B8581821A0D70050FA49 /* tour-icon@2x.png in Resources */,
 				39153DB2182259E100F3C9D0 /* FeatureDB.dic in Resources */,
+				DE16337C183B4EB9007EF946 /* menuIcon.png in Resources */,
 				8465C64517F5D1B500A00460 /* InfoPlist.strings in Resources */,
+				DE16337D183B4EB9007EF946 /* menuIcon@2x.png in Resources */,
 				3964FC56182A6D590035B187 /* MainStoryboard.storyboard in Resources */,
 				DEB4B8541821A0D70050FA49 /* gallery-icon@2x.png in Resources */,
 				39B391AC182782A300BD2D3B /* NEC_old.jpg in Resources */,
@@ -506,22 +570,30 @@
 			files = (
 				39F4936D1821427E00093167 /* REString.m in Sources */,
 				39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */,
+				DE163386183B665A007EF946 /* FTVMenuViewController.m in Sources */,
 				39F4936018213B3000093167 /* DeviceUtil.m in Sources */,
+				DE16336E183B493B007EF946 /* PRTween.m in Sources */,
 				39F4936E1821427E00093167 /* StringUtil.m in Sources */,
+				DE163377183B4953007EF946 /* SVLeftMenuViewController.m in Sources */,
 				3964FC60182A8AEF0035B187 /* FTVDelayJobWebViewController.m in Sources */,
 				39E32CB5181FA6D2009C911F /* FTVRegisterViewController.m in Sources */,
 				39F4936118213B3000093167 /* GlobalCore.m in Sources */,
 				39E32CBA181FB77D009C911F /* FTVUser.m in Sources */,
+				DE163379183B4953007EF946 /* SVWebViewController.m in Sources */,
 				39F4935F18213B3000093167 /* DateUtil.m in Sources */,
 				8465C65117F5D1B500A00460 /* FTVTourViewController.m in Sources */,
 				39F4935D18213B3000093167 /* ColorUtil.m in Sources */,
+				DE16336F183B493B007EF946 /* PRTweenTimingFunctions.m in Sources */,
+				DE16336D183B493B007EF946 /* MSNavigationPaneViewController.m in Sources */,
 				8465C64717F5D1B500A00460 /* main.m in Sources */,
 				39F4936C1821427E00093167 /* QuartzUtils.c in Sources */,
 				8465C67717F5D73B00A00460 /* FTVGalleryViewController.m in Sources */,
 				39F4936218213B3000093167 /* ImageUtils.m in Sources */,
 				8465C67A17F5D74C00A00460 /* FTVBrandsViewController.m in Sources */,
+				DE163383183B617A007EF946 /* DDMenuController.m in Sources */,
 				8465C67417F5D69300A00460 /* FTVCameraViewController.m in Sources */,
 				8465C64B17F5D1B500A00460 /* FTVAppDelegate.m in Sources */,
+				DE163378183B4953007EF946 /* SVUtilities.m in Sources */,
 				39F4936418213B3000093167 /* UIDevice+Identifier.m in Sources */,
 				8465C65417F5D1B500A00460 /* FTVScansViewController.m in Sources */,
 			);

@@ -120,7 +120,7 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
     // The window has to be un-hidden on the main thread
     // This will cause the window to display
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.window makeKeyAndVisible];
+//        [self.window makeKeyAndVisible];
         
         if(animated){
             viewController.styleView.alpha = 0;

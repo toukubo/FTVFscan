@@ -12,4 +12,5 @@
 
 @property (strong, nonatomic) IBOutlet UIWebView *tourWebView;
 
+-(IBAction)OpenMenu:(id)sender;
 @end
