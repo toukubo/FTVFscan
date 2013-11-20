@@ -176,6 +176,9 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <segue destination="B7h-6y-4Tk" kind="modal" identifier="presentDelayJobWebViewController" id="mxQ-qu-xUd"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -403,6 +406,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="imu-oV-QJI"/>
+        <segue reference="mxQ-qu-xUd"/>
     </inferredMetricsTieBreakers>
 </document>

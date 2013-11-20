@@ -171,9 +171,61 @@
 //
 
 
+- (void)generateRedirectURL:(int)index
+{
+    returnFromPicker = YES;
+    
+    
+    // Got image from picker
+    // Should do something with it )))
+    ALAsset *asset = self.assets[index];
+    ALAssetRepresentation *assetRepresentation = [asset defaultRepresentation];
+    
+    UIImage *pickedImage = [UIImage imageWithCGImage:[assetRepresentation fullScreenImage]
+                                               scale:[assetRepresentation scale]
+                                         orientation:ALAssetOrientationUp];
+    NSDate *start = [NSDate date];
+    pickedImage = [FTVImageProcEngine imageResize:pickedImage saveWithName:[NSString genRandStringLength:10] usingJPEG:YES];
+    NSData *imageData = UIImagePNGRepresentation(pickedImage);
+    
+    NSString *brand_slug = [FTVImageProcEngine executeApi:pickedImage];
+    NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
+    NSLog(@"executeApi Execution Time: %f", executionTime);
+    
+    if (IsEmpty(brand_slug) || [brand_slug isEqualToString:@"failure"]) {
+        [appDelegate showModalPopupWindow];
+    } else {
+        // no need to post data if BRAND was failure
+        [FTVImageProcEngine postData:imageData
+                           withBrand:brand_slug
+                      withStartBlock:^{
+                          [SVProgressHUD show];
+                      } withFinishBlock:^(BOOL success, NSString *resp) {
+                          if (success) {
+                              [SVProgressHUD dismiss];
+                              
+                              NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
+                              NSLog(@"postData Execution Time: %f", executionTime);
+                              
+                              redirectUrl = [FTVImageProcEngine encapsulateById:resp];
+                              if (![redirectUrl isMalform]) {
+                                  [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
+                              }
+                          } else {
+                              [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_malform", @"Malform")];
+                          }
+                      } withFailedBlock:^(BOOL success, NSString *resp) {
+                          [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_error", @"Error")];
+                      }];
+    }
+}
+
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"presentDelayJobWebViewController"]) {
+        NSIndexPath *selectedCell = [self.collectionView indexPathsForSelectedItems][0];
+        [self generateRedirectURL:selectedCell.row];
         UINavigationController *navigationController = segue.destinationViewController;
         for (UIViewController *vc in navigationController.viewControllers) {
             if ([vc isKindOfClass:[FTVDelayJobWebViewController class]]) {
