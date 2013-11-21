@@ -12,9 +12,6 @@
 #import "FTVUser.h"
 
 #import "FTVDelayJobWebViewController.h"
-
-#import "MSNavigationPaneViewController.h"
-#import "SVLeftMenuViewController.h"
 #import "DDMenuController.h"
 
 
@@ -127,7 +124,7 @@
 //    UIViewController *mvc = (UIViewController *)self.window.rootViewController;
 //    UIViewController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVTourViewController"];
 //    [self.navigationPaneViewController setPaneViewController:controller];
-    [self.navigationPaneViewController setPaneState:MSNavigationPaneStateClosed animated:YES completion:nil];
+//    [self.navigationPaneViewController setPaneState:MSNavigationPaneStateClosed animated:YES completion:nil];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
