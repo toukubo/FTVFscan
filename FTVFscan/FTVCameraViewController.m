@@ -104,7 +104,7 @@
                                                      withBrand:brand_slug
                                                 withStartBlock:nil
                                                withFinishBlock:^(BOOL success, NSString *resp) {
-                                                   //
+                                                   // TODO: should we do some extra stuff here?
                                                } withFailedBlock:^(BOOL success, NSString *resp) {
                                                    //
                                                }];
