@@ -8,7 +8,6 @@
         <!--Menu View Controller-->
         <scene sceneID="C7t-HG-dei">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VXM-CN-5K2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="FTVMenuViewController" id="KMq-77-5nP" customClass="FTVMenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Wt-YT-YKo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -46,6 +45,7 @@
                         <outlet property="menuTableView" destination="Q9w-Zs-lZd" id="NuC-5S-55y"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VXM-CN-5K2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1255" y="164"/>
         </scene>

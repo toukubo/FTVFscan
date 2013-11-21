@@ -83,12 +83,11 @@
     // Load the top-level objects from the custom cell XIB.
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] ;
     cell.backgroundColor = [UIColor blackColor];
-    cell.imageView.image = [UIImage imageNamed:[menuItemsIcoons objectAtIndex:indexPath.row]];
-    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    cell.imageView.frame = CGRectMake(5, 8, 200, 34);
-    cell.imageView.clipsToBounds = YES;
-//    cell.textLabel.text = [menuItems objectAtIndex:indexPath.row];
-//    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.font = [UIFont fontWithName:@"NarzissTextBold" size:20];
+    cell.textLabel.text = [menuItems objectAtIndex:indexPath.row];
+
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     //Do some code here
     

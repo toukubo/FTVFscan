@@ -39,9 +39,9 @@
         [self switchSceneToTabController];
         DLog(@"but true");
     } else {
-        [self switchSceneToTabController];
+//        [self switchSceneToTabController];
 
-//        [self switchSceneToRegisterController];
+        [self switchSceneToRegisterController];
         DLog(@"but false. going to regist ");
     }
     
