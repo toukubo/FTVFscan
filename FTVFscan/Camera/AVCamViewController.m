@@ -57,18 +57,6 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
         [stillButton addTarget:self action:@selector(captureStillImage:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:stillButton];
         
-        homeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *homeImageNormal = [UIImage imageNamed:@"home.png"];
-        UIImage *homeImagePressed = [UIImage imageNamed:@"home.png"];
-        [homeButton setFrame:CGRectMake(30,
-                                        self.view.frameSizeHeight - homeImageNormal.size.height - 20,
-                                        homeImageNormal.size.width,
-                                        homeImageNormal.size.height)];
-        [homeButton setImage:homeImageNormal forState:UIControlStateNormal];
-        [homeButton setImage:homeImagePressed forState:UIControlStateHighlighted];
-        [homeButton setBackgroundColor:[UIColor clearColor]];
-        [homeButton addTarget:self action:@selector(homeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:homeButton];
     }
     
     return self;
@@ -86,12 +74,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     [super viewDidUnload];
 }
 
-#pragma mark - Helper
-- (void)homeButtonPressed:(id)sender
-{
-    // TODO:
-    DLine;
-}
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
