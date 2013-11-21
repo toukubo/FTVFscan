@@ -9,7 +9,7 @@
 #ifndef FTVFscan_Const_h
 #define FTVFscan_Const_h
 
-#define BASEURL @"http://zxc.cz/fscan-web/"
+#define BASEURL @"http://zxc.cz/fscan-web-staging/"
 
 #define IPHONE_HEIGHT 480
 #define MAX_PAGE      10
