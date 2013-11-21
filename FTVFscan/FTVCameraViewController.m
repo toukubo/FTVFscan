@@ -49,10 +49,17 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     if(!returnFromPicker){
-        AVCamViewController *avCamera = [[AVCamViewController alloc] init];
-        [avCamera setDelegate:self];
         
-        [self presentViewController:avCamera animated:YES completion:nil];
+        if ([appDelegate checkLoginCredential]) {
+            // bring up camera
+            [self switchSceneToCamera];
+            DLog(@"but true");
+        } else {
+            [self switchSceneToRegisterController];
+            DLog(@"but false. going to regist ");
+        }
+
+        
     }
 }
 
@@ -64,6 +71,41 @@
     
     [SVProgressHUD dismiss];
 }
+
+- (void)switchSceneToCamera
+{
+    AVCamViewController *avCamera = [[AVCamViewController alloc] init];
+    [avCamera setDelegate:self];
+    
+    [self presentViewController:avCamera animated:YES completion:nil];
+}
+
+- (void)switchSceneToRegisterController
+{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    UIViewController *controller = [sb instantiateViewControllerWithIdentifier:@"ftvNavRegisterViewController"];
+    [self presentViewController:controller animated:YES completion:nil];
+    
+    __block id complete;
+    
+    complete = [[NSNotificationCenter defaultCenter] addObserverForName:kNotifyRegisterFinished
+                                                                 object:controller
+                                                                  queue:nil
+                                                             usingBlock:^(NSNotification *note) {
+                                                                 [[NSNotificationCenter defaultCenter] removeObserver:complete];
+                                                                 
+                                                                 //gonna do re-checking if the regisration is completed. if not ,eternal loop.
+                                                                 if ([appDelegate checkLoginCredential]) {
+                                                                     // goto home tab bar controller
+//                                                                     [self switchSceneToCamera];
+                                                                     DLog(@"but true");
+                                                                 } else {
+                                                                     [self switchSceneToRegisterController];
+                                                                     DLog(@"but false. going to regist ");
+                                                                 }
+                                                             }];
+}
+
 
 - (void)doImageProcessInBackgroundWithPath:(NSString*)imagePath
 {
@@ -90,13 +132,25 @@
         } else {
             NSDate *start = [NSDate date];
             // no need to post data if BRAND was failure
-            [FTVImageProcEngine postData:imageData
+            // step 1 - post brand slug, and get response for "id=xxx"
+            [FTVImageProcEngine postData:nil
                                withBrand:brand_slug
                           withStartBlock:^{
                           } withFinishBlock:^(BOOL success, NSString *resp) {
                               if (success) {
                                   NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
                                   NSLog(@"postData Execution Time: %f", executionTime);
+                                  
+                                  // step 2 - post image data
+                                  [FTVImageProcEngine postData:imageData
+                                                     withBrand:brand_slug
+                                                withStartBlock:nil
+                                               withFinishBlock:^(BOOL success, NSString *resp) {
+                                                   // TODO: should we do some extra stuff here?
+                                               } withFailedBlock:^(BOOL success, NSString *resp) {
+                                                   //
+                                               }];
+                                  
                                   redirectUrl = [FTVImageProcEngine encapsulateById:resp];
                                   if (![redirectUrl isMalform]) {
                                       [self performSelectorOnMainThread:@selector(switchSceneToResultController) withObject:nil waitUntilDone:NO];
@@ -105,8 +159,7 @@
                           } withFailedBlock:^(BOOL success, NSString *resp) {
                           }];
             
-            
-            DLog(@"IMG: W - %f, H - %f", pickedImage.size.width, pickedImage.size.height);
+            DLog(@"IMG: W - %0.f px, H - %0.f px", pickedImage.size.width, pickedImage.size.height);
         }
     }
 }

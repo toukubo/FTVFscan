@@ -47,9 +47,9 @@ static NSString * const URL_REGISTRTION = @"/registration/index.php";
 
 
 - (IBAction)dismissModalController:(id)sender {
-//    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyRegisterFinished object:self.navigationController userInfo:nil];
-//    }];
+    }];
 }
 
 
