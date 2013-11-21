@@ -45,6 +45,8 @@
     
     [self.webView setDelegate:self];
     
+    self.navigationController.navigationBarHidden = NO;
+    
     if (redirectUrl != nil) {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:redirectUrl]];
 
@@ -110,6 +112,7 @@
 
 #pragma mark - Helper
 - (IBAction)dismissModalView:(id)sender {
+    
     [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 

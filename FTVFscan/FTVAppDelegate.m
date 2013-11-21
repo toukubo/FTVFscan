@@ -195,7 +195,12 @@
     [vc loadUrl:url];
     
     [[KGModal sharedInstance] showWithContentView:contentView andAnimated:YES];
-    [self.window.rootViewController addChildViewController:vc];
+//    [self.window.rootViewController addChildViewController:vc];
+    
+    // This 3 lines of code will add the vc ViewController To the Window. Whenever it needs to show any viewController just use this code
+    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    [menuController setRootViewController:vc];
+    [menuController showRootController:YES];
 }
 
 - (BOOL)prefersStatusBarHidden {
