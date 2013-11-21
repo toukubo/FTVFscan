@@ -11,7 +11,7 @@
 
 #ifdef DEBUG
     #define BASEURL @"http://zxc.cz/fscan-web-staging/"
-#elif
+#else
     #define BASEURL @"http://zxc.cz/fscan-web/"
 #endif
 
