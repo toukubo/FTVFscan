@@ -90,6 +90,21 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 - (void)homeButtonPressed:(id)sender
 {
     // TODO:
+//    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+//    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVTourViewController"];
+//    [menuController setRootViewController:controller];
+//    [menuController showRootController:YES];
+//    [self stopCamPreview];
+    [self stopCamPreview];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+        DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+        UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVTourViewController"];
+        [menuController setRootViewController:controller];
+        [menuController showRootController:YES];
+        
+    }];
+    
     DLine;
 }
 

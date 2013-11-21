@@ -128,7 +128,7 @@
 {
     // TODO: should we support cancel ?
     returnFromPicker = YES;
-//    self.tabBarController.selectedIndex = 0;
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

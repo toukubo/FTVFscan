@@ -25,21 +25,21 @@
     menuItems = [[NSMutableArray alloc] init];
     [menuItems addObject:@"TOUR"];
     [menuItems addObject:@"HISTORY"];
-    [menuItems addObject:@"CAMERA"];
+//    [menuItems addObject:@"CAMERA"];
     [menuItems addObject:@"GALLERY"];
     [menuItems addObject:@"BRANDS"];
     
     menuItemsIcoons = [[NSMutableArray alloc] init];
-    [menuItemsIcoons addObject:@"tour-icon.png"];
-    [menuItemsIcoons addObject:@"bookmark-icon.png"];
-    [menuItemsIcoons addObject:@"camera-icon.png"];
-    [menuItemsIcoons addObject:@"gallery-icon.png"];
-    [menuItemsIcoons addObject:@"list-icon.png"];
+    [menuItemsIcoons addObject:@"drawer-tour-label.png"];
+    [menuItemsIcoons addObject:@"drawer-history-label.png"];
+//    [menuItemsIcoons addObject:@"camera-icon.png"];
+    [menuItemsIcoons addObject:@"drawer-album-label.png"];
+    [menuItemsIcoons addObject:@"drawer-brands-label.png"];
     
     menuItemViewId = [[NSMutableArray alloc] init];
     [menuItemViewId addObject:@"FTVTourViewController"];
     [menuItemViewId addObject:@"FTVScansViewController"];
-    [menuItemViewId addObject:@"FTVCameraViewController"];
+//    [menuItemViewId addObject:@"FTVCameraViewController"];
     [menuItemViewId addObject:@"FTVGalleryViewController"];
     [menuItemViewId addObject:@"FTVBrandsViewController"];
     
@@ -84,8 +84,11 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] ;
     cell.backgroundColor = [UIColor blackColor];
     cell.imageView.image = [UIImage imageNamed:[menuItemsIcoons objectAtIndex:indexPath.row]];
-    cell.textLabel.text = [menuItems objectAtIndex:indexPath.row];
-    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    cell.imageView.frame = CGRectMake(5, 8, 200, 34);
+    cell.imageView.clipsToBounds = YES;
+//    cell.textLabel.text = [menuItems objectAtIndex:indexPath.row];
+//    cell.textLabel.textColor = [UIColor whiteColor];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     //Do some code here
     
@@ -95,7 +98,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // cell height
-	return 43;
+	return 50;
 }
 
 // If the tableView Cell is selected

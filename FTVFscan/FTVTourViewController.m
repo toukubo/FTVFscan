@@ -37,6 +37,7 @@
 //    appDelegate = (FTVAppDelegate *)[UIApplication sharedApplication].delegate);
     
     _tourWebView.delegate = self;
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
