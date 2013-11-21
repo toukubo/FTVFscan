@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Z2P-zm-HSX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A2093" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Z2P-zm-HSX">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--Menu View Controller-->
         <scene sceneID="C7t-HG-dei">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VXM-CN-5K2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="FTVMenuViewController" id="KMq-77-5nP" customClass="FTVMenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Wt-YT-YKo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -46,6 +45,7 @@
                         <outlet property="menuTableView" destination="Q9w-Zs-lZd" id="NuC-5S-55y"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VXM-CN-5K2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1255" y="164"/>
         </scene>

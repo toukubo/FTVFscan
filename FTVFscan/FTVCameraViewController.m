@@ -49,10 +49,17 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     if(!returnFromPicker){
-        AVCamViewController *avCamera = [[AVCamViewController alloc] init];
-        [avCamera setDelegate:self];
         
-        [self presentViewController:avCamera animated:YES completion:nil];
+        if ([appDelegate checkLoginCredential]) {
+            // bring up camera
+            [self switchSceneToCamera];
+            DLog(@"but true");
+        } else {
+            [self switchSceneToRegisterController];
+            DLog(@"but false. going to regist ");
+        }
+
+        
     }
 }
 
@@ -64,6 +71,41 @@
     
     [SVProgressHUD dismiss];
 }
+
+- (void)switchSceneToCamera
+{
+    AVCamViewController *avCamera = [[AVCamViewController alloc] init];
+    [avCamera setDelegate:self];
+    
+    [self presentViewController:avCamera animated:YES completion:nil];
+}
+
+- (void)switchSceneToRegisterController
+{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    UIViewController *controller = [sb instantiateViewControllerWithIdentifier:@"ftvNavRegisterViewController"];
+    [self presentViewController:controller animated:YES completion:nil];
+    
+    __block id complete;
+    
+    complete = [[NSNotificationCenter defaultCenter] addObserverForName:kNotifyRegisterFinished
+                                                                 object:controller
+                                                                  queue:nil
+                                                             usingBlock:^(NSNotification *note) {
+                                                                 [[NSNotificationCenter defaultCenter] removeObserver:complete];
+                                                                 
+                                                                 //gonna do re-checking if the regisration is completed. if not ,eternal loop.
+                                                                 if ([appDelegate checkLoginCredential]) {
+                                                                     // goto home tab bar controller
+//                                                                     [self switchSceneToCamera];
+                                                                     DLog(@"but true");
+                                                                 } else {
+                                                                     [self switchSceneToRegisterController];
+                                                                     DLog(@"but false. going to regist ");
+                                                                 }
+                                                             }];
+}
+
 
 - (void)doImageProcessInBackgroundWithPath:(NSString*)imagePath
 {

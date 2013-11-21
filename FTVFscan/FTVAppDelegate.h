@@ -21,4 +21,5 @@
 - (void)showModalPopupWindow;
 -(void)setViewFromMenu:(NSString *)storyBoardId;
 - (void)switchSceneToTabController;
+- (BOOL)checkLoginCredential;
 @end
