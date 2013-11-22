@@ -41,6 +41,7 @@
 		39F4936C1821427E00093167 /* QuartzUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = 39F493661821427E00093167 /* QuartzUtils.c */; };
 		39F4936D1821427E00093167 /* REString.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F493691821427E00093167 /* REString.m */; };
 		39F4936E1821427E00093167 /* StringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F4936B1821427E00093167 /* StringUtil.m */; };
+		47A059B8183FA29300280A68 /* drawer-head-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 47A059B7183FA29300280A68 /* drawer-head-logo.png */; };
 		809377F4B37548E694C80943 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17EB1EFD5A21421C90C01507 /* libPods.a */; };
 		8465C63B17F5D1B500A00460 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63A17F5D1B500A00460 /* Foundation.framework */; };
 		8465C63D17F5D1B500A00460 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63C17F5D1B500A00460 /* CoreGraphics.framework */; };
@@ -70,7 +71,6 @@
 		DE16337D183B4EB9007EF946 /* menuIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE16337B183B4EB9007EF946 /* menuIcon@2x.png */; };
 		DE163383183B617A007EF946 /* DDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163382183B617A007EF946 /* DDMenuController.m */; };
 		DE163386183B665A007EF946 /* FTVMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163385183B665A007EF946 /* FTVMenuViewController.m */; };
-		DE239ADE183DDEB200D38545 /* drawer-head-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DE239ADD183DDEB200D38545 /* drawer-head-logo.png */; };
 		DE249177183E800B00CE97FC /* NarzissText-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE249176183E800B00CE97FC /* NarzissText-Bold.otf */; };
 		DEB4B84F1821A0D70050FA49 /* bookmark-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8451821A0D70050FA49 /* bookmark-icon.png */; };
 		DEB4B8501821A0D70050FA49 /* bookmark-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8461821A0D70050FA49 /* bookmark-icon@2x.png */; };
@@ -164,6 +164,7 @@
 		39F4936A1821427E00093167 /* StringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtil.h; sourceTree = "<group>"; };
 		39F4936B1821427E00093167 /* StringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtil.m; sourceTree = "<group>"; };
 		4756BE2E181EA80500B39EB7 /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		47A059B7183FA29300280A68 /* drawer-head-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "drawer-head-logo.png"; path = "../../../Desktop/drawer-head-logo.png"; sourceTree = "<group>"; };
 		47C61B931824181E00DF9125 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		47C61B941824181E00DF9125 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		62E03682EDFA4EAAB4576DB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -212,7 +213,6 @@
 		DE163382183B617A007EF946 /* DDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMenuController.m; sourceTree = "<group>"; };
 		DE163384183B665A007EF946 /* FTVMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVMenuViewController.h; sourceTree = "<group>"; };
 		DE163385183B665A007EF946 /* FTVMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVMenuViewController.m; sourceTree = "<group>"; };
-		DE239ADD183DDEB200D38545 /* drawer-head-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-head-logo.png"; sourceTree = "<group>"; };
 		DE249176183E800B00CE97FC /* NarzissText-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NarzissText-Bold.otf"; sourceTree = "<group>"; };
 		DEB4B8451821A0D70050FA49 /* bookmark-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark-icon.png"; sourceTree = "<group>"; };
 		DEB4B8461821A0D70050FA49 /* bookmark-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark-icon@2x.png"; sourceTree = "<group>"; };
@@ -502,7 +502,7 @@
 				DEED170E183DE3E500FDC8C8 /* drawer-brands-label.png */,
 				DEED170F183DE3E500FDC8C8 /* drawer-history-label.png */,
 				DEED1710183DE3E500FDC8C8 /* drawer-tour-label.png */,
-				DE239ADD183DDEB200D38545 /* drawer-head-logo.png */,
+				47A059B7183FA29300280A68 /* drawer-head-logo.png */,
 				DE16337A183B4EB9007EF946 /* menuIcon.png */,
 				DE16337B183B4EB9007EF946 /* menuIcon@2x.png */,
 				395AFD6D183C90A00093E0A4 /* go-camera.png */,
@@ -623,12 +623,12 @@
 				395AFD6F183C90A00093E0A4 /* go-camera.png in Resources */,
 				DEB4B8581821A0D70050FA49 /* tour-icon@2x.png in Resources */,
 				39153DB2182259E100F3C9D0 /* FeatureDB.dic in Resources */,
-				DE239ADE183DDEB200D38545 /* drawer-head-logo.png in Resources */,
 				DE16337C183B4EB9007EF946 /* menuIcon.png in Resources */,
 				395AFD87183C92520093E0A4 /* AVCamViewController.xib in Resources */,
 				8465C64517F5D1B500A00460 /* InfoPlist.strings in Resources */,
 				DE16337D183B4EB9007EF946 /* menuIcon@2x.png in Resources */,
 				3964FC56182A6D590035B187 /* MainStoryboard.storyboard in Resources */,
+				47A059B8183FA29300280A68 /* drawer-head-logo.png in Resources */,
 				395AFD70183C90A00093E0A4 /* home.png in Resources */,
 				DEED1714183DE3E500FDC8C8 /* drawer-tour-label.png in Resources */,
 				DEB4B8541821A0D70050FA49 /* gallery-icon@2x.png in Resources */,
@@ -856,8 +856,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhibodang Inc. (A5WV6BRVF2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhibodang Inc. (A5WV6BRVF2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -908,8 +908,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhibodang Inc. (A5WV6BRVF2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhibodang Inc. (A5WV6BRVF2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
