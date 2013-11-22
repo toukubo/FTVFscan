@@ -71,6 +71,7 @@
 		DE163383183B617A007EF946 /* DDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163382183B617A007EF946 /* DDMenuController.m */; };
 		DE163386183B665A007EF946 /* FTVMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163385183B665A007EF946 /* FTVMenuViewController.m */; };
 		DE239ADE183DDEB200D38545 /* drawer-head-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DE239ADD183DDEB200D38545 /* drawer-head-logo.png */; };
+		DE249177183E800B00CE97FC /* NarzissText-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE249176183E800B00CE97FC /* NarzissText-Bold.otf */; };
 		DEB4B84F1821A0D70050FA49 /* bookmark-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8451821A0D70050FA49 /* bookmark-icon.png */; };
 		DEB4B8501821A0D70050FA49 /* bookmark-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8461821A0D70050FA49 /* bookmark-icon@2x.png */; };
 		DEB4B8511821A0D70050FA49 /* camera-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8471821A0D70050FA49 /* camera-icon.png */; };
@@ -86,6 +87,7 @@
 		DEED1713183DE3E500FDC8C8 /* drawer-history-label.png in Resources */ = {isa = PBXBuildFile; fileRef = DEED170F183DE3E500FDC8C8 /* drawer-history-label.png */; };
 		DEED1714183DE3E500FDC8C8 /* drawer-tour-label.png in Resources */ = {isa = PBXBuildFile; fileRef = DEED1710183DE3E500FDC8C8 /* drawer-tour-label.png */; };
 		DEED1716183DE40200FDC8C8 /* drawer-delegate.png in Resources */ = {isa = PBXBuildFile; fileRef = DEED1715183DE40200FDC8C8 /* drawer-delegate.png */; };
+		DEFFD1A1183E8356004BBE1A /* NarzissText-Bold.otf in Sources */ = {isa = PBXBuildFile; fileRef = DE249176183E800B00CE97FC /* NarzissText-Bold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,6 +213,7 @@
 		DE163384183B665A007EF946 /* FTVMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVMenuViewController.h; sourceTree = "<group>"; };
 		DE163385183B665A007EF946 /* FTVMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVMenuViewController.m; sourceTree = "<group>"; };
 		DE239ADD183DDEB200D38545 /* drawer-head-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-head-logo.png"; sourceTree = "<group>"; };
+		DE249176183E800B00CE97FC /* NarzissText-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NarzissText-Bold.otf"; sourceTree = "<group>"; };
 		DEB4B8451821A0D70050FA49 /* bookmark-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark-icon.png"; sourceTree = "<group>"; };
 		DEB4B8461821A0D70050FA49 /* bookmark-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark-icon@2x.png"; sourceTree = "<group>"; };
 		DEB4B8471821A0D70050FA49 /* camera-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-icon.png"; sourceTree = "<group>"; };
@@ -382,9 +385,9 @@
 		8465C64017F5D1B500A00460 /* FTVFscan */ = {
 			isa = PBXGroup;
 			children = (
+				DE249175183E7FF300CE97FC /* Fonts */,
+				DE249174183E7FCC00CE97FC /* DDMenuController */,
 				395AFD71183C92520093E0A4 /* Camera */,
-				DE163381183B617A007EF946 /* DDMenuController.h */,
-				DE163382183B617A007EF946 /* DDMenuController.m */,
 				DE163370183B4943007EF946 /* LeftMenu */,
 				DE163366183B4901007EF946 /* MSNavigationPane */,
 				DEB4B8441821A0AB0050FA49 /* Images */,
@@ -472,6 +475,23 @@
 				DE163376183B4953007EF946 /* SVWebViewController.m */,
 			);
 			name = LeftMenu;
+			sourceTree = "<group>";
+		};
+		DE249174183E7FCC00CE97FC /* DDMenuController */ = {
+			isa = PBXGroup;
+			children = (
+				DE163381183B617A007EF946 /* DDMenuController.h */,
+				DE163382183B617A007EF946 /* DDMenuController.m */,
+			);
+			name = DDMenuController;
+			sourceTree = "<group>";
+		};
+		DE249175183E7FF300CE97FC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DE249176183E800B00CE97FC /* NarzissText-Bold.otf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		DEB4B8441821A0AB0050FA49 /* Images */ = {
@@ -589,6 +609,7 @@
 				DEB4B8531821A0D70050FA49 /* gallery-icon.png in Resources */,
 				DEED1716183DE40200FDC8C8 /* drawer-delegate.png in Resources */,
 				8465C65617F5D1B500A00460 /* Images.xcassets in Resources */,
+				DE249177183E800B00CE97FC /* NarzissText-Bold.otf in Resources */,
 				DEB4B8521821A0D70050FA49 /* camera-icon@2x.png in Resources */,
 				39B391AB182782A300BD2D3B /* NEC_new.jpg in Resources */,
 				DEB4B8561821A0D70050FA49 /* list-icon@2x.png in Resources */,
@@ -663,6 +684,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEFFD1A1183E8356004BBE1A /* NarzissText-Bold.otf in Sources */,
 				39F4936D1821427E00093167 /* REString.m in Sources */,
 				39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */,
 				395AFD85183C92520093E0A4 /* AVCamUtilities.m in Sources */,

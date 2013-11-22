@@ -40,31 +40,31 @@
         DLog(@"but true");
     } else {
         [self switchSceneToTabController];
-
-//        [self switchSceneToRegisterController];
+        
+        //        [self switchSceneToRegisterController];
         DLog(@"but false. going to regist ");
     }
     
     application.statusBarHidden = YES;
     
     // set selected tab image tint color, dont use setTintColor directly, which will make whole bar to be rendered
-//    [[UITabBar appearance] setSelectedImageTintColor:[ColorUtil colorWithHexString:@"FF0080"]];
-//    
-//    // http://stackoverflow.com/a/19029973
-//    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7")) {
-//        /*
-//         The behavior of tintColor for bars has changed on iOS 7.0. It no longer affects the bar's background
-//         and behaves as described for the tintColor property added to UIView.
-//         To tint the bar's background, please use -barTintColor.
-//         */
-//        [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
-//        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-//    } else {
-//        /*
-//         * ios 5 - 6
-//         */
-//        [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
-//    }
+    //    [[UITabBar appearance] setSelectedImageTintColor:[ColorUtil colorWithHexString:@"FF0080"]];
+    //
+    //    // http://stackoverflow.com/a/19029973
+    //    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7")) {
+    //        /*
+    //         The behavior of tintColor for bars has changed on iOS 7.0. It no longer affects the bar's background
+    //         and behaves as described for the tintColor property added to UIView.
+    //         To tint the bar's background, please use -barTintColor.
+    //         */
+    //        [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+    //        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    //    } else {
+    //        /*
+    //         * ios 5 - 6
+    //         */
+    //        [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+    //    }
     
     return YES;
 }
@@ -103,7 +103,7 @@
 {
     UIViewController *mvc = (UIViewController *)self.window.rootViewController;
     UIViewController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
-
+    
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
     nav.navigationBar.barStyle = UIBarStyleBlack;
     
@@ -121,10 +121,10 @@
 
 -(void)setViewFromMenu:(NSString *)storyBoardId
 {
-//    UIViewController *mvc = (UIViewController *)self.window.rootViewController;
-//    UIViewController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVTourViewController"];
-//    [self.navigationPaneViewController setPaneViewController:controller];
-//    [self.navigationPaneViewController setPaneState:MSNavigationPaneStateClosed animated:YES completion:nil];
+    //    UIViewController *mvc = (UIViewController *)self.window.rootViewController;
+    //    UIViewController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVTourViewController"];
+    //    [self.navigationPaneViewController setPaneViewController:controller];
+    //    [self.navigationPaneViewController setPaneState:MSNavigationPaneStateClosed animated:YES completion:nil];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -169,7 +169,7 @@
 	NSURLResponse *response;
 	NSError *error;
 	NSData *dataReplay = [NSURLConnection sendSynchronousRequest:request
-									   returningResponse:&response error:&error];
+                                               returningResponse:&response error:&error];
 	NSString *receivedString = [[NSString alloc] initWithData:dataReplay encoding:NSUTF8StringEncoding];
 	DLog(@"%@", receivedString);
     if ([receivedString isEqualToString:@"true"]) {
@@ -194,8 +194,12 @@
     
     [vc loadUrl:url];
     
-    [[KGModal sharedInstance] showWithContentView:contentView andAnimated:YES];
-    [self.window.rootViewController addChildViewController:vc];
+//    [[KGModal sharedInstance] showWithContentView:contentView andAnimated:YES];
+//    [self.window.rootViewController addChildViewController:vc];
+    
+    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    [menuController setRootViewController:vc];
+    [menuController showRootController:YES];
 }
 
 - (BOOL)prefersStatusBarHidden {
