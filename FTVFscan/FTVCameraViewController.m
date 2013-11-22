@@ -44,20 +44,29 @@
     
     appDelegate = (FTVAppDelegate *)[UIApplication sharedApplication].delegate;
     returnFromPicker = NO;
+    
+    if ([appDelegate checkLoginCredential]) {
+        // bring up camera
+        [self switchSceneToCamera];
+        DLog(@"but true");
+    } else {
+        [self switchSceneToRegisterController];
+        DLog(@"but false. going to regist ");
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     if(!returnFromPicker){
         
-        if ([appDelegate checkLoginCredential]) {
-            // bring up camera
-            [self switchSceneToCamera];
-            DLog(@"but true");
-        } else {
-            [self switchSceneToRegisterController];
-            DLog(@"but false. going to regist ");
-        }
+//        if ([appDelegate checkLoginCredential]) {
+//            // bring up camera
+//            [self switchSceneToCamera];
+//            DLog(@"but true");
+//        } else {
+//            [self switchSceneToRegisterController];
+//            DLog(@"but false. going to regist ");
+//        }
 
         
     }
@@ -96,8 +105,8 @@
                                                                  
                                                                  //gonna do re-checking if the regisration is completed. if not ,eternal loop.
                                                                  if ([appDelegate checkLoginCredential]) {
-                                                                     // goto home tab bar controller
-//                                                                     [self switchSceneToCamera];
+//                                                                    goto home tab bar controller
+                                                                     [self switchSceneToCamera];
                                                                      DLog(@"but true");
                                                                  } else {
                                                                      [self switchSceneToRegisterController];
