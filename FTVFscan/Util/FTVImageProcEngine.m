@@ -129,21 +129,14 @@
 }
 
 /**
- * Post brand or photo data to our server
- * either photo or band can be nil, but not both. (IMPORTANT!!!)
+ * Post brand to own server
  */
-+ (void)postData:(NSData *)photoData
-       withBrand:(NSString *)brandSlug
-  withStartBlock:(void (^)(void))startBlock
- withFinishBlock:(void (^)(BOOL success, NSString *resp))finishBlock
- withFailedBlock:(void (^)(BOOL success, NSString *resp))failedBlock
-
++ (void)postWithBrand:(NSString *)brandSlug
+       withStartBlock:(void (^)(void))startBlock
+      withFinishBlock:(void (^)(BOOL success, NSString *resp))finishBlock
+      withFailedBlock:(void (^)(BOOL success, NSString *resp))failedBlock
 {
     NSString *url = @"scan/post.php";
-    
-    if (!IsEmpty(photoData)) {
-        url = @"scan/postPhoto.php";
-    }
     
     __weak NSString *urlStr = [NSString stringWithFormat:@"%@%@", BASEURL, url];
     
@@ -154,6 +147,51 @@
     
     if (!IsEmpty(brandSlug)) {
         [req addPostValue:brandSlug forKey:@"brand_slug"];
+    }
+    
+    req.defaultResponseEncoding = NSUTF8StringEncoding;
+    
+    [req setCompletionBlock:^{
+        if (req.responseStatusCode == 200) {
+            finishBlock(YES, req.responseString);
+        } else {
+            failedBlock(NO, req.responseString);
+        }
+    }];
+    
+    [req setFailedBlock:^{
+        failedBlock(NO, req.responseString);
+    }];
+    
+    [req startAsynchronous];
+}
+
+/**
+ * Post Image Data to own server
+ */
++ (void)postData:(NSData *)photoData
+       withBrand:(NSString *)brandSlug
+          withId:(NSString *)idStr
+  withStartBlock:(void (^)(void))startBlock
+ withFinishBlock:(void (^)(BOOL success, NSString *resp))finishBlock
+ withFailedBlock:(void (^)(BOOL success, NSString *resp))failedBlock
+
+{
+    NSString *url = @"scan/postPhoto.php";
+    
+    __weak NSString *urlStr = [NSString stringWithFormat:@"%@%@", BASEURL, url];
+    
+    __weak ASIFormDataRequest* req = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    
+    [req setTimeOutSeconds:120];
+    [req addPostValue:[FTVUser getId] forKey:@"user_id"];
+    
+    if (!IsEmpty(brandSlug)) {
+        [req addPostValue:brandSlug forKey:@"brand_slug"];
+    }
+    
+    if (!IsEmpty(idStr)) {
+        [req addPostValue:idStr forKey:@"id"];
     }
     
     if (!IsEmpty(photoData)) {
@@ -173,11 +211,6 @@
     [req setFailedBlock:^{
         failedBlock(NO, req.responseString);
     }];
-    
-    // TODO: show progress or something...
-    //    [req setUploadSizeIncrementedBlock:^(long long size) {
-    //
-    //    }];
     
     [req startAsynchronous];
 }

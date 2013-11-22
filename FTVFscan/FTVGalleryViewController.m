@@ -196,27 +196,27 @@
         [appDelegate showModalPopupWindow];
     } else {
         // no need to post data if BRAND was failure
-        [FTVImageProcEngine postData:imageData
-                           withBrand:brand_slug
-                      withStartBlock:^{
-                          [SVProgressHUD show];
-                      } withFinishBlock:^(BOOL success, NSString *resp) {
-                          if (success) {
-                              [SVProgressHUD dismiss];
-                              
-                              NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
-                              NSLog(@"postData Execution Time: %f", executionTime);
-                              
-                              redirectUrl = [FTVImageProcEngine encapsulateById:resp];
-                              if (![redirectUrl isMalform]) {
-                                  [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
-                              }
-                          } else {
-                              [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_malform", @"Malform")];
-                          }
-                      } withFailedBlock:^(BOOL success, NSString *resp) {
-                          [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_error", @"Error")];
-                      }];
+//        [FTVImageProcEngine postData:imageData
+//                           withBrand:brand_slug
+//                      withStartBlock:^{
+//                          [SVProgressHUD show];
+//                      } withFinishBlock:^(BOOL success, NSString *resp) {
+//                          if (success) {
+//                              [SVProgressHUD dismiss];
+//                              
+//                              NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
+//                              NSLog(@"postData Execution Time: %f", executionTime);
+//                              
+//                              redirectUrl = [FTVImageProcEngine encapsulateById:resp];
+//                              if (![redirectUrl isMalform]) {
+//                                  [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
+//                              }
+//                          } else {
+//                              [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_malform", @"Malform")];
+//                          }
+//                      } withFailedBlock:^(BOOL success, NSString *resp) {
+//                          [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_error", @"Error")];
+//                      }];
     }
 }
 

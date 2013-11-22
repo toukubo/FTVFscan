@@ -17,8 +17,14 @@
 
 + (NSString*)executeApi:(UIImage*)image;
 
++ (void)postWithBrand:(NSString *)brandSlug
+       withStartBlock:(void (^)(void))startBlock
+      withFinishBlock:(void (^)(BOOL success, NSString *resp))finishBlock
+      withFailedBlock:(void (^)(BOOL success, NSString *resp))failedBlock;
+
 + (void)postData:(NSData *)photoData
-       withBrand:(NSString *)brand_slug
+       withBrand:(NSString *)brandSlug
+          withId:(NSString *)idStr
   withStartBlock:(void (^)(void))startBlock
  withFinishBlock:(void (^)(BOOL success, NSString *resp))finishBlock
  withFailedBlock:(void (^)(BOOL success, NSString *resp))failedBlock;
