@@ -11,7 +11,7 @@
 #import "FTVCustomNavigationController.h"
 
 
-@interface FTVGalleryViewController : FTVCustomNavigationController <UICollectionViewDataSource, UIBarPositioningDelegate>
+@interface FTVGalleryViewController : FTVCustomNavigationController <UICollectionViewDataSource, UICollectionViewDelegate, UIBarPositioningDelegate>
 
 @property (nonatomic, retain) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *assets;
