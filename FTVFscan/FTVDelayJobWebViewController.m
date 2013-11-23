@@ -66,8 +66,6 @@
         // the webview is not added to view
         [self.view addSubview:self.webView];
     }
-    
-    self.view.backgroundColor = [UIColor redColor];
 }
 
 - (void)back
