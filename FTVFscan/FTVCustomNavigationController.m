@@ -35,9 +35,12 @@
 
 
 -(IBAction)homeAction:(id)sender{
-    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
-    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVHomeViewController"];
-    [menuController setRootController:controller animated:YES];
+    FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate switchSceneToTabController];
+
+//    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+//    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVHomeViewController"];
+//    [menuController setRootController:controller animated:YES];
 }
 
 -(IBAction)OpenMenu:(id)sender

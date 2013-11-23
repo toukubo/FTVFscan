@@ -34,16 +34,7 @@
     // TODO: advertise SDK
     
     // Check credential
-    if ([self checkLoginCredential]) {
-        // goto home tab bar controller
-        [self switchSceneToTabController];
-        DLog(@"but true");
-    } else {
-        [self switchSceneToTabController];
-        
-        //        [self switchSceneToRegisterController];
-        DLog(@"but false. going to regist ");
-    }
+    [self switchSceneToTabController];
     
     application.statusBarHidden = YES;
     
@@ -102,8 +93,10 @@
 - (void)switchSceneToTabController
 {
     UIViewController *mvc = (UIViewController *)self.window.rootViewController;
-    FTVDelayJobWebViewController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVDelayJobWebViewController"];
-    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+
+    FTVDelayJobWebViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"FTVDelayJobWebViewController"];
+
     controller.redirectUrl = CONTENTBASE;
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
