@@ -29,7 +29,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+//do it in programing code
+//    maybe a black bar and buttons as subview on it.
+    
+    UIButton *homeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 20, 20)];
+    [homeButton setImage:[UIImage imageNamed:@"home_white.png"] forState:UIControlStateNormal];
+    [homeButton addTarget:self action:@selector(homeAction) forControlEvents:UIControlEventTouchUpInside];
+    [    self.view addSubview:homeButton];
+    
+
+    UIButton *cameraButton = [[UIButton alloc] initWithFrame:CGRectMake(40, 10, 20, 20)];
+    [cameraButton setImage:[UIImage imageNamed:@"camera_white.png"] forState:UIControlStateNormal];
+    [cameraButton addTarget:self action:@selector(cameraAction) forControlEvents:UIControlEventTouchUpInside];
+    [    self.view addSubview:cameraButton];
+    
+    
+    
+    
 	// Do any additional setup after loading the view.
+}
+
+
+- (void)cameraAction
+{
+    [self cameraAction:self];
+}
+
+- (void)homeAction
+{
+    [self homeAction:self];
 }
 
 
