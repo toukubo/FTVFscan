@@ -72,6 +72,10 @@
 
 - (void)back
 {
+    if([self.webView canGoBack])
+    {
+        [self.webView goBack];
+    }
 }
     
 
