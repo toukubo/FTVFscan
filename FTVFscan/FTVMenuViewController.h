@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FTVCustomNavigationController.h"
 
-@interface FTVMenuViewController : UIViewController<UITableViewDelegate>
+@interface FTVMenuViewController : FTVCustomNavigationController<UITableViewDelegate>
 {
     IBOutlet UITableView *menuTableView;
     NSMutableArray *menuItems;

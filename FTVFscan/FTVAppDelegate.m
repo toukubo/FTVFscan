@@ -116,18 +116,26 @@
     UIViewController *controllerRight = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVMenuViewController"];
     rootController.rightViewController = controllerRight;
     
-//    UIViewController *mvc = (UIViewController *)self.window.rootViewController;
-//    UIViewController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
-//    
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
-//    nav.navigationBar.barStyle = UIBarStyleBlack;
-//    
-//    DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:nav];
-//    _menuController = rootController;
-//	
-//    
-//    UIViewController *controllerRight = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVMenuViewController"];
-//    rootController.rightViewController = controllerRight;
+    self.window.rootViewController = rootController;
+    [self.window makeKeyAndVisible];
+}
+
+
+- (void)switchSceneToCameraController
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+    UIViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
+    
+    NSLog(@"controller = %@",controller);
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
+    nav.navigationBar.barStyle = UIBarStyleBlack;
+    
+    DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:nav];
+    _menuController = rootController;
+	
+    
+    UIViewController *controllerRight = [storyboard instantiateViewControllerWithIdentifier:@"FTVMenuViewController"];
+    rootController.rightViewController = controllerRight;
     
     self.window.rootViewController = rootController;
     [self.window makeKeyAndVisible];
@@ -192,7 +200,6 @@
     } else {
         retval = NO;
     }
-    
     //TODO: simple change retval to NO to quick test register process
     return retval;
 }

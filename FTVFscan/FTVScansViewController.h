@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FTVCustomNavigationController.h"
 
-@interface FTVScansViewController : UIViewController <UIWebViewDelegate>
+@interface FTVScansViewController : FTVCustomNavigationController <UIWebViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWebView *scansWebView;
 

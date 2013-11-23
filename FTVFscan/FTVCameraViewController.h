@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FTVCustomNavigationController.h"
 
-@interface FTVCameraViewController : UIViewController <UINavigationControllerDelegate>
+@interface FTVCameraViewController : FTVCustomNavigationController <UINavigationControllerDelegate>
 
 @property (strong) UIPopoverController *popoverHolder;
 
