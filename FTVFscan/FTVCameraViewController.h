@@ -7,13 +7,34 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "FTVCamOverlayView.h"
+
 #import "FTVCustomNavigationController.h"
 
-@interface FTVCameraViewController : FTVCustomNavigationController <UINavigationControllerDelegate>
+@class AVCamCaptureManager, AVCamPreviewView, AVCaptureVideoPreviewLayer;
+
+@interface FTVCameraViewController : FTVCustomNavigationController <FTVCamOverlayViewDelegate, UINavigationControllerDelegate>
+{
+    FTVCamOverlayView       *overlayView;
+    
+    UIImageView             *indicator;
+    
+    UIButton                *stillButton;
+    UIButton                *homeButton;
+}
+
+@property (nonatomic, retain) AVCamCaptureManager           *captureManager;
+@property (nonatomic, retain) IBOutlet UIView               *videoPreviewView;
+@property (nonatomic, retain) AVCaptureVideoPreviewLayer    *captureVideoPreviewLayer;
+@property (nonatomic, assign) id                            delegate;
+
 
 @property (strong) UIPopoverController *popoverHolder;
 
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+- (IBAction)openHome:(id)sender;
+
+- (IBAction)openGallery:(id)sender;
 
 -(IBAction)OpenMenu:(id)sender;
 @end

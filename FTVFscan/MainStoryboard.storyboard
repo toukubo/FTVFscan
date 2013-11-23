@@ -124,23 +124,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="aaQ-bu-HIt">
-                                <rect key="frame" x="0.0" y="45" width="320" height="523"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7PC-q3-PRG">
-                                <rect key="frame" x="129" y="11" width="80" height="21"/>
+                            <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="0xr-Zd-tpX">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="21"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" id="ulc-Nu-cde">
-                                <rect key="frame" x="-1" y="5" width="321" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fZW-AH-ibh">
-                                        <rect key="frame" x="4" y="-5" width="37" height="42"/>
+                                        <rect key="frame" x="4" y="-1" width="37" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
                                         <state key="normal" image="home_white.png">
@@ -148,23 +142,23 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="homeAction:" destination="N9c-jv-3Vk" eventType="touchUpInside" id="BJL-vY-GbS"/>
+                                            <action selector="openHome:" destination="N9c-jv-3Vk" eventType="touchUpInside" id="SJI-7y-mPB"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="O5r-jY-9Sf">
-                                        <rect key="frame" x="51" y="0.0" width="34" height="34"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="O5r-jY-9Sf">
+                                        <rect key="frame" x="49" y="3" width="34" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="camera-icon">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
+                                        <state key="normal" backgroundImage="camera-icon"/>
+                                        <connections>
+                                            <action selector="openGallery:" destination="N9c-jv-3Vk" eventType="touchUpInside" id="xhs-9W-J1q"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title.png" id="u56-Es-lcL">
-                                        <rect key="frame" x="95" y="1" width="149" height="29"/>
+                                        <rect key="frame" x="98" y="5" width="149" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="h17-zo-0LC">
-                                        <rect key="frame" x="277" y="1" width="35" height="30"/>
+                                        <rect key="frame" x="277" y="5" width="35" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="menuIcon.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -181,15 +175,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="XMb-aZ-Q3r"/>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="imageView" destination="aaQ-bu-HIt" id="5kg-QM-UeO"/>
+                        <outlet property="videoPreviewView" destination="0xr-Zd-tpX" id="AgO-3E-kdh"/>
                         <segue destination="B7h-6y-4Tk" kind="modal" identifier="presentDelayJobWebViewController" id="imu-oV-QJI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fn-bg-ZIc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="150" y="-559"/>
+            <point key="canvasLocation" x="274" y="-223"/>
         </scene>
         <!--Gallery View Controller-->
         <scene sceneID="Pjc-xg-WUr">
@@ -200,7 +193,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="IIZ-Du-x8w">
-                                <rect key="frame" x="0.0" y="44" width="320" height="476"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6ZV-rg-5sC">
                                     <size key="itemSize" width="72" height="74"/>
@@ -276,7 +269,6 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="IIZ-Du-x8w" id="sQV-wK-Vc3"/>
                         <segue destination="B7h-6y-4Tk" kind="modal" identifier="presentDelayJobWebViewController" id="OU8-Ov-bC0"/>
@@ -284,7 +276,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XWl-UR-4E8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="611" y="-532"/>
+            <point key="canvasLocation" x="307" y="-904"/>
         </scene>
         <!--Delay Job Web View Controller-->
         <scene sceneID="oYl-3E-Imx">
@@ -386,22 +378,6 @@
             </objects>
             <point key="canvasLocation" x="-399" y="-546"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="7Cc-Ry-aIe">
-            <objects>
-                <tabBarController storyboardIdentifier="ftvTabController" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Z2P-zm-HSX" sceneMemberID="viewController">
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="nye-v3-8Is">
-                        <rect key="frame" x="0.0" y="431" width="320" height="49"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iwV-Xn-P0S" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-64" y="194"/>
-        </scene>
         <!--Register View Controller-->
         <scene sceneID="oWj-It-dmg">
             <objects>
@@ -459,7 +435,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" id="sd7-Hk-MBh">
-                                <rect key="frame" x="0.0" y="63" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="63" width="320" height="505"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -519,7 +495,7 @@
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1463" y="903"/>
+            <point key="canvasLocation" x="1523" y="187"/>
         </scene>
         <!--Brands View Controller-->
         <scene sceneID="e7w-tO-jhr">
@@ -538,7 +514,7 @@
                                 </connections>
                             </webView>
                             <view contentMode="scaleToFill" id="Mvu-79-Sgs">
-                                <rect key="frame" x="-1" y="2" width="321" height="37"/>
+                                <rect key="frame" x="0.0" y="0.0" width="321" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LnF-Ix-hJN">
@@ -584,14 +560,13 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="brandsWebView" destination="Bl3-xI-RMC" id="ilJ-7V-hiP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4C-HJ-KfY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="782" y="194"/>
+            <point key="canvasLocation" x="794" y="290"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="V6S-Jm-5Um">
@@ -609,7 +584,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oXp-dE-xD5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1162" y="-532"/>
+            <point key="canvasLocation" x="962" y="-652"/>
         </scene>
     </scenes>
     <resources>
@@ -627,6 +602,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="OU8-Ov-bC0"/>
+        <segue reference="imu-oV-QJI"/>
     </inferredMetricsTieBreakers>
 </document>
