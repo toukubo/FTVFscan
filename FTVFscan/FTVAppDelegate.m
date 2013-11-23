@@ -102,7 +102,9 @@
 - (void)switchSceneToTabController
 {
     UIViewController *mvc = (UIViewController *)self.window.rootViewController;
-    UIViewController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
+    FTVDelayJobWebViewController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVDelayJobWebViewController"];
+    
+    controller.redirectUrl = CONTENTBASE;
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
     nav.navigationBar.barStyle = UIBarStyleBlack;
@@ -113,6 +115,19 @@
     
     UIViewController *controllerRight = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVMenuViewController"];
     rootController.rightViewController = controllerRight;
+    
+//    UIViewController *mvc = (UIViewController *)self.window.rootViewController;
+//    UIViewController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
+//    
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
+//    nav.navigationBar.barStyle = UIBarStyleBlack;
+//    
+//    DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:nav];
+//    _menuController = rootController;
+//	
+//    
+//    UIViewController *controllerRight = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVMenuViewController"];
+//    rootController.rightViewController = controllerRight;
     
     self.window.rootViewController = rootController;
     [self.window makeKeyAndVisible];

@@ -15,6 +15,8 @@
     #define BASEURL @"http://zxc.cz/fscan-web/"
 #endif
 
+#define CONTENTBASE @"http://zxc.cz/fdbdev/"
+
 #define IPHONE_HEIGHT 480
 #define MAX_PAGE      10
 

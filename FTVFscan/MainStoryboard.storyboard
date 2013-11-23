@@ -206,7 +206,7 @@
         <!--Delay Job Web View Controller-->
         <scene sceneID="oYl-3E-Imx">
             <objects>
-                <viewController id="7zf-zb-wVJ" customClass="FTVDelayJobWebViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FTVDelayJobWebViewController" id="7zf-zb-wVJ" customClass="FTVDelayJobWebViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NO3-Fj-Lln">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -399,7 +399,7 @@
     </scenes>
     <resources>
         <image name="camera-icon" width="30" height="30"/>
-        <image name="drawer-head-logo.png" width="194" height="36"/>
+        <image name="drawer-head-logo.png" width="208" height="34"/>
         <image name="menuIcon.png" width="35" height="30"/>
         <image name="scans-icon" width="18" height="16"/>
     </resources>
@@ -409,6 +409,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mxQ-qu-xUd"/>
+        <segue reference="imu-oV-QJI"/>
     </inferredMetricsTieBreakers>
 </document>

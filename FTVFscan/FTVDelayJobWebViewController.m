@@ -46,6 +46,14 @@
     [self.webView setDelegate:self];
     
     self.navigationController.navigationBarHidden = NO;
+    self.webView.scalesPageToFit = YES;
+    
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setFrame:CGRectMake(0, 0, 45, 45)];
+    [backButton setTitle:@"back" forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    
     
     if (redirectUrl != nil) {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:redirectUrl]];
@@ -61,6 +69,11 @@
     
     self.view.backgroundColor = [UIColor redColor];
 }
+
+- (void)back
+{
+}
+    
 
 - (void)didReceiveMemoryWarning
 {

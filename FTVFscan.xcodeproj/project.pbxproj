@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2214388D184084920017FF04 /* drawer-head-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2214388C184084920017FF04 /* drawer-head-logo.png */; };
 		39153DA7182250F100F3C9D0 /* RTSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39153DA518224DBB00F3C9D0 /* RTSearchKit.framework */; };
 		39153DAB1822522200F3C9D0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39153DAA1822522200F3C9D0 /* CoreVideo.framework */; };
 		39153DAD1822522A00F3C9D0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39153DAC1822522A00F3C9D0 /* CoreMedia.framework */; };
@@ -41,7 +42,6 @@
 		39F4936C1821427E00093167 /* QuartzUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = 39F493661821427E00093167 /* QuartzUtils.c */; };
 		39F4936D1821427E00093167 /* REString.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F493691821427E00093167 /* REString.m */; };
 		39F4936E1821427E00093167 /* StringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F4936B1821427E00093167 /* StringUtil.m */; };
-		47A059B8183FA29300280A68 /* drawer-head-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 47A059B7183FA29300280A68 /* drawer-head-logo.png */; };
 		809377F4B37548E694C80943 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17EB1EFD5A21421C90C01507 /* libPods.a */; };
 		8465C63B17F5D1B500A00460 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63A17F5D1B500A00460 /* Foundation.framework */; };
 		8465C63D17F5D1B500A00460 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63C17F5D1B500A00460 /* CoreGraphics.framework */; };
@@ -102,6 +102,7 @@
 
 /* Begin PBXFileReference section */
 		17EB1EFD5A21421C90C01507 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2214388C184084920017FF04 /* drawer-head-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-head-logo.png"; sourceTree = "<group>"; };
 		39153DA518224DBB00F3C9D0 /* RTSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RTSearchKit.framework; sourceTree = "<group>"; };
 		39153DAA1822522200F3C9D0 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		39153DAC1822522A00F3C9D0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -164,7 +165,6 @@
 		39F4936A1821427E00093167 /* StringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtil.h; sourceTree = "<group>"; };
 		39F4936B1821427E00093167 /* StringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtil.m; sourceTree = "<group>"; };
 		4756BE2E181EA80500B39EB7 /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
-		47A059B7183FA29300280A68 /* drawer-head-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "drawer-head-logo.png"; path = "../../../Desktop/drawer-head-logo.png"; sourceTree = "<group>"; };
 		47C61B931824181E00DF9125 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		47C61B941824181E00DF9125 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		62E03682EDFA4EAAB4576DB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -497,12 +497,12 @@
 		DEB4B8441821A0AB0050FA49 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2214388C184084920017FF04 /* drawer-head-logo.png */,
 				DEED1715183DE40200FDC8C8 /* drawer-delegate.png */,
 				DEED170D183DE3E500FDC8C8 /* drawer-album-label.png */,
 				DEED170E183DE3E500FDC8C8 /* drawer-brands-label.png */,
 				DEED170F183DE3E500FDC8C8 /* drawer-history-label.png */,
 				DEED1710183DE3E500FDC8C8 /* drawer-tour-label.png */,
-				47A059B7183FA29300280A68 /* drawer-head-logo.png */,
 				DE16337A183B4EB9007EF946 /* menuIcon.png */,
 				DE16337B183B4EB9007EF946 /* menuIcon@2x.png */,
 				395AFD6D183C90A00093E0A4 /* go-camera.png */,
@@ -628,10 +628,10 @@
 				8465C64517F5D1B500A00460 /* InfoPlist.strings in Resources */,
 				DE16337D183B4EB9007EF946 /* menuIcon@2x.png in Resources */,
 				3964FC56182A6D590035B187 /* MainStoryboard.storyboard in Resources */,
-				47A059B8183FA29300280A68 /* drawer-head-logo.png in Resources */,
 				395AFD70183C90A00093E0A4 /* home.png in Resources */,
 				DEED1714183DE3E500FDC8C8 /* drawer-tour-label.png in Resources */,
 				DEB4B8541821A0D70050FA49 /* gallery-icon@2x.png in Resources */,
+				2214388D184084920017FF04 /* drawer-head-logo.png in Resources */,
 				39B391AC182782A300BD2D3B /* NEC_old.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -856,8 +856,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhibodang Inc. (A5WV6BRVF2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhibodang Inc. (A5WV6BRVF2)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -908,8 +908,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhibodang Inc. (A5WV6BRVF2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhibodang Inc. (A5WV6BRVF2)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
