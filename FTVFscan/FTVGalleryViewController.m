@@ -193,33 +193,45 @@
     NSLog(@"executeApi Execution Time: %f", executionTime);
     
     if (IsEmpty(brand_slug) || [brand_slug isEqualToString:@"failure"]) {
-        [appDelegate showModalPopupWindow];
+        [appDelegate performSelectorOnMainThread:@selector(showModalPopupWindow) withObject:nil waitUntilDone:NO];
     } else {
+        NSDate *start = [NSDate date];
         // no need to post data if BRAND was failure
-//        [FTVImageProcEngine postData:imageData
-//                           withBrand:brand_slug
-//                      withStartBlock:^{
-//                          [SVProgressHUD show];
-//                      } withFinishBlock:^(BOOL success, NSString *resp) {
-//                          if (success) {
-//                              [SVProgressHUD dismiss];
-//                              
-//                              NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
-//                              NSLog(@"postData Execution Time: %f", executionTime);
-//                              
-//                              redirectUrl = [FTVImageProcEngine encapsulateById:resp];
-//                              if (![redirectUrl isMalform]) {
-//                                  [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
-//                              }
-//                          } else {
-//                              [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_malform", @"Malform")];
-//                          }
-//                      } withFailedBlock:^(BOOL success, NSString *resp) {
-//                          [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_error", @"Error")];
-//                      }];
+        // step 1 - post brand slug, and get response for "id=xxx"
+        [FTVImageProcEngine postWithBrand:brand_slug
+                           withStartBlock:^{
+                           } withFinishBlock:^(BOOL success, NSString *resp) {
+                               if (success) {
+                                   NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
+                                   NSLog(@"postData Execution Time: %f", executionTime);
+                                   
+                                   // step 2 - post image data
+                                   [FTVImageProcEngine postData:imageData
+                                                      withBrand:brand_slug
+                                                         withId:resp
+                                                 withStartBlock:nil
+                                                withFinishBlock:^(BOOL success, NSString *resp) {
+                                                    // TODO: should we do some extra stuff here?
+                                                } withFailedBlock:^(BOOL success, NSString *resp) {
+                                                    //
+                                                }];
+                                   
+                                   redirectUrl = [FTVImageProcEngine encapsulateById:resp];
+                                   if (![redirectUrl isMalform]) {
+                                       [self performSelectorOnMainThread:@selector(switchSceneToResultController) withObject:nil waitUntilDone:NO];
+                                   }
+                               }
+                           } withFailedBlock:^(BOOL success, NSString *resp) {
+                           }];
+        
+        DLog(@"IMG: W - %0.f px, H - %0.f px", pickedImage.size.width, pickedImage.size.height);
     }
 }
 
+- (void)switchSceneToResultController
+{
+    [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
