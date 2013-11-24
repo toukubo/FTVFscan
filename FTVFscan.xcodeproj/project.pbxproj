@@ -92,7 +92,8 @@
 		DEED1714183DE3E500FDC8C8 /* drawer-tour-label.png in Resources */ = {isa = PBXBuildFile; fileRef = DEED1710183DE3E500FDC8C8 /* drawer-tour-label.png */; };
 		DEED1716183DE40200FDC8C8 /* drawer-delegate.png in Resources */ = {isa = PBXBuildFile; fileRef = DEED1715183DE40200FDC8C8 /* drawer-delegate.png */; };
 		DEFFD1A1183E8356004BBE1A /* NarzissText-Bold.otf in Sources */ = {isa = PBXBuildFile; fileRef = DE249176183E800B00CE97FC /* NarzissText-Bold.otf */; };
-		DEFFD1A61841B5BD004BBE1A /* AVCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFFD1A51841B5BD004BBE1A /* AVCamViewController.m */; };
+		DEFFD1A61841B5BD004BBE1A /* AVCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFFD1A51841B5BD004BBE1A /* AVCamViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DEFFD1C51841BBDF004BBE1A /* AVCamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEFFD1C41841BBDE004BBE1A /* AVCamViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -240,6 +241,8 @@
 		DEED1710183DE3E500FDC8C8 /* drawer-tour-label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-tour-label.png"; sourceTree = "<group>"; };
 		DEED1715183DE40200FDC8C8 /* drawer-delegate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-delegate.png"; sourceTree = "<group>"; };
 		DEFFD1A51841B5BD004BBE1A /* AVCamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamViewController.m; sourceTree = "<group>"; };
+		DEFFD1C31841BBDE004BBE1A /* AVCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamViewController.h; sourceTree = "<group>"; };
+		DEFFD1C41841BBDE004BBE1A /* AVCamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVCamViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +289,8 @@
 		395AFD71183C92520093E0A4 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				DEFFD1C31841BBDE004BBE1A /* AVCamViewController.h */,
+				DEFFD1C41841BBDE004BBE1A /* AVCamViewController.xib */,
 				DEFFD1A51841B5BD004BBE1A /* AVCamViewController.m */,
 				395AFD72183C92520093E0A4 /* AVCamCaptureManager.h */,
 				395AFD73183C92520093E0A4 /* AVCamCaptureManager.m */,
@@ -633,6 +638,7 @@
 				23DC1BD41840DF2500B9FAEA /* camera_white.png in Resources */,
 				23DC1BD61840E32D00B9FAEA /* backButton.png in Resources */,
 				DEB4B8501821A0D70050FA49 /* bookmark-icon@2x.png in Resources */,
+				DEFFD1C51841BBDF004BBE1A /* AVCamViewController.xib in Resources */,
 				DEED1713183DE3E500FDC8C8 /* drawer-history-label.png in Resources */,
 				DEED1711183DE3E500FDC8C8 /* drawer-album-label.png in Resources */,
 				23DC1BD01840DF2500B9FAEA /* title.png in Resources */,

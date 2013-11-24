@@ -12,6 +12,7 @@
 #import "MSNavigationPaneViewController.h"
 #import "DDMenuController.h"
 #import "AVCamCaptureManager.h"
+#import "AVCamViewController.h"
 
 static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 
