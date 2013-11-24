@@ -228,12 +228,16 @@
         NSString *action = [urlString stringByReplacingOccurrencesOfString:@".action" withString:@""];
         
         // Todo: gailya need to confirm the way to load the camera/gallery with drawer
-        if ([action isEqualToString:@"Camera"]) {
-            DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
-            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
-            [menuController setRootController:controller animated:YES];
+        if ([action hasSuffix:@"Camera"]) {
+
+//            DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+//            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
+//            [menuController setRootController:controller animated:YES];
+            FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            [appDelegate switchSceneToCameraController];
+
         }
-        else if([action isEqualToString:@"Gallery"])
+        else if([action hasSuffix:@"Gallery"])
         {
             DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
             UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVGalleryViewController"];
