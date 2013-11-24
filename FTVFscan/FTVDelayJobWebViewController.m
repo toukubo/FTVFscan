@@ -82,6 +82,15 @@
         // the webview is not added to view
         [self.view addSubview:self.webView];
     }
+    
+    self.statusBackground = [[UIView alloc]initWithFrame:self.view.frame];
+    [self.statusBackground setBackgroundColor:[UIColor grayColor]];
+    [self.statusBackground setAlpha:0.5];
+    self.busyIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    self.busyIndicator.center = self.statusBackground.center;
+    [self.view addSubview:self.statusBackground];
+    [self.view addSubview:self.busyIndicator];
+    [self.statusBackground setHidden:YES];
 }
 
 - (void)cameraAction
@@ -122,12 +131,26 @@
 #pragma mark - UIWebView Delegate
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [SVProgressHUD show];
+//    [SVProgressHUD show];
+    [self statusIndicatorShow];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [SVProgressHUD dismiss];
+//    [SVProgressHUD dismiss];
+    [self statusIndicatorHide];
+}
+
+- (void)statusIndicatorShow
+{
+    [self.statusBackground setHidden:NO];
+    [self.busyIndicator startAnimating];
+}
+
+- (void)statusIndicatorHide
+{
+    [self.statusBackground setHidden:YES];
+    [self.busyIndicator stopAnimating];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
