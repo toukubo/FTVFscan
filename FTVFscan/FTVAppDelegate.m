@@ -34,37 +34,28 @@
     // TODO: advertise SDK
     
     // Check credential
-    if ([self checkLoginCredential]) {
-        // goto home tab bar controller
-        [self switchSceneToTabController];
-        DLog(@"but true");
-    } else {
-//        [self switchSceneToTabController];
-
-        [self switchSceneToRegisterController];
-        DLog(@"but false. going to regist ");
-    }
+    [self switchSceneToTabController];
     
     application.statusBarHidden = YES;
     
     // set selected tab image tint color, dont use setTintColor directly, which will make whole bar to be rendered
-//    [[UITabBar appearance] setSelectedImageTintColor:[ColorUtil colorWithHexString:@"FF0080"]];
-//    
-//    // http://stackoverflow.com/a/19029973
-//    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7")) {
-//        /*
-//         The behavior of tintColor for bars has changed on iOS 7.0. It no longer affects the bar's background
-//         and behaves as described for the tintColor property added to UIView.
-//         To tint the bar's background, please use -barTintColor.
-//         */
-//        [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
-//        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-//    } else {
-//        /*
-//         * ios 5 - 6
-//         */
-//        [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
-//    }
+    //    [[UITabBar appearance] setSelectedImageTintColor:[ColorUtil colorWithHexString:@"FF0080"]];
+    //
+    //    // http://stackoverflow.com/a/19029973
+    //    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7")) {
+    //        /*
+    //         The behavior of tintColor for bars has changed on iOS 7.0. It no longer affects the bar's background
+    //         and behaves as described for the tintColor property added to UIView.
+    //         To tint the bar's background, please use -barTintColor.
+    //         */
+    //        [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+    //        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    //    } else {
+    //        /*
+    //         * ios 5 - 6
+    //         */
+    //        [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+    //    }
     
     return YES;
 }
@@ -102,10 +93,14 @@
 - (void)switchSceneToTabController
 {
     UIViewController *mvc = (UIViewController *)self.window.rootViewController;
-    UIViewController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
 
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
-//    nav.navigationBar.barStyle = UIBarStyleBlack;
+    FTVDelayJobWebViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"FTVDelayJobWebViewController"];
+
+    controller.redirectUrl = CONTENTBASE;
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
+    nav.navigationBar.barStyle = UIBarStyleBlack;
     
     DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:controller];
     _menuController = rootController;
@@ -119,12 +114,33 @@
 }
 
 
+- (void)switchSceneToCameraController
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+    UIViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
+    
+    NSLog(@"controller = %@",controller);
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
+    nav.navigationBar.barStyle = UIBarStyleBlack;
+    
+    DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:nav];
+    _menuController = rootController;
+	
+    
+    UIViewController *controllerRight = [storyboard instantiateViewControllerWithIdentifier:@"FTVMenuViewController"];
+    rootController.rightViewController = controllerRight;
+    
+    self.window.rootViewController = rootController;
+    [self.window makeKeyAndVisible];
+}
+
+
 -(void)setViewFromMenu:(NSString *)storyBoardId
 {
-//    UIViewController *mvc = (UIViewController *)self.window.rootViewController;
-//    UIViewController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVTourViewController"];
-//    [self.navigationPaneViewController setPaneViewController:controller];
-//    [self.navigationPaneViewController setPaneState:MSNavigationPaneStateClosed animated:YES completion:nil];
+    //    UIViewController *mvc = (UIViewController *)self.window.rootViewController;
+    //    UIViewController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVTourViewController"];
+    //    [self.navigationPaneViewController setPaneViewController:controller];
+    //    [self.navigationPaneViewController setPaneState:MSNavigationPaneStateClosed animated:YES completion:nil];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -169,7 +185,7 @@
 	NSURLResponse *response;
 	NSError *error;
 	NSData *dataReplay = [NSURLConnection sendSynchronousRequest:request
-									   returningResponse:&response error:&error];
+                                               returningResponse:&response error:&error];
 	NSString *receivedString = [[NSString alloc] initWithData:dataReplay encoding:NSUTF8StringEncoding];
 	DLog(@"%@", receivedString);
     if ([receivedString isEqualToString:@"true"]) {
@@ -177,7 +193,6 @@
     } else {
         retval = NO;
     }
-    
     //TODO: simple change retval to NO to quick test register process
     return retval;
 }
@@ -194,10 +209,9 @@
     
     [vc loadUrl:url];
     
-    [[KGModal sharedInstance] showWithContentView:contentView andAnimated:YES];
+//    [[KGModal sharedInstance] showWithContentView:contentView andAnimated:YES];
 //    [self.window.rootViewController addChildViewController:vc];
     
-    // This 3 lines of code will add the vc ViewController To the Window. Whenever it needs to show any viewController just use this code
     DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
     [menuController setRootViewController:vc];
     [menuController showRootController:YES];

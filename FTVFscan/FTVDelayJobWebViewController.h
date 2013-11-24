@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FTVCustomNavigationController.h"
 
-@interface FTVDelayJobWebViewController : UIViewController<UIWebViewDelegate>
+@interface FTVDelayJobWebViewController : FTVCustomNavigationController<UIWebViewDelegate>
 
 @property (nonatomic, retain) NSString *redirectUrl;
 @property (nonatomic, retain) IBOutlet UIWebView *webView;

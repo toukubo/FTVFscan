@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2214388D184084920017FF04 /* drawer-head-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2214388C184084920017FF04 /* drawer-head-logo.png */; };
+		23DC1BD01840DF2500B9FAEA /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DC1BC91840DF2500B9FAEA /* title.png */; };
+		23DC1BD11840DF2500B9FAEA /* home_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DC1BCA1840DF2500B9FAEA /* home_white.png */; };
+		23DC1BD21840DF2500B9FAEA /* FTVHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DC1BCB1840DF2500B9FAEA /* FTVHomeViewController.m */; };
+		23DC1BD31840DF2500B9FAEA /* FTVCustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DC1BCD1840DF2500B9FAEA /* FTVCustomNavigationController.m */; };
+		23DC1BD41840DF2500B9FAEA /* camera_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DC1BCF1840DF2500B9FAEA /* camera_white.png */; };
+		23DC1BD61840E32D00B9FAEA /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DC1BD51840E32D00B9FAEA /* backButton.png */; };
 		39153DA7182250F100F3C9D0 /* RTSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39153DA518224DBB00F3C9D0 /* RTSearchKit.framework */; };
 		39153DAB1822522200F3C9D0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39153DAA1822522200F3C9D0 /* CoreVideo.framework */; };
 		39153DAD1822522A00F3C9D0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39153DAC1822522A00F3C9D0 /* CoreMedia.framework */; };
@@ -16,8 +23,6 @@
 		395AFD70183C90A00093E0A4 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 395AFD6E183C90A00093E0A4 /* home.png */; };
 		395AFD84183C92520093E0A4 /* AVCamCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 395AFD73183C92520093E0A4 /* AVCamCaptureManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		395AFD85183C92520093E0A4 /* AVCamUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 395AFD75183C92520093E0A4 /* AVCamUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		395AFD86183C92520093E0A4 /* AVCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395AFD77183C92520093E0A4 /* AVCamViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		395AFD87183C92520093E0A4 /* AVCamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 395AFD78183C92520093E0A4 /* AVCamViewController.xib */; };
 		395AFD88183C92520093E0A4 /* FTVCamOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 395AFD7A183C92520093E0A4 /* FTVCamOverlayView.m */; };
 		395AFD89183C92520093E0A4 /* Debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 395AFD7C183C92520093E0A4 /* Debug.c */; };
 		395AFD8A183C92520093E0A4 /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 395AFD7F183C92520093E0A4 /* EAGLView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -70,7 +75,6 @@
 		DE16337D183B4EB9007EF946 /* menuIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE16337B183B4EB9007EF946 /* menuIcon@2x.png */; };
 		DE163383183B617A007EF946 /* DDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163382183B617A007EF946 /* DDMenuController.m */; };
 		DE163386183B665A007EF946 /* FTVMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163385183B665A007EF946 /* FTVMenuViewController.m */; };
-		DE239ADE183DDEB200D38545 /* drawer-head-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DE239ADD183DDEB200D38545 /* drawer-head-logo.png */; };
 		DE249177183E800B00CE97FC /* NarzissText-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE249176183E800B00CE97FC /* NarzissText-Bold.otf */; };
 		DEB4B84F1821A0D70050FA49 /* bookmark-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8451821A0D70050FA49 /* bookmark-icon.png */; };
 		DEB4B8501821A0D70050FA49 /* bookmark-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8461821A0D70050FA49 /* bookmark-icon@2x.png */; };
@@ -88,6 +92,7 @@
 		DEED1714183DE3E500FDC8C8 /* drawer-tour-label.png in Resources */ = {isa = PBXBuildFile; fileRef = DEED1710183DE3E500FDC8C8 /* drawer-tour-label.png */; };
 		DEED1716183DE40200FDC8C8 /* drawer-delegate.png in Resources */ = {isa = PBXBuildFile; fileRef = DEED1715183DE40200FDC8C8 /* drawer-delegate.png */; };
 		DEFFD1A1183E8356004BBE1A /* NarzissText-Bold.otf in Sources */ = {isa = PBXBuildFile; fileRef = DE249176183E800B00CE97FC /* NarzissText-Bold.otf */; };
+		DEFFD1A61841B5BD004BBE1A /* AVCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFFD1A51841B5BD004BBE1A /* AVCamViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +107,15 @@
 
 /* Begin PBXFileReference section */
 		17EB1EFD5A21421C90C01507 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2214388C184084920017FF04 /* drawer-head-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-head-logo.png"; sourceTree = "<group>"; };
+		23DC1BC91840DF2500B9FAEA /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
+		23DC1BCA1840DF2500B9FAEA /* home_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_white.png; sourceTree = "<group>"; };
+		23DC1BCB1840DF2500B9FAEA /* FTVHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVHomeViewController.m; sourceTree = "<group>"; };
+		23DC1BCC1840DF2500B9FAEA /* FTVHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVHomeViewController.h; sourceTree = "<group>"; };
+		23DC1BCD1840DF2500B9FAEA /* FTVCustomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVCustomNavigationController.m; sourceTree = "<group>"; };
+		23DC1BCE1840DF2500B9FAEA /* FTVCustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVCustomNavigationController.h; sourceTree = "<group>"; };
+		23DC1BCF1840DF2500B9FAEA /* camera_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_white.png; sourceTree = "<group>"; };
+		23DC1BD51840E32D00B9FAEA /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
 		39153DA518224DBB00F3C9D0 /* RTSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RTSearchKit.framework; sourceTree = "<group>"; };
 		39153DAA1822522200F3C9D0 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		39153DAC1822522A00F3C9D0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -114,9 +128,6 @@
 		395AFD73183C92520093E0A4 /* AVCamCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamCaptureManager.m; sourceTree = "<group>"; };
 		395AFD74183C92520093E0A4 /* AVCamUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamUtilities.h; sourceTree = "<group>"; };
 		395AFD75183C92520093E0A4 /* AVCamUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamUtilities.m; sourceTree = "<group>"; };
-		395AFD76183C92520093E0A4 /* AVCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamViewController.h; sourceTree = "<group>"; };
-		395AFD77183C92520093E0A4 /* AVCamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamViewController.m; sourceTree = "<group>"; };
-		395AFD78183C92520093E0A4 /* AVCamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVCamViewController.xib; sourceTree = "<group>"; };
 		395AFD79183C92520093E0A4 /* FTVCamOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVCamOverlayView.h; sourceTree = "<group>"; };
 		395AFD7A183C92520093E0A4 /* FTVCamOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVCamOverlayView.m; sourceTree = "<group>"; };
 		395AFD7C183C92520093E0A4 /* Debug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Debug.c; sourceTree = "<group>"; };
@@ -212,7 +223,6 @@
 		DE163382183B617A007EF946 /* DDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMenuController.m; sourceTree = "<group>"; };
 		DE163384183B665A007EF946 /* FTVMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVMenuViewController.h; sourceTree = "<group>"; };
 		DE163385183B665A007EF946 /* FTVMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVMenuViewController.m; sourceTree = "<group>"; };
-		DE239ADD183DDEB200D38545 /* drawer-head-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-head-logo.png"; sourceTree = "<group>"; };
 		DE249176183E800B00CE97FC /* NarzissText-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NarzissText-Bold.otf"; sourceTree = "<group>"; };
 		DEB4B8451821A0D70050FA49 /* bookmark-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark-icon.png"; sourceTree = "<group>"; };
 		DEB4B8461821A0D70050FA49 /* bookmark-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark-icon@2x.png"; sourceTree = "<group>"; };
@@ -229,6 +239,7 @@
 		DEED170F183DE3E500FDC8C8 /* drawer-history-label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-history-label.png"; sourceTree = "<group>"; };
 		DEED1710183DE3E500FDC8C8 /* drawer-tour-label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-tour-label.png"; sourceTree = "<group>"; };
 		DEED1715183DE40200FDC8C8 /* drawer-delegate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-delegate.png"; sourceTree = "<group>"; };
+		DEFFD1A51841B5BD004BBE1A /* AVCamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,13 +286,11 @@
 		395AFD71183C92520093E0A4 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				DEFFD1A51841B5BD004BBE1A /* AVCamViewController.m */,
 				395AFD72183C92520093E0A4 /* AVCamCaptureManager.h */,
 				395AFD73183C92520093E0A4 /* AVCamCaptureManager.m */,
 				395AFD74183C92520093E0A4 /* AVCamUtilities.h */,
 				395AFD75183C92520093E0A4 /* AVCamUtilities.m */,
-				395AFD76183C92520093E0A4 /* AVCamViewController.h */,
-				395AFD77183C92520093E0A4 /* AVCamViewController.m */,
-				395AFD78183C92520093E0A4 /* AVCamViewController.xib */,
 				395AFD79183C92520093E0A4 /* FTVCamOverlayView.h */,
 				395AFD7A183C92520093E0A4 /* FTVCamOverlayView.m */,
 				395AFD7B183C92520093E0A4 /* ImageProcessing */,
@@ -411,6 +420,10 @@
 				8465C67917F5D74C00A00460 /* FTVBrandsViewController.m */,
 				DE163384183B665A007EF946 /* FTVMenuViewController.h */,
 				DE163385183B665A007EF946 /* FTVMenuViewController.m */,
+				23DC1BCB1840DF2500B9FAEA /* FTVHomeViewController.m */,
+				23DC1BCC1840DF2500B9FAEA /* FTVHomeViewController.h */,
+				23DC1BCD1840DF2500B9FAEA /* FTVCustomNavigationController.m */,
+				23DC1BCE1840DF2500B9FAEA /* FTVCustomNavigationController.h */,
 				8465C65517F5D1B500A00460 /* Images.xcassets */,
 				8465C64117F5D1B500A00460 /* Supporting Files */,
 			);
@@ -497,12 +510,16 @@
 		DEB4B8441821A0AB0050FA49 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				23DC1BD51840E32D00B9FAEA /* backButton.png */,
+				23DC1BC91840DF2500B9FAEA /* title.png */,
+				23DC1BCA1840DF2500B9FAEA /* home_white.png */,
+				23DC1BCF1840DF2500B9FAEA /* camera_white.png */,
+				2214388C184084920017FF04 /* drawer-head-logo.png */,
 				DEED1715183DE40200FDC8C8 /* drawer-delegate.png */,
 				DEED170D183DE3E500FDC8C8 /* drawer-album-label.png */,
 				DEED170E183DE3E500FDC8C8 /* drawer-brands-label.png */,
 				DEED170F183DE3E500FDC8C8 /* drawer-history-label.png */,
 				DEED1710183DE3E500FDC8C8 /* drawer-tour-label.png */,
-				DE239ADD183DDEB200D38545 /* drawer-head-logo.png */,
 				DE16337A183B4EB9007EF946 /* menuIcon.png */,
 				DE16337B183B4EB9007EF946 /* menuIcon@2x.png */,
 				395AFD6D183C90A00093E0A4 /* go-camera.png */,
@@ -571,9 +588,6 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = T2;
 				TargetAttributes = {
-					8465C63617F5D1B500A00460 = {
-						DevelopmentTeam = 6367C7KA72;
-					};
 					8465C65A17F5D1B600A00460 = {
 						TestTargetID = 8465C63617F5D1B500A00460;
 					};
@@ -609,29 +623,32 @@
 				DEB4B8531821A0D70050FA49 /* gallery-icon.png in Resources */,
 				DEED1716183DE40200FDC8C8 /* drawer-delegate.png in Resources */,
 				8465C65617F5D1B500A00460 /* Images.xcassets in Resources */,
+				23DC1BD11840DF2500B9FAEA /* home_white.png in Resources */,
 				DE249177183E800B00CE97FC /* NarzissText-Bold.otf in Resources */,
 				DEB4B8521821A0D70050FA49 /* camera-icon@2x.png in Resources */,
 				39B391AB182782A300BD2D3B /* NEC_new.jpg in Resources */,
 				DEB4B8561821A0D70050FA49 /* list-icon@2x.png in Resources */,
 				DEB4B8551821A0D70050FA49 /* list-icon.png in Resources */,
 				DEED1712183DE3E500FDC8C8 /* drawer-brands-label.png in Resources */,
+				23DC1BD41840DF2500B9FAEA /* camera_white.png in Resources */,
+				23DC1BD61840E32D00B9FAEA /* backButton.png in Resources */,
 				DEB4B8501821A0D70050FA49 /* bookmark-icon@2x.png in Resources */,
 				DEED1713183DE3E500FDC8C8 /* drawer-history-label.png in Resources */,
 				DEED1711183DE3E500FDC8C8 /* drawer-album-label.png in Resources */,
+				23DC1BD01840DF2500B9FAEA /* title.png in Resources */,
 				DEB4B8511821A0D70050FA49 /* camera-icon.png in Resources */,
 				DEB4B8571821A0D70050FA49 /* tour-icon.png in Resources */,
 				395AFD6F183C90A00093E0A4 /* go-camera.png in Resources */,
 				DEB4B8581821A0D70050FA49 /* tour-icon@2x.png in Resources */,
 				39153DB2182259E100F3C9D0 /* FeatureDB.dic in Resources */,
-				DE239ADE183DDEB200D38545 /* drawer-head-logo.png in Resources */,
 				DE16337C183B4EB9007EF946 /* menuIcon.png in Resources */,
-				395AFD87183C92520093E0A4 /* AVCamViewController.xib in Resources */,
 				8465C64517F5D1B500A00460 /* InfoPlist.strings in Resources */,
 				DE16337D183B4EB9007EF946 /* menuIcon@2x.png in Resources */,
 				3964FC56182A6D590035B187 /* MainStoryboard.storyboard in Resources */,
 				395AFD70183C90A00093E0A4 /* home.png in Resources */,
 				DEED1714183DE3E500FDC8C8 /* drawer-tour-label.png in Resources */,
 				DEB4B8541821A0D70050FA49 /* gallery-icon@2x.png in Resources */,
+				2214388D184084920017FF04 /* drawer-head-logo.png in Resources */,
 				39B391AC182782A300BD2D3B /* NEC_old.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -689,6 +706,7 @@
 				39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */,
 				395AFD85183C92520093E0A4 /* AVCamUtilities.m in Sources */,
 				DE163386183B665A007EF946 /* FTVMenuViewController.m in Sources */,
+				DEFFD1A61841B5BD004BBE1A /* AVCamViewController.m in Sources */,
 				39F4936018213B3000093167 /* DeviceUtil.m in Sources */,
 				DE16336E183B493B007EF946 /* PRTween.m in Sources */,
 				39F4936E1821427E00093167 /* StringUtil.m in Sources */,
@@ -697,11 +715,11 @@
 				39E32CB5181FA6D2009C911F /* FTVRegisterViewController.m in Sources */,
 				39F4936118213B3000093167 /* GlobalCore.m in Sources */,
 				39E32CBA181FB77D009C911F /* FTVUser.m in Sources */,
-				395AFD86183C92520093E0A4 /* AVCamViewController.m in Sources */,
 				DE163379183B4953007EF946 /* SVWebViewController.m in Sources */,
 				39F4935F18213B3000093167 /* DateUtil.m in Sources */,
 				8465C65117F5D1B500A00460 /* FTVTourViewController.m in Sources */,
 				39F4935D18213B3000093167 /* ColorUtil.m in Sources */,
+				23DC1BD31840DF2500B9FAEA /* FTVCustomNavigationController.m in Sources */,
 				395AFD8B183C92520093E0A4 /* Imaging.c in Sources */,
 				DE16336F183B493B007EF946 /* PRTweenTimingFunctions.m in Sources */,
 				DE16336D183B493B007EF946 /* MSNavigationPaneViewController.m in Sources */,
@@ -718,6 +736,7 @@
 				395AFD8A183C92520093E0A4 /* EAGLView.m in Sources */,
 				395AFD89183C92520093E0A4 /* Debug.c in Sources */,
 				8465C64B17F5D1B500A00460 /* FTVAppDelegate.m in Sources */,
+				23DC1BD21840DF2500B9FAEA /* FTVHomeViewController.m in Sources */,
 				DE163378183B4953007EF946 /* SVUtilities.m in Sources */,
 				39F4936418213B3000093167 /* UIDevice+Identifier.m in Sources */,
 				8465C65417F5D1B500A00460 /* FTVScansViewController.m in Sources */,
@@ -856,8 +875,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Takahiro Fujikawa (EVJNX229VX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takahiro Fujikawa (EVJNX229VX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -908,8 +927,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Takahiro Fujikawa (EVJNX229VX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takahiro Fujikawa (EVJNX229VX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",

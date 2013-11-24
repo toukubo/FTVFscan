@@ -11,6 +11,8 @@
 #import "FTVAppDelegate.h"
 #import "FTVDelayJobWebViewController.h"
 
+static const int kImageViewTag = 1;  // the image view inside the collection view cell prototype is tagged with "1"
+
 @interface FTVGalleryViewController ()
 {
     FTVAppDelegate              *appDelegate;
@@ -116,65 +118,15 @@
     [SVProgressHUD dismiss];
 }
 
-#pragma mark -
-#pragma UIImagePickerController delegate methods
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-//{
-//    returnFromPicker = YES;
-//    [galleryPicker dismissViewControllerAnimated:NO completion:^{
-//        // Got image from picker
-//        // Should do something with it )))
-//        UIImage *pickedImage = (UIImage *)info[@"UIImagePickerControllerOriginalImage"];
-//        
-//        NSDate *start = [NSDate date];
-//        pickedImage = [FTVImageProcEngine imageResize:pickedImage saveWithName:[NSString genRandStringLength:10] usingJPEG:YES];
-//        NSData *imageData = UIImagePNGRepresentation(pickedImage);
-//        
-//        NSString *brand_slug = [FTVImageProcEngine executeApi:pickedImage];
-//        NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
-//        NSLog(@"executeApi Execution Time: %f", executionTime);
-//        
-//        if (IsEmpty(brand_slug) || [brand_slug isEqualToString:@"failure"]) {
-//            [appDelegate showModalPopupWindow];
-//        } else {
-//            // no need to post data if BRAND was failure
-//            [FTVImageProcEngine postData:imageData
-//                               withBrand:brand_slug
-//                          withStartBlock:^{
-//                              [SVProgressHUD show];
-//                          } withFinishBlock:^(BOOL success, NSString *resp) {
-//                              if (success) {
-//                                  [SVProgressHUD dismiss];
-//                                  
-//                                  NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
-//                                  NSLog(@"postData Execution Time: %f", executionTime);
-//                                  
-//                                  redirectUrl = [FTVImageProcEngine encapsulateById:resp];
-//                                  if (![redirectUrl isMalform]) {
-//                                      [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
-//                                  }
-//                              } else {
-//                                  [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_malform", @"Malform")];
-//                              }
-//                          } withFailedBlock:^(BOOL success, NSString *resp) {
-//                              [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_error", @"Error")];
-//                          }];
-//        }
-//    }];
-//    
-//    
-//    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-//        
-//        [[UIApplication sharedApplication] setStatusBarHidden:YES];
-//    }
-//}
-//
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
 
-
-- (void)generateRedirectURL:(int)index
+#pragma mark - Helper
+- (void)laterJobAfterSelectedImageWithId:(int)index
 {
     returnFromPicker = YES;
-    
     
     // Got image from picker
     // Should do something with it )))
@@ -193,39 +145,49 @@
     NSLog(@"executeApi Execution Time: %f", executionTime);
     
     if (IsEmpty(brand_slug) || [brand_slug isEqualToString:@"failure"]) {
-        [appDelegate showModalPopupWindow];
+        [appDelegate performSelectorOnMainThread:@selector(showModalPopupWindow) withObject:nil waitUntilDone:NO];
     } else {
+        NSDate *start = [NSDate date];
         // no need to post data if BRAND was failure
-        [FTVImageProcEngine postData:imageData
-                           withBrand:brand_slug
-                      withStartBlock:^{
-                          [SVProgressHUD show];
-                      } withFinishBlock:^(BOOL success, NSString *resp) {
-                          if (success) {
-                              [SVProgressHUD dismiss];
-                              
-                              NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
-                              NSLog(@"postData Execution Time: %f", executionTime);
-                              
-                              redirectUrl = [FTVImageProcEngine encapsulateById:resp];
-                              if (![redirectUrl isMalform]) {
-                                  [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
-                              }
-                          } else {
-                              [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_malform", @"Malform")];
-                          }
-                      } withFailedBlock:^(BOOL success, NSString *resp) {
-                          [SVProgressHUD showWithStatus:NSLocalizedString(@"hud_resp_error", @"Error")];
-                      }];
+        // step 1 - post brand slug, and get response for "id=xxx"
+        [FTVImageProcEngine postWithBrand:brand_slug
+                           withStartBlock:^{
+                           } withFinishBlock:^(BOOL success, NSString *resp) {
+                               if (success) {
+                                   NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
+                                   NSLog(@"postData Execution Time: %f", executionTime);
+                                   
+                                   // step 2 - post image data
+                                   [FTVImageProcEngine postData:imageData
+                                                      withBrand:brand_slug
+                                                         withId:resp
+                                                 withStartBlock:nil
+                                                withFinishBlock:^(BOOL success, NSString *resp) {
+                                                    // TODO: should we do some extra stuff here?
+                                                } withFailedBlock:^(BOOL success, NSString *resp) {
+                                                    //
+                                                }];
+                                   
+                                   redirectUrl = [FTVImageProcEngine encapsulateById:resp];
+                                   if (![redirectUrl isMalform]) {
+                                       [self performSelectorOnMainThread:@selector(switchSceneToResultController) withObject:nil waitUntilDone:NO];
+                                   }
+                               }
+                           } withFailedBlock:^(BOOL success, NSString *resp) {
+                           }];
+        
+        DLog(@"IMG: W - %0.f px, H - %0.f px", pickedImage.size.width, pickedImage.size.height);
     }
 }
 
+- (void)switchSceneToResultController
+{
+    [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"presentDelayJobWebViewController"]) {
-        NSIndexPath *selectedCell = [self.collectionView indexPathsForSelectedItems][0];
-        [self generateRedirectURL:selectedCell.row];
         UINavigationController *navigationController = segue.destinationViewController;
         for (UIViewController *vc in navigationController.viewControllers) {
             if ([vc isKindOfClass:[FTVDelayJobWebViewController class]]) {
@@ -236,16 +198,13 @@
 }
 
 #pragma mark - UICollectionViewDelegate
-
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    
+- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
+{
     return self.assets.count;
 }
 
-#define kImageViewTag 1 // the image view inside the collection view cell prototype is tagged with "1"
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *CellIdentifier = @"photoCell";
     
     UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
@@ -262,22 +221,20 @@
     return cell;
 }
 
-
-- (void)didReceiveMemoryWarning
+#pragma mark - UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [super didReceiveMemoryWarning];
+    [self laterJobAfterSelectedImageWithId:indexPath.row];
 }
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
 
+#pragma mark - DDMenu stuff
 -(IBAction)OpenMenu:(id)sender
 {
     DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
     [menuController showRightController:YES];
-    
 }
-
-
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FTVCustomNavigationController.h"
 
-@interface FTVTourViewController : UIViewController <UIWebViewDelegate>
+@interface FTVTourViewController : FTVCustomNavigationController <UIWebViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWebView *tourWebView;
 

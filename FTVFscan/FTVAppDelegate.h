@@ -22,4 +22,5 @@
 -(void)setViewFromMenu:(NSString *)storyBoardId;
 - (void)switchSceneToTabController;
 - (BOOL)checkLoginCredential;
+- (void)switchSceneToCameraController;
 @end
