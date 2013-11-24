@@ -37,7 +37,9 @@
 //    appDelegate = (FTVAppDelegate *)[UIApplication sharedApplication].delegate);
     
     _tourWebView.delegate = self;
-    self.navigationController.navigationBarHidden = YES;
+    self.navigationController.navigationBarHidden = NO;
+    
+    [super setHomeCameraMenuNavigations:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated

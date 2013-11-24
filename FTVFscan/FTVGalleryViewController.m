@@ -103,6 +103,8 @@ static const int kImageViewTag = 1;  // the image view inside the collection vie
     //    NSUInteger groupTypes = ALAssetsGroupAlbum | ALAssetsGroupEvent | ALAssetsGroupFaces | ALAssetsGroupSavedPhotos;
     NSUInteger groupTypes =  ALAssetsGroupSavedPhotos;
     [self.assetsLibrary enumerateGroupsWithTypes:groupTypes usingBlock:listGroupBlock failureBlock:failureBlock];
+    
+    [super setHomeCameraMenuNavigations:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

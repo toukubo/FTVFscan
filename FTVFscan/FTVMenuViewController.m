@@ -43,6 +43,7 @@
     [menuItemViewId addObject:@"FTVGalleryViewController"];
     [menuItemViewId addObject:@"FTVBrandsViewController"];
     
+    [super setTitleNavigation:self];
 }
 
 - (void)didReceiveMemoryWarning

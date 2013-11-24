@@ -31,7 +31,7 @@
         // iOS 6
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
-    
+    [super setHomeCameraMenuNavigations:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated

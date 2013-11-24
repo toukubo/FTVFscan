@@ -31,6 +31,8 @@
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
     _scansWebView.delegate = self;
+    
+    [super setHomeCameraMenuNavigations:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated

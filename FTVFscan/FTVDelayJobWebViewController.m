@@ -55,21 +55,22 @@
 //    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     
   
-    UIButton *homeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [homeButton setImage:[UIImage imageNamed:@"home_white.png"] forState:UIControlStateNormal];
-    [homeButton addTarget:self action:@selector(homeAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *leftItem1 = [[UIBarButtonItem alloc] initWithCustomView:homeButton];
-    UIButton *cameraButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [cameraButton setImage:[UIImage imageNamed:@"camera_white.png"] forState:UIControlStateNormal];
-    [cameraButton addTarget:self action:@selector(cameraAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *leftItem2 = [[UIBarButtonItem alloc] initWithCustomView:cameraButton];
-    NSArray *actionButtonItems = @[leftItem1, leftItem2];
-    self.navigationItem.leftBarButtonItems = actionButtonItems;
-    
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title.png"]];
+//    UIButton *homeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+//    [homeButton setImage:[UIImage imageNamed:@"home_white.png"] forState:UIControlStateNormal];
+//    [homeButton addTarget:self action:@selector(homeAction) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UIBarButtonItem *leftItem1 = [[UIBarButtonItem alloc] initWithCustomView:homeButton];
+//    UIButton *cameraButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+//    [cameraButton setImage:[UIImage imageNamed:@"camera_white.png"] forState:UIControlStateNormal];
+//    [cameraButton addTarget:self action:@selector(cameraAction) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UIBarButtonItem *leftItem2 = [[UIBarButtonItem alloc] initWithCustomView:cameraButton];
+//    NSArray *actionButtonItems = @[leftItem1, leftItem2];
+//    self.navigationItem.leftBarButtonItems = actionButtonItems;
+//    
+//    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title.png"]];
 
+//    [self setBackCameraMenuNavigations:self];
     
     if (redirectUrl != nil) {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:redirectUrl]];
@@ -95,25 +96,25 @@
 
 - (void)cameraAction
 {
-    [super cameraAction:self];
+    [super cameraAction];
 }
 
 - (void)homeAction
 {
-    [super homeAction:self];
+    [super homeAction];
 }
 
 
 - (void)backAction
 {
+    NSLog(@"back...");
     if([self.webView canGoBack])
     {
         [self.webView goBack];
     }
     
-    [self.navigationController popViewControllerAnimated:YES];
 }
-    
+
 
 - (void)didReceiveMemoryWarning
 {

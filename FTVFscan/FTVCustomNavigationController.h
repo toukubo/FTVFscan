@@ -11,9 +11,15 @@
 @interface FTVCustomNavigationController : UIViewController{
     
 }
--(IBAction)homeAction:(id)sender;
--(IBAction)cameraAction:(id)sender;
--(IBAction)OpenMenu:(id)sender;
-
+//-(IBAction)homeAction:(id)sender;
+//-(IBAction)cameraAction:(id)sender;
+//-(IBAction)OpenMenu:(id)sender;
+-(void)homeAction;
+-(void)cameraAction;
+-(void)openMenu;
+-(void)setHomeCameraMenuNavigations:(UIViewController *)vc;
+-(void)setHomeMenuNavigations:(UIViewController *)vc;
+-(void)setBackCameraMenuNavigations:(UIViewController *)vc;
+-(void)setTitleNavigation:(UIViewController *)vc;
 
 @end
