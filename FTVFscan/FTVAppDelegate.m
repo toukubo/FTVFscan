@@ -102,12 +102,12 @@
 - (void)switchSceneToTabController
 {
     UIViewController *mvc = (UIViewController *)self.window.rootViewController;
-    UIViewController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVHomeViewController"];
+    UIViewController *controller = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
 
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
-    nav.navigationBar.barStyle = UIBarStyleBlack;
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
+//    nav.navigationBar.barStyle = UIBarStyleBlack;
     
-    DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:nav];
+    DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:controller];
     _menuController = rootController;
 	
     
