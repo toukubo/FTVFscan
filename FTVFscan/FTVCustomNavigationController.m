@@ -50,88 +50,84 @@
 	// Do any additional setup after loading the view.
 }
 
--(void)setHomeCameraMenuNavigations:(UIViewController *)vc{
-    //Left Navigation Items
-    UIButton *homeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 30, 30)];
-    [homeButton setImage:[UIImage imageNamed:@"home_white.png"] forState:UIControlStateNormal];
-    [homeButton addTarget:self action:@selector(homeAction) forControlEvents:UIControlEventTouchUpInside];
+-(void)setBackButton:(UIView *)view :(UIViewController *)vc{
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 30, 30)];
+    [backButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
+    [backButton addTarget:vc action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:backButton];
+}
 
-    UIButton *cameraButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 10, 30, 30)];
-    [cameraButton setImage:[UIImage imageNamed:@"camera_white.png"] forState:UIControlStateNormal];
-    [cameraButton addTarget:self action:@selector(cameraAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    //Right Navigation Items
+-(void)setMenuButton:(UIView *)view{
     UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(290, 10, 30, 30)];
     [menuButton setImage:[UIImage imageNamed:@"draw_white.png"] forState:UIControlStateNormal];
     [menuButton addTarget:self action:@selector(openMenu) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:menuButton];
+}
+
+
+-(void)setCameraButton:(UIView *)view{
+    UIButton *cameraButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 10, 30, 30)];
+    [cameraButton setImage:[UIImage imageNamed:@"camera_white.png"] forState:UIControlStateNormal];
+    [cameraButton addTarget:self action:@selector(cameraAction) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:cameraButton];
+}
+
+
+-(void)setHomeButton:(UIView *)view{
+    UIButton *homeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 30, 30)];
+    [homeButton setImage:[UIImage imageNamed:@"home_white.png"] forState:UIControlStateNormal];
+    [homeButton addTarget:self action:@selector(homeAction) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:homeButton];
+}
+-(void)drawTitle:(UIView *)view{
     
-    //Title
-    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 10, 100, 25)];
-    titleView.image = [UIImage imageNamed:@"title.png"];
-    
+    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 10, 104, 17)];
+    titleView.image = [UIImage imageNamed:@"ftvlogo.png"];
+    [view addSubview:titleView];
+
+}
+
+-(UIView*)drawBackground{
     UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
     navigationView.backgroundColor = [UIColor blackColor];
-    [navigationView addSubview:titleView];
-    [navigationView addSubview:homeButton];
-    [navigationView addSubview:cameraButton];
-    [navigationView addSubview:menuButton];
+    return navigationView;
+
+}
+-(void)setHomeCameraMenuNavigations:(UIViewController *)vc{
+    UIView *navigationView = [self drawBackground];
+    [self setHomeButton:navigationView];
+    [self setCameraButton:navigationView];
+    [self setMenuButton:navigationView];
     [vc.view addSubview:navigationView];
 }
 
 -(void)setHomeMenuNavigations:(UIViewController *)vc{
     //Left Navigation Items
-    UIButton *homeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 30, 30)];
-    [homeButton setImage:[UIImage imageNamed:@"home_white.png"] forState:UIControlStateNormal];
-    [homeButton addTarget:self action:@selector(homeAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    //Right Navigation Items
-    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(290, 10, 30, 30)];
-    [menuButton setImage:[UIImage imageNamed:@"draw_white.png"] forState:UIControlStateNormal];
-    [menuButton addTarget:self action:@selector(openMenu) forControlEvents:UIControlEventTouchUpInside];
-    
-    //Title
-    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 10, 100, 25)];
-    titleView.image = [UIImage imageNamed:@"title.png"];
-    
-    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-    navigationView.backgroundColor = [UIColor blackColor];
-    [navigationView addSubview:titleView];
-    [navigationView addSubview:homeButton];
-    [navigationView addSubview:menuButton];
+    UIView *navigationView = [self drawBackground];
+    [self setHomeButton:navigationView];
+//    [self setCameraButton:navigationView];
+    [self setMenuButton:navigationView];
     [vc.view addSubview:navigationView];
+
+    
 }
 
 -(void)setBackCameraMenuNavigations:(UIViewController *)vc{
-    //Left Navigation Items
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 30, 30)];
-    [backButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
-    [backButton addTarget:vc action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *cameraButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 10, 30, 30)];
-    [cameraButton setImage:[UIImage imageNamed:@"camera_white.png"] forState:UIControlStateNormal];
-    [cameraButton addTarget:self action:@selector(cameraAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    //Right Navigation Items
-    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(290, 10, 30, 30)];
-    [menuButton setImage:[UIImage imageNamed:@"draw_white.png"] forState:UIControlStateNormal];
-    [menuButton addTarget:self action:@selector(openMenu) forControlEvents:UIControlEventTouchUpInside];
+    UIView *navigationView = [self drawBackground];
+    [self setHomeButton:navigationView];
+    [self setCameraButton:navigationView];
+    [self setMenuButton:navigationView];
+    [self setBackButton:navigationView :vc];
 
-    //Title
-    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 10, 100, 25)];
-    titleView.image = [UIImage imageNamed:@"title.png"];
-    
-    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-    navigationView.backgroundColor = [UIColor blackColor];
-    [navigationView addSubview:titleView];
-    [navigationView addSubview:backButton];
-    [navigationView addSubview:menuButton];
     [vc.view addSubview:navigationView];
+
+    
 }
 
 -(void)setTitleNavigation:(UIViewController *)vc{
     //Title
     UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 10, 100, 25)];
-    titleView.image = [UIImage imageNamed:@"title.png"];
+    titleView.image = [UIImage imageNamed:@"drawer-head-logo.png"];
     
     UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
     navigationView.backgroundColor = [UIColor blackColor];
