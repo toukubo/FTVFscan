@@ -68,6 +68,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
         [self switchSceneToRegisterController];
         DLog(@"but false. going to regist ");
     }
+    [super setHomeMenuNavigations:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
