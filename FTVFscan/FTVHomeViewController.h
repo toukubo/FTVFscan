@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FTVCustomNavigationController.h"
 
-@interface FTVHomeViewController : FTVCustomNavigationController
+@interface FTVHomeViewController : FTVCustomNavigationController<UIWebViewDelegate>
 @property (nonatomic, retain) NSString *redirectUrl;
 
 @end

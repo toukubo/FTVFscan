@@ -250,6 +250,20 @@
         }
         
         return YES;
+    }else {
+        NSLog(@"%@", urlString);
+        if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/"]) {
+            [super setHomeCameraMenuNavigations:self];
+        }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/news/"]) {
+            [super setHomeCameraMenuNavigations:self];
+        }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/theater/"]) {
+            [super setHomeCameraMenuNavigations:self];
+        }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/topic/"]) {
+            [super setHomeCameraMenuNavigations:self];
+        }else {
+            [super setBackCameraMenuNavigations:self];
+        }
+        
     }
                  // TODO gailya, handle this later
 //        else if (url.contains(".ahtml")) {

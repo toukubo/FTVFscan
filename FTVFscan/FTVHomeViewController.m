@@ -7,6 +7,7 @@
 //
 
 #import "FTVHomeViewController.h"
+#import "RegexKitLite.h"
 
 @interface FTVHomeViewController ()
 @end
@@ -36,6 +37,33 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+
+#pragma --
+#pragma webView delegates
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSString *urlString = request.URL.absoluteString;
+    DLog(@"%@", urlString);
+    if ([self needOpenExternalSafari:urlString]) {
+        [FTVImageProcEngine openSafari:urlString];
+        return NO;
+    }
+    
+    return YES;
+}
+
+
+- (BOOL)needOpenExternalSafari:(NSString*)url
+{
+    if ([url isMatchedByRegex:@"target=_blank"]) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end
