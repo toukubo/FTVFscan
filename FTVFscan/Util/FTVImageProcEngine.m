@@ -27,7 +27,7 @@
 + (UIImage*)imageResize:(UIImage*)srcImage
 {
     // workaround : we used a very never met height, so it will always constraint by the width.
-    return [srcImage resizedImageToFitInSize:CGSizeMake(496, 9999) scaleIfSmaller:YES];
+    return [srcImage resizedImageToFitInSize:CGSizeMake(320, 9999) scaleIfSmaller:YES];
 }
 
 + (UIImage*)imageResize:(UIImage*)srcImage saveWithName:(NSString*)imgName usingJPEG:(BOOL)jpeg
