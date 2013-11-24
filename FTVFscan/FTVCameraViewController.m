@@ -109,13 +109,13 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 //    AVCamViewController *avCamera = [[AVCamViewController alloc] init];
 //    [avCamera setDelegate:self];
 //    
-    AVCamViewController *avCamera = [[AVCamViewController alloc] init];
+    avCamera = [[AVCamViewController alloc] init];
     [avCamera setDelegate:self];
-    avCamera.view.frame = self.cameraView.bounds;
-    [self.cameraView addSubview:avCamera.view];
-    [self addChildViewController:avCamera];
-    [avCamera didMoveToParentViewController:self];
-//    [self presentViewController:avCamera animated:YES completion:nil];
+//    avCamera.view.frame = self.cameraView.bounds;
+//    [self.view addSubview:avCamera.view];
+//    [self addChildViewController:avCamera];
+//    [avCamera didMoveToParentViewController:self];
+    [self presentViewController:avCamera animated:YES completion:nil];
 }
 
 - (void)switchSceneToRegisterController
@@ -452,10 +452,10 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     if ([delegate respondsToSelector:@selector(didFinishedTakenPictureWithPath:)]) {
         [delegate didFinishedTakenPictureWithPath:localImagePath];
     }
-    
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+//    [avCamera willMoveToParentViewController:nil];
+//    [avCamera.view removeFromSuperview];
+//    [avCamera removeFromParentViewController];
+    [self dismissViewControllerAnimated:YES completion:^{    }];
 }
 
 - (void)cancelShooting
@@ -465,10 +465,9 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     if ([delegate respondsToSelector:@selector(didCancelCamera)]) {
         [delegate didCancelCamera];
     }
+//    [avCamera.view removeFromSuperview];
+    [self dismissViewControllerAnimated:YES completion:^{}];
     
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
 }
 
 - (void)captureManagerDeviceConfigurationChanged:(AVCamCaptureManager *)captureManager

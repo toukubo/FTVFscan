@@ -11,6 +11,7 @@
 #import "FTVCamOverlayView.h"
 
 #import "FTVCustomNavigationController.h"
+#import "AVCamViewController.h"
 
 @class AVCamCaptureManager, AVCamPreviewView, AVCaptureVideoPreviewLayer;
 
@@ -22,6 +23,7 @@
     
     UIButton                *stillButton;
     UIButton                *homeButton;
+    AVCamViewController     *avCamera;
 }
 
 @property (nonatomic, retain) AVCamCaptureManager           *captureManager;
