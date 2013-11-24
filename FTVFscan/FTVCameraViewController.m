@@ -76,8 +76,11 @@
 {
     AVCamViewController *avCamera = [[AVCamViewController alloc] init];
     [avCamera setDelegate:self];
-    
-    [self presentViewController:avCamera animated:YES completion:nil];
+    avCamera.view.frame = self.cameraView.bounds;
+    [self.cameraView addSubview:avCamera.view];
+    [self addChildViewController:avCamera];
+    [avCamera didMoveToParentViewController:self];
+//    [self presentViewController:avCamera animated:YES completion:nil];
 }
 
 - (void)switchSceneToRegisterController

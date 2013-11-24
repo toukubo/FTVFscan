@@ -88,6 +88,7 @@
 		DEED1714183DE3E500FDC8C8 /* drawer-tour-label.png in Resources */ = {isa = PBXBuildFile; fileRef = DEED1710183DE3E500FDC8C8 /* drawer-tour-label.png */; };
 		DEED1716183DE40200FDC8C8 /* drawer-delegate.png in Resources */ = {isa = PBXBuildFile; fileRef = DEED1715183DE40200FDC8C8 /* drawer-delegate.png */; };
 		DEFFD1A1183E8356004BBE1A /* NarzissText-Bold.otf in Sources */ = {isa = PBXBuildFile; fileRef = DE249176183E800B00CE97FC /* NarzissText-Bold.otf */; };
+		DEFFD1A418405B80004BBE1A /* FTVHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFFD1A318405B80004BBE1A /* FTVHomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,6 +230,8 @@
 		DEED170F183DE3E500FDC8C8 /* drawer-history-label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-history-label.png"; sourceTree = "<group>"; };
 		DEED1710183DE3E500FDC8C8 /* drawer-tour-label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-tour-label.png"; sourceTree = "<group>"; };
 		DEED1715183DE40200FDC8C8 /* drawer-delegate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-delegate.png"; sourceTree = "<group>"; };
+		DEFFD1A218405B80004BBE1A /* FTVHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVHomeViewController.h; sourceTree = "<group>"; };
+		DEFFD1A318405B80004BBE1A /* FTVHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVHomeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -411,6 +414,8 @@
 				8465C67917F5D74C00A00460 /* FTVBrandsViewController.m */,
 				DE163384183B665A007EF946 /* FTVMenuViewController.h */,
 				DE163385183B665A007EF946 /* FTVMenuViewController.m */,
+				DEFFD1A218405B80004BBE1A /* FTVHomeViewController.h */,
+				DEFFD1A318405B80004BBE1A /* FTVHomeViewController.m */,
 				8465C65517F5D1B500A00460 /* Images.xcassets */,
 				8465C64117F5D1B500A00460 /* Supporting Files */,
 			);
@@ -718,6 +723,7 @@
 				395AFD8A183C92520093E0A4 /* EAGLView.m in Sources */,
 				395AFD89183C92520093E0A4 /* Debug.c in Sources */,
 				8465C64B17F5D1B500A00460 /* FTVAppDelegate.m in Sources */,
+				DEFFD1A418405B80004BBE1A /* FTVHomeViewController.m in Sources */,
 				DE163378183B4953007EF946 /* SVUtilities.m in Sources */,
 				39F4936418213B3000093167 /* UIDevice+Identifier.m in Sources */,
 				8465C65417F5D1B500A00460 /* FTVScansViewController.m in Sources */,

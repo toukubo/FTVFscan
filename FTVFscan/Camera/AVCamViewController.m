@@ -57,6 +57,13 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
         [stillButton addTarget:self action:@selector(captureStillImage:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:stillButton];
         
+        
+        UIButton *drawerButton = [[UIButton alloc] initWithFrame:CGRectMake(278, 7, 35, 30)];
+        UIImage *drawerImage = [UIImage imageNamed:@"menuIcon.png"];
+        [drawerButton setImage:drawerImage forState:UIControlStateNormal];
+        [drawerButton addTarget:self action:@selector(drawerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//        [self.view addSubview:drawerButton];
+        
     }
     
     return self;
@@ -94,6 +101,14 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     }];
     
     DLine;
+}
+
+
+-(void)drawerButtonPressed:(id)sender
+{
+    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    [menuController setRootViewController:self];
+    [menuController showRightController:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -307,4 +322,5 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 {
 	[self updateButtonStates];
 }
+
 @end

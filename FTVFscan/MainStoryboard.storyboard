@@ -47,7 +47,34 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VXM-CN-5K2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1255" y="164"/>
+            <point key="canvasLocation" x="-1471" y="136"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="KoI-6s-Kdd">
+            <objects>
+                <viewController storyboardIdentifier="FTVHomeViewController" id="ds8-bI-Ile" customClass="FTVHomeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aot-1s-OiG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="Sn8-ce-vGd">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ds8-bI-Ile" id="lJb-Gt-BTx"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="homeWebView" destination="Sn8-ce-vGd" id="tTn-fi-dTp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t7z-EF-pOd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1059" y="136"/>
         </scene>
         <!--Tour View Controller-->
         <scene sceneID="r45-7h-MFj">
@@ -85,7 +112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ihC-Mt-IJz" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-687" y="162"/>
+            <point key="canvasLocation" x="-87" y="202"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="tsT-3B-tG4">
@@ -100,6 +127,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
+                            <view contentMode="scaleToFill" id="av7-53-tvj">
+                                <rect key="frame" x="0.0" y="45" width="320" height="523"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="h17-zo-0LC">
                                 <rect key="frame" x="278" y="7" width="35" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -107,7 +139,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="OpenMenu:" destination="oRQ-Rh-n7p" eventType="touchUpInside" id="iG3-3f-RPl"/>
+                                    <action selector="OpenMenu:" destination="N9c-jv-3Vk" eventType="touchUpInside" id="kn1-eV-m8p"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7PC-q3-PRG">
@@ -130,6 +162,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="cameraView" destination="av7-53-tvj" id="ZUA-R0-djm"/>
                         <outlet property="imageView" destination="aaQ-bu-HIt" id="5kg-QM-UeO"/>
                         <segue destination="B7h-6y-4Tk" kind="modal" identifier="presentDelayJobWebViewController" id="imu-oV-QJI"/>
                     </connections>
@@ -288,7 +321,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iwV-Xn-P0S" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-64" y="194"/>
+            <point key="canvasLocation" x="380" y="202"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="oWj-It-dmg">
@@ -409,6 +442,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mxQ-qu-xUd"/>
+        <segue reference="imu-oV-QJI"/>
     </inferredMetricsTieBreakers>
 </document>
