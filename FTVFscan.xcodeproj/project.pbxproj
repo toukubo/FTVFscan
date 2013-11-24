@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2214388D184084920017FF04 /* drawer-head-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2214388C184084920017FF04 /* drawer-head-logo.png */; };
+		229F52A81841D6CB00B40614 /* AVCamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 229F52A71841D6CB00B40614 /* AVCamViewController.xib */; };
 		23DC1BD01840DF2500B9FAEA /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DC1BC91840DF2500B9FAEA /* title.png */; };
 		23DC1BD11840DF2500B9FAEA /* home_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DC1BCA1840DF2500B9FAEA /* home_white.png */; };
 		23DC1BD21840DF2500B9FAEA /* FTVHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DC1BCB1840DF2500B9FAEA /* FTVHomeViewController.m */; };
@@ -92,7 +93,7 @@
 		DEED1714183DE3E500FDC8C8 /* drawer-tour-label.png in Resources */ = {isa = PBXBuildFile; fileRef = DEED1710183DE3E500FDC8C8 /* drawer-tour-label.png */; };
 		DEED1716183DE40200FDC8C8 /* drawer-delegate.png in Resources */ = {isa = PBXBuildFile; fileRef = DEED1715183DE40200FDC8C8 /* drawer-delegate.png */; };
 		DEFFD1A1183E8356004BBE1A /* NarzissText-Bold.otf in Sources */ = {isa = PBXBuildFile; fileRef = DE249176183E800B00CE97FC /* NarzissText-Bold.otf */; };
-		DEFFD1A61841B5BD004BBE1A /* AVCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFFD1A51841B5BD004BBE1A /* AVCamViewController.m */; };
+		DEFFD1A61841B5BD004BBE1A /* AVCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFFD1A51841B5BD004BBE1A /* AVCamViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,8 @@
 /* Begin PBXFileReference section */
 		17EB1EFD5A21421C90C01507 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2214388C184084920017FF04 /* drawer-head-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-head-logo.png"; sourceTree = "<group>"; };
+		229F52A61841D6CB00B40614 /* AVCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamViewController.h; sourceTree = "<group>"; };
+		229F52A71841D6CB00B40614 /* AVCamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVCamViewController.xib; sourceTree = "<group>"; };
 		23DC1BC91840DF2500B9FAEA /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		23DC1BCA1840DF2500B9FAEA /* home_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_white.png; sourceTree = "<group>"; };
 		23DC1BCB1840DF2500B9FAEA /* FTVHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVHomeViewController.m; sourceTree = "<group>"; };
@@ -286,6 +289,8 @@
 		395AFD71183C92520093E0A4 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				229F52A61841D6CB00B40614 /* AVCamViewController.h */,
+				229F52A71841D6CB00B40614 /* AVCamViewController.xib */,
 				DEFFD1A51841B5BD004BBE1A /* AVCamViewController.m */,
 				395AFD72183C92520093E0A4 /* AVCamCaptureManager.h */,
 				395AFD73183C92520093E0A4 /* AVCamCaptureManager.m */,
@@ -633,6 +638,7 @@
 				23DC1BD41840DF2500B9FAEA /* camera_white.png in Resources */,
 				23DC1BD61840E32D00B9FAEA /* backButton.png in Resources */,
 				DEB4B8501821A0D70050FA49 /* bookmark-icon@2x.png in Resources */,
+				229F52A81841D6CB00B40614 /* AVCamViewController.xib in Resources */,
 				DEED1713183DE3E500FDC8C8 /* drawer-history-label.png in Resources */,
 				DEED1711183DE3E500FDC8C8 /* drawer-album-label.png in Resources */,
 				23DC1BD01840DF2500B9FAEA /* title.png in Resources */,
@@ -875,8 +881,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhibodang Inc. (A5WV6BRVF2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhibodang Inc. (A5WV6BRVF2)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -927,8 +933,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhibodang Inc. (A5WV6BRVF2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhibodang Inc. (A5WV6BRVF2)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
