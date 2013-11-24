@@ -47,6 +47,10 @@
 		39F4936C1821427E00093167 /* QuartzUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = 39F493661821427E00093167 /* QuartzUtils.c */; };
 		39F4936D1821427E00093167 /* REString.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F493691821427E00093167 /* REString.m */; };
 		39F4936E1821427E00093167 /* StringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F4936B1821427E00093167 /* StringUtil.m */; };
+		477045DB1842782900155D36 /* ftvlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 477045DA1842782900155D36 /* ftvlogo.png */; };
+		477045DD18428CBD00155D36 /* 240head.png in Resources */ = {isa = PBXBuildFile; fileRef = 477045DC18428CBD00155D36 /* 240head.png */; };
+		477045DF18428DE800155D36 /* 254head.png in Resources */ = {isa = PBXBuildFile; fileRef = 477045DE18428DE800155D36 /* 254head.png */; };
+		477045E118428EC500155D36 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 477045E018428EC500155D36 /* menu.png */; };
 		809377F4B37548E694C80943 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17EB1EFD5A21421C90C01507 /* libPods.a */; };
 		8465C63B17F5D1B500A00460 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63A17F5D1B500A00460 /* Foundation.framework */; };
 		8465C63D17F5D1B500A00460 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63C17F5D1B500A00460 /* CoreGraphics.framework */; };
@@ -178,6 +182,10 @@
 		39F4936A1821427E00093167 /* StringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtil.h; sourceTree = "<group>"; };
 		39F4936B1821427E00093167 /* StringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtil.m; sourceTree = "<group>"; };
 		4756BE2E181EA80500B39EB7 /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		477045DA1842782900155D36 /* ftvlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ftvlogo.png; sourceTree = "<group>"; };
+		477045DC18428CBD00155D36 /* 240head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 240head.png; sourceTree = "<group>"; };
+		477045DE18428DE800155D36 /* 254head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 254head.png; sourceTree = "<group>"; };
+		477045E018428EC500155D36 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		47C61B931824181E00DF9125 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		47C61B941824181E00DF9125 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		62E03682EDFA4EAAB4576DB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -474,6 +482,7 @@
 		DE163366183B4901007EF946 /* MSNavigationPane */ = {
 			isa = PBXGroup;
 			children = (
+				477045E018428EC500155D36 /* menu.png */,
 				DE163367183B493B007EF946 /* MSNavigationPaneViewController.h */,
 				DE163368183B493B007EF946 /* MSNavigationPaneViewController.m */,
 				DE163369183B493B007EF946 /* PRTween.h */,
@@ -517,6 +526,9 @@
 		DEB4B8441821A0AB0050FA49 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				477045DE18428DE800155D36 /* 254head.png */,
+				477045DC18428CBD00155D36 /* 240head.png */,
+				477045DA1842782900155D36 /* ftvlogo.png */,
 				23A41AB818426C0F00D914DC /* draw_white.png */,
 				23DC1BD51840E32D00B9FAEA /* backButton.png */,
 				23DC1BC91840DF2500B9FAEA /* title.png */,
@@ -597,7 +609,7 @@
 				ORGANIZATIONNAME = T2;
 				TargetAttributes = {
 					8465C63617F5D1B500A00460 = {
-						DevelopmentTeam = 5Z7A57GK68;
+						DevelopmentTeam = 6367C7KA72;
 					};
 					8465C65A17F5D1B600A00460 = {
 						TestTargetID = 8465C63617F5D1B500A00460;
@@ -630,7 +642,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3964FC59182A6ECE0035B187 /* Localizable.strings in Resources */,
+				477045DF18428DE800155D36 /* 254head.png in Resources */,
 				DEB4B84F1821A0D70050FA49 /* bookmark-icon.png in Resources */,
+				477045DB1842782900155D36 /* ftvlogo.png in Resources */,
 				DEB4B8531821A0D70050FA49 /* gallery-icon.png in Resources */,
 				DEED1716183DE40200FDC8C8 /* drawer-delegate.png in Resources */,
 				8465C65617F5D1B500A00460 /* Images.xcassets in Resources */,
@@ -639,6 +653,7 @@
 				DE249177183E800B00CE97FC /* NarzissText-Bold.otf in Resources */,
 				DEB4B8521821A0D70050FA49 /* camera-icon@2x.png in Resources */,
 				39B391AB182782A300BD2D3B /* NEC_new.jpg in Resources */,
+				477045E118428EC500155D36 /* menu.png in Resources */,
 				DEB4B8561821A0D70050FA49 /* list-icon@2x.png in Resources */,
 				DEB4B8551821A0D70050FA49 /* list-icon.png in Resources */,
 				DEED1712183DE3E500FDC8C8 /* drawer-brands-label.png in Resources */,
@@ -646,6 +661,7 @@
 				23DC1BD61840E32D00B9FAEA /* backButton.png in Resources */,
 				DEB4B8501821A0D70050FA49 /* bookmark-icon@2x.png in Resources */,
 				DEFFD1C51841BBDF004BBE1A /* AVCamViewController.xib in Resources */,
+				477045DD18428CBD00155D36 /* 240head.png in Resources */,
 				DEED1713183DE3E500FDC8C8 /* drawer-history-label.png in Resources */,
 				DEED1711183DE3E500FDC8C8 /* drawer-album-label.png in Resources */,
 				23DC1BD01840DF2500B9FAEA /* title.png in Resources */,

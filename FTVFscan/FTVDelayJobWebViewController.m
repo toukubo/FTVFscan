@@ -25,9 +25,9 @@
 {
     self = [super init];
     if (self) {
-        CGRect rect = CGRectMake(0, -20, frame.size.width, frame.size.height);
+        CGRect rect = CGRectMake(0, 30, frame.size.width, frame.size.height);
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7")) {
-            rect = CGRectMake(0, 0, frame.size.width, frame.size.height);
+            rect = CGRectMake(0, 50, frame.size.width, frame.size.height);
         }
         
         // If this controller was init from FTVAppDelegate - showModalPopupWindow,
@@ -92,6 +92,11 @@
     [self.view addSubview:self.statusBackground];
     [self.view addSubview:self.busyIndicator];
     [self.statusBackground setHidden:YES];
+    
+    [super setHomeCameraMenuNavigations:self];
+
+    
+    
 }
 
 - (void)cameraAction
