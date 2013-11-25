@@ -12,6 +12,9 @@
 
 
 @interface FTVBrandsViewController ()
+{
+    BOOL isGoBack;
+}
 
 @end
 
@@ -53,13 +56,14 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [self navBarSlideLeft];
+    [self navBarSlideLeft:!isGoBack];
     [self statusIndicatorShow];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self statusIndicatorHide];
+    isGoBack = NO;
 }
 
 - (void)statusIndicatorShow
@@ -77,6 +81,7 @@
     //Do whatever you want here
     if ([_brandsWebView canGoBack]) {
         [_brandsWebView goBack];
+        isGoBack = YES;
     }
 }
 

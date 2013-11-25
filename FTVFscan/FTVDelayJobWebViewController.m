@@ -11,6 +11,9 @@
 #import "RegexKitLite.h"
 
 @interface FTVDelayJobWebViewController ()
+{
+    BOOL isGoBack;
+}
 
 @end
 
@@ -106,6 +109,7 @@
     NSLog(@"back...");
     if([self.webView canGoBack])
     {
+        isGoBack = YES;
         [self.webView goBack];
     }
     
@@ -129,14 +133,16 @@
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
 //    [SVProgressHUD show];
-    [self navBarSlideLeft];
+    [self navBarSlideLeft:!isGoBack];
     [self statusIndicatorShow];
+    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
 //    [SVProgressHUD dismiss];
     [self statusIndicatorHide];
+    isGoBack = NO;
 }
 
 - (void)statusIndicatorShow

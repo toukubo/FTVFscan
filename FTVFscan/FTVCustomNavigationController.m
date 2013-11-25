@@ -122,13 +122,20 @@
     
 }
 
-- (void)navBarSlideLeft
+- (void)navBarSlideLeft:(BOOL)isLeft
 {
     CGRect rect = navigationBar.superview.frame;
     
     UIView *fakeView =  [NSKeyedUnarchiver unarchiveObjectWithData:
              [NSKeyedArchiver archivedDataWithRootObject:navigationBar.superview]];
-    [navigationBar.superview setFrame:CGRectMake(320, 0, 320, rect.size.height)];
+    if (isLeft) {
+        [navigationBar.superview setFrame:CGRectMake(320, 0, 320, rect.size.height)];
+    }
+    else
+    {
+        [navigationBar.superview setFrame:CGRectMake(-320, 0, 320, rect.size.height)];
+    }
+    
     
     double delayInSeconds = 0.01;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -136,7 +143,13 @@
         [UIView beginAnimations:@"NavBarLeft" context:nil];
         [UIView setAnimationBeginsFromCurrentState: YES];
         [UIView setAnimationDuration:0.5];
-        [fakeView setFrame:CGRectMake(-320, 0, 320, rect.size.height)];
+        if (isLeft) {
+            [fakeView setFrame:CGRectMake(-320, 0, 320, rect.size.height)];
+        }
+        else
+        {
+            [fakeView setFrame:CGRectMake(320, 0, 320, rect.size.height)];
+        }
         [navigationBar.superview setFrame:CGRectMake(0, 0, 320, rect.size.height)];
         [UIView commitAnimations];
     });

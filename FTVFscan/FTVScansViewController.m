@@ -12,6 +12,9 @@
 
 
 @interface FTVScansViewController ()
+{
+    BOOL isGoBack;
+}
 
 @end
 
@@ -72,13 +75,14 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [self navBarSlideLeft];
+    [self navBarSlideLeft:!isGoBack];
     [self statusIndicatorShow];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self statusIndicatorHide];
+    isGoBack = NO;
 }
 
 - (void)statusIndicatorShow
