@@ -42,6 +42,13 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        // Nav Bar Background
+        
+        UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+        navigationView.backgroundColor = [UIColor blackColor];
+//        [navigationView addSubview:titleView];
+        [self.view addSubview:navigationView];
+        
         // take photo button
         stillButton = [UIButton buttonWithType:UIButtonTypeCustom];
         
@@ -62,7 +69,13 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
         UIImage *drawerImage = [UIImage imageNamed:@"menuIcon.png"];
         [drawerButton setImage:drawerImage forState:UIControlStateNormal];
         [drawerButton addTarget:self action:@selector(drawerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//        [self.view addSubview:drawerButton];
+        [self.view addSubview:drawerButton];
+        
+        UIButton *home_Button = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 24, 24)];
+        UIImage *homeButtonImage = [UIImage imageNamed:@"home_white.png"];
+        [home_Button setImage:homeButtonImage forState:UIControlStateNormal];
+        [home_Button addTarget:self action:@selector(homeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:home_Button];
         
     }
     
@@ -84,21 +97,28 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 #pragma mark - Helper
 - (void)homeButtonPressed:(id)sender
 {
+    
+    FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate switchSceneToTabController];
+    
     // TODO:
 //    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
 //    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVTourViewController"];
 //    [menuController setRootViewController:controller];
 //    [menuController showRootController:YES];
 //    [self stopCamPreview];
-    [self stopCamPreview];
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-        DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
-        UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVTourViewController"];
-        [menuController setRootViewController:controller];
-        [menuController showRootController:YES];
-        
-    }];
+//    [self stopCamPreview];
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        
+////        DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+////        UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVTourViewController"];
+////        [menuController setRootViewController:controller];
+////        [menuController showRootController:YES];
+//        
+//        FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//        [appDelegate switchSceneToTabController];
+//        
+//    }];
     
     DLine;
 }
