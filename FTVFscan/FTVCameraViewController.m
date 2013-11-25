@@ -92,12 +92,12 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     if (!stillButton.superview) {
         stillButton = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        UIImage *shutterImageNormal = [UIImage imageNamed:@"go-camera.png"];
-        UIImage *shutterImagePressed = [UIImage imageNamed:@"go-camera.png"];
-        [stillButton setFrame:CGRectMake((self.view.frameSizeWidth - shutterImageNormal.size.width) / 2,
-                                         self.view.frameSizeHeight - shutterImageNormal.size.height - 20,
-                                         shutterImageNormal.size.width,
-                                         shutterImageNormal.size.height)];
+        UIImage *shutterImageNormal = [UIImage imageNamed:@"scan.png"];
+        UIImage *shutterImagePressed = [UIImage imageNamed:@"scan.png"];
+        [stillButton setFrame:CGRectMake((self.view.frameSizeWidth - 60) / 2,
+                                         self.view.frameSizeHeight - 60 - 20,
+                                         60,
+                                         60)];
         [stillButton setImage:shutterImageNormal forState:UIControlStateNormal];
         [stillButton setImage:shutterImagePressed forState:UIControlStateHighlighted];
         [stillButton setBackgroundColor:[UIColor clearColor]];
