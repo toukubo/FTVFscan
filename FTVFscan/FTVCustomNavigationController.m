@@ -51,14 +51,16 @@
 }
 
 -(void)setBackButton:(UIView *)view :(UIViewController *)vc{
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 24, 24)];
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [backButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
+    [backButton setImageEdgeInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
     [backButton addTarget:vc action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:backButton];
 }
 
 -(void)setMenuButton:(UIView *)view{
-    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(290, 12, 20, 20)];
+    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(280, 2, 40, 40)];
+    [menuButton setImageEdgeInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
     [menuButton setImage:[UIImage imageNamed:@"menu.png"] forState:UIControlStateNormal];
     [menuButton addTarget:self action:@selector(openMenu) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:menuButton];
@@ -66,16 +68,18 @@
 
 
 -(void)setCameraButton:(UIView *)view{
-    UIButton *cameraButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 10, 24, 24)];
+    UIButton *cameraButton = [[UIButton alloc] initWithFrame:CGRectMake(40, 0, 44, 44)];
     [cameraButton setImage:[UIImage imageNamed:@"camera_white.png"] forState:UIControlStateNormal];
+    [cameraButton setImageEdgeInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
     [cameraButton addTarget:self action:@selector(cameraAction) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:cameraButton];
 }
 
 
 -(void)setHomeButton:(UIView *)view{
-    UIButton *homeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 24, 24)];
+    UIButton *homeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [homeButton setImage:[UIImage imageNamed:@"home_white.png"] forState:UIControlStateNormal];
+    [homeButton setImageEdgeInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
     [homeButton addTarget:self action:@selector(homeAction) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:homeButton];
 }
