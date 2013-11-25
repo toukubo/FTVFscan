@@ -95,7 +95,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
         UIImage *shutterImageNormal = [UIImage imageNamed:@"go-camera.png"];
         UIImage *shutterImagePressed = [UIImage imageNamed:@"go-camera.png"];
         [stillButton setFrame:CGRectMake((self.view.frameSizeWidth - shutterImageNormal.size.width) / 2,
-                                         self.view.frameSizeHeight - shutterImageNormal.size.height - 60,
+                                         self.view.frameSizeHeight - shutterImageNormal.size.height - 20,
                                          shutterImageNormal.size.width,
                                          shutterImageNormal.size.height)];
         [stillButton setImage:shutterImageNormal forState:UIControlStateNormal];
