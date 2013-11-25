@@ -252,7 +252,7 @@
             [super setHomeCameraMenuNavigations:self];
         }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/news/"]) {
             [super setHomeCameraMenuNavigations:self];
-        }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/theater/"]) {
+        }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/movie/"]) {
             [super setHomeCameraMenuNavigations:self];
         }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/topic/"]) {
             [super setHomeCameraMenuNavigations:self];
