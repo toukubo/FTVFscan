@@ -24,5 +24,6 @@
 -(void)setTitleNavigation:(UIViewController *)vc;
 
 @property (nonatomic, retain) LoadingView *loadingView;
+- (void)navBarSlideLeft;
 
 @end

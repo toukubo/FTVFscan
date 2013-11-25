@@ -71,12 +71,12 @@
         [FTVImageProcEngine openSafari:urlString];
         return NO;
     }
-    
     return YES;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
+    [self navBarSlideLeft];
     [self statusIndicatorShow];
 }
 

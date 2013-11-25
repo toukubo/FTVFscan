@@ -12,6 +12,7 @@
 
 @interface FTVCustomNavigationController (){
     NSString                    *redirectUrl;
+    UIView  *navigationBar;
 }
 
 @end
@@ -94,10 +95,59 @@
 
 }
 
+- (void)navBarSlideLeft1:(CGRect)refRect
+{
+    [UIView beginAnimations:@"NavBarLeft" context:nil];
+	[UIView setAnimationBeginsFromCurrentState: YES];
+	[UIView setAnimationDuration:0.5];
+	refRect = CGRectMake(-320, 0, 320, 50);
+    [navigationBar setFrame:refRect];
+	[UIView commitAnimations];
+    
+    
+//    UIView *superView = navigationBar.superview;
+//    [navigationBar removeFromSuperview];
+//    [navigationBar setFrame:CGRectMake(320, 0, 320, 50)];
+//    [superView addSubview:navigationBar];
+//    double delayInSeconds = 0.5;
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//        [UIView beginAnimations:@"NavBarLeft" context:nil];
+//        [UIView setAnimationBeginsFromCurrentState: YES];
+//        [UIView setAnimationDuration:0.5];
+//        CGRect refRect = CGRectMake(0, 0, 320, 50);
+//        [navigationBar setFrame:refRect];
+//        [UIView commitAnimations];
+//    });
+    
+}
+
+- (void)navBarSlideLeft
+{
+    CGRect rect = navigationBar.superview.frame;
+    
+    UIView *fakeView =  [NSKeyedUnarchiver unarchiveObjectWithData:
+             [NSKeyedArchiver archivedDataWithRootObject:navigationBar.superview]];
+    [navigationBar.superview setFrame:CGRectMake(320, 0, 320, rect.size.height)];
+    
+    double delayInSeconds = 0.01;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [UIView beginAnimations:@"NavBarLeft" context:nil];
+        [UIView setAnimationBeginsFromCurrentState: YES];
+        [UIView setAnimationDuration:0.5];
+        [fakeView setFrame:CGRectMake(-320, 0, 320, rect.size.height)];
+        [navigationBar.superview setFrame:CGRectMake(0, 0, 320, rect.size.height)];
+        [UIView commitAnimations];
+    });
+}
+
+
 -(UIView*)drawBackground{
     UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
     navigationView.backgroundColor = [UIColor blackColor];
     [self drawTitle:navigationView  ];
+    navigationBar = navigationView;
     return navigationView;
 
 }

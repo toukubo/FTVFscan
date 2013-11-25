@@ -129,6 +129,7 @@
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
 //    [SVProgressHUD show];
+    [self navBarSlideLeft];
     [self statusIndicatorShow];
 }
 

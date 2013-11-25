@@ -53,6 +53,7 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
+    [self navBarSlideLeft];
     [self statusIndicatorShow];
 }
 
