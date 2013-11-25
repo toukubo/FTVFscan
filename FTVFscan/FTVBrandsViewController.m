@@ -51,6 +51,25 @@
     NSLog(@"Error : %@",error);
 }
 
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [self statusIndicatorShow];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self statusIndicatorHide];
+}
+
+- (void)statusIndicatorShow
+{
+    [self.loadingView show];
+}
+
+- (void)statusIndicatorHide
+{
+    [self.loadingView hide];
+}
 
 -(void)doneButtonClick:(NSNotification*)aNotification
 {

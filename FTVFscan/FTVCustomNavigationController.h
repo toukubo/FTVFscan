@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoadingView.h"
 
 @interface FTVCustomNavigationController : UIViewController{
     
@@ -21,5 +22,7 @@
 -(void)setHomeMenuNavigations:(UIViewController *)vc;
 -(void)setBackCameraMenuNavigations:(UIViewController *)vc;
 -(void)setTitleNavigation:(UIViewController *)vc;
+
+@property (nonatomic, retain) LoadingView *loadingView;
 
 @end

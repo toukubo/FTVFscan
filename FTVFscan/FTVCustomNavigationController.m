@@ -30,6 +30,9 @@
 {
     [super viewDidLoad];
     
+    self.loadingView = [[LoadingView alloc]initWithFrame:self.view.frame];
+    [self.view addSubview:self.loadingView];
+    
 //do it in programing code
 //    maybe a black bar and buttons as subview on it.
     

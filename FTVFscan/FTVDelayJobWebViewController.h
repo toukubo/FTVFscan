@@ -13,8 +13,6 @@
 
 @property (nonatomic, retain) NSString *redirectUrl;
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
-@property (nonatomic, retain) UIView *statusBackground;
-@property (nonatomic, retain) UIActivityIndicatorView *busyIndicator;
 
 - (IBAction)dismissModalView:(id)sender;
 

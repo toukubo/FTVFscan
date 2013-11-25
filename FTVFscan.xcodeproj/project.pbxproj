@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2214388D184084920017FF04 /* drawer-head-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2214388C184084920017FF04 /* drawer-head-logo.png */; };
 		22A1314A18437A70008D3669 /* scan.png in Resources */ = {isa = PBXBuildFile; fileRef = 22A1314918437A70008D3669 /* scan.png */; };
+		22A1314D184384FE008D3669 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A1314C184384FE008D3669 /* LoadingView.m */; };
 		23A41AB918426C0F00D914DC /* draw_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 23A41AB818426C0F00D914DC /* draw_white.png */; };
 		23DC1BD01840DF2500B9FAEA /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DC1BC91840DF2500B9FAEA /* title.png */; };
 		23DC1BD11840DF2500B9FAEA /* home_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DC1BCA1840DF2500B9FAEA /* home_white.png */; };
@@ -116,6 +117,8 @@
 		17EB1EFD5A21421C90C01507 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2214388C184084920017FF04 /* drawer-head-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-head-logo.png"; sourceTree = "<group>"; };
 		22A1314918437A70008D3669 /* scan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scan.png; sourceTree = "<group>"; };
+		22A1314B184384FE008D3669 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
+		22A1314C184384FE008D3669 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		23A41AB818426C0F00D914DC /* draw_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = draw_white.png; sourceTree = "<group>"; };
 		23DC1BC91840DF2500B9FAEA /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		23DC1BCA1840DF2500B9FAEA /* home_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_white.png; sourceTree = "<group>"; };
@@ -361,6 +364,8 @@
 		39E32CB7181FB33D009C911F /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				22A1314B184384FE008D3669 /* LoadingView.h */,
+				22A1314C184384FE008D3669 /* LoadingView.m */,
 				39E32CB8181FB77D009C911F /* FTVUser.h */,
 				39E32CB9181FB77D009C911F /* FTVUser.m */,
 				39153DB318225A3800F3C9D0 /* FTVImageProcOption.h */,
@@ -732,6 +737,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEFFD1A1183E8356004BBE1A /* NarzissText-Bold.otf in Sources */,
+				22A1314D184384FE008D3669 /* LoadingView.m in Sources */,
 				39F4936D1821427E00093167 /* REString.m in Sources */,
 				39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */,
 				395AFD85183C92520093E0A4 /* AVCamUtilities.m in Sources */,
