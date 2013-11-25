@@ -265,37 +265,6 @@
         }
         
     }
-                 // TODO gailya, handle this later
-//        else if (url.contains(".ahtml")) {
-//        URL urlObject = null;
-//        try {
-//            urlObject = new URL(url);
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
-//        InputStream is = null;
-//        try {
-//            is = urlObject.openStream();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        String thehtml = null;
-//        try {
-//            thehtml = IOUtils.toString(is);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        
-//        for (Iterator iterator = this.attributeSet.keySet().iterator(); iterator.hasNext(); ) {
-//            String key = (String) iterator.next();
-//            String value = this.attributeSet.get(key);
-//            thehtml = thehtml.replaceAll("\\$\\{" + key + "\\}", value);
-//        }
-//        view.loadDataWithBaseURL("file:///android_asset/", thehtml, "text/html", "UTF-8", null);
-//        
-//        return YES;
-//        
-//    }
     return NO;
 }
 
