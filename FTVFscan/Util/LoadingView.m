@@ -24,15 +24,15 @@
 - (void)show {
 	[UIView beginAnimations:@"ActivityIndicator" context:nil];
 	[UIView setAnimationBeginsFromCurrentState: YES];
-	[UIView setAnimationDuration:0.5];
-	self.alpha = 0.7;
+	[UIView setAnimationDuration:0.6];
+	self.alpha = 0.9;
 	[UIView commitAnimations];
 }
 
 - (void)hide {
 	[UIView beginAnimations:@"ActivityIndicator" context:nil];
 	[UIView setAnimationBeginsFromCurrentState: YES];
-	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationDuration:0.6];
 	self.alpha = 0.0;
 	[UIView commitAnimations];
 }
