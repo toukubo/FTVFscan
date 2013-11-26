@@ -12,7 +12,6 @@
 #import "MSNavigationPaneViewController.h"
 #import "DDMenuController.h"
 #import "AVCamCaptureManager.h"
-#import "AVCamViewController.h"
 
 static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 
@@ -449,24 +448,27 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     // stop camera preview
     [self stopCamPreview];
     
-    if ([delegate respondsToSelector:@selector(didFinishedTakenPictureWithPath:)]) {
-        [delegate didFinishedTakenPictureWithPath:localImagePath];
-    }
+//    if ([delegate respondsToSelector:@selector(didFinishedTakenPictureWithPath:)]) {
+//        [delegate didFinishedTakenPictureWithPath:localImagePath];
+//    }
+    [self didFinishedTakenPictureWithPath:localImagePath];
+    
 //    [avCamera willMoveToParentViewController:nil];
 //    [avCamera.view removeFromSuperview];
 //    [avCamera removeFromParentViewController];
-    [self dismissViewControllerAnimated:YES completion:^{    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)cancelShooting
 {
     [SVProgressHUD dismiss];
     
-    if ([delegate respondsToSelector:@selector(didCancelCamera)]) {
-        [delegate didCancelCamera];
-    }
+//    if ([delegate respondsToSelector:@selector(didCancelCamera)]) {
+//        [delegate didCancelCamera];
+//    }
+    [self didCancelCamera];
 //    [avCamera.view removeFromSuperview];
-    [self dismissViewControllerAnimated:YES completion:^{}];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 

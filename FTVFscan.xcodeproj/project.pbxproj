@@ -99,8 +99,6 @@
 		DEED1714183DE3E500FDC8C8 /* drawer-tour-label.png in Resources */ = {isa = PBXBuildFile; fileRef = DEED1710183DE3E500FDC8C8 /* drawer-tour-label.png */; };
 		DEED1716183DE40200FDC8C8 /* drawer-delegate.png in Resources */ = {isa = PBXBuildFile; fileRef = DEED1715183DE40200FDC8C8 /* drawer-delegate.png */; };
 		DEFFD1A1183E8356004BBE1A /* NarzissText-Bold.otf in Sources */ = {isa = PBXBuildFile; fileRef = DE249176183E800B00CE97FC /* NarzissText-Bold.otf */; };
-		DEFFD1A61841B5BD004BBE1A /* AVCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFFD1A51841B5BD004BBE1A /* AVCamViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DEFFD1C51841BBDF004BBE1A /* AVCamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEFFD1C41841BBDE004BBE1A /* AVCamViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -255,9 +253,6 @@
 		DEED170F183DE3E500FDC8C8 /* drawer-history-label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-history-label.png"; sourceTree = "<group>"; };
 		DEED1710183DE3E500FDC8C8 /* drawer-tour-label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-tour-label.png"; sourceTree = "<group>"; };
 		DEED1715183DE40200FDC8C8 /* drawer-delegate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawer-delegate.png"; sourceTree = "<group>"; };
-		DEFFD1A51841B5BD004BBE1A /* AVCamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamViewController.m; sourceTree = "<group>"; };
-		DEFFD1C31841BBDE004BBE1A /* AVCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamViewController.h; sourceTree = "<group>"; };
-		DEFFD1C41841BBDE004BBE1A /* AVCamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVCamViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,9 +299,6 @@
 		395AFD71183C92520093E0A4 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				DEFFD1C31841BBDE004BBE1A /* AVCamViewController.h */,
-				DEFFD1C41841BBDE004BBE1A /* AVCamViewController.xib */,
-				DEFFD1A51841B5BD004BBE1A /* AVCamViewController.m */,
 				395AFD72183C92520093E0A4 /* AVCamCaptureManager.h */,
 				395AFD73183C92520093E0A4 /* AVCamCaptureManager.m */,
 				395AFD74183C92520093E0A4 /* AVCamUtilities.h */,
@@ -617,7 +609,7 @@
 				ORGANIZATIONNAME = T2;
 				TargetAttributes = {
 					8465C65A17F5D1B600A00460 = {
-						TestTargetID = 8465C63617F5D1B500A00460 /* FTVFscan */;
+						TestTargetID = 8465C63617F5D1B500A00460;
 					};
 				};
 			};
@@ -666,7 +658,6 @@
 				22A1314A18437A70008D3669 /* scan.png in Resources */,
 				23DC1BD61840E32D00B9FAEA /* backButton.png in Resources */,
 				DEB4B8501821A0D70050FA49 /* bookmark-icon@2x.png in Resources */,
-				DEFFD1C51841BBDF004BBE1A /* AVCamViewController.xib in Resources */,
 				477045DD18428CBD00155D36 /* 240head.png in Resources */,
 				DEED1713183DE3E500FDC8C8 /* drawer-history-label.png in Resources */,
 				DEED1711183DE3E500FDC8C8 /* drawer-album-label.png in Resources */,
@@ -742,7 +733,6 @@
 				39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */,
 				395AFD85183C92520093E0A4 /* AVCamUtilities.m in Sources */,
 				DE163386183B665A007EF946 /* FTVMenuViewController.m in Sources */,
-				DEFFD1A61841B5BD004BBE1A /* AVCamViewController.m in Sources */,
 				39F4936018213B3000093167 /* DeviceUtil.m in Sources */,
 				DE16336E183B493B007EF946 /* PRTween.m in Sources */,
 				39F4936E1821427E00093167 /* StringUtil.m in Sources */,
