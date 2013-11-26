@@ -85,7 +85,7 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] ;
     cell.backgroundColor = [UIColor blackColor];
     cell.textLabel.textColor = [UIColor whiteColor];
-    cell.textLabel.font = [UIFont fontWithName:@"NarzissTextBold" size:14];
+    cell.textLabel.font = [UIFont fontWithName:@"NarzissTextBold" size:16];
     cell.textLabel.text = [menuItems objectAtIndex:indexPath.row];
 
     

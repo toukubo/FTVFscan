@@ -96,7 +96,7 @@
     [view addSubview:homeButton];
 }
 -(void)drawTitle:(UIView *)view{
-    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 10, 100, 16)];//(100, 12, 127, 20)
+    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(110, 13, 100, 16)];//(100, 12, 127, 20)
     titleView.image = [UIImage imageNamed:@"240head.png"];
     [view addSubview:titleView];
 }
@@ -233,7 +233,7 @@
 
 -(void)setTitleNavigation:(UIViewController *)vc{
     //Title
-    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 10, 100, 16)];
+    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(110, 13, 100, 16)];
     titleView.image = [UIImage imageNamed:@"240head.png"];
     UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     navigationView.backgroundColor = [UIColor blackColor];
