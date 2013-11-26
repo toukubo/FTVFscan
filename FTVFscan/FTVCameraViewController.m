@@ -90,6 +90,10 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 
 - (void)switchSceneToCamera
 {
+    avCamera = [[AVCamViewController alloc] init];
+    [avCamera setDelegate:self];
+    [super setHomeMenuNavigations:avCamera];
+
     if (!stillButton.superview) {
         stillButton = [UIButton buttonWithType:UIButtonTypeCustom];
         
@@ -103,7 +107,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
         [stillButton setImage:shutterImagePressed forState:UIControlStateHighlighted];
         [stillButton setBackgroundColor:[UIColor clearColor]];
         [stillButton addTarget:self action:@selector(captureStillImage:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:stillButton];
+        [avCamera.view addSubview:stillButton];
     }
     
     [self startCamCapture];
@@ -111,8 +115,6 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 //    AVCamViewController *avCamera = [[AVCamViewController alloc] init];
 //    [avCamera setDelegate:self];
 //    
-    avCamera = [[AVCamViewController alloc] init];
-    [avCamera setDelegate:self];
 //    avCamera.view.frame = self.cameraView.bounds;
 //    [self.view addSubview:avCamera.view];
 //    [self addChildViewController:avCamera];
@@ -266,11 +268,11 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     [menuController setRootController:controller animated:YES];
 }
 
--(IBAction)OpenMenu:(id)sender
-{
-    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
-    [menuController showRightController:YES];
-}
+//-(IBAction)OpenMenu:(id)sender
+//{
+//    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+//    [menuController showRightController:YES];
+//}
 
 #pragma mark -
 - (void)captureStillImage:(id)sender

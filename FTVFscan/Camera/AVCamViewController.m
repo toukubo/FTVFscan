@@ -44,38 +44,38 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     if (self) {
         // Nav Bar Background
         
-        UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-        navigationView.backgroundColor = [UIColor blackColor];
-//        [navigationView addSubview:titleView];
-        [self.view addSubview:navigationView];
-        
-        // take photo button
-        stillButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        
-        UIImage *shutterImageNormal = [UIImage imageNamed:@"scan.png"];
-        UIImage *shutterImagePressed = [UIImage imageNamed:@"scan.png"];
-        [stillButton setFrame:CGRectMake((self.view.frameSizeWidth - 60) / 2,
-                                         self.view.frameSizeHeight - 60 - 20,
-                                         60,
-                                         60)];
-        [stillButton setImage:shutterImageNormal forState:UIControlStateNormal];
-        [stillButton setImage:shutterImagePressed forState:UIControlStateHighlighted];
-        [stillButton setBackgroundColor:[UIColor clearColor]];
-        [stillButton addTarget:self action:@selector(captureStillImage:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:stillButton];
-        
-        
-        UIButton *drawerButton = [[UIButton alloc] initWithFrame:CGRectMake(278, 7, 35, 30)];
-        UIImage *drawerImage = [UIImage imageNamed:@"menuIcon.png"];
-        [drawerButton setImage:drawerImage forState:UIControlStateNormal];
-        [drawerButton addTarget:self action:@selector(drawerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:drawerButton];
-        
-        UIButton *home_Button = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 24, 24)];
-        UIImage *homeButtonImage = [UIImage imageNamed:@"home_white.png"];
-        [home_Button setImage:homeButtonImage forState:UIControlStateNormal];
-        [home_Button addTarget:self action:@selector(homeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:home_Button];
+//        UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+//        navigationView.backgroundColor = [UIColor blackColor];
+////        [navigationView addSubview:titleView];
+//        [self.view addSubview:navigationView];
+//        
+//        // take photo button
+//        stillButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        
+//        UIImage *shutterImageNormal = [UIImage imageNamed:@"scan.png"];
+//        UIImage *shutterImagePressed = [UIImage imageNamed:@"scan.png"];
+//        [stillButton setFrame:CGRectMake((self.view.frameSizeWidth - 60) / 2,
+//                                         self.view.frameSizeHeight - 60 - 20,
+//                                         60,
+//                                         60)];
+//        [stillButton setImage:shutterImageNormal forState:UIControlStateNormal];
+//        [stillButton setImage:shutterImagePressed forState:UIControlStateHighlighted];
+//        [stillButton setBackgroundColor:[UIColor clearColor]];
+//        [stillButton addTarget:self action:@selector(captureStillImage:) forControlEvents:UIControlEventTouchUpInside];
+//        [self.view addSubview:stillButton];
+//
+//        
+//        UIButton *drawerButton = [[UIButton alloc] initWithFrame:CGRectMake(278, 7, 35, 30)];
+//        UIImage *drawerImage = [UIImage imageNamed:@"menuIcon.png"];
+//        [drawerButton setImage:drawerImage forState:UIControlStateNormal];
+//        [drawerButton addTarget:self action:@selector(drawerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//        [self.view addSubview:drawerButton];
+//        
+//        UIButton *home_Button = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 24, 24)];
+//        UIImage *homeButtonImage = [UIImage imageNamed:@"home_white.png"];
+//        [home_Button setImage:homeButtonImage forState:UIControlStateNormal];
+//        [home_Button addTarget:self action:@selector(homeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//        [self.view addSubview:home_Button];
         
     }
     
@@ -87,6 +87,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
 }
 
 - (void)viewDidUnload {

@@ -215,6 +215,14 @@
     [vc.view addSubview:navigationView];
 }
 
+
+-(void)setBackMenuNavigations:(UIViewController *)vc{
+    UIView *navigationView = [self drawBackground];
+    [self setMenuButton:navigationView];
+    [self setBackButton:navigationView vc:vc];
+    [vc.view addSubview:navigationView];
+}
+
 -(void)setBackNavigations:(UIViewController *)vc{
     UIView *navigationView = [self drawBackground];
 //    [self setCameraButton:navigationView];

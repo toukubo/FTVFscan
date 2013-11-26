@@ -386,7 +386,7 @@
         <image name="camera_white.png" width="39" height="37"/>
         <image name="menuIcon.png" width="35" height="30"/>
         <image name="scans-icon" width="18" height="16"/>
-        <image name="title.png" width="100" height="20"/>
+        <image name="title.png" width="261" height="63"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -394,6 +394,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="OU8-Ov-bC0"/>
+        <segue reference="imu-oV-QJI"/>
     </inferredMetricsTieBreakers>
 </document>

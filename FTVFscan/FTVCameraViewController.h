@@ -40,5 +40,5 @@
 
 - (IBAction)openGallery:(id)sender;
 
--(IBAction)OpenMenu:(id)sender;
+//-(IBAction)OpenMenu:(id)sender;
 @end

@@ -31,5 +31,6 @@
 
 @property (nonatomic, retain) LoadingView *loadingView;
 - (void)navBarSlideLeft:(BOOL)isLeft;
+-(void)setBackMenuNavigations:(UIViewController *)vc;
 
 @end
