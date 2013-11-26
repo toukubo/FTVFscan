@@ -56,7 +56,7 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [self navBarSlideLeft:!isGoBack];
+//    [self navBarSlideLeft:!isGoBack];
     [self statusIndicatorShow];
 }
 

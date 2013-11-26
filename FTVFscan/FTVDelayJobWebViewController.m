@@ -142,7 +142,7 @@
     NSLog(@"webViewDidStartLoad,,,");
 
 //    [SVProgressHUD show];
-    [self navBarSlideLeft:!isGoBack];
+//    [self navBarSlideLeft:!isGoBack];
     [self statusIndicatorShow];
     
 }
