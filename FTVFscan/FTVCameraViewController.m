@@ -90,9 +90,9 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 
 - (void)switchSceneToCamera
 {
-    avCamera = [[AVCamViewController alloc] init];
-    [avCamera setDelegate:self];
-    [super setHomeMenuNavigations:avCamera];
+//    avCamera = [[AVCamViewController alloc] init];
+//    [avCamera setDelegate:self];
+//    [super setHomeMenuNavigations:avCamera];
 
     if (!stillButton.superview) {
         stillButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -107,7 +107,8 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
         [stillButton setImage:shutterImagePressed forState:UIControlStateHighlighted];
         [stillButton setBackgroundColor:[UIColor clearColor]];
         [stillButton addTarget:self action:@selector(captureStillImage:) forControlEvents:UIControlEventTouchUpInside];
-        [avCamera.view addSubview:stillButton];
+//        [avCamera.view addSubview:stillButton];
+        [self.view addSubview:stillButton];
     }
     
     [self startCamCapture];
@@ -119,7 +120,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 //    [self.view addSubview:avCamera.view];
 //    [self addChildViewController:avCamera];
 //    [avCamera didMoveToParentViewController:self];
-    [self presentViewController:avCamera animated:YES completion:nil];
+//    [self presentViewController:avCamera animated:YES completion:nil];
 }
 
 - (void)switchSceneToRegisterController
