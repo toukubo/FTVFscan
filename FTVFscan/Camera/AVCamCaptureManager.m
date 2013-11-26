@@ -158,26 +158,11 @@
 {
     BOOL success = NO;
     
-	// Set torch and flash mode to auto
-	if ([[self backFacingCamera] hasFlash]) {
-		if ([[self backFacingCamera] lockForConfiguration:nil]) {
-			if ([[self backFacingCamera] isFlashModeSupported:AVCaptureFlashModeAuto]) {
-				[[self backFacingCamera] setFlashMode:AVCaptureFlashModeAuto];
-			}
-			[[self backFacingCamera] unlockForConfiguration];
-		}
-	}
-	if ([[self backFacingCamera] hasTorch]) {
-		if ([[self backFacingCamera] lockForConfiguration:nil]) {
-			if ([[self backFacingCamera] isTorchModeSupported:AVCaptureTorchModeAuto]) {
-				[[self backFacingCamera] setTorchMode:AVCaptureTorchModeAuto];
-			}
-			[[self backFacingCamera] unlockForConfiguration];
-		}
-	}
-	
-    // Init the device inputs
-    AVCaptureDeviceInput *newVideoInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self backFacingCamera] error:nil];
+    // get video caputure device instance
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    
+    // get device input instance
+    AVCaptureDeviceInput *newVideoInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:NULL];
 	
     // Setup the still image file output
     AVCaptureStillImageOutput *newStillImageOutput = [[AVCaptureStillImageOutput alloc] init];
@@ -187,11 +172,8 @@
     [newStillImageOutput setOutputSettings:outputSettings];
     [outputSettings release];
     
-    
     // Create session
     AVCaptureSession *newCaptureSession = [[AVCaptureSession alloc] init];
-    newCaptureSession.sessionPreset = AVCaptureSessionPreset1280x720;
-    
     
     // Add inputs and output to the capture session
     if ([newCaptureSession canAddInput:newVideoInput]) {

@@ -288,7 +288,6 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     if ([self captureManager] == nil) {
         AVCamCaptureManager *manager = [[AVCamCaptureManager alloc] init];
         [self setCaptureManager:manager];
-//        [manager release];
         [[self captureManager] setDelegate:self];
         
         if ([[self captureManager] setupSession]) {
@@ -307,10 +306,6 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
                                 bounds.size.width,
                                 bounds.size.height);
             [newCaptureVideoPreviewLayer setFrame:bounds];
-            
-            if ([newCaptureVideoPreviewLayer isOrientationSupported]) {
-                [newCaptureVideoPreviewLayer setOrientation:AVCaptureVideoOrientationPortrait];
-            }
             
             [newCaptureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
             
@@ -350,9 +345,9 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     CGPoint pointOfInterest = CGPointMake(.5f, .5f);
     CGSize frameSize = [[self videoPreviewView] frame].size;
     
-    if ([captureVideoPreviewLayer isMirrored]) {
-        viewCoordinates.x = frameSize.width - viewCoordinates.x;
-    }
+//    if ([captureVideoPreviewLayer isMirrored]) {
+//        viewCoordinates.x = frameSize.width - viewCoordinates.x;
+//    }
     
     if ( [[captureVideoPreviewLayer videoGravity] isEqualToString:AVLayerVideoGravityResize] ) {
 		// Scale, switch x and y, and reverse x
