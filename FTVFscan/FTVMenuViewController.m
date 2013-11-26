@@ -43,7 +43,7 @@
     [menuItemViewId addObject:@"FTVGalleryViewController"];
     [menuItemViewId addObject:@"FTVBrandsViewController"];
     
-    [super setTitleNavigation:self];
+    [super setBackNavigations:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,7 +85,7 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] ;
     cell.backgroundColor = [UIColor blackColor];
     cell.textLabel.textColor = [UIColor whiteColor];
-    cell.textLabel.font = [UIFont fontWithName:@"NarzissTextBold" size:20];
+    cell.textLabel.font = [UIFont fontWithName:@"NarzissTextBold" size:14];
     cell.textLabel.text = [menuItems objectAtIndex:indexPath.row];
 
     

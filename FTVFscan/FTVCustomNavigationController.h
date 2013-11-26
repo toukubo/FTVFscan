@@ -22,6 +22,12 @@
 -(void)setHomeMenuNavigations:(UIViewController *)vc;
 -(void)setBackCameraMenuNavigations:(UIViewController *)vc;
 -(void)setTitleNavigation:(UIViewController *)vc;
+-(void)setBackCameraNavigations:(UIViewController *)vc;
+-(void)setBackButton:(UIView *)view vc:(UIViewController *)vc;
+-(void)setCameraMenuNavigations:(UIViewController *)vc;
+-(void)setFirstCameraButton:(UIView *)view;
+-(void)setHomeCameraNavigations:(UIViewController *)vc;
+-(void)setBackNavigations:(UIViewController *)vc;
 
 @property (nonatomic, retain) LoadingView *loadingView;
 - (void)navBarSlideLeft:(BOOL)isLeft;

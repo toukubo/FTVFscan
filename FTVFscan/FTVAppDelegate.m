@@ -15,7 +15,6 @@
 #import "DDMenuController.h"
 
 
-
 @implementation FTVAppDelegate
 
 @synthesize menuController = _menuController;
@@ -122,13 +121,14 @@
     NSLog(@"controller = %@",controller);
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
     nav.navigationBar.barStyle = UIBarStyleBlack;
-    
+
     DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:nav];
     _menuController = rootController;
 	
     
     UIViewController *controllerRight = [storyboard instantiateViewControllerWithIdentifier:@"FTVMenuViewController"];
     rootController.rightViewController = controllerRight;
+    
     
     self.window.rootViewController = rootController;
     [self.window makeKeyAndVisible];

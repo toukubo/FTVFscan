@@ -45,9 +45,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    NSLog(@"VDL,,,");
     [self.webView setDelegate:self];
-    
     self.navigationController.navigationBarHidden = NO;
     self.webView.scalesPageToFit = YES;
     
@@ -85,6 +84,8 @@
         // If this controller was init from FTVAppDelegate - showModalPopupWindow,
         // the webview is not added to view
         [self.view addSubview:self.webView];
+    }else{
+        NSLog(@"initial load...");
     }
     
     [super setHomeCameraMenuNavigations:self];
@@ -92,16 +93,20 @@
     
     
 }
-
-- (void)cameraAction
-{
-    [super cameraAction];
-}
-
-- (void)homeAction
-{
-    [super homeAction];
-}
+//- (void)openMenu
+//{
+//    [super openMenu];
+//}
+//
+//- (void)cameraAction
+//{
+//    [super cameraAction];
+//}
+//
+//- (void)homeAction
+//{
+//    [super homeAction];
+//}
 
 
 - (void)backAction
@@ -123,6 +128,8 @@
 
 - (void)loadUrl:(NSString*)url
 {
+    NSLog(@"loadUrl...%@", url);
+
     if (!IsEmpty(url)) {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
         
@@ -132,6 +139,8 @@
 #pragma mark - UIWebView Delegate
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
+    NSLog(@"webViewDidStartLoad,,,");
+
 //    [SVProgressHUD show];
     [self navBarSlideLeft:!isGoBack];
     [self statusIndicatorShow];
@@ -140,6 +149,8 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    NSLog(@"webViewDidFinishLoad,,,");
+
 //    [SVProgressHUD dismiss];
     [self statusIndicatorHide];
     isGoBack = NO;
@@ -157,6 +168,8 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    NSLog(@"shouldStartLoadWithRequest,,,");
+   
     NSString *urlString = request.URL.absoluteString;
 //    DLog(@"%@", urlString);
 //    if ([self needOpenExternalSafari:urlString]) {
@@ -195,6 +208,20 @@
     
     return NO;
 }
+
+//-(void)setNavigationItems:(NSString *)urlString{
+//    if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/"]) {
+//        [super setCameraMenuNavigations:self];
+//    }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/news/"]) {
+//        [super setHomeCameraMenuNavigations:self];
+//    }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/theater/"]) {
+//        [super setHomeCameraMenuNavigations:self];
+//    }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/topic/"]) {
+//        [super setHomeCameraMenuNavigations:self];
+//    }else {
+//        [super setBackCameraNavigations:self];
+//    }
+//}
 
 - (BOOL)shouldOverrideUrlLoading:(NSString *)urlString
 {
@@ -236,6 +263,7 @@
 //            [menuController setRootController:controller animated:YES];
             FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
             [appDelegate switchSceneToCameraController];
+//            [super setHomeMenuNavigations:self];
 
         }
         else if([action hasSuffix:@"Gallery"])
@@ -243,21 +271,26 @@
             DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
             UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVGalleryViewController"];
             [menuController setRootController:controller animated:YES];
+            [super setHomeCameraMenuNavigations:self];
+
         }
         
         return YES;
     }else {
         NSLog(@"%@", urlString);
         if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/"]) {
-            [super setHomeCameraMenuNavigations:self];
+            [super setTitleNavigation:self];
         }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/news/"]) {
-            [super setHomeCameraMenuNavigations:self];
+            [super setHomeCameraNavigations:self];
         }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/movie/"]) {
-            [super setHomeCameraMenuNavigations:self];
+            [super setHomeCameraNavigations:self];
         }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/topic/"]) {
+            [super setHomeCameraNavigations:self];
+        }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/form-search/"]) {
+            NSLog(@"here..%@", urlString);
             [super setHomeCameraMenuNavigations:self];
         }else {
-            [super setBackCameraMenuNavigations:self];
+            [super setBackCameraNavigations:self];
         }
         
     }

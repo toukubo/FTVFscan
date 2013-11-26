@@ -54,9 +54,9 @@
 	// Do any additional setup after loading the view.
 }
 
--(void)setBackButton:(UIView *)view :(UIViewController *)vc{
+-(void)setBackButton:(UIView *)view vc:(UIViewController *)vc{
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [backButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
     [backButton setImageEdgeInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
     [backButton addTarget:vc action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:backButton];
@@ -79,6 +79,14 @@
     [view addSubview:cameraButton];
 }
 
+-(void)setFirstCameraButton:(UIView *)view{
+    UIButton *cameraButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [cameraButton setImage:[UIImage imageNamed:@"camera_white.png"] forState:UIControlStateNormal];
+    [cameraButton setImageEdgeInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+    [cameraButton addTarget:self action:@selector(cameraAction) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:cameraButton];
+}
+
 
 -(void)setHomeButton:(UIView *)view{
     UIButton *homeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
@@ -88,11 +96,9 @@
     [view addSubview:homeButton];
 }
 -(void)drawTitle:(UIView *)view{
-    
-    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 12, 127, 20)];
+    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 10, 100, 16)];//(100, 12, 127, 20)
     titleView.image = [UIImage imageNamed:@"240head.png"];
     [view addSubview:titleView];
-
 }
 
 - (void)navBarSlideLeft1:(CGRect)refRect
@@ -157,7 +163,7 @@
 
 
 -(UIView*)drawBackground{
-    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     navigationView.backgroundColor = [UIColor blackColor];
     [self drawTitle:navigationView  ];
     navigationBar = navigationView;
@@ -172,15 +178,25 @@
     [vc.view addSubview:navigationView];
 }
 
--(void)setHomeMenuNavigations:(UIViewController *)vc{
-    //Left Navigation Items
+-(void)setCameraMenuNavigations:(UIViewController *)vc{
     UIView *navigationView = [self drawBackground];
-    [self setHomeButton:navigationView];
-//    [self setCameraButton:navigationView];
+    [self setFirstCameraButton:navigationView];
     [self setMenuButton:navigationView];
     [vc.view addSubview:navigationView];
+}
 
-    
+-(void)setHomeMenuNavigations:(UIViewController *)vc{
+    UIView *navigationView = [self drawBackground];
+    [self setHomeButton:navigationView];
+    [self setMenuButton:navigationView];
+    [vc.view addSubview:navigationView];
+}
+
+-(void)setHomeCameraNavigations:(UIViewController *)vc{
+    UIView *navigationView = [self drawBackground];
+    [self setHomeButton:navigationView];
+    [self setCameraButton:navigationView];
+    [vc.view addSubview:navigationView];
 }
 
 -(void)setBackCameraMenuNavigations:(UIViewController *)vc{
@@ -188,19 +204,30 @@
     [self setHomeButton:navigationView];
     [self setCameraButton:navigationView];
     [self setMenuButton:navigationView];
-    [self setBackButton:navigationView :vc];
-
+    [self setBackButton:navigationView vc:vc];
     [vc.view addSubview:navigationView];
-
-    
 }
+
+-(void)setBackCameraNavigations:(UIViewController *)vc{
+    UIView *navigationView = [self drawBackground];
+    [self setCameraButton:navigationView];
+    [self setBackButton:navigationView vc:vc];
+    [vc.view addSubview:navigationView];
+}
+
+-(void)setBackNavigations:(UIViewController *)vc{
+    UIView *navigationView = [self drawBackground];
+//    [self setCameraButton:navigationView];
+    [self setBackButton:navigationView vc:vc];
+    [vc.view addSubview:navigationView];
+}
+
 
 -(void)setTitleNavigation:(UIViewController *)vc{
     //Title
-    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 10, 100, 25)];
-    titleView.image = [UIImage imageNamed:@"drawer-head-logo.png"];
-    
-    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 10, 100, 16)];
+    titleView.image = [UIImage imageNamed:@"240head.png"];
+    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     navigationView.backgroundColor = [UIColor blackColor];
     [navigationView addSubview:titleView];
     [vc.view addSubview:navigationView];

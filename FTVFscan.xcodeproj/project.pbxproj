@@ -416,38 +416,38 @@
 		8465C64017F5D1B500A00460 /* FTVFscan */ = {
 			isa = PBXGroup;
 			children = (
-				DE249175183E7FF300CE97FC /* Fonts */,
-				DE249174183E7FCC00CE97FC /* DDMenuController */,
 				395AFD71183C92520093E0A4 /* Camera */,
-				DE163370183B4943007EF946 /* LeftMenu */,
-				DE163366183B4901007EF946 /* MSNavigationPane */,
-				DEB4B8441821A0AB0050FA49 /* Images */,
-				39E32CB7181FB33D009C911F /* Util */,
-				39E32CAF181F9BAE009C911F /* Library */,
+				DE249174183E7FCC00CE97FC /* DDMenuController */,
+				DE249175183E7FF300CE97FC /* Fonts */,
 				8465C64917F5D1B500A00460 /* FTVAppDelegate.h */,
 				8465C64A17F5D1B500A00460 /* FTVAppDelegate.m */,
-				3964FC5E182A8AEF0035B187 /* FTVDelayJobWebViewController.h */,
-				3964FC5F182A8AEF0035B187 /* FTVDelayJobWebViewController.m */,
-				39E32CB3181FA6D2009C911F /* FTVRegisterViewController.h */,
-				39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */,
-				8465C67217F5D69300A00460 /* FTVCameraViewController.h */,
-				8465C67317F5D69300A00460 /* FTVCameraViewController.m */,
-				8465C64F17F5D1B500A00460 /* FTVTourViewController.h */,
-				8465C65017F5D1B500A00460 /* FTVTourViewController.m */,
-				8465C65217F5D1B500A00460 /* FTVScansViewController.h */,
-				8465C65317F5D1B500A00460 /* FTVScansViewController.m */,
-				8465C67517F5D73B00A00460 /* FTVGalleryViewController.h */,
-				8465C67617F5D73B00A00460 /* FTVGalleryViewController.m */,
 				8465C67817F5D74C00A00460 /* FTVBrandsViewController.h */,
 				8465C67917F5D74C00A00460 /* FTVBrandsViewController.m */,
+				8465C67217F5D69300A00460 /* FTVCameraViewController.h */,
+				8465C67317F5D69300A00460 /* FTVCameraViewController.m */,
+				23DC1BCE1840DF2500B9FAEA /* FTVCustomNavigationController.h */,
+				23DC1BCD1840DF2500B9FAEA /* FTVCustomNavigationController.m */,
+				3964FC5E182A8AEF0035B187 /* FTVDelayJobWebViewController.h */,
+				3964FC5F182A8AEF0035B187 /* FTVDelayJobWebViewController.m */,
+				8465C67517F5D73B00A00460 /* FTVGalleryViewController.h */,
+				8465C67617F5D73B00A00460 /* FTVGalleryViewController.m */,
+				23DC1BCC1840DF2500B9FAEA /* FTVHomeViewController.h */,
+				23DC1BCB1840DF2500B9FAEA /* FTVHomeViewController.m */,
 				DE163384183B665A007EF946 /* FTVMenuViewController.h */,
 				DE163385183B665A007EF946 /* FTVMenuViewController.m */,
-				23DC1BCB1840DF2500B9FAEA /* FTVHomeViewController.m */,
-				23DC1BCC1840DF2500B9FAEA /* FTVHomeViewController.h */,
-				23DC1BCD1840DF2500B9FAEA /* FTVCustomNavigationController.m */,
-				23DC1BCE1840DF2500B9FAEA /* FTVCustomNavigationController.h */,
+				39E32CB3181FA6D2009C911F /* FTVRegisterViewController.h */,
+				39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */,
+				8465C65217F5D1B500A00460 /* FTVScansViewController.h */,
+				8465C65317F5D1B500A00460 /* FTVScansViewController.m */,
+				8465C64F17F5D1B500A00460 /* FTVTourViewController.h */,
+				8465C65017F5D1B500A00460 /* FTVTourViewController.m */,
+				DEB4B8441821A0AB0050FA49 /* Images */,
 				8465C65517F5D1B500A00460 /* Images.xcassets */,
+				DE163370183B4943007EF946 /* LeftMenu */,
+				39E32CAF181F9BAE009C911F /* Library */,
+				DE163366183B4901007EF946 /* MSNavigationPane */,
 				8465C64117F5D1B500A00460 /* Supporting Files */,
+				39E32CB7181FB33D009C911F /* Util */,
 			);
 			path = FTVFscan;
 			sourceTree = "<group>";
@@ -617,7 +617,7 @@
 				ORGANIZATIONNAME = T2;
 				TargetAttributes = {
 					8465C65A17F5D1B600A00460 = {
-						TestTargetID = 8465C63617F5D1B500A00460;
+						TestTargetID = 8465C63617F5D1B500A00460 /* FTVFscan */;
 					};
 				};
 			};
@@ -911,8 +911,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhibodang Inc. (A5WV6BRVF2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhibodang Inc. (A5WV6BRVF2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -963,8 +963,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhibodang Inc. (A5WV6BRVF2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhibodang Inc. (A5WV6BRVF2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
