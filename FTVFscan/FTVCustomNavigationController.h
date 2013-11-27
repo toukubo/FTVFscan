@@ -15,6 +15,7 @@
 //-(IBAction)homeAction:(id)sender;
 //-(IBAction)cameraAction:(id)sender;
 //-(IBAction)OpenMenu:(id)sender;
+-(void)backAction;
 -(void)homeAction;
 -(void)cameraAction;
 -(void)openMenu;

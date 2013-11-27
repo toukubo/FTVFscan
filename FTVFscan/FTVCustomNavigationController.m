@@ -242,6 +242,12 @@
 }
 
 
+-(void)backAction
+{
+    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    [menuController showRootController:YES];
+}
+
 -(void)homeAction{
     FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate switchSceneToTabController];

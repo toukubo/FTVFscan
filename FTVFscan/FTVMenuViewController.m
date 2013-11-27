@@ -46,6 +46,18 @@
     [super setBackNavigations:self];
 }
 
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+}
+
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:YES];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -108,7 +120,7 @@
     
     DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
     UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:[menuItemViewId objectAtIndex:indexPath.row]];
-    [menuController setRootViewController:controller];
+    [menuController setRootController:controller animated:YES];
     [menuController showRootController:YES];
 }
 
