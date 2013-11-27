@@ -133,7 +133,6 @@
 
     if (!IsEmpty(url)) {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-        
         [self.webView loadRequest:request];
     }
 }
@@ -141,7 +140,6 @@
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     NSLog(@"webViewDidStartLoad,,,");
-
     [self statusIndicatorShow];
     
 }
@@ -149,7 +147,6 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     NSLog(@"webViewDidFinishLoad,,,");
-
     [self statusIndicatorHide];
     isGoBack = NO;
 }
@@ -167,7 +164,6 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSLog(@"shouldStartLoadWithRequest,,,");
-   
     NSString *urlString = request.URL.absoluteString;
 //    DLog(@"%@", urlString);
 //    if ([self needOpenExternalSafari:urlString]) {
@@ -188,7 +184,6 @@
 - (void)viewDidUnload
 {
     [self removeFromParentViewController];
-    
     [super viewDidUnload];
 }
 
@@ -223,6 +218,8 @@
 
 - (BOOL)shouldOverrideUrlLoading:(NSString *)urlString
 {
+    NSLog(@"%@", urlString);
+
     if ([self needOpenExternalSafari:urlString]) {
         [FTVImageProcEngine openSafari:urlString];
         return YES;
@@ -240,7 +237,6 @@
             {
                 // Todo by gailya, what's the device id;
                 [self loadUrl:[NSString stringWithFormat:@"http://%@?deviceid=%d", uri, 999]];
-            
             }
             else
             {
@@ -259,10 +255,10 @@
 //            DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
 //            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
 //            [menuController setRootController:controller animated:YES];
+
             FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
             [appDelegate switchSceneToCameraController];
 //            [super setHomeMenuNavigations:self];
-
         }
         else if([action hasSuffix:@"Gallery"])
         {
@@ -270,12 +266,10 @@
             UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVGalleryViewController"];
             [menuController setRootController:controller animated:YES];
             [super setHomeCameraMenuNavigations:self];
-
         }
         
         return YES;
     }else {
-        NSLog(@"%@", urlString);
         if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/"]) {
             [super setTitleNavigation:self];
             if (ShowResultPage) {
@@ -288,7 +282,6 @@
         }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/topic/"]) {
             [super setHomeCameraNavigations:self];
         }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/form-search/"]) {
-            NSLog(@"here..%@", urlString);
             [super setHomeCameraMenuNavigations:self];
         }else {
             if (ShowResultPage) {
@@ -296,9 +289,7 @@
             }else {
                 [super setBackCameraNavigations:self];
             }
-            
         }
-        
     }
     return NO;
 }

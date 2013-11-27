@@ -17,5 +17,4 @@
     NSMutableArray *menuItemViewId;
 }
 
--(IBAction)tour:(id)sender;
 @end

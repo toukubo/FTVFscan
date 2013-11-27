@@ -20,26 +20,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view.
     [menuTableView setSeparatorInset:UIEdgeInsetsZero];
     menuItems = [[NSMutableArray alloc] init];
     [menuItems addObject:@"TOUR"];
     [menuItems addObject:@"HISTORY"];
-//    [menuItems addObject:@"CAMERA"];
     [menuItems addObject:@"GALLERY"];
     [menuItems addObject:@"BRANDS"];
     
     menuItemsIcoons = [[NSMutableArray alloc] init];
     [menuItemsIcoons addObject:@"drawer-tour-label.png"];
     [menuItemsIcoons addObject:@"drawer-history-label.png"];
-//    [menuItemsIcoons addObject:@"camera-icon.png"];
     [menuItemsIcoons addObject:@"drawer-album-label.png"];
     [menuItemsIcoons addObject:@"drawer-brands-label.png"];
     
     menuItemViewId = [[NSMutableArray alloc] init];
     [menuItemViewId addObject:@"FTVTourViewController"];
     [menuItemViewId addObject:@"FTVScansViewController"];
-//    [menuItemViewId addObject:@"FTVCameraViewController"];
     [menuItemViewId addObject:@"FTVGalleryViewController"];
     [menuItemViewId addObject:@"FTVBrandsViewController"];
     
@@ -62,14 +60,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
--(IBAction)tour:(id)sender
-{
-    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
-    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
-    [menuController setRootController:controller animated:YES];
 }
 
 
