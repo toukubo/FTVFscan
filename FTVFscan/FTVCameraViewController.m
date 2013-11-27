@@ -68,7 +68,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 //        DLog(@"but false. going to regist ");
 //    }
     [super setHomeMenuNavigations:self];
-
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -80,19 +80,15 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [self.loadingView hide];
+    
     if (returnFromPicker) {
         returnFromPicker = NO;
     }
-    
-    [SVProgressHUD dismiss];
 }
 
 - (void)switchSceneToCamera
 {
-//    avCamera = [[AVCamViewController alloc] init];
-//    [avCamera setDelegate:self];
-//    [super setHomeMenuNavigations:avCamera];
-
     if (!stillButton.superview) {
         stillButton = [UIButton buttonWithType:UIButtonTypeCustom];
         
@@ -106,20 +102,10 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
         [stillButton setImage:shutterImagePressed forState:UIControlStateHighlighted];
         [stillButton setBackgroundColor:[UIColor clearColor]];
         [stillButton addTarget:self action:@selector(captureStillImage:) forControlEvents:UIControlEventTouchUpInside];
-//        [avCamera.view addSubview:stillButton];
         [self.view addSubview:stillButton];
     }
     
     [self startCamCapture];
-    
-//    AVCamViewController *avCamera = [[AVCamViewController alloc] init];
-//    [avCamera setDelegate:self];
-//    
-//    avCamera.view.frame = self.cameraView.bounds;
-//    [self.view addSubview:avCamera.view];
-//    [self addChildViewController:avCamera];
-//    [avCamera didMoveToParentViewController:self];
-//    [self presentViewController:avCamera animated:YES completion:nil];
 }
 
 - (void)switchSceneToRegisterController
@@ -138,7 +124,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
                                                                  
                                                                  //gonna do re-checking if the regisration is completed. if not ,eternal loop.
                                                                  if ([appDelegate checkLoginCredential]) {
-//                                                                    goto camera tab bar controller
+                                                                     //                                                                    goto camera tab bar controller
                                                                      [self switchSceneToCamera];
                                                                      DLog(@"but true");
                                                                  } else {
@@ -195,7 +181,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
                                        
                                        redirectUrl = [FTVImageProcEngine encapsulateById:resp];
                                        if (![redirectUrl isMalform]) {
-//                                           [self performSelectorOnMainThread:@selector(switchSceneToResultController) withObject:nil waitUntilDone:NO];
+                                           //                                           [self performSelectorOnMainThread:@selector(switchSceneToResultController) withObject:nil waitUntilDone:NO];
                                            
                                            DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
                                            FTVDelayJobWebViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVDelayJobWebViewController"];
@@ -218,12 +204,13 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 {
     [self performSegueWithIdentifier:@"presentDelayJobWebViewController" sender:self];
 }
+
 #pragma mark - AVCamViewControllerDelegate
 - (void)didFinishedTakenPictureWithPath:(NSString*)imagePath
 {
     returnFromPicker = YES;
-    
-    [SVProgressHUD show];
+
+    [self.loadingView performSelectorOnMainThread:@selector(hide) withObject:nil waitUntilDone:NO];
     [self performSelectorInBackground:@selector(doImageProcessInBackgroundWithPath:) withObject:imagePath];
 }
 
@@ -260,12 +247,10 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 - (IBAction)openHome:(id)sender {
     [self stopCamPreview];
     [self dismissViewControllerAnimated:YES completion:^{
-        
         DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
         UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVTourViewController"];
         [menuController setRootViewController:controller];
         [menuController showRootController:YES];
-        
     }];
 }
 
@@ -277,29 +262,33 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     [menuController setRootController:controller animated:YES];
 }
 
-//-(IBAction)OpenMenu:(id)sender
-//{
-//    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
-//    [menuController showRightController:YES];
-//}
-
 #pragma mark -
 - (void)captureStillImage:(id)sender
 {
     [stillButton setEnabled:NO];
-    
-    // Capture a still image
+
     [[self captureManager] captureStillImage]; // take picture, but not wait finished
 }
 
 - (void)startCamCapture
 {
+    [self.loadingView show];
+    
     if ([self captureManager] == nil) {
         AVCamCaptureManager *manager = [[AVCamCaptureManager alloc] init];
         [self setCaptureManager:manager];
         [[self captureManager] setDelegate:self];
         
         if ([[self captureManager] setupSession]) {
+            // add observer for monitoring the 'camera ready' events
+            [[NSNotificationCenter defaultCenter] addObserverForName:AVCaptureSessionDidStartRunningNotification
+                                                              object:[[self captureManager] session]
+                                                               queue:nil
+                                                          usingBlock:^(NSNotification *note) {
+                                                              DLog(@"Camera is ready for taking picture");
+                                                              [self.loadingView performSelectorOnMainThread:@selector(hide) withObject:nil waitUntilDone:NO];
+                                                          }];
+            
             // Create video preview layer and add it to the UI
             AVCaptureVideoPreviewLayer *newCaptureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:[[self captureManager] session]];
             UIView *view = [self videoPreviewView];
@@ -321,7 +310,6 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
             [viewLayer insertSublayer:newCaptureVideoPreviewLayer below:[[viewLayer sublayers] objectAtIndex:0]];
             
             [self setCaptureVideoPreviewLayer:newCaptureVideoPreviewLayer];
-//            [newCaptureVideoPreviewLayer release];
             
             // Start the session. This is done asychronously since -startRunning doesn't return until the session is running.
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -353,10 +341,6 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 {
     CGPoint pointOfInterest = CGPointMake(.5f, .5f);
     CGSize frameSize = [[self videoPreviewView] frame].size;
-    
-//    if ([captureVideoPreviewLayer isMirrored]) {
-//        viewCoordinates.x = frameSize.width - viewCoordinates.x;
-//    }
     
     if ( [[captureVideoPreviewLayer videoGravity] isEqualToString:AVLayerVideoGravityResize] ) {
 		// Scale, switch x and y, and reverse x
@@ -446,37 +430,27 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
                                                   cancelButtonTitle:LOCALIZE(@"ok")
                                                   otherButtonTitles:nil];
         [alertView show];
-//        [alertView release];
     });
 }
 
 - (void) captureManagerStillImageCaptured:(NSString*)localImagePath
 {
-    [SVProgressHUD dismiss];
+    [self.loadingView performSelectorOnMainThread:@selector(hide) withObject:nil waitUntilDone:NO];
     
     // stop camera preview
     [self stopCamPreview];
     
-//    if ([delegate respondsToSelector:@selector(didFinishedTakenPictureWithPath:)]) {
-//        [delegate didFinishedTakenPictureWithPath:localImagePath];
-//    }
     [self didFinishedTakenPictureWithPath:localImagePath];
     
-//    [avCamera willMoveToParentViewController:nil];
-//    [avCamera.view removeFromSuperview];
-//    [avCamera removeFromParentViewController];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)cancelShooting
 {
-    [SVProgressHUD dismiss];
+    [self.loadingView performSelectorOnMainThread:@selector(hide) withObject:nil waitUntilDone:NO];
     
-//    if ([delegate respondsToSelector:@selector(didCancelCamera)]) {
-//        [delegate didCancelCamera];
-//    }
     [self didCancelCamera];
-//    [avCamera.view removeFromSuperview];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
