@@ -11,6 +11,7 @@
 
 @interface FTVDelayJobWebViewController : FTVCustomNavigationController<UIWebViewDelegate>
 
+@property(nonatomic, assign) BOOL ShowResultPage;
 @property (nonatomic, retain) NSString *redirectUrl;
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 

@@ -233,6 +233,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
         for (UIViewController *vc in navigationController.viewControllers) {
             if ([vc isKindOfClass:[FTVDelayJobWebViewController class]]) {
                 ((FTVDelayJobWebViewController*)vc).redirectUrl = redirectUrl;
+                ((FTVDelayJobWebViewController*)vc).ShowResultPage = YES;
             }
         }
     }

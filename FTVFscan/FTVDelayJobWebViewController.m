@@ -18,6 +18,7 @@
 @end
 
 @implementation FTVDelayJobWebViewController
+@synthesize ShowResultPage;
 @synthesize redirectUrl;
 @synthesize webView;
 
@@ -47,7 +48,7 @@
     [super viewDidLoad];
     NSLog(@"VDL,,,");
     [self.webView setDelegate:self];
-    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBarHidden = YES;
     self.webView.scalesPageToFit = YES;
     
 //    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -288,9 +289,14 @@
             [super setHomeCameraNavigations:self];
         }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/form-search/"]) {
             NSLog(@"here..%@", urlString);
-            [super setHomeCameraMenuNavigations:self];
+            [super setHomeCameraNavigations:self];
         }else {
-            [super setBackCameraNavigations:self];
+            if (ShowResultPage) {
+                [super setHomeCameraNavigations:self];
+            }else {
+                [super setBackCameraNavigations:self];
+            }
+            
         }
         
     }
