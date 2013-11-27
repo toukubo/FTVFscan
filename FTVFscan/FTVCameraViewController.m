@@ -59,14 +59,14 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     appDelegate = (FTVAppDelegate *)[UIApplication sharedApplication].delegate;
     returnFromPicker = NO;
     
-    if ([appDelegate checkLoginCredential]) {
+//    if ([appDelegate checkLoginCredential]) {
         // bring up camera
         [self switchSceneToCamera];
-        DLog(@"but true");
-    } else {
-        [self switchSceneToRegisterController];
-        DLog(@"but false. going to regist ");
-    }
+//        DLog(@"but true");
+//    } else {
+//        [self switchSceneToRegisterController];
+//        DLog(@"but false. going to regist ");
+//    }
     [super setHomeMenuNavigations:self];
 
 }
