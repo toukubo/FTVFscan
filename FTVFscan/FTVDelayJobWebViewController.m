@@ -281,6 +281,9 @@
         NSLog(@"%@", urlString);
         if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/"]) {
             [super setTitleNavigation:self];
+            if (ShowResultPage) {
+                [super setHomeCameraMenuNavigations:self];
+            }
         }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/news/"]) {
             [super setHomeCameraNavigations:self];
         }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/movie/"]) {
@@ -289,10 +292,10 @@
             [super setHomeCameraNavigations:self];
         }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/form-search/"]) {
             NSLog(@"here..%@", urlString);
-            [super setHomeCameraNavigations:self];
+            [super setHomeCameraMenuNavigations:self];
         }else {
             if (ShowResultPage) {
-                [super setHomeCameraNavigations:self];
+                [super setHomeCameraMenuNavigations:self];
             }else {
                 [super setBackCameraNavigations:self];
             }

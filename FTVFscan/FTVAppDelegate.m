@@ -196,18 +196,27 @@
  */
 - (void)showModalPopupWindow
 {
-    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 310)];
-    FTVDelayJobWebViewController *vc = [[FTVDelayJobWebViewController alloc] initWithFrame:contentView.frame];
+//    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 310)];
+//    FTVDelayJobWebViewController *vc = [[FTVDelayJobWebViewController alloc] initWithFrame:contentView.frame];
     NSString *url = [NSString stringWithFormat:@"%@%@", BASEURL, @"search"];
-    [contentView addSubview:vc.view];
+//    [contentView addSubview:vc.view];
     
-    [vc loadUrl:url];
+//    [vc loadUrl:url];
     
 //    [[KGModal sharedInstance] showWithContentView:contentView andAnimated:YES];
 //    [self.window.rootViewController addChildViewController:vc];
     
+//    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+//    [menuController setRootViewController:vc];
+//    [menuController showRootController:YES];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
     DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
-    [menuController setRootViewController:vc];
+    FTVDelayJobWebViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"FTVDelayJobWebViewController"];
+    controller.redirectUrl = url;
+    controller.ShowResultPage = YES;
+    
+    [menuController setRootController:controller animated:YES];
     [menuController showRootController:YES];
 }
 

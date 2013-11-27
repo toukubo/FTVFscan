@@ -195,7 +195,15 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
                                        
                                        redirectUrl = [FTVImageProcEngine encapsulateById:resp];
                                        if (![redirectUrl isMalform]) {
-                                           [self performSelectorOnMainThread:@selector(switchSceneToResultController) withObject:nil waitUntilDone:NO];
+//                                           [self performSelectorOnMainThread:@selector(switchSceneToResultController) withObject:nil waitUntilDone:NO];
+                                           
+                                           DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+                                           FTVDelayJobWebViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVDelayJobWebViewController"];
+                                           controller.redirectUrl = redirectUrl;
+                                           controller.ShowResultPage = YES;
+                                           
+                                           [menuController setRootController:controller animated:YES];
+                                           [menuController showRootController:YES];
                                        }
                                    }
                                } withFailedBlock:^(BOOL success, NSString *resp) {
