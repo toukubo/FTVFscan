@@ -433,6 +433,11 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     });
 }
 
+- (void) captureManagerDidStartImageCapture
+{
+    [self.loadingView performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
+}
+
 - (void) captureManagerStillImageCaptured:(NSString*)localImagePath
 {
     [self.loadingView performSelectorOnMainThread:@selector(hide) withObject:nil waitUntilDone:NO];

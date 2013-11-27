@@ -241,7 +241,6 @@
     [vc.view addSubview:navigationView];
 }
 
-
 -(void)homeAction{
     FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate switchSceneToTabController];

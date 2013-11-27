@@ -207,7 +207,9 @@
     
     [[self stillImageOutput] captureStillImageAsynchronouslyFromConnection:stillImageConnection
                                                          completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
-                                                             [SVProgressHUD show];
+                                                             if ([delegate respondsToSelector:@selector(captureManagerDidStartImageCapture)]) {
+                                                                 [delegate captureManagerDidStartImageCapture];
+                                                             }
                                                              
                                                              [[self session] stopRunning];
                                                              

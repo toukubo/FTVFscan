@@ -76,6 +76,7 @@
 @optional
 - (void) captureManager:(AVCamCaptureManager *)captureManager didFailWithError:(NSError *)error;
 - (void) acquiringDeviceLockFailedWithError:(NSError *)error;
+- (void) captureManagerDidStartImageCapture;
 - (void) captureManagerStillImageCaptured:(NSString*)imagePath;
 - (void) captureManagerDeviceConfigurationChanged:(AVCamCaptureManager *)captureManager;
 @end
