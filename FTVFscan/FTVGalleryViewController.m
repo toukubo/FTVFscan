@@ -117,7 +117,7 @@ static const int kImageViewTag = 1;  // the image view inside the collection vie
 {
     if (returnFromPicker) returnFromPicker = NO;
     
-    [SVProgressHUD dismiss];
+    [self.loadingView performSelectorOnMainThread:@selector(hide) withObject:nil waitUntilDone:NO];
 }
 
 - (void)didReceiveMemoryWarning
