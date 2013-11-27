@@ -102,7 +102,7 @@
     nav.navigationBar.barStyle = UIBarStyleBlack;
     
     DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:controller];
-    _menuController = rootController;
+//    _menuController = rootController;
 	
     
     UIViewController *controllerRight = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVMenuViewController"];
@@ -112,17 +112,12 @@
     [self.window makeKeyAndVisible];
 }
 
-
 - (void)switchSceneToCameraController
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
     UIViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
-    
-    NSLog(@"controller = %@",controller);
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
-    nav.navigationBar.barStyle = UIBarStyleBlack;
 
-    DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:nav];
+    DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:controller];
     _menuController = rootController;
 	
     
@@ -133,7 +128,6 @@
     self.window.rootViewController = rootController;
     [self.window makeKeyAndVisible];
 }
-
 
 -(void)setViewFromMenu:(NSString *)storyBoardId
 {

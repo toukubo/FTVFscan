@@ -251,7 +251,6 @@
 {
     DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
     [menuController showRightController:YES];
-    
 }
 
 
