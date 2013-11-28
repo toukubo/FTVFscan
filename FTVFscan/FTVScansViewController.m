@@ -35,6 +35,10 @@
     }
     _scansWebView.delegate = self;
     
+    for (id subview in _scansWebView.subviews)
+        if ([[subview class] isSubclassOfClass: [UIScrollView class]])
+            ((UIScrollView *)subview).bounces = NO;
+    
     [super setHomeCameraMenuNavigations:self];
 }
 

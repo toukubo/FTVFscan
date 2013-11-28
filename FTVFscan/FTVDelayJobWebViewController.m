@@ -149,6 +149,10 @@
     NSLog(@"webViewDidFinishLoad,,,");
     [self statusIndicatorHide];
     isGoBack = NO;
+    
+    for (id subview in self.webView.subviews)
+        if ([[subview class] isSubclassOfClass: [UIScrollView class]])
+            ((UIScrollView *)subview).bounces = NO;
 }
 
 - (void)statusIndicatorShow

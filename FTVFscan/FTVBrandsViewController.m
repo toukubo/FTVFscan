@@ -24,6 +24,7 @@
 {
     [super viewDidLoad];
     _brandsWebView.delegate = self;
+    
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])
     {
         [self prefersStatusBarHidden];
@@ -41,6 +42,10 @@
 {
     _brandsWebView.delegate = self;
     [_brandsWebView setScalesPageToFit:YES];
+    for (id subview in _brandsWebView.subviews)
+        if ([[subview class] isSubclassOfClass: [UIScrollView class]])
+            ((UIScrollView *)subview).bounces = NO;
+    
     [_brandsWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: [ BASEURL stringByAppendingString:@"brands"]]]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doneButtonClick:) name:@"UIMoviePlayerControllerDidExitFullscreenNotification" object:nil];
 }

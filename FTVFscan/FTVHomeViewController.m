@@ -14,6 +14,7 @@
 
 @implementation FTVHomeViewController
 @synthesize redirectUrl;
+@synthesize homePageWebView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,6 +29,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
 }
 
 

@@ -10,6 +10,11 @@
 #import "FTVCustomNavigationController.h"
 
 @interface FTVHomeViewController : FTVCustomNavigationController<UIWebViewDelegate>
+{
+    IBOutlet UIWebView *homePageWebView;
+}
+
 @property (nonatomic, retain) NSString *redirectUrl;
+@property (nonatomic, retain) UIWebView *homePageWebView;
 
 @end

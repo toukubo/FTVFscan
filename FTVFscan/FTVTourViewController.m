@@ -42,6 +42,10 @@
     _tourWebView.delegate = self;
     self.navigationController.navigationBarHidden = NO;
     
+    for (id subview in _tourWebView.subviews)
+        if ([[subview class] isSubclassOfClass: [UIScrollView class]])
+            ((UIScrollView *)subview).bounces = NO;
+    
     [super setHomeCameraMenuNavigations:self];
 }
 

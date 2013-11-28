@@ -38,6 +38,10 @@ static NSString * const URL_REGISTRTION = @"/registration/index.php";
     DLog(req_url);
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASEURL, req_url]];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    
+    for (id subview in self.webView.subviews)
+        if ([[subview class] isSubclassOfClass: [UIScrollView class]])
+            ((UIScrollView *)subview).bounces = NO;
 }
 
 - (void)didReceiveMemoryWarning
