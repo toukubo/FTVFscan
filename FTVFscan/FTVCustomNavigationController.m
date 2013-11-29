@@ -34,6 +34,12 @@
     self.loadingView = [[LoadingView alloc]initWithFrame:self.view.frame];
     [self.view addSubview:self.loadingView];
     
+    
+    screenRect = [[UIScreen mainScreen] bounds];
+    screenWidth = screenRect.size.width;
+    screenHeight = screenRect.size.height;
+
+    
 //do it in programing code
 //    maybe a black bar and buttons as subview on it.
     
@@ -63,7 +69,7 @@
 }
 
 -(void)setMenuButton:(UIView *)view{
-    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(280, 2, 40, 40)];
+    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(screenWidth - 40, 2, 40, 40)];
     [menuButton setImageEdgeInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
     [menuButton setImage:[UIImage imageNamed:@"menu.png"] forState:UIControlStateNormal];
     [menuButton addTarget:self action:@selector(openMenu) forControlEvents:UIControlEventTouchUpInside];
@@ -163,7 +169,7 @@
 
 
 -(UIView*)drawBackground{
-    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 44)];
     navigationView.backgroundColor = [UIColor blackColor];
     [self drawTitle:navigationView  ];
     navigationBar = navigationView;

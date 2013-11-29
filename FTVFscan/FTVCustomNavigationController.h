@@ -10,7 +10,10 @@
 #import "LoadingView.h"
 
 @interface FTVCustomNavigationController : UIViewController{
-    
+    CGRect screenRect;
+    CGFloat screenWidth;
+    CGFloat screenHeight;
+
 }
 //-(IBAction)homeAction:(id)sender;
 //-(IBAction)cameraAction:(id)sender;
