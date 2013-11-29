@@ -59,6 +59,8 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     appDelegate = (FTVAppDelegate *)[UIApplication sharedApplication].delegate;
     returnFromPicker = NO;
     
+    videoPreviewView.frame = self.view.frame;
+    
 //    if ([appDelegate checkLoginCredential]) {
         // bring up camera
         [self switchSceneToCamera];

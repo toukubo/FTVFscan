@@ -22,7 +22,10 @@
     [super viewDidLoad];
     
 	// Do any additional setup after loading the view.
-    [menuTableView setSeparatorInset:UIEdgeInsetsZero];
+    if ([menuTableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [menuTableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
     menuItems = [[NSMutableArray alloc] init];
     [menuItems addObject:@"TOUR"];
     [menuItems addObject:@"HISTORY"];
