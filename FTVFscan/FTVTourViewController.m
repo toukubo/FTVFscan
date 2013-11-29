@@ -41,6 +41,8 @@
     
     _tourWebView.delegate = self;
     self.navigationController.navigationBarHidden = NO;
+    _tourWebView.scalesPageToFit = NO;
+    _tourWebView.multipleTouchEnabled = NO;
     
     for (id subview in _tourWebView.subviews)
         if ([[subview class] isSubclassOfClass: [UIScrollView class]])
