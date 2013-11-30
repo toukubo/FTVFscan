@@ -136,7 +136,7 @@ public class MainActivity extends Activity {
             // return from camera
             if (resultCode == RESULT_OK) {
                 if (fileUri != null) {
-                    new CommonProcessTask().execute(new GaziruSearchParams(this, fileUri));
+                    new ImageSearchTask().execute(new GaziruSearchParams(this, fileUri, null));
                 }
             } else if (resultCode == RESULT_CANCELED) {
                 Log.d(TAG, "camera cancelled");
@@ -150,7 +150,7 @@ public class MainActivity extends Activity {
             if (resultCode == RESULT_OK) {
                 fileUri = data.getData();
                 if (fileUri != null) {
-                    new CommonProcessTask().execute(new GaziruSearchParams(this, fileUri));
+                    new ImageSearchTask().execute(new GaziruSearchParams(this, fileUri, null));
                 }
             } else if (resultCode == RESULT_CANCELED) {
                 Log.d(TAG, "gallery cancelled");
@@ -192,6 +192,9 @@ public class MainActivity extends Activity {
     }
 
 
+    /**
+     * TODO: start custom gallery here
+     */
     public void startActivityGallery() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -201,6 +204,9 @@ public class MainActivity extends Activity {
         startActivityForResult(intent, FTVConstants.activityRequestCodeGallery);
     }
 
+    /**
+     * TODO: start custom camera here
+     */
     public void startActivityCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         fileUri = DeviceUtil.getOutputMediaFileUri(DeviceUtil.MEDIA_TYPE_IMAGE);
@@ -213,7 +219,38 @@ public class MainActivity extends Activity {
     /**
      * Gaziru : image search task should never be executed from ui thread. Library has enabled the STRICT_MODE.
      */
-    private class CommonProcessTask extends AsyncTask<GaziruSearchParams, Void, Void> {
+    private class ImageSearchTask extends AsyncTask<GaziruSearchParams, Void, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // TODO: show HUD or whatever to tell user progress
+        }
+
+        /**
+         * The system calls this to perform work in a worker thread and delivers
+         * it the parameters given to AsyncTask.execute()
+         */
+        protected String doInBackground(GaziruSearchParams... params) {
+            return FTVImageProcEngine.imageSearchProcess(params[0]);
+        }
+
+        /**
+         * The system calls this to perform work in the UI thread and delivers
+         * the result from doInBackground()
+         */
+        protected void onPostExecute(String brandSlug) {
+            // TODO: dismiss HUD or whatever to tell user progress
+            // exeute image post
+            if (brandSlug != null) {
+                new ImagePostTask().execute(new GaziruSearchParams(mContext, null, brandSlug));
+            }
+        }
+    }
+
+    /**
+     * Gaziru : image search task should never be executed from ui thread. Library has enabled the STRICT_MODE.
+     */
+    private class ImagePostTask extends AsyncTask<GaziruSearchParams, Void, Void> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -225,7 +262,7 @@ public class MainActivity extends Activity {
          * it the parameters given to AsyncTask.execute()
          */
         protected Void doInBackground(GaziruSearchParams... params) {
-            return FTVImageProcEngine.commonProcess(params[0]);
+            return FTVImageProcEngine.imagePostProcess(params[0]);
         }
 
         /**

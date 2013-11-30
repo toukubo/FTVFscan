@@ -169,6 +169,7 @@ public class FTVImageProcEngine {
      * @param brand_slug recognized brand from gaziru engine
      */
     public static void postData(final Context context, String brand_slug) {
+        // Step 1 - image recognized with NEC stuff, get the matched "brand slug"
         RequestParams params = new RequestParams();
         params.put("user_id", FTVUser.getID());
         params.put("brand_slug", brand_slug);
@@ -209,12 +210,12 @@ public class FTVImageProcEngine {
     }
 
     /**
-     * Processor to execute image search and upload to our server
+     * Processor to execute image search and upload to our server  - Step 1
      *
      * @param param Gaziru needed search parameter
-     * @return Void
+     * @return String
      */
-    public static Void commonProcess(GaziruSearchParams param) {
+    public static String imageSearchProcess(GaziruSearchParams param) {
         Context context = param.context;
         Uri uri = param.uri;
 
@@ -265,7 +266,19 @@ public class FTVImageProcEngine {
             brand_slug = "UNKNOWN";
         }
 
-        // image post to our server
+        return brand_slug;
+    }
+
+    /**
+     * post image to our server with brand slug   -   Step 2
+     *   this steps was little bit slow, so we need to execute it in async mode
+     * @param param GaziruSearchParams
+     * @return null
+     */
+    public static Void imagePostProcess(GaziruSearchParams param) {
+        Context context = param.context;
+        String brand_slug = param.brandSlug;
+
         postData(context, brand_slug);
 
         return null;
