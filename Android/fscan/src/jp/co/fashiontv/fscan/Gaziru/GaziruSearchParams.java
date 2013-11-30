@@ -1,4 +1,4 @@
-package jp.co.fashiontv.fscan.Common;
+package jp.co.fashiontv.fscan.Gaziru;
 
 import android.content.Context;
 import android.net.Uri;

@@ -8,7 +8,10 @@ import android.view.Window;
 import com.testflightapp.lib.TestFlight;
 import jp.co.fashiontv.fscan.R;
 
-public class SplashActivity extends Activity {
+/**
+ * Splash screen like iOS launcher page
+ */
+public class FTVSplashActivity extends Activity {
 	private static final int SPLASHTIME = 5;
 
 	@Override
@@ -18,7 +21,7 @@ public class SplashActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_splash);
 
-        TestFlight.passCheckpoint("SplashActivity - onCreate");
+        TestFlight.passCheckpoint("FTVSplashActivity - onCreate");
 
         Handler hdl = new Handler();
 		hdl.postDelayed(new splashHandler(), SPLASHTIME * 1000);
@@ -26,9 +29,9 @@ public class SplashActivity extends Activity {
 
 	class splashHandler implements Runnable {
 		public void run() {
-			Intent intent = new Intent(getApplication(), MainActivity.class);
+			Intent intent = new Intent(getApplication(), FTVMainActivity.class);
 			startActivity(intent);
-			SplashActivity.this.finish();
+			FTVSplashActivity.this.finish();
 		}
 	}
 }

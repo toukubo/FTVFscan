@@ -2,6 +2,7 @@ package jp.co.fashiontv.fscan.Activities;
 
 import com.testflightapp.lib.TestFlight;
 import jp.co.fashiontv.fscan.Common.*;
+import jp.co.fashiontv.fscan.Gaziru.GaziruSearchParams;
 import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
 
 import jp.co.fashiontv.fscan.R;
@@ -27,14 +28,17 @@ import android.webkit.WebView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
-
-public class MainActivity extends Activity {
-
-    private static String TAG = "MainActivity";
+/**
+ * Core business logic
+ *
+ * provide the universal webview for all of the web part display.
+ */
+public class FTVMainActivity extends Activity {
+    private static String TAG = "FTVMainActivity";
 
     private Context mContext;
     private WebView mainWebView = null;
-    private FTVNavbarWebClient webViewClient = null;
+    private FTVNavigatorWebClient webViewClient = null;
     private ProgressDialog progressDialog;
     private Uri fileUri;
 
@@ -51,7 +55,7 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
-        TestFlight.passCheckpoint("MainActivity - onCreate");
+        TestFlight.passCheckpoint("FTVMainActivity - onCreate");
 
         mContext = this;
 
@@ -66,31 +70,25 @@ public class MainActivity extends Activity {
     }
 
     private void setupWebView() {
-        TestFlight.passCheckpoint("MainActivity - setupWebView");
+        TestFlight.passCheckpoint("FTVMainActivity - setupWebView");
 
         mainWebView = (WebView) findViewById(R.id.main);
-        mainWebView.setWebViewClient(new FTVMainWebClient(this));
+        mainWebView.setInitialScale(100);
+        mainWebView.setScrollBarStyle(WebView.SCROLLBARS_INSIDE_OVERLAY);
         mainWebView.getSettings().setJavaScriptEnabled(true);
         mainWebView.getSettings().setPluginState(PluginState.ON);
+        webViewClient = new FTVNavigatorWebClient(this, mainWebView);
+
+        mainWebView.setWebViewClient(webViewClient);
         mainWebView.setWebChromeClient(new WebChromeClient());
 
-        WebView tabbarWebView = (WebView) findViewById(R.id.navigation);
-        tabbarWebView.setInitialScale(100);
-        tabbarWebView.setScrollBarStyle(WebView.SCROLLBARS_INSIDE_OVERLAY);
-        tabbarWebView.getSettings().setJavaScriptEnabled(true);
-        webViewClient = new FTVNavbarWebClient(this, mainWebView);
-        tabbarWebView.setWebViewClient(webViewClient);
-        tabbarWebView.setWebChromeClient(new WebChromeClient());
-
-
-        webViewClient.shouldOverrideUrlLoading(tabbarWebView, "http://zxc.cz/fscan-local-ui/navigation.html");
         webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlHome);
 
         Log.d(TAG, "UUID - " + FTVUser.getID());
     }
 
     private boolean checkLoginCredential() {
-        TestFlight.passCheckpoint("MainActivity - checkLoginCredential");
+        TestFlight.passCheckpoint("FTVMainActivity - checkLoginCredential");
 
         String url = String.format("%s%s%s", FTVConstants.baseUrl, "registration/isRegistered.php?deviceid=", FTVUser.getID());
 
@@ -178,7 +176,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         Log.d(TAG, "onResume");
-        TestFlight.passCheckpoint("MainActivity - onResume");
+        TestFlight.passCheckpoint("FTVMainActivity - onResume");
 
         super.onResume();
 
@@ -190,8 +188,17 @@ public class MainActivity extends Activity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+    }
+
+    /**
+     * TODO: show register activity
+     */
     private void showRegisterActivity() {
-        TestFlight.passCheckpoint("MainActivity - showRegisterActivity");
+        TestFlight.passCheckpoint("FTVMainActivity - showRegisterActivity");
 
         String registerUrl = String.format("%s%s%s%s", FTVConstants.baseUrl,
             "registration/index.php?deviceid=", FTVUser.getID(), "&device_type=android");
@@ -201,12 +208,11 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
-
     /**
      * TODO: start custom gallery here
      */
     public void startActivityGallery() {
-        TestFlight.passCheckpoint("MainActivity - startActivityGallery");
+        TestFlight.passCheckpoint("FTVMainActivity - startActivityGallery");
 
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -220,7 +226,7 @@ public class MainActivity extends Activity {
      * TODO: start custom camera here
      */
     public void startActivityCamera() {
-        TestFlight.passCheckpoint("MainActivity - startActivityCamera");
+        TestFlight.passCheckpoint("FTVMainActivity - startActivityCamera");
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         fileUri = DeviceUtil.getOutputMediaFileUri(DeviceUtil.MEDIA_TYPE_IMAGE);
@@ -229,6 +235,8 @@ public class MainActivity extends Activity {
         setStage(FTVConstants.activityRequestCodeCamera);
         startActivityForResult(intent, FTVConstants.activityRequestCodeCamera);
     }
+
+    // -------------------------- Async Task --------------------------
 
     /**
      * Gaziru : image search task should never be executed from ui thread. Library has enabled the STRICT_MODE.

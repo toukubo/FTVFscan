@@ -13,11 +13,13 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.testflightapp.lib.TestFlight;
-import jp.co.fashiontv.fscan.Common.*;
 import jp.co.fashiontv.fscan.Activities.FTVWebViewActivity;
-import jp.co.fashiontv.fscan.Common.GaziruSearchParams;
+import jp.co.fashiontv.fscan.Common.FTVConstants;
+import jp.co.fashiontv.fscan.Common.FTVUser;
+import jp.co.fashiontv.fscan.Gaziru.GaziruSearchParams;
 import jp.co.fashiontv.fscan.Utils.DeviceUtil;
 import jp.co.fashiontv.fscan.Utils.FTVUtil;
+import jp.co.fashiontv.fscan.Utils.ImageUtil;
 import jp.co.fashiontv.fscan.Utils.StringUtil;
 import jp.co.nec.gazirur.rtsearch.lib.bean.SearchResult;
 import jp.co.nec.gazirur.rtsearch.lib.clientapi.RTFeatureSearcher;
@@ -126,7 +128,7 @@ public class FTVImageProcEngine {
             byte[] bytes = new byte[width * height * 4];
 
             // Important : gaziru need YUV420 for image search
-            FTVUtil.encodeYUV420SP(bytes, ints, width, height);
+            ImageUtil.encodeYUV420SP(bytes, ints, width, height);
 
             List<SearchResult> result = rtsearchlib.ExecuteFeatureSearch(bytes, RTFeatureSearcher.SERVER_SERVICE_SEARCH);
 
@@ -150,17 +152,18 @@ public class FTVImageProcEngine {
             return brand_slug;
 
         } else if (resultCode.equals("0101")) {
-            TestFlight.passCheckpoint("FTVImageProcEngine - executeApi 0101");
+            //TODO:
         } else if (resultCode.equals("0201")) {
-            TestFlight.passCheckpoint("FTVImageProcEngine - executeApi 0201");
+            //TODO:
         } else if (resultCode.equals("0501")) {
-            TestFlight.passCheckpoint("FTVImageProcEngine - executeApi 0501");
+            //TODO:
         } else if (resultCode.equals("0901")) {
-            TestFlight.passCheckpoint("FTVImageProcEngine - executeApi 0901");
+            //TODO:
         }
 
-        return null;
+        TestFlight.passCheckpoint(String.format("FTVImageProcEngine - executeApi result code : %s", resultCode));
 
+        return null;
     }
 
     /**
@@ -170,7 +173,6 @@ public class FTVImageProcEngine {
      * @param brand_slug recognized brand from gaziru engine
      */
     public static void postData(final Context context, String brand_slug) {
-        // Step 1 - image recognized with NEC stuff, get the matched "brand slug"
         RequestParams params = new RequestParams();
         params.put("user_id", FTVUser.getID());
         params.put("brand_slug", brand_slug);
@@ -214,7 +216,7 @@ public class FTVImageProcEngine {
      * Processor to execute image search and upload to our server  - Step 1
      *
      * @param param Gaziru needed search parameter
-     * @return String
+     * @return String matched brand slug, or empty if not matched
      */
     public static String imageSearchProcess(GaziruSearchParams param) {
         TestFlight.passCheckpoint("FTVImageProcEngine - imageSearchProcess");
@@ -274,7 +276,8 @@ public class FTVImageProcEngine {
 
     /**
      * post image to our server with brand slug   -   Step 2
-     *   this steps was little bit slow, so we need to execute it in async mode
+     * this steps was little bit slow, so we need to execute it in async mode
+     *
      * @param param GaziruSearchParams
      * @return null
      */

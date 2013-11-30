@@ -6,7 +6,7 @@ import android.view.Window;
 import android.webkit.WebView;
 import com.testflightapp.lib.TestFlight;
 import jp.co.fashiontv.fscan.Common.FTVConstants;
-import jp.co.fashiontv.fscan.Common.FTVNavbarWebClient;
+import jp.co.fashiontv.fscan.Common.FTVNavigatorWebClient;
 import jp.co.fashiontv.fscan.R;
 
 /**
@@ -44,7 +44,7 @@ public class FTVWebViewActivity extends Activity {
         webView.loadUrl(url);
         webView.getSettings().setJavaScriptEnabled(true);
 
-        webView.setWebViewClient(new FTVNavbarWebClient(this, webView));
+        webView.setWebViewClient(new FTVNavigatorWebClient(this, webView));
     }
 
     @Override

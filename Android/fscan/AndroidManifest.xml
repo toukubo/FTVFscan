@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="jp.co.fashiontv.fscan"
-          android:versionCode="2"
-          android:versionName="1.0">
+          android:versionCode="7"
+          android:versionName="1.0-PRE">
 
     <uses-sdk android:minSdkVersion="10"
               android:targetSdkVersion="17"/>
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
@@ -24,17 +25,16 @@
                  android:label="@string/app_name"
                  android:theme="@style/AppTheme">
 
-        <activity android:name=".Activities.SplashActivity"
+        <activity android:name=".Activities.FTVSplashActivity"
                   android:label="@string/app_name"
-                  android:screenOrientation="portrait"
-                  android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activities.MainActivity"
+        <activity android:name=".Activities.FTVMainActivity"
                   android:label="@string/main_activity"
                   android:screenOrientation="portrait">
         </activity>
