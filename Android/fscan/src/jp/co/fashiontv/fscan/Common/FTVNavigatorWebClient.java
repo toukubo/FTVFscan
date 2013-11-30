@@ -59,28 +59,9 @@ public class FTVNavigatorWebClient extends WebViewClient {
                 }
             }
         } else if (urlString.contains(".action")) {
-            //FIXME: not used code?
-//            String[] paramsets = url.split("\\?");
-//            String actionuri = paramsets[0];
-//            String file = "";
-//            for (int i = 1; i < paramsets.length; i++) {
-//                String name = paramsets[i].split("=")[0];
-//                String value = paramsets[i].split("=")[1];
-//                if (name.equals("file")) {
-//                    file = value;
-//                }
-//            }
-//
-//            String action = actionuri.replace(".action", "");
-//            action = action.split("/")[urlString.split("/").length - 1];
-//            action = action.replaceAll("file:///android_asset/", "");
-
-            String action = urlString.replace(".action", "");
-
-            if (action.equals("Camera")) {
+            if (urlString.contains("Camera")) {
                 ((FTVMainActivity) activity).startActivityCamera();
-            }
-            if (action.equals("Gallery")) {
+            } else if (urlString.contains("Gallery")) {
                 ((FTVMainActivity) activity).startActivityGallery();
             }
             return true;
