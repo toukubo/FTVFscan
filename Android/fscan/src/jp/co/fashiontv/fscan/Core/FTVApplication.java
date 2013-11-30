@@ -44,5 +44,6 @@ public class FTVApplication extends Application {
         // Initialize TestFlight with your app token.
         // https://www.testflightapp.com/dashboard/applications/907671/token/
         TestFlight.takeOff(this, "a6693e1d-95e8-495b-a7c3-ff6e5bd7f2f8");
+        TestFlight.passCheckpoint("Start FTVApplication");
     }
 }

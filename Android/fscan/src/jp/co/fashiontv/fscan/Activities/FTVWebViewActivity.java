@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
 import android.webkit.WebView;
+import com.testflightapp.lib.TestFlight;
 import jp.co.fashiontv.fscan.Common.FTVConstants;
 import jp.co.fashiontv.fscan.Common.FTVNavbarWebClient;
 import jp.co.fashiontv.fscan.R;
@@ -21,6 +22,8 @@ public class FTVWebViewActivity extends Activity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.layout_webview);
+
+        TestFlight.passCheckpoint("FTVWebViewActivity - onCreate");
 
         Bundle extras = getIntent().getExtras();
 
@@ -47,6 +50,8 @@ public class FTVWebViewActivity extends Activity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        TestFlight.passCheckpoint("FTVWebViewActivity - onBackPressed");
+
         finish();
     }
 }

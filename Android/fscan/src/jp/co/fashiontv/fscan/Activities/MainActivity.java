@@ -1,5 +1,6 @@
 package jp.co.fashiontv.fscan.Activities;
 
+import com.testflightapp.lib.TestFlight;
 import jp.co.fashiontv.fscan.Common.*;
 import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
 
@@ -50,6 +51,8 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
+        TestFlight.passCheckpoint("MainActivity - onCreate");
+
         mContext = this;
 
         // assets/dic/subordinates is arrangement in local
@@ -63,6 +66,8 @@ public class MainActivity extends Activity {
     }
 
     private void setupWebView() {
+        TestFlight.passCheckpoint("MainActivity - setupWebView");
+
         mainWebView = (WebView) findViewById(R.id.main);
         mainWebView.setWebViewClient(new FTVMainWebClient(this));
         mainWebView.getSettings().setJavaScriptEnabled(true);
@@ -85,6 +90,8 @@ public class MainActivity extends Activity {
     }
 
     private boolean checkLoginCredential() {
+        TestFlight.passCheckpoint("MainActivity - checkLoginCredential");
+
         String url = String.format("%s%s%s", FTVConstants.baseUrl, "registration/isRegistered.php?deviceid=", FTVUser.getID());
 
         // start the progress dialog
@@ -171,6 +178,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         Log.d(TAG, "onResume");
+        TestFlight.passCheckpoint("MainActivity - onResume");
 
         super.onResume();
 
@@ -183,6 +191,8 @@ public class MainActivity extends Activity {
     }
 
     private void showRegisterActivity() {
+        TestFlight.passCheckpoint("MainActivity - showRegisterActivity");
+
         String registerUrl = String.format("%s%s%s%s", FTVConstants.baseUrl,
             "registration/index.php?deviceid=", FTVUser.getID(), "&device_type=android");
 
@@ -196,6 +206,8 @@ public class MainActivity extends Activity {
      * TODO: start custom gallery here
      */
     public void startActivityGallery() {
+        TestFlight.passCheckpoint("MainActivity - startActivityGallery");
+
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -208,6 +220,8 @@ public class MainActivity extends Activity {
      * TODO: start custom camera here
      */
     public void startActivityCamera() {
+        TestFlight.passCheckpoint("MainActivity - startActivityCamera");
+
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         fileUri = DeviceUtil.getOutputMediaFileUri(DeviceUtil.MEDIA_TYPE_IMAGE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);

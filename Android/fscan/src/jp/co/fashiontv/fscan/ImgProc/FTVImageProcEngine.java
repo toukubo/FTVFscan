@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.testflightapp.lib.TestFlight;
 import jp.co.fashiontv.fscan.Common.*;
 import jp.co.fashiontv.fscan.Activities.FTVWebViewActivity;
 import jp.co.fashiontv.fscan.Common.GaziruSearchParams;
@@ -149,13 +150,13 @@ public class FTVImageProcEngine {
             return brand_slug;
 
         } else if (resultCode.equals("0101")) {
-
+            TestFlight.passCheckpoint("FTVImageProcEngine - executeApi 0101");
         } else if (resultCode.equals("0201")) {
-
+            TestFlight.passCheckpoint("FTVImageProcEngine - executeApi 0201");
         } else if (resultCode.equals("0501")) {
-
+            TestFlight.passCheckpoint("FTVImageProcEngine - executeApi 0501");
         } else if (resultCode.equals("0901")) {
-
+            TestFlight.passCheckpoint("FTVImageProcEngine - executeApi 0901");
         }
 
         return null;
@@ -216,6 +217,8 @@ public class FTVImageProcEngine {
      * @return String
      */
     public static String imageSearchProcess(GaziruSearchParams param) {
+        TestFlight.passCheckpoint("FTVImageProcEngine - imageSearchProcess");
+
         Context context = param.context;
         Uri uri = param.uri;
 
@@ -276,6 +279,8 @@ public class FTVImageProcEngine {
      * @return null
      */
     public static Void imagePostProcess(GaziruSearchParams param) {
+        TestFlight.passCheckpoint("FTVImageProcEngine - imagePostProcess");
+
         Context context = param.context;
         String brand_slug = param.brandSlug;
 
