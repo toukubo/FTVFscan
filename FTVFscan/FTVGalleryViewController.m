@@ -172,7 +172,15 @@ static const int kImageViewTag = 1;  // the image view inside the collection vie
                                    
                                    redirectUrl = [FTVImageProcEngine encapsulateById:resp];
                                    if (![redirectUrl isMalform]) {
-                                       [self performSelectorOnMainThread:@selector(switchSceneToResultController) withObject:nil waitUntilDone:NO];
+//                                       [self performSelectorOnMainThread:@selector(switchSceneToResultController) withObject:nil waitUntilDone:NO];
+                                       
+                                       DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+                                       FTVDelayJobWebViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVDelayJobWebViewController"];
+                                       controller.redirectUrl = redirectUrl;
+                                       controller.ShowResultPage = YES;
+                                       
+                                       [menuController setRootController:controller animated:YES];
+                                       [menuController showRootController:YES];
                                    }
                                }
                            } withFailedBlock:^(BOOL success, NSString *resp) {
@@ -193,7 +201,15 @@ static const int kImageViewTag = 1;  // the image view inside the collection vie
         UINavigationController *navigationController = segue.destinationViewController;
         for (UIViewController *vc in navigationController.viewControllers) {
             if ([vc isKindOfClass:[FTVDelayJobWebViewController class]]) {
-                ((FTVDelayJobWebViewController*)vc).redirectUrl = redirectUrl;
+                FTVDelayJobWebViewController *controller = ((FTVDelayJobWebViewController*)vc);
+                controller.redirectUrl = redirectUrl;
+                controller.ShowResultPage = YES;
+                DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+                
+                [menuController setRootController:controller animated:YES];
+                [menuController showRootController:YES];
+                
+
             }
         }
     }
