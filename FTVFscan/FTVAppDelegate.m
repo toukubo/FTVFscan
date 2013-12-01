@@ -33,6 +33,8 @@
     // TODO: advertise SDK
     
     // Check credential
+    sleep(2);
+
     [self switchSceneToTabController];
     
     application.statusBarHidden = YES;
