@@ -50,6 +50,7 @@
     NSLog(@"VDL,,,");
     [self.webView setDelegate:self];
     self.navigationController.navigationBarHidden = YES;
+    self.webView.autoresizesSubviews = YES;
     self.webView.scalesPageToFit = NO;
     self.webView.multipleTouchEnabled = NO;
     
