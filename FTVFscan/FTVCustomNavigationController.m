@@ -179,6 +179,16 @@
     return navigationView;
 
 }
+
+// Custom Method For DDMenu Background
+-(UIView*)drawBackgroundDDMenu{
+    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 44)];
+    navigationView.backgroundColor = [UIColor blackColor];
+    navigationBar = navigationView;
+    return navigationView;
+}
+
+
 -(void)setHomeCameraMenuNavigations:(UIViewController *)vc{
     UIView *navigationView = [self drawBackground];
     [self setHomeButton:navigationView];
@@ -236,6 +246,27 @@
     UIView *navigationView = [self drawBackground];
 //    [self setCameraButton:navigationView];
     [self setBackButton:navigationView vc:vc];
+    [vc.view addSubview:navigationView];
+}
+
+
+// Custome Navigation Bar For the DDMenu
+-(void)setDDmenuTitleNavigations:(UIViewController *)vc{
+    UIView *navigationView = [self drawBackgroundDDMenu];
+    UIImage *titleImage = [UIImage imageNamed:@"240head.png"];
+    UIImageView *titleView;
+    
+    for (UIView *subView in vc.view.subviews) {
+        if ([subView isKindOfClass:[UITableView class]]) {
+            UITableView *menuTableView = (UITableView *)subView;
+            CGRect Newframe = menuTableView.frame;
+            NSLog(@"FOund The tabel Frame: %f", Newframe.origin.x);
+            titleView = [[UIImageView alloc] initWithFrame:CGRectMake((Newframe.origin.x + Newframe.size.width/2 - 50), 13, 100, 16)];
+        }
+    }
+    
+    titleView.image = titleImage;
+    [navigationView addSubview:titleView];
     [vc.view addSubview:navigationView];
 }
 
