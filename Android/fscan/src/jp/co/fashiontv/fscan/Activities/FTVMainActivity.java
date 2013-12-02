@@ -1,15 +1,5 @@
 package jp.co.fashiontv.fscan.Activities;
 
-import com.testflightapp.lib.TestFlight;
-import jp.co.fashiontv.fscan.Common.*;
-import jp.co.fashiontv.fscan.Gaziru.GaziruSearchParams;
-import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
-
-import jp.co.fashiontv.fscan.R;
-import jp.co.fashiontv.fscan.Utils.DeviceUtil;
-import jp.co.fashiontv.fscan.Utils.FTVUtil;
-import org.apache.http.Header;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -20,13 +10,30 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
-
+import android.widget.RelativeLayout;
+import butterknife.InjectView;
+import butterknife.Views;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
+import com.testflightapp.lib.TestFlight;
+import com.todddavies.components.progressbar.ProgressWheel;
+import jp.co.fashiontv.fscan.Common.*;
+import jp.co.fashiontv.fscan.Gaziru.GaziruSearchParams;
+import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
+import jp.co.fashiontv.fscan.Injector;
+import jp.co.fashiontv.fscan.R;
+import jp.co.fashiontv.fscan.Utils.DeviceUtil;
+import jp.co.fashiontv.fscan.Utils.FTVUtil;
+import org.apache.http.Header;
+
+import javax.inject.Inject;
 
 /**
  * Core business logic
@@ -34,6 +41,15 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
  * provide the universal webview for all of the web part display.
  */
 public class FTVMainActivity extends Activity {
+    @Inject
+    Bus BUS;
+
+    @InjectView(R.id.progressBar)
+    ProgressWheel progressWheel;
+
+    @InjectView(R.id.maskView)
+    RelativeLayout maskView;
+
     private static String TAG = "FTVMainActivity";
 
     private Context mContext;
@@ -57,10 +73,26 @@ public class FTVMainActivity extends Activity {
 
         TestFlight.passCheckpoint("FTVMainActivity - onCreate");
 
+        Injector.inject(this);
+        Views.inject(this);
+
         mContext = this;
+
+        BUS.register(this);
 
         // assets/dic/subordinates is arrangement in local
         FTVUtil.assets2Local(this);
+
+        setupWebView();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        BUS.unregister(this);
+
     }
 
     @Override
@@ -71,8 +103,9 @@ public class FTVMainActivity extends Activity {
 
     private void setupWebView() {
         TestFlight.passCheckpoint("FTVMainActivity - setupWebView");
+        Log.d(TAG, "UUID - " + FTVUser.getID());
 
-        mainWebView = (WebView) findViewById(R.id.main);
+        mainWebView = (WebView) findViewById(R.id.mainWebView);
         mainWebView.setInitialScale(100);
         mainWebView.setScrollBarStyle(WebView.SCROLLBARS_INSIDE_OVERLAY);
         mainWebView.getSettings().setJavaScriptEnabled(true);
@@ -83,8 +116,6 @@ public class FTVMainActivity extends Activity {
         mainWebView.setWebChromeClient(new WebChromeClient());
 
         webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlHome);
-
-        Log.d(TAG, "UUID - " + FTVUser.getID());
     }
 
     private boolean checkLoginCredential() {
@@ -114,7 +145,6 @@ public class FTVMainActivity extends Activity {
                     Log.d(TAG, "Device already registered!!");
                     setupWebView();
 
-// FIXME: test purpose
 //                    startActivityCamera();
                 } else {
                     showRegisterActivity();
@@ -180,17 +210,40 @@ public class FTVMainActivity extends Activity {
 
         super.onResume();
 
-        if (stage == FTVConstants.activityRequestCodeCamera || stage == FTVConstants.activityRequestCodeGallery) {
-            Log.d(TAG, "return from camera/gallery");
-        } else {
-            Log.d(TAG, "need register check");
-            checkLoginCredential();
-        }
+//        if (stage == FTVConstants.activityRequestCodeCamera || stage == FTVConstants.activityRequestCodeGallery) {
+//            Log.d(TAG, "return from camera/gallery");
+//        } else {
+//            Log.d(TAG, "need register check");
+//            checkLoginCredential();
+//        }
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    /**
+     *
+     * @param event
+     */
+    @Subscribe
+    public void onPageStartedEvent(PageStartedEvent event) {
+        Log.d(TAG, "onPageStartedEvent");
+        maskView.setVisibility(View.VISIBLE);
+        progressWheel.spin();
+    }
+
+    @Subscribe
+    public void onPageFinishedEvent(PageFinishedEvent event) {
+        Log.d(TAG, "onPageFinishedEvent");
+        progressWheel.stopSpinning();
+        maskView.setVisibility(View.GONE);
+    }
+
+    @Subscribe
+    public void onReceivedErrorEvent(ReceivedErrorEvent event) {
+        Log.d(TAG, "onReceivedErrorEvent");
 
     }
 

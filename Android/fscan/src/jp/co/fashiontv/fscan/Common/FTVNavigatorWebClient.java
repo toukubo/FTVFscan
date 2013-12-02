@@ -3,14 +3,18 @@ package jp.co.fashiontv.fscan.Common;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import com.squareup.otto.Bus;
 import com.testflightapp.lib.TestFlight;
 import jp.co.fashiontv.fscan.Activities.FTVMainActivity;
+import jp.co.fashiontv.fscan.Injector;
 
+import javax.inject.Inject;
 import java.util.Hashtable;
 
 /**
@@ -18,6 +22,9 @@ import java.util.Hashtable;
  * This class controls the Navbar View web url redirection
  */
 public class FTVNavigatorWebClient extends WebViewClient {
+    @Inject
+    Bus BUS;
+
     private String TAG = "FTVNavigatorWebClient";
 
     Activity activity = null;
@@ -30,12 +37,38 @@ public class FTVNavigatorWebClient extends WebViewClient {
     public FTVNavigatorWebClient(Activity activity, WebView webView) {
         this.activity = activity;
         this.webView = webView;
+
+        Injector.inject(this);
+
+        BUS.register(this); //FIXME: when should we unregister this, might leak?
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             String contents = data.getStringExtra("SCAN_RESULT");
         }
+    }
+
+    @Override
+    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        super.onPageStarted(view, url, favicon);
+
+        BUS.post(new PageStartedEvent());
+    }
+
+    @Override
+    public void onPageFinished(WebView view, String url) {
+        super.onPageFinished(view, url);
+
+        BUS.post(new PageFinishedEvent());
+    }
+
+
+    @Override
+    public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+        super.onReceivedError(view, errorCode, description, failingUrl);
+
+        BUS.post(new ReceivedErrorEvent());
     }
 
     @Override
@@ -50,7 +83,6 @@ public class FTVNavigatorWebClient extends WebViewClient {
             if (uri.startsWith("local/")) {
                 webView.loadUrl("file:///android_asset/" + uri.replaceAll("local/", ""));
             } else {
-                /** @TODO this code, is NOT tested and being commited. */
                 if (urlString.contains("scan/list.php")) {
                     webView.loadUrl("http://" + uri + "?deviceid=" + FTVUser.getID());
 //                    view.requestFocus();

@@ -12,7 +12,7 @@ import java.util.UUID;
 public class FTVUser {
 
     public static String getID() {
-        Context context = FTVApplication.getContext();
+        Context context = FTVApplication.getInstance();
         final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 
         final String tmDevice, tmSerial, androidId;

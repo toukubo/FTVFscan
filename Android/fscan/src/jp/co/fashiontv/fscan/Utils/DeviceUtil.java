@@ -28,7 +28,7 @@ public class DeviceUtil {
         // using Environment.getExternalStorageState() before doing this.
 
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_PICTURES), FTVApplication.getContext().getString(R.string.app_name));
+            Environment.DIRECTORY_PICTURES), FTVApplication.getInstance().getString(R.string.app_name));
 
         // This location works best if you want the created images to be shared
         // between applications and persist after your app has been uninstalled.
@@ -59,7 +59,7 @@ public class DeviceUtil {
 
     public static String photoDirectory(){
         String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) +
-            "/" + FTVApplication.getContext().getString(R.string.app_name);
+            "/" + FTVApplication.getInstance().getString(R.string.app_name);
 
         return path;
     }
