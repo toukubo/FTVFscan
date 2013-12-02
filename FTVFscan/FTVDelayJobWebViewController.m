@@ -277,26 +277,34 @@
         
         return YES;
     }else {
-        if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/"]) {
-            [super setTitleNavigation:self];
-            if (ShowResultPage) {
+        //////////// these are for home/back button switching.
+
+        if ([urlString hasPrefix:CONTENTBASE]) {
+            if ([urlString isEqualToString:CONTENTBASE]) {
+                [super setTitleNavigation:self];
+            }else if ([urlString hasPrefix:@"http://fscan.fashiontv.co.jp/fdbdev/category/"]) {
+                [super setHomeCameraNavigations:self];
+            }else if ([urlString isEqualToString:@"http://fscan.fashiontv.co.jp/fdbdev/form-search/"]) {
                 [super setHomeCameraMenuNavigations:self];
+            }else{
+                [super setBackCameraNavigations:self];
             }
-        }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/news/"]) {
-            [super setHomeCameraNavigations:self];
-        }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/movie/"]) {
-            [super setHomeCameraNavigations:self];
-        }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/topic/"]) {
-            [super setHomeCameraNavigations:self];
-        }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/form-search/"]) {
-            [super setHomeCameraMenuNavigations:self];
-        }else {
-            if (ShowResultPage) {
-                [super setHomeCameraMenuNavigations:self];
-            }else {
+        }else{
+            if(![urlString hasPrefix:@"http://www.youtube.com"]){
                 [super setBackCameraNavigations:self];
             }
         }
+
+//            if(![urlString hasPrefix:@"http://fscan.fashiontv.co.jp/"] && ){
+//                [super setBackCameraNavigations:self];
+//            }else{
+//                [super setHomeCameraMenuNavigations:self];
+//            }
+        
+        if ([urlString isMatchedByRegex:@"result=true"]) {
+            [super setHomeCameraMenuNavigations:self];
+        }
+        
     }
     return NO;
 }

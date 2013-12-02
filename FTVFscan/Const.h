@@ -10,12 +10,12 @@
 #define FTVFscan_Const_h
 
 #ifdef DEBUG
-    #define BASEURL @"http://zxc.cz/fscan-web-staging/"
+    #define BASEURL @"http://fscan.fashiontv.co.jp/fscan-web-staging/"
 #else
-    #define BASEURL @"http://zxc.cz/fscan-web/"
+    #define BASEURL @"http://fscan.fashiontv.co.jp/fscan-web-staging/"
 #endif
 
-#define CONTENTBASE @"http://zxc.cz/fdbdev/"
+#define CONTENTBASE @"http://fscan.fashiontv.co.jp/fdbdev/"
 
 #define IPHONE_HEIGHT 480
 #define MAX_PAGE      10
