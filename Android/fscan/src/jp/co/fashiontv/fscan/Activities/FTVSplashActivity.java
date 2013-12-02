@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import com.testflightapp.lib.TestFlight;
+import jp.co.fashiontv.fscan.Common.FTVConstants;
 import jp.co.fashiontv.fscan.R;
 
 /**
  * Splash screen like iOS launcher page
  */
 public class FTVSplashActivity extends Activity {
-	private static final int SPLASHTIME = 5;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class FTVSplashActivity extends Activity {
         TestFlight.passCheckpoint("FTVSplashActivity - onCreate");
 
         Handler hdl = new Handler();
-		hdl.postDelayed(new splashHandler(), SPLASHTIME * 1000);
+		hdl.postDelayed(new splashHandler(), FTVConstants.splashScreenTimeout * 1000);
 	}
 
 	class splashHandler implements Runnable {

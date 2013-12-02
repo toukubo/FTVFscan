@@ -26,4 +26,6 @@ public class FTVConstants {
     public static int activityRequestCodeCamera = 2;  // 3rd tab
     public static int activityRequestCodeGallery = 3; // 4th tab
 
+
+    public static int splashScreenTimeout   =   2;
 }

@@ -18,8 +18,6 @@ import android.webkit.WebView;
 import android.widget.RelativeLayout;
 import butterknife.InjectView;
 import butterknife.Views;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 import com.testflightapp.lib.TestFlight;
@@ -31,7 +29,6 @@ import jp.co.fashiontv.fscan.Injector;
 import jp.co.fashiontv.fscan.R;
 import jp.co.fashiontv.fscan.Utils.DeviceUtil;
 import jp.co.fashiontv.fscan.Utils.FTVUtil;
-import org.apache.http.Header;
 
 import javax.inject.Inject;
 
@@ -118,51 +115,51 @@ public class FTVMainActivity extends Activity {
         webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlHome);
     }
 
-    private boolean checkLoginCredential() {
-        TestFlight.passCheckpoint("FTVMainActivity - checkLoginCredential");
-
-        String url = String.format("%s%s%s", FTVConstants.baseUrl, "registration/isRegistered.php?deviceid=", FTVUser.getID());
-
-        // start the progress dialog
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle(getString(R.string.info_title_check_credential));
-        progressDialog.setMessage(getString(R.string.info_check_credential));
-        progressDialog.setIndeterminate(true);
-        progressDialog.setCancelable(false);
-
-        // start another thread to check credential
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.setTimeout(FTVConstants.httpTimeout);
-        client.get(url, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                super.onSuccess(statusCode, headers, responseBody);
-
-                progressDialog.dismiss();
-
-                String resp = new String(responseBody);
-                if (resp != null && resp.equals("true")) {
-                    Log.d(TAG, "Device already registered!!");
-                    setupWebView();
-
-//                    startActivityCamera();
-                } else {
-                    showRegisterActivity();
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                super.onFailure(statusCode, headers, responseBody, error);
-
-                Log.d(TAG, "check credential failed");
-
-                progressDialog.dismiss();
-            }
-        });
-
-        return true;
-    }
+//    private boolean checkLoginCredential() {
+//        TestFlight.passCheckpoint("FTVMainActivity - checkLoginCredential");
+//
+//        String url = String.format("%s%s%s", FTVConstants.baseUrl, "registration/isRegistered.php?deviceid=", FTVUser.getID());
+//
+//        // start the progress dialog
+//        progressDialog = new ProgressDialog(this);
+//        progressDialog.setTitle(getString(R.string.info_title_check_credential));
+//        progressDialog.setMessage(getString(R.string.info_check_credential));
+//        progressDialog.setIndeterminate(true);
+//        progressDialog.setCancelable(false);
+//
+//        // start another thread to check credential
+//        AsyncHttpClient client = new AsyncHttpClient();
+//        client.setTimeout(FTVConstants.httpTimeout);
+//        client.get(url, new AsyncHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+//                super.onSuccess(statusCode, headers, responseBody);
+//
+//                progressDialog.dismiss();
+//
+//                String resp = new String(responseBody);
+//                if (resp != null && resp.equals("true")) {
+//                    Log.d(TAG, "Device already registered!!");
+//                    setupWebView();
+//
+////                    startActivityCamera();
+//                } else {
+//                    showRegisterActivity();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+//                super.onFailure(statusCode, headers, responseBody, error);
+//
+//                Log.d(TAG, "check credential failed");
+//
+//                progressDialog.dismiss();
+//            }
+//        });
+//
+//        return true;
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

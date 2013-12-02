@@ -35,7 +35,7 @@
                     ProgressWheel:textSize="14sp"
                     ProgressWheel:rimColor="#4000"
                     ProgressWheel:barLength="30dp"
-                    ProgressWheel:barColor="#222"
+                    ProgressWheel:barColor="#BBB"
                     ProgressWheel:barWidth="4dp"
                     ProgressWheel:rimWidth="1dp"
                     ProgressWheel:spinSpeed="30dp"
