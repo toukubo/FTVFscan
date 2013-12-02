@@ -282,13 +282,16 @@
         if ([urlString hasPrefix:CONTENTBASE]) {
             if ([urlString isEqualToString:CONTENTBASE]) {
                 [super setTitleNavigation:self];
-            }else if ([urlString hasPrefix:@"http://fscan.fashiontv.co.jp/fdbdev/category/"]) {
+            }else if ([urlString hasPrefix:[ CONTENTBASE stringByAppendingString:@"category"]]) {
                 [super setHomeCameraNavigations:self];
-            }else if ([urlString isEqualToString:@"http://fscan.fashiontv.co.jp/fdbdev/form-search/"]) {
+            }else if ([urlString isEqualToString:[ CONTENTBASE stringByAppendingString:@"form-search"]]) {
                 [super setHomeCameraMenuNavigations:self];
             }else{
                 [super setBackCameraNavigations:self];
             }
+        }else if ([urlString hasPrefix:[ BASEURL stringByAppendingString:@"/scan/list"]]) {
+            [super setHomeCameraNavigations:self];
+
         }else{
             if(![urlString hasPrefix:@"http://www.youtube.com"]){
                 [super setBackCameraNavigations:self];
