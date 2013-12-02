@@ -278,6 +278,8 @@
         return YES;
     }else {
         //////////// these are for home/back button switching.
+        self.webView.scalesPageToFit = NO;
+        self.webView.multipleTouchEnabled = NO;
 
         if ([urlString hasPrefix:CONTENTBASE]) {
             if ([urlString isEqualToString:CONTENTBASE]) {
@@ -295,6 +297,9 @@
         }else{
             if(![urlString hasPrefix:@"http://www.youtube.com"]){
                 [super setBackCameraNavigations:self];
+                self.webView.scalesPageToFit = YES;
+                self.webView.multipleTouchEnabled = YES;
+
             }
         }
 
