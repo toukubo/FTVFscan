@@ -7,8 +7,6 @@ import android.view.Display;
 import android.view.WindowManager;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.testflightapp.lib.TestFlight;
-import jp.co.fashiontv.fscan.FTVModule;
-import jp.co.fashiontv.fscan.Injector;
 
 import static android.os.Build.VERSION.SDK_INT;
 import static android.os.Build.VERSION_CODES.FROYO;

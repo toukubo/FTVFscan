@@ -1,4 +1,4 @@
-package jp.co.fashiontv.fscan;
+package jp.co.fashiontv.fscan.Core;
 
 /**
  * Created by veiz on 12/1/13.

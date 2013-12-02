@@ -25,7 +25,7 @@ import com.todddavies.components.progressbar.ProgressWheel;
 import jp.co.fashiontv.fscan.Common.*;
 import jp.co.fashiontv.fscan.Gaziru.GaziruSearchParams;
 import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
-import jp.co.fashiontv.fscan.Injector;
+import jp.co.fashiontv.fscan.Core.Injector;
 import jp.co.fashiontv.fscan.R;
 import jp.co.fashiontv.fscan.Utils.DeviceUtil;
 import jp.co.fashiontv.fscan.Utils.FTVUtil;

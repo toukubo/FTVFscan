@@ -1,4 +1,4 @@
-package jp.co.fashiontv.fscan;
+package jp.co.fashiontv.fscan.Core;
 
 import com.squareup.otto.Bus;
 import dagger.Module;

@@ -12,7 +12,7 @@ import android.webkit.WebViewClient;
 import com.squareup.otto.Bus;
 import com.testflightapp.lib.TestFlight;
 import jp.co.fashiontv.fscan.Activities.FTVMainActivity;
-import jp.co.fashiontv.fscan.Injector;
+import jp.co.fashiontv.fscan.Core.Injector;
 
 import javax.inject.Inject;
 import java.util.Hashtable;
