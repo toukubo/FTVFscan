@@ -44,7 +44,7 @@
     [menuItemViewId addObject:@"FTVGalleryViewController"];
     [menuItemViewId addObject:@"FTVBrandsViewController"];
     
-    [super setBackNavigations:self];
+    [super setDDmenuTitleNavigations:self];
 }
 
 
@@ -121,9 +121,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle) editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // Do some code here
-    
+//    return
 }
-
 
 
 @end
