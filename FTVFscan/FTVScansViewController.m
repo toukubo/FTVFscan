@@ -34,6 +34,8 @@
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
     _scansWebView.delegate = self;
+    _scansWebView.scalesPageToFit = NO;
+    _scansWebView.multipleTouchEnabled = NO;
     
     for (id subview in _scansWebView.subviews)
         if ([[subview class] isSubclassOfClass: [UIScrollView class]])

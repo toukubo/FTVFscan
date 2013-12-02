@@ -38,6 +38,7 @@
         // the webview is not initialized
         self.webView = [[UIWebView alloc] initWithFrame:rect];
         
+        
         self.view.frame = rect;
     }
     return self;
@@ -49,7 +50,9 @@
     NSLog(@"VDL,,,");
     [self.webView setDelegate:self];
     self.navigationController.navigationBarHidden = YES;
-    self.webView.scalesPageToFit = YES;
+    self.webView.autoresizesSubviews = YES;
+    self.webView.scalesPageToFit = NO;
+    self.webView.multipleTouchEnabled = NO;
     
 //    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [backButton setFrame:CGRectMake(0, 0, 45, 45)];

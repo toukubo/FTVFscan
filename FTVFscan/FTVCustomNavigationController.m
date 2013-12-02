@@ -102,8 +102,11 @@
     [view addSubview:homeButton];
 }
 -(void)drawTitle:(UIView *)view{
-    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(110, 13, 100, 16)];//(100, 12, 127, 20)
-    titleView.image = [UIImage imageNamed:@"240head.png"];
+    UIImage *titleImage = [UIImage imageNamed:@"240head.png"];
+    int imageWidth = titleImage.size.width;
+    int imageHeight = titleImage.size.height;
+    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake((screenWidth/2 - 50), 13, 100, 16)];//(100, 12, 127, 20)
+    titleView.image = titleImage;
     [view addSubview:titleView];
 }
 

@@ -24,6 +24,8 @@
 {
     [super viewDidLoad];
     _brandsWebView.delegate = self;
+    _brandsWebView.scalesPageToFit = NO;
+    _brandsWebView.multipleTouchEnabled = NO;
     
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])
     {
