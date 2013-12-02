@@ -12,10 +12,7 @@
 
 int main(int argc, char * argv[])
 {
-//    @autoreleasepool {
-//        return UIApplicationMain(argc, argv, nil, NSStringFromClass([FTVAppDelegate class]));
-//    }
-    
+#ifdef DEBUG
     int retVal = -1;
     @autoreleasepool {
         @try {
@@ -27,5 +24,9 @@ int main(int argc, char * argv[])
         }
     }
     return retVal;
-
+#else
+    @autoreleasepool {
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([FTVAppDelegate class]));
+    }
+#endif
 }
