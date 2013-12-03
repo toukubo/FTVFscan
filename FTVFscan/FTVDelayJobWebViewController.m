@@ -92,7 +92,7 @@
         NSLog(@"initial load...");
     }
     
-    [super setHomeCameraMenuNavigations:self];
+//    [super setHomeCameraMenuNavigations:self];
 
     
     
