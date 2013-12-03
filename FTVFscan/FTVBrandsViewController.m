@@ -75,14 +75,14 @@
     [self.loadingView hide];
 }
 
-//-(void)doneButtonClick:(NSNotification*)aNotification
-//{
-//    //Do whatever you want here
-//    if ([_brandsWebView canGoBack]) {
-//        [_brandsWebView goBack];
-//        isGoBack = YES;
-//    }
-//}
+-(void)doneButtonClick:(NSNotification*)aNotification
+{
+    //Do whatever you want here
+    if ([_brandsWebView canGoBack]) {
+        [_brandsWebView goBack];
+        isGoBack = YES;
+    }
+}
 
 
 - (void)didReceiveMemoryWarning

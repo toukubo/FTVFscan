@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "FTVCustomNavigationController.h"
+#import "FTVDelayJobWebViewController.h"
 
-@interface FTVBrandsViewController : FTVCustomNavigationController <UIWebViewDelegate>
+
+@interface FTVBrandsViewController : FTVDelayJobWebViewController
 
 @property (strong, nonatomic) IBOutlet UIWebView *brandsWebView;
 
