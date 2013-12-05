@@ -83,10 +83,14 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.loadingView hide];
-    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[[self captureManager] session] stopRunning];
+        [[[self captureManager] session] removeInput:[captureManager videoInput]];
+    });
     if (returnFromPicker) {
         returnFromPicker = NO;
     }
+    
 }
 
 - (void)switchSceneToCamera
@@ -277,8 +281,8 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     [self.loadingView show];
     
     if ([self captureManager] == nil) {
-        AVCamCaptureManager *manager = [[AVCamCaptureManager alloc] init];
-        [self setCaptureManager:manager];
+        captureManager = [[AVCamCaptureManager alloc] init];
+        [self setCaptureManager:captureManager];
         [[self captureManager] setDelegate:self];
         
         if ([[self captureManager] setupSession]) {
@@ -292,7 +296,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
                                                           }];
             
             // Create video preview layer and add it to the UI
-            AVCaptureVideoPreviewLayer *newCaptureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:[[self captureManager] session]];
+            captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:[[self captureManager] session]];
             UIView *view = [self videoPreviewView];
             
             view.backgroundColor = [UIColor blackColor];
@@ -305,13 +309,13 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
                                 bounds.origin.y,
                                 bounds.size.width,
                                 bounds.size.height);
-            [newCaptureVideoPreviewLayer setFrame:bounds];
+            [captureVideoPreviewLayer setFrame:bounds];
             
-            [newCaptureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+            [captureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
             
-            [viewLayer insertSublayer:newCaptureVideoPreviewLayer below:[[viewLayer sublayers] objectAtIndex:0]];
+            [viewLayer insertSublayer:captureVideoPreviewLayer below:[[viewLayer sublayers] objectAtIndex:0]];
             
-            [self setCaptureVideoPreviewLayer:newCaptureVideoPreviewLayer];
+            [self setCaptureVideoPreviewLayer:captureVideoPreviewLayer];
             
             // Start the session. This is done asychronously since -startRunning doesn't return until the session is running.
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
