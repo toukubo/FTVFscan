@@ -33,7 +33,7 @@
     // TODO: advertise SDK
     
     // Check credential
-    sleep(2);
+//    sleep(2);
 
     [self switchSceneToTabController];
     
