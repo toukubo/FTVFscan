@@ -92,7 +92,7 @@
         NSLog(@"initial load...");
     }
     
-//    [super setHomeCameraMenuNavigations:self];
+    [super setHomeCameraMenuNavigations:self];
 
     
     
@@ -259,10 +259,13 @@
         // Todo: gailya need to confirm the way to load the camera/gallery with drawer
         if ([action hasSuffix:@"Camera"]) {
 
-            DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
-            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
-            [menuController setRootController:controller animated:YES];
-            [menuController showRootController:YES];
+//            DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+//            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
+//            [menuController setRootController:controller animated:YES];
+
+            FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            [appDelegate switchSceneToCameraController];
+//            [super setHomeMenuNavigations:self];
         }
         else if([action hasSuffix:@"Gallery"])
         {
@@ -281,26 +284,16 @@
         if ([urlString hasPrefix:CONTENTBASE]) {
             if ([urlString isEqualToString:CONTENTBASE]) {
                 [super setTitleNavigation:self];
-            }else if ([urlString hasPrefix:[ CONTENTBASE stringByAppendingString:@"category/brandlogo_"]]) {
-                [super setBackCameraMenuNavigations:self];
-            }else if ([urlString hasPrefix:[ CONTENTBASE stringByAppendingString:@"category/brands"]]) {
-                [super setHomeCameraMenuNavigations:self];
             }else if ([urlString hasPrefix:[ CONTENTBASE stringByAppendingString:@"category"]]) {
                 [super setHomeCameraNavigations:self];
             }else if ([urlString isEqualToString:[ CONTENTBASE stringByAppendingString:@"form-search"]]) {
                 [super setHomeCameraMenuNavigations:self];
             }else{
-                [super setBackCameraMenuNavigations:self];
+                [super setBackCameraNavigations:self];
             }
         }else if ([urlString hasPrefix:[ BASEURL stringByAppendingString:@"/scan/list"]]) {
             [super setHomeCameraNavigations:self];
 
-        }else if ([urlString hasPrefix:@"http://zxc.cz/fdbdev"]) {
-            [super setHomeCameraMenuNavigations:self];
-            
-        }else if ([urlString hasPrefix:@"http://fashiontv.co.jp//www.youtube.com"]) {
-            [super setBackCameraMenuNavigations:self];
-            
         }else{
             if(![urlString hasPrefix:@"http://www.youtube.com"]){
                 [super setBackCameraNavigations:self];
@@ -309,6 +302,12 @@
 
             }
         }
+
+//            if(![urlString hasPrefix:@"http://fscan.fashiontv.co.jp/"] && ){
+//                [super setBackCameraNavigations:self];
+//            }else{
+//                [super setHomeCameraMenuNavigations:self];
+//            }
         
         if ([urlString isMatchedByRegex:@"result=true"]) {
             [super setHomeCameraMenuNavigations:self];
