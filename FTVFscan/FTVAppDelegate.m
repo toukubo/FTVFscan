@@ -33,7 +33,7 @@
     // TODO: advertise SDK
     
     // Check credential
-//    sleep(2);
+    sleep(2);
 
     [self switchSceneToTabController];
     
@@ -104,13 +104,15 @@
     nav.navigationBar.barStyle = UIBarStyleBlack;
     
     DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:controller];
-    _menuController = rootController;
+//    _menuController = rootController;
 	
     
     UIViewController *controllerRight = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVMenuViewController"];
-    _menuController.rightViewController = controllerRight;
+    rootController.rightViewController = controllerRight;
     
-    self.window.rootViewController = _menuController;
+//    self.window.rootViewController = rootController;
+    self.window.rootViewController = controller;
+
     [self.window makeKeyAndVisible];
 }
 
@@ -124,10 +126,10 @@
 	
     
     UIViewController *controllerRight = [storyboard instantiateViewControllerWithIdentifier:@"FTVMenuViewController"];
-    _menuController.rightViewController = controllerRight;
+    rootController.rightViewController = controllerRight;
     
     
-    self.window.rootViewController = _menuController;
+    self.window.rootViewController = rootController;
     [self.window makeKeyAndVisible];
 }
 
