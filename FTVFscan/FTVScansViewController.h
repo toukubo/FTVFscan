@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FTVCustomNavigationController.h"
+#import "FTVDelayJobWebViewController.h"
 
-@interface FTVScansViewController : FTVCustomNavigationController <UIWebViewDelegate>
+@interface FTVScansViewController : FTVDelayJobWebViewController
 
 @property (strong, nonatomic) IBOutlet UIWebView *scansWebView;
 

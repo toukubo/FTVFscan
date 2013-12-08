@@ -33,6 +33,8 @@
     // TODO: advertise SDK
     
     // Check credential
+    sleep(2);
+
     [self switchSceneToTabController];
     
     application.statusBarHidden = YES;
@@ -108,7 +110,9 @@
     UIViewController *controllerRight = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVMenuViewController"];
     rootController.rightViewController = controllerRight;
     
-    self.window.rootViewController = rootController;
+//    self.window.rootViewController = rootController;
+    self.window.rootViewController = controller;
+
     [self.window makeKeyAndVisible];
 }
 

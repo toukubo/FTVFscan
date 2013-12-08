@@ -38,6 +38,7 @@
         // the webview is not initialized
         self.webView = [[UIWebView alloc] initWithFrame:rect];
         
+        
         self.view.frame = rect;
     }
     return self;
@@ -49,7 +50,9 @@
     NSLog(@"VDL,,,");
     [self.webView setDelegate:self];
     self.navigationController.navigationBarHidden = YES;
-    self.webView.scalesPageToFit = YES;
+    self.webView.autoresizesSubviews = YES;
+    self.webView.scalesPageToFit = NO;
+    self.webView.multipleTouchEnabled = NO;
     
 //    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [backButton setFrame:CGRectMake(0, 0, 45, 45)];
@@ -274,26 +277,42 @@
         
         return YES;
     }else {
-        if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/"]) {
-            [super setTitleNavigation:self];
-            if (ShowResultPage) {
+        //////////// these are for home/back button switching.
+        self.webView.scalesPageToFit = NO;
+        self.webView.multipleTouchEnabled = NO;
+
+        if ([urlString hasPrefix:CONTENTBASE]) {
+            if ([urlString isEqualToString:CONTENTBASE]) {
+                [super setTitleNavigation:self];
+            }else if ([urlString hasPrefix:[ CONTENTBASE stringByAppendingString:@"category"]]) {
+                [super setHomeCameraNavigations:self];
+            }else if ([urlString isEqualToString:[ CONTENTBASE stringByAppendingString:@"form-search"]]) {
                 [super setHomeCameraMenuNavigations:self];
-            }
-        }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/news/"]) {
-            [super setHomeCameraNavigations:self];
-        }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/movie/"]) {
-            [super setHomeCameraNavigations:self];
-        }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/category/topic/"]) {
-            [super setHomeCameraNavigations:self];
-        }else if ([urlString isEqualToString:@"http://zxc.cz/fdbdev/form-search/"]) {
-            [super setHomeCameraMenuNavigations:self];
-        }else {
-            if (ShowResultPage) {
-                [super setHomeCameraMenuNavigations:self];
-            }else {
+            }else{
                 [super setBackCameraNavigations:self];
             }
+        }else if ([urlString hasPrefix:[ BASEURL stringByAppendingString:@"/scan/list"]]) {
+            [super setHomeCameraNavigations:self];
+
+        }else{
+            if(![urlString hasPrefix:@"http://www.youtube.com"]){
+                [super setBackCameraNavigations:self];
+                self.webView.scalesPageToFit = YES;
+                self.webView.multipleTouchEnabled = YES;
+
+            }
         }
+
+//            if(![urlString hasPrefix:@"http://fscan.fashiontv.co.jp/"] && ){
+//                [super setBackCameraNavigations:self];
+//            }else{
+//                [super setHomeCameraMenuNavigations:self];
+//            }
+        
+        if ([urlString isMatchedByRegex:@"result=true"]) {
+            [super setHomeCameraMenuNavigations:self];
+        }
+        
     }
     return NO;
 }

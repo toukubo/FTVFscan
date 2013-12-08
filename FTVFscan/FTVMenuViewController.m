@@ -22,7 +22,10 @@
     [super viewDidLoad];
     
 	// Do any additional setup after loading the view.
-    [menuTableView setSeparatorInset:UIEdgeInsetsZero];
+    if ([menuTableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [menuTableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
     menuItems = [[NSMutableArray alloc] init];
     [menuItems addObject:@"TOUR"];
     [menuItems addObject:@"HISTORY"];
@@ -41,7 +44,7 @@
     [menuItemViewId addObject:@"FTVGalleryViewController"];
     [menuItemViewId addObject:@"FTVBrandsViewController"];
     
-    [super setBackNavigations:self];
+    [super setDDmenuTitleNavigations:self];
 }
 
 
@@ -118,9 +121,17 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle) editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // Do some code here
-    
+//    return
 }
 
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Detemine if it's in editing mode
+    //    if (self.editing) {
+    //        return UITableViewCellEditingStyleDelete;
+    //    }
+    return UITableViewCellEditingStyleNone;
+}
 
 
 @end

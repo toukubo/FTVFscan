@@ -34,6 +34,8 @@
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
     _scansWebView.delegate = self;
+    _scansWebView.scalesPageToFit = NO;
+    _scansWebView.multipleTouchEnabled = NO;
     
     for (id subview in _scansWebView.subviews)
         if ([[subview class] isSubclassOfClass: [UIScrollView class]])
@@ -49,6 +51,17 @@
 
     [_scansWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:req_url]]];
 }
+- (void)backAction
+{
+    NSLog(@"back...");
+    if([_scansWebView canGoBack])
+    {
+        isGoBack = YES;
+        [_scansWebView goBack];
+    }
+    
+}
+
 
 
 - (void)didReceiveMemoryWarning
@@ -65,29 +78,29 @@
 #pragma --
 #pragma webView delegates
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    NSString *urlString = request.URL.absoluteString;
-    DLog(@"%@", urlString);
-    if ([self needOpenExternalSafari:urlString]) {
-        [FTVImageProcEngine openSafari:urlString];
-        return NO;
-    }
-    
-    return YES;
-}
+//- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+//{
+//    NSString *urlString = request.URL.absoluteString;
+//    DLog(@"%@", urlString);
+//    if ([self needOpenExternalSafari:urlString]) {
+//        [FTVImageProcEngine openSafari:urlString];
+//        return NO;
+//    }
+//    
+//    return YES;
+//}
 
-- (void)webViewDidStartLoad:(UIWebView *)webView
-{
-//    [self navBarSlideLeft:!isGoBack];
-    [self statusIndicatorShow];
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    [self statusIndicatorHide];
-    isGoBack = NO;
-}
+//- (void)webViewDidStartLoad:(UIWebView *)webView
+//{
+////    [self navBarSlideLeft:!isGoBack];
+//    [self statusIndicatorShow];
+//}
+//
+//- (void)webViewDidFinishLoad:(UIWebView *)webView
+//{
+//    [self statusIndicatorHide];
+//    isGoBack = NO;
+//}
 
 - (void)statusIndicatorShow
 {
