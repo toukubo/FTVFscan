@@ -5,11 +5,7 @@ import android.app.Instrumentation;
 import android.content.Context;
 import android.view.Display;
 import android.view.WindowManager;
-import com.github.kevinsawicki.http.HttpRequest;
 import com.testflightapp.lib.TestFlight;
-
-import static android.os.Build.VERSION.SDK_INT;
-import static android.os.Build.VERSION_CODES.FROYO;
 
 /**
  * Created by Alsor Zhou on 13-11-9.
@@ -25,11 +21,6 @@ public class FTVApplication extends Application {
 
     public FTVApplication() {
         super();
-
-        // Disable http.keepAlive on Froyo and below
-        if (SDK_INT <= FROYO) {
-            HttpRequest.keepAlive(false);
-        }
     }
 
     /**
