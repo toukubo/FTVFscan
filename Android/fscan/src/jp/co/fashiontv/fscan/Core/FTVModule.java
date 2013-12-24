@@ -7,12 +7,11 @@ import jp.co.fashiontv.fscan.Activities.FTVMainActivity;
 import jp.co.fashiontv.fscan.Activities.FTVSplashActivity;
 import jp.co.fashiontv.fscan.Activities.FTVWebViewActivity;
 import jp.co.fashiontv.fscan.Common.FTVNavigatorWebClient;
-import jp.co.fashiontv.fscan.Core.FTVApplication;
 
 import javax.inject.Singleton;
 
 /**
- * Created by veiz on 12/1/13.
+ * Created by Alsor Zhou on 12/1/13.
  */
 @Module
     (

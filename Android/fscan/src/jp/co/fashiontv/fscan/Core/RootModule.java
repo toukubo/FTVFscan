@@ -1,7 +1,7 @@
 package jp.co.fashiontv.fscan.Core;
 
 /**
- * Created by veiz on 12/1/13.
+ * Created by Alsor Zhou on 12/1/13.
  */
 import dagger.Module;
 
