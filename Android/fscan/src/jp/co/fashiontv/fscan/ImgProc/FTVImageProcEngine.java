@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.net.Uri;
 import android.util.Log;
 import android.webkit.URLUtil;
 import android.widget.Toast;
@@ -17,18 +16,18 @@ import jp.co.fashiontv.fscan.Activities.FTVWebViewActivity;
 import jp.co.fashiontv.fscan.Common.FTVConstants;
 import jp.co.fashiontv.fscan.Common.FTVUser;
 import jp.co.fashiontv.fscan.Gaziru.GaziruSearchParams;
-import jp.co.fashiontv.fscan.Utils.DeviceUtil;
 import jp.co.fashiontv.fscan.Utils.FTVUtil;
 import jp.co.fashiontv.fscan.Utils.ImageUtil;
-import jp.co.fashiontv.fscan.Utils.StringUtil;
 import jp.co.nec.gazirur.rtsearch.lib.bean.SearchResult;
 import jp.co.nec.gazirur.rtsearch.lib.clientapi.RTFeatureSearcher;
 import jp.co.nec.gazirur.rtsearch.lib.clientapi.RTSearchApi;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.apache.http.Header;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -74,14 +73,6 @@ public class FTVImageProcEngine {
     }
 
     /**
-     * @param srcImage
-     * @return
-     */
-    private static Bitmap imageResize(Bitmap srcImage) {
-        return resizeImage(srcImage, 496);
-    }
-
-    /**
      * Resize Image and save to album
      *
      * @param srcImage     source image
@@ -90,7 +81,7 @@ public class FTVImageProcEngine {
      * @return resized image
      */
     public static Bitmap imageResize(Bitmap srcImage, String saveWithName, boolean useJpeg) {
-        Bitmap bm = imageResize(srcImage);
+        Bitmap bm = resizeImage(srcImage, 496);
 
         // TODO: write to gallery
         return bm;
@@ -132,16 +123,16 @@ public class FTVImageProcEngine {
 
             List<SearchResult> result = rtsearchlib.ExecuteFeatureSearch(bytes, RTFeatureSearcher.SERVER_SERVICE_SEARCH);
 
-            String brand_slug = null;
+            String brandSlug = null;
 
             if (result == null) {
-                brand_slug = "failure";
+                brandSlug = "failure";
             } else if (result.size() == 0) {
-                brand_slug = "failure";
+                brandSlug = "failure";
             } else {
                 SearchResult bland_dict = result.get(0);
                 ArrayList<String> appendedInfos = bland_dict.getAppendInfo();
-                brand_slug = appendedInfos.get(0);
+                brandSlug = appendedInfos.get(0);
             }
 
             // count the operation duration
@@ -149,7 +140,7 @@ public class FTVImageProcEngine {
 
             rtsearchlib.CloseFeatureSearcher();
 
-            return brand_slug;
+            return brandSlug;
 
         } else if (resultCode.equals("0101")) {
             //TODO:
@@ -169,45 +160,69 @@ public class FTVImageProcEngine {
     /**
      * Post resized image to our server in async mode
      *
-     * @param context    application context
-     * @param brand_slug recognized brand from gaziru engine
+     * @param context   application context
+     * @param brandSlug recognized brand from gaziru engine
      */
-    public static void postData(final Context context, String brand_slug) {
-        RequestParams params = new RequestParams();
+    public static void postData(final Context context, String brandSlug, final String imagePath) {
+        final RequestParams params = new RequestParams();
         params.put("user_id", FTVUser.getID());
-        params.put("brand_slug", brand_slug);
-
-        File image = new File(DeviceUtil.photoDirectory() + "/resize.png");
-        try {
-            params.put("image", image);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        params.put("brandSlug", brandSlug);
 
         String url = String.format("%s%s", FTVConstants.baseUrl, "scan/post.php");
 
+        // step 1 - post without image to get the post id
         AsyncHttpClient client = new AsyncHttpClient();
         client.setTimeout(FTVConstants.httpTimeout);
         client.post(url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                String url = encapsulateById(new String(responseBody));
+                // get post id here
+                String postId = new String(responseBody);
+                Log.d(TAG, "Post ID : " + postId);
+                params.put("id", postId);
 
-                Log.d(TAG, "URL - " + url);
+                try {
+                    File image = new File(imagePath);
+                    params.put("image", image);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    Toast.makeText(context, "Can not find the taken image, please plugin your SD card.", Toast.LENGTH_SHORT);
 
-                if (URLUtil.isValidUrl(url)) {
-                    Intent is = new Intent(context, FTVWebViewActivity.class);
-                    is.putExtra("url", url);
-                    context.startActivity(is);
-
-                } else {
-                    Toast.makeText(context, "Malform url", Toast.LENGTH_SHORT);
+                    return;
                 }
+
+                String url = String.format("%s%s", FTVConstants.baseUrl, "scan/postPhoto.php");
+
+                // step 2 - post image to server
+                AsyncHttpClient client = new AsyncHttpClient();
+                client.setTimeout(FTVConstants.httpTimeout);
+                client.post(url, params, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        String url = encapsulateById(new String(responseBody));
+
+                        Log.d(TAG, "Redirect URL to : " + url);
+
+                        if (URLUtil.isValidUrl(url)) {
+                            Intent is = new Intent(context, FTVWebViewActivity.class);
+                            is.putExtra("url", url);
+                            context.startActivity(is);
+
+                        } else {
+                            Toast.makeText(context, "Malform url", Toast.LENGTH_SHORT);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                        Log.e(TAG, "Failed to post image data to server");
+                    }
+                });
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                Log.e(TAG, "Failed to post image data to server");
             }
         });
     }
@@ -221,57 +236,40 @@ public class FTVImageProcEngine {
     public static String imageSearchProcess(GaziruSearchParams param) {
         TestFlight.passCheckpoint("FTVImageProcEngine - imageSearchProcess");
 
-        Context context = param.context;
-        Uri uri = param.uri;
+        // FIXME: test only, bypass the image recognization
+        if (false) {
+            Context context = param.context;
 
-        FileInputStream fis = null;
-        String path = uri.toString();
-
-        try {
-            if (path.startsWith("content://")) {
-                // gallery picker
-                path = StringUtil.getRealPathFromURI(context, uri);
-            } else {
-                // camera
-                path = StringUtil.getRealPathFromString(path);
-            }
+            String path = param.imagePath;
             Log.d(TAG, "Image Process Path - " + path);
 
-            fis = new FileInputStream(path);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return null;
+            FileInputStream fis = null;
+            try {
+                fis = new FileInputStream(path);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return null;
+            }
+
+            Bitmap resizedImage = BitmapFactory.decodeStream(fis);
+
+            // resize image data
+//            Bitmap resizedImage = FTVImageProcEngine.imageResize(originImage, StringUtil.randomFilename(), true);
+
+            Log.d(TAG, String.format("resizedImage : w - %d, h - %d", resizedImage.getWidth(), resizedImage.getHeight()));
+
+            // execute API in sync mode, call NEC stuff
+            String brandSlug = FTVImageProcEngine.executeApi(context, resizedImage);
+            Log.d(TAG, String.format("BRAND SLUG - %s\n", brandSlug));
+
+            if (brandSlug == null) {
+                brandSlug = "UNKNOWN";
+            }
+
+            return brandSlug;
+        } else {
+            return "failure";
         }
-
-        Bitmap originImage = BitmapFactory.decodeStream(fis);
-
-        // resize image data
-        Bitmap resizedImage = FTVImageProcEngine.imageResize(originImage, StringUtil.randomFilename(), true);
-
-        Log.d(TAG, String.format("resizedImage : w - %d, h - %d", resizedImage.getWidth(), resizedImage.getHeight()));
-
-        String bname = FilenameUtils.getBaseName(path);
-        try {
-            FileOutputStream orig = new FileOutputStream(DeviceUtil.photoDirectory() + "/" + bname + "-orig.png");
-            FileOutputStream resize = new FileOutputStream(DeviceUtil.photoDirectory() + "/" + bname + "-resize.png");
-
-            originImage.compress(Bitmap.CompressFormat.PNG, 90, orig);
-            orig.close();
-            resizedImage.compress(Bitmap.CompressFormat.PNG, 90, resize);
-            resize.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // execute API in sync mode, call NEC stuff
-        String brand_slug = FTVImageProcEngine.executeApi(context, resizedImage);
-        Log.d(TAG, String.format("BRAND SLUG - %s\n", brand_slug));
-
-        if (brand_slug == null) {
-            brand_slug = "UNKNOWN";
-        }
-
-        return brand_slug;
     }
 
     /**
@@ -284,10 +282,7 @@ public class FTVImageProcEngine {
     public static Void imagePostProcess(GaziruSearchParams param) {
         TestFlight.passCheckpoint("FTVImageProcEngine - imagePostProcess");
 
-        Context context = param.context;
-        String brand_slug = param.brandSlug;
-
-        postData(context, brand_slug);
+        postData(param.context, param.brandSlug, param.imagePath);
 
         return null;
     }
@@ -308,7 +303,7 @@ public class FTVImageProcEngine {
      * @param bm target bitmap
      * @return bytes representation of bitmap
      */
-    private static byte[] getBytesFromBitmap(Bitmap bm) {
+    public static byte[] getBytesFromBitmap(Bitmap bm) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
 
@@ -321,7 +316,7 @@ public class FTVImageProcEngine {
      * @param bm target bitmap
      * @return bytes in int[]
      */
-    private static int[] getIntsFromBitmap(Bitmap bm) {
+    public static int[] getIntsFromBitmap(Bitmap bm) {
         int[] intArray = new int[bm.getWidth() * bm.getHeight()];
 
         //copy pixel data from the Bitmap into the 'intArray' array

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="jp.co.fashiontv.fscan"
-          android:versionCode="17"
+          android:versionCode="25"
           android:versionName="1.0-PRE">
 
     <uses-sdk android:minSdkVersion="10"
@@ -41,6 +41,7 @@
         </activity>
 
         <activity android:name=".Activities.FTVWebViewActivity"/>
+        <activity android:name=".Camera.CameraActivity"/>
 
     </application>
 </manifest>

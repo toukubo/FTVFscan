@@ -1,19 +1,18 @@
 package jp.co.fashiontv.fscan.Gaziru;
 
 import android.content.Context;
-import android.net.Uri;
 
 /**
 * Created by Alsor Zhou on 13-11-13.
 */
 public class GaziruSearchParams {
     public Context context;
-    public Uri uri;
+    public String imagePath;
     public String brandSlug;
 
-    public GaziruSearchParams(Context context, Uri uri, String brandSlug) {
+    public GaziruSearchParams(Context context, String path, String brandSlug) {
         this.context = context;
-        this.uri = uri;
+        this.imagePath = path;
         this.brandSlug = brandSlug;
     }
 }

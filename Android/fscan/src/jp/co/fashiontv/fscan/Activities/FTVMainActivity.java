@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -18,11 +17,11 @@ import android.webkit.WebView;
 import android.widget.RelativeLayout;
 import com.testflightapp.lib.TestFlight;
 import com.todddavies.components.progressbar.ProgressWheel;
+import jp.co.fashiontv.fscan.Camera.CameraActivity;
 import jp.co.fashiontv.fscan.Common.*;
 import jp.co.fashiontv.fscan.Gaziru.GaziruSearchParams;
 import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
 import jp.co.fashiontv.fscan.R;
-import jp.co.fashiontv.fscan.Utils.DeviceUtil;
 import jp.co.fashiontv.fscan.Utils.FTVUtil;
 
 //import com.todddavies.components.progressbar.ProgressWheel;
@@ -33,6 +32,8 @@ import jp.co.fashiontv.fscan.Utils.FTVUtil;
  * provide the universal webview for all of the web part display.
  */
 public class FTVMainActivity extends Activity {
+
+    GaziruSearchParams gaziruSearchParams;
 
     ProgressWheel progressWheel;
 
@@ -154,29 +155,19 @@ public class FTVMainActivity extends Activity {
         if (requestCode == FTVConstants.activityRequestCodeCamera) {
             // return from camera
             if (resultCode == RESULT_OK) {
-                if (fileUri != null) {
-                    new ImageSearchTask().execute(new GaziruSearchParams(this, fileUri, null));
+                Bundle extras = data.getExtras();
+                String uri = extras.getString("imageUri");
+                gaziruSearchParams = new GaziruSearchParams(this, uri, null);
+                if (uri != null) {
+                    new ImageSearchTask().execute(gaziruSearchParams);
                 }
+                // TODO: finish the camera activity
             } else if (resultCode == RESULT_CANCELED) {
                 Log.d(TAG, "camera cancelled");
                 // on camera screen, if you push the back hardware button, then the brands page should be displays.
                 webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlBrands);
             } else {
                 Log.e(TAG, "CAMERA - SHOULD NEVER REACH");
-            }
-        } else if (requestCode == FTVConstants.activityRequestCodeGallery) {
-            // return from gallery
-            if (resultCode == RESULT_OK) {
-                fileUri = data.getData();
-                if (fileUri != null) {
-                    new ImageSearchTask().execute(new GaziruSearchParams(this, fileUri, null));
-                }
-            } else if (resultCode == RESULT_CANCELED) {
-                Log.d(TAG, "gallery cancelled");
-                // on camera screen, if you push the back hardware button, then the brands page should be displays.
-                webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlBrands);
-            } else {
-                Log.e(TAG, "GALLERY - SHOULD NEVER REACH");
             }
         } else {
             // never reach
@@ -249,11 +240,14 @@ public class FTVMainActivity extends Activity {
     public void startActivityCamera() {
         TestFlight.passCheckpoint("FTVMainActivity - startActivityCamera");
 
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        fileUri = DeviceUtil.getOutputMediaFileUri(DeviceUtil.MEDIA_TYPE_IMAGE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        fileUri = DeviceUtil.getOutputMediaFileUri(DeviceUtil.MEDIA_TYPE_IMAGE);
+//        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+//
+//        setStage(FTVConstants.activityRequestCodeCamera);
+//        startActivityForResult(intent, FTVConstants.activityRequestCodeCamera);
 
-        setStage(FTVConstants.activityRequestCodeCamera);
+        Intent intent = new Intent(this, CameraActivity.class);
         startActivityForResult(intent, FTVConstants.activityRequestCodeCamera);
     }
 
@@ -284,9 +278,9 @@ public class FTVMainActivity extends Activity {
         protected void onPostExecute(String brandSlug) {
             // TODO: dismiss HUD or whatever to tell user progress
             // exeute image post
-            if (brandSlug != null) {
-                new ImagePostTask().execute(new GaziruSearchParams(mContext, null, brandSlug));
-            }
+//            if (brandSlug != null) {
+                new ImagePostTask().execute(gaziruSearchParams);
+//            }
         }
     }
 
