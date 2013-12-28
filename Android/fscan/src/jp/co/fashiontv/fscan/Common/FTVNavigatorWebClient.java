@@ -69,7 +69,7 @@ public class FTVNavigatorWebClient extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String urlString) {
-        Log.d(TAG, "TAB BAR URL - " + urlString);
+        Log.d(TAG, "URL - " + urlString);
 
         if (urlString.contains("target=_blank")) {
             openExternalBrowser(this.activity, urlString);
