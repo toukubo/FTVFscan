@@ -16,21 +16,16 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
-import butterknife.InjectView;
-import butterknife.Views;
-import com.squareup.otto.Bus;
-import com.squareup.otto.Subscribe;
 import com.testflightapp.lib.TestFlight;
 import com.todddavies.components.progressbar.ProgressWheel;
 import jp.co.fashiontv.fscan.Common.*;
 import jp.co.fashiontv.fscan.Gaziru.GaziruSearchParams;
 import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
-import jp.co.fashiontv.fscan.Core.Injector;
 import jp.co.fashiontv.fscan.R;
 import jp.co.fashiontv.fscan.Utils.DeviceUtil;
 import jp.co.fashiontv.fscan.Utils.FTVUtil;
 
-import javax.inject.Inject;
+//import com.todddavies.components.progressbar.ProgressWheel;
 
 /**
  * Core business logic
@@ -38,13 +33,9 @@ import javax.inject.Inject;
  * provide the universal webview for all of the web part display.
  */
 public class FTVMainActivity extends Activity {
-    @Inject
-    Bus BUS;
 
-    @InjectView(R.id.progressBar)
     ProgressWheel progressWheel;
 
-    @InjectView(R.id.maskView)
     RelativeLayout maskView;
 
     private static String TAG = "FTVMainActivity";
@@ -70,25 +61,21 @@ public class FTVMainActivity extends Activity {
 
         TestFlight.passCheckpoint("FTVMainActivity - onCreate");
 
-        Injector.inject(this);
-        Views.inject(this);
-
         mContext = this;
-
-        BUS.register(this);
 
         // assets/dic/subordinates is arrangement in local
         FTVUtil.assets2Local(this);
 
         setupWebView();
+
+        maskView = (RelativeLayout)findViewById(R.id.maskView);
+        progressWheel = (ProgressWheel)findViewById(R.id.progressBar);
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        BUS.unregister(this);
 
     }
 
@@ -224,24 +211,22 @@ public class FTVMainActivity extends Activity {
      *
      * @param event
      */
-    @Subscribe
     public void onPageStartedEvent(PageStartedEvent event) {
         Log.d(TAG, "onPageStartedEvent");
         maskView.setVisibility(View.VISIBLE);
         progressWheel.spin();
     }
 
-    @Subscribe
     public void onPageFinishedEvent(PageFinishedEvent event) {
         Log.d(TAG, "onPageFinishedEvent");
         progressWheel.stopSpinning();
         maskView.setVisibility(View.GONE);
     }
 
-    @Subscribe
     public void onReceivedErrorEvent(ReceivedErrorEvent event) {
         Log.d(TAG, "onReceivedErrorEvent");
-
+        progressWheel.stopSpinning();
+        maskView.setVisibility(View.GONE);
     }
 
     /**
@@ -256,20 +241,6 @@ public class FTVMainActivity extends Activity {
         Intent intent = new Intent(mContext, FTVWebViewActivity.class);
         intent.putExtra("url", registerUrl);
         startActivity(intent);
-    }
-
-    /**
-     * TODO: start custom gallery here
-     */
-    public void startActivityGallery() {
-        TestFlight.passCheckpoint("FTVMainActivity - startActivityGallery");
-
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-
-        setStage(FTVConstants.activityRequestCodeGallery);
-        startActivityForResult(intent, FTVConstants.activityRequestCodeGallery);
     }
 
     /**

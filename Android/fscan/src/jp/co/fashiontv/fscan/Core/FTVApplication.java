@@ -54,13 +54,6 @@ public class FTVApplication extends Application {
         instance = this;
         display = null;
 
-        // Perform injection
-        Injector.init(getRootModule(), this);
-
-    }
-
-    private Object getRootModule() {
-        return new FTVModule();
     }
 
     /**

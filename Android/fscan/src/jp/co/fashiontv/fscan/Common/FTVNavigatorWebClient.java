@@ -9,12 +9,9 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import com.squareup.otto.Bus;
 import com.testflightapp.lib.TestFlight;
 import jp.co.fashiontv.fscan.Activities.FTVMainActivity;
-import jp.co.fashiontv.fscan.Core.Injector;
 
-import javax.inject.Inject;
 import java.util.Hashtable;
 
 /**
@@ -22,9 +19,6 @@ import java.util.Hashtable;
  * This class controls the Navbar View web url redirection
  */
 public class FTVNavigatorWebClient extends WebViewClient {
-    @Inject
-    Bus BUS;
-
     private String TAG = "FTVNavigatorWebClient";
 
     Activity activity = null;
@@ -37,10 +31,6 @@ public class FTVNavigatorWebClient extends WebViewClient {
     public FTVNavigatorWebClient(Activity activity, WebView webView) {
         this.activity = activity;
         this.webView = webView;
-
-        Injector.inject(this);
-
-        BUS.register(this); //FIXME: when should we unregister this, might leak?
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -53,14 +43,18 @@ public class FTVNavigatorWebClient extends WebViewClient {
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
         super.onPageStarted(view, url, favicon);
 
-        BUS.post(new PageStartedEvent());
+        if (this.activity instanceof FTVMainActivity) {
+            ((FTVMainActivity)this.activity).onPageStartedEvent(null);
+        }
     }
 
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
 
-        BUS.post(new PageFinishedEvent());
+        if (this.activity instanceof FTVMainActivity) {
+            ((FTVMainActivity)this.activity).onPageFinishedEvent(null);
+        }
     }
 
 
@@ -68,7 +62,9 @@ public class FTVNavigatorWebClient extends WebViewClient {
     public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
         super.onReceivedError(view, errorCode, description, failingUrl);
 
-        BUS.post(new ReceivedErrorEvent());
+        if (this.activity instanceof FTVMainActivity) {
+            ((FTVMainActivity)this.activity).onReceivedErrorEvent(null);
+        }
     }
 
     @Override
@@ -93,8 +89,6 @@ public class FTVNavigatorWebClient extends WebViewClient {
         } else if (urlString.contains(".action")) {
             if (urlString.contains("Camera")) {
                 ((FTVMainActivity) activity).startActivityCamera();
-            } else if (urlString.contains("Gallery")) {
-                ((FTVMainActivity) activity).startActivityGallery();
             }
             return true;
         } else {
