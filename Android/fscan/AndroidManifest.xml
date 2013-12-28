@@ -40,8 +40,10 @@
                   android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name=".Activities.FTVWebViewActivity"/>
-        <activity android:name=".Camera.CameraActivity"/>
+        <activity android:name=".Activities.FTVWebViewActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".Camera.CameraActivity"
+                  android:screenOrientation="portrait"/>
 
     </application>
 </manifest>

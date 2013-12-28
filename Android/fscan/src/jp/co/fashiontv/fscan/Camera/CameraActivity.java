@@ -212,6 +212,8 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
                 // resize raw image and save
                 Bitmap originImage = BitmapFactory.decodeByteArray(data, 0, data.length);
 
+                originImage = FTVImageProcEngine.rotateImage(originImage, 90);
+
                 Bitmap resizedImage = FTVImageProcEngine.imageResize(originImage, StringUtil.randomFilename(), true);
 
                 byte[] resizedBytes = FTVImageProcEngine.getBytesFromBitmap(resizedImage);

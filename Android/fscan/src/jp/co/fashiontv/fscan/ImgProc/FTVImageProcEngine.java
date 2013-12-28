@@ -49,6 +49,22 @@ public class FTVImageProcEngine {
     private static String TAG = "FTVImageProcEngine";
 
     /**
+     * Rotate Bitmap
+     *
+     * @param srcImage source image
+     * @param angle    wanted rotate angle, must be 0, 90, 180, 270.
+     *                 http://developer.android.com/reference/android/hardware/Camera.Parameters.html#setRotation(int)
+     * @return
+     */
+    public static Bitmap rotateImage(Bitmap srcImage, final int angle) {
+        // http://stackoverflow.com/a/16218346
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        srcImage = Bitmap.createBitmap(srcImage, 0, 0, srcImage.getWidth(), srcImage.getHeight(), matrix, true);
+        return srcImage;
+    }
+
+    /**
      * @param srcImage
      * @param desiredWidth
      * @return
@@ -83,7 +99,6 @@ public class FTVImageProcEngine {
     public static Bitmap imageResize(Bitmap srcImage, String saveWithName, boolean useJpeg) {
         Bitmap bm = resizeImage(srcImage, 496);
 
-        // TODO: write to gallery
         return bm;
     }
 
@@ -215,14 +230,14 @@ public class FTVImageProcEngine {
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                        Log.e(TAG, "Failed to post image data to server");
+                        Log.e(TAG, "Failed to post image data to server, response - " + new String(responseBody));
                     }
                 });
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Log.e(TAG, "Failed to post image data to server");
+                Log.e(TAG, "Failed to get post ID");
             }
         });
     }
@@ -237,7 +252,7 @@ public class FTVImageProcEngine {
         TestFlight.passCheckpoint("FTVImageProcEngine - imageSearchProcess");
 
         // FIXME: test only, bypass the image recognization
-        if (false) {
+        if (true) {
             Context context = param.context;
 
             String path = param.imagePath;
@@ -252,9 +267,6 @@ public class FTVImageProcEngine {
             }
 
             Bitmap resizedImage = BitmapFactory.decodeStream(fis);
-
-            // resize image data
-//            Bitmap resizedImage = FTVImageProcEngine.imageResize(originImage, StringUtil.randomFilename(), true);
 
             Log.d(TAG, String.format("resizedImage : w - %d, h - %d", resizedImage.getWidth(), resizedImage.getHeight()));
 
@@ -311,7 +323,7 @@ public class FTVImageProcEngine {
     }
 
     /**
-     * Get bitmap in int[]
+     * Get bitmap in int[] format
      *
      * @param bm target bitmap
      * @return bytes in int[]

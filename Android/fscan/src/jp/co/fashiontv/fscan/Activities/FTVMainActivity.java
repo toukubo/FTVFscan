@@ -278,9 +278,11 @@ public class FTVMainActivity extends Activity {
         protected void onPostExecute(String brandSlug) {
             // TODO: dismiss HUD or whatever to tell user progress
             // exeute image post
-//            if (brandSlug != null) {
+            if (brandSlug != null) {
+                Log.d(TAG, "Post image with brand slug - " + brandSlug);
+
                 new ImagePostTask().execute(gaziruSearchParams);
-//            }
+            }
         }
     }
 
