@@ -1,5 +1,16 @@
 package jp.co.fashiontv.fscan.Activities;
 
+import jp.co.fashiontv.fscan.R;
+import jp.co.fashiontv.fscan.Camera.CameraActivity;
+import jp.co.fashiontv.fscan.Common.FTVConstants;
+import jp.co.fashiontv.fscan.Common.FTVNavigatorWebClient;
+import jp.co.fashiontv.fscan.Common.FTVUser;
+import jp.co.fashiontv.fscan.Common.PageFinishedEvent;
+import jp.co.fashiontv.fscan.Common.PageStartedEvent;
+import jp.co.fashiontv.fscan.Common.ReceivedErrorEvent;
+import jp.co.fashiontv.fscan.Gaziru.GaziruSearchParams;
+import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
+import jp.co.fashiontv.fscan.Utils.FTVUtil;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -8,6 +19,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -15,14 +27,10 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
 import com.testflightapp.lib.TestFlight;
 import com.todddavies.components.progressbar.ProgressWheel;
-import jp.co.fashiontv.fscan.Camera.CameraActivity;
-import jp.co.fashiontv.fscan.Common.*;
-import jp.co.fashiontv.fscan.Gaziru.GaziruSearchParams;
-import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
-import jp.co.fashiontv.fscan.R;
-import jp.co.fashiontv.fscan.Utils.FTVUtil;
 
 //import com.todddavies.components.progressbar.ProgressWheel;
 
@@ -193,11 +201,40 @@ public class FTVMainActivity extends Activity {
 //        }
     }
 
-    @Override
+   /* @Override
     public void onBackPressed() {
         super.onBackPressed();
+        
+        Toast.makeText(FTVMainActivity.this, "back", Toast.LENGTH_SHORT).show();
     }
+*/
+    
+    // code for handling the back button
+    
+    
+    // changes by ashu starts
+ 	@Override
+ 	public boolean onKeyDown(int keyCode, KeyEvent event) {
+ 		if(event.getAction() == KeyEvent.ACTION_DOWN){
+ 		 
+ 				switch(keyCode)
+ 				{
+ 				case KeyEvent.KEYCODE_BACK:
+ 					TestFlight.passCheckpoint("FTVWebViewActivity - onBackPressed");
+ 					 if(mainWebView.canGoBack() == true){
+ 						mainWebView.goBack();
+ 					}else{
+ 						finish();
+ 					}
+ 					return true;
+ 				}
 
+ 			}
+ 			 
+ 			
+ 		return super.onKeyDown(keyCode, event);
+ 	}
+// changes by ashu ends
     /**
      *
      * @param event
