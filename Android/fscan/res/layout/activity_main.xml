@@ -24,7 +24,7 @@
         <RelativeLayout android:id="@+id/maskView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#882B2B2B">
+                        android:background="#CC111111">
 
             <com.todddavies.components.progressbar.ProgressWheel
                     android:id="@+id/progressBar"
