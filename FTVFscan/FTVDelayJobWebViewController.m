@@ -300,7 +300,6 @@
             
         }else if ([urlString hasPrefix:@"http://fashiontv.co.jp//www.youtube.com"]) {
             [super setBackCameraMenuNavigations:self];
-            
         }else{
             if(![urlString hasPrefix:@"http://www.youtube.com"]){
                 [super setBackCameraNavigations:self];

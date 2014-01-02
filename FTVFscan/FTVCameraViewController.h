@@ -32,7 +32,7 @@
 
 @property (strong) UIPopoverController *popoverHolder;
 
-- (IBAction)openHome:(id)sender;
+-(IBAction)openHome:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UIView *cameraView;
 

@@ -39,6 +39,7 @@
     
     application.statusBarHidden = YES;
     
+    
     // set selected tab image tint color, dont use setTintColor directly, which will make whole bar to be rendered
     //    [[UITabBar appearance] setSelectedImageTintColor:[ColorUtil colorWithHexString:@"FF0080"]];
     //
