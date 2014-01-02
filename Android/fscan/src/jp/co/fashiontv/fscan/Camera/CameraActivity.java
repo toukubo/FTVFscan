@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.PictureCallback;
@@ -18,7 +17,6 @@ import android.hardware.Camera.Size;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -186,21 +184,20 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
                     e.printStackTrace();
                 }
 
-                mCamera.autoFocus(new AutoFoucus());
+                mCamera.autoFocus(new AutoFocusCallback() {
+                    boolean once = true;
+                    @Override
+                    public void onAutoFocus(boolean b, Camera camera) {
+                        if (once && mCamera != null) {
+                            mCamera.takePicture(null, null, mPictureCallback);
+                            once = false;
+                        }
+                    }
+                });
             }
         }
     };
 
-    private final class AutoFoucus implements AutoFocusCallback {
-        @Override
-        public void onAutoFocus(boolean success, Camera camera) {
-            if (success && mCamera != null) {
-                // mCamera.takePicture(mShutterCallback, null,
-                // mPictureCallback);
-                mCamera.takePicture(null, null, mPictureCallback);
-            }
-        }
-    }
 
     private final PictureCallback mPictureCallback = new PictureCallback() {
         @Override
@@ -299,12 +296,13 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
         // Now that the size is known, set up the camera parameters and begin
         // the preview.
         Camera.Parameters parameters = mCamera.getParameters();
-        parameters.setPictureFormat(PixelFormat.JPEG);
+//        parameters.setPictureFormat(PixelFormat.JPEG);
         // Preview Size
         List<Size> sizes = parameters.getSupportedPreviewSizes();
         Size optimalSize = getOptimalPreviewSize(sizes, width, height);
-        parameters.setPreviewSize(optimalSize.width, optimalSize.height);
+//        parameters.setPreviewSize(optimalSize.width, optimalSize.height);
         parameters.setPictureSize(optimalSize.width, optimalSize.height);
+        parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
         mCamera.setParameters(parameters);
 
         mCamera.startPreview();
@@ -341,16 +339,16 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
         mCamera = null;
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_CAMERA) {
-            mCamera.autoFocus(new AutoFoucus());
-        } else {
-            super.onKeyDown(keyCode, event);
-        }
-
-        return true;
-    }
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_CAMERA) {
+//            mCamera.autoFocus(new AutoFoucus());
+//        } else {
+//            super.onKeyDown(keyCode, event);
+//        }
+//
+//        return true;
+//    }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
