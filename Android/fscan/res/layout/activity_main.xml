@@ -7,11 +7,18 @@
               android:background="@android:color/black"
               android:id="@+id/rootContainer">
 
-    <ImageView android:layout_width="208dp"
+    
+    
+    
+ <!--    <ImageView android:layout_width="208dp"
                android:layout_height="0dp"
                android:layout_weight="1"
                android:src="@drawable/ftvlogo"
-               android:layout_gravity="center"/>
+               android:layout_gravity="center"/> -->
+               <include layout="@layout/layout_header"
+                   android:layout_width="fill_parent"
+                   android:layout_height="0dp"
+                   android:layout_weight="1"/>
 
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_height="0dp"
