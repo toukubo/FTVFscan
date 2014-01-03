@@ -9,7 +9,6 @@
 #import "FTVCustomNavigationController.h"
 #import "FTVHomeViewController.h"
 #import "FTVCameraViewController.h"
-#import "FTVDelayJobWebViewController.h"
 
 @interface FTVCustomNavigationController (){
     NSString                    *redirectUrl;
@@ -104,7 +103,9 @@
 }
 -(void)drawTitle:(UIView *)view{
     UIImage *titleImage = [UIImage imageNamed:@"240head.png"];
-    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake((screenWidth/2 - 50), 13, 100, 16)];
+    int imageWidth = titleImage.size.width;
+    int imageHeight = titleImage.size.height;
+    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake((screenWidth/2 - 50), 13, 100, 16)];//(100, 12, 127, 20)
     titleView.image = titleImage;
     [view addSubview:titleView];
 }
@@ -114,14 +115,14 @@
     [UIView beginAnimations:@"NavBarLeft" context:nil];
 	[UIView setAnimationBeginsFromCurrentState: YES];
 	[UIView setAnimationDuration:0.5];
-	refRect = CGRectMake(-screenWidth, 0, screenWidth, 50);
+	refRect = CGRectMake(-320, 0, 320, 50);
     [navigationBar setFrame:refRect];
 	[UIView commitAnimations];
     
     
 //    UIView *superView = navigationBar.superview;
 //    [navigationBar removeFromSuperview];
-//    [navigationBar setFrame:CGRectMake(screenWidth, 0, screenWidth, 50)];
+//    [navigationBar setFrame:CGRectMake(320, 0, 320, 50)];
 //    [superView addSubview:navigationBar];
 //    double delayInSeconds = 0.5;
 //    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -129,7 +130,7 @@
 //        [UIView beginAnimations:@"NavBarLeft" context:nil];
 //        [UIView setAnimationBeginsFromCurrentState: YES];
 //        [UIView setAnimationDuration:0.5];
-//        CGRect refRect = CGRectMake(0, 0, screenWidth, 50);
+//        CGRect refRect = CGRectMake(0, 0, 320, 50);
 //        [navigationBar setFrame:refRect];
 //        [UIView commitAnimations];
 //    });
@@ -143,11 +144,11 @@
     UIView *fakeView =  [NSKeyedUnarchiver unarchiveObjectWithData:
              [NSKeyedArchiver archivedDataWithRootObject:navigationBar.superview]];
     if (isLeft) {
-        [navigationBar.superview setFrame:CGRectMake(screenWidth, 0, screenWidth, rect.size.height)];
+        [navigationBar.superview setFrame:CGRectMake(320, 0, 320, rect.size.height)];
     }
     else
     {
-        [navigationBar.superview setFrame:CGRectMake(-screenWidth, 0, screenWidth, rect.size.height)];
+        [navigationBar.superview setFrame:CGRectMake(-320, 0, 320, rect.size.height)];
     }
     
     
@@ -158,13 +159,13 @@
         [UIView setAnimationBeginsFromCurrentState: YES];
         [UIView setAnimationDuration:0.5];
         if (isLeft) {
-            [fakeView setFrame:CGRectMake(-screenWidth, 0, screenWidth, rect.size.height)];
+            [fakeView setFrame:CGRectMake(-320, 0, 320, rect.size.height)];
         }
         else
         {
-            [fakeView setFrame:CGRectMake(screenWidth, 0, screenWidth, rect.size.height)];
+            [fakeView setFrame:CGRectMake(320, 0, 320, rect.size.height)];
         }
-        [navigationBar.superview setFrame:CGRectMake(0, 0, screenWidth, rect.size.height)];
+        [navigationBar.superview setFrame:CGRectMake(0, 0, 320, rect.size.height)];
         [UIView commitAnimations];
     });
 }
@@ -272,9 +273,9 @@
 
 -(void)setTitleNavigation:(UIViewController *)vc{
     //Title
-    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake((screenWidth/2 - 50), 13, 100, 16)];
+    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(110, 13, 100, 16)];
     titleView.image = [UIImage imageNamed:@"240head.png"];
-    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 44)];
+    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     navigationView.backgroundColor = [UIColor blackColor];
     [navigationView addSubview:titleView];
     [vc.view addSubview:navigationView];
@@ -288,17 +289,8 @@
 }
 
 -(void)homeAction{
-//    FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-//    [appDelegate switchSceneToTabController];
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
-    
-    FTVDelayJobWebViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"FTVDelayJobWebViewController"];
-    controller.redirectUrl = CONTENTBASE;
-    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
-    [menuController setRootController:controller animated:YES];
-    [menuController showRootController:YES];
-    
+    FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate switchSceneToTabController];
 }
 
 -(void)openMenu
@@ -309,15 +301,8 @@
 
 
 -(void)cameraAction{
-//    FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-//    [appDelegate switchSceneToCameraController];
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
-    
-    FTVDelayJobWebViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
-    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
-    [menuController setRootController:controller animated:YES];
-    [menuController showRootController:YES];
+    FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate switchSceneToCameraController];
 }
 
 
