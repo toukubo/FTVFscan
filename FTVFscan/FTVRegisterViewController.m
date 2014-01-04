@@ -35,7 +35,6 @@ static NSString * const URL_REGISTRTION = @"/registration/index.php";
     }
     
     NSString *req_url = [NSString stringWithFormat:@"%@%@%@%@", URL_REGISTRTION,@"?deviceid=",[FTVUser getId],@"&device_type=iphone"];
-    DLog(req_url);
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASEURL, req_url]];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     self.webView.scalesPageToFit = NO;

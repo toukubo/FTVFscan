@@ -292,8 +292,13 @@
                 [super setBackCameraNavigations:self];
             }
         }else if ([urlString hasPrefix:[ BASEURL stringByAppendingString:@"/scan/list"]]) {
-            [super setHomeCameraNavigations:self];
+            [super setHomeCameraMenuNavigations:self];
 
+        }else if ([urlString hasPrefix:@"http://zxc.cz/fdbdev"]) {
+            [super setHomeCameraMenuNavigations:self];
+            
+        }else if ([urlString hasPrefix:@"http://fashiontv.co.jp//www.youtube.com"]) {
+            [super setBackCameraMenuNavigations:self];
         }else{
             if(![urlString hasPrefix:@"http://www.youtube.com"]){
                 [super setBackCameraNavigations:self];
