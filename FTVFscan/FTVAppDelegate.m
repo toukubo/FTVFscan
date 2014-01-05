@@ -105,14 +105,14 @@
     nav.navigationBar.barStyle = UIBarStyleBlack;
     
     DDMenuController *rootController = [[DDMenuController alloc] initWithRootViewController:controller];
-//    _menuController = rootController;
+    _menuController = rootController;
 	
     
     UIViewController *controllerRight = [mvc.storyboard instantiateViewControllerWithIdentifier:@"FTVMenuViewController"];
-    rootController.rightViewController = controllerRight;
+    _menuController.rightViewController = controllerRight;
     
 //    self.window.rootViewController = rootController;
-    self.window.rootViewController = controller;
+    self.window.rootViewController = _menuController;
 
     [self.window makeKeyAndVisible];
 }
@@ -127,10 +127,10 @@
 	
     
     UIViewController *controllerRight = [storyboard instantiateViewControllerWithIdentifier:@"FTVMenuViewController"];
-    rootController.rightViewController = controllerRight;
+    _menuController.rightViewController = controllerRight;
     
     
-    self.window.rootViewController = rootController;
+    self.window.rootViewController = _menuController;
     [self.window makeKeyAndVisible];
 }
 

@@ -9,6 +9,8 @@
 #import "FTVCustomNavigationController.h"
 #import "FTVHomeViewController.h"
 #import "FTVCameraViewController.h"
+#import "FTVDelayJobWebViewController.h"
+
 
 @interface FTVCustomNavigationController (){
     NSString                    *redirectUrl;
@@ -289,8 +291,16 @@
 }
 
 -(void)homeAction{
-    FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate switchSceneToTabController];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+    
+    FTVDelayJobWebViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"FTVDelayJobWebViewController"];
+    controller.redirectUrl = CONTENTBASE;
+    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    [menuController setRootController:controller animated:YES];
+    [menuController showRootController:YES];
+
+    
 }
 
 -(void)openMenu
@@ -301,8 +311,16 @@
 
 
 -(void)cameraAction{
-    FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate switchSceneToCameraController];
+
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+    
+    FTVDelayJobWebViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
+    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    [menuController setRootController:controller animated:YES];
+    [menuController showRootController:YES];
+
+    
+
 }
 
 

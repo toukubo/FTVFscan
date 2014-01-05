@@ -259,13 +259,16 @@
         // Todo: gailya need to confirm the way to load the camera/gallery with drawer
         if ([action hasSuffix:@"Camera"]) {
 
-//            DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
-//            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
-//            [menuController setRootController:controller animated:YES];
 
-            FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-            [appDelegate switchSceneToCameraController];
-//            [super setHomeMenuNavigations:self];
+            DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
+            [menuController setRootController:controller animated:YES];
+            [menuController showRootController:YES];
+
+            
+            
+            
+            
         }
         else if([action hasSuffix:@"Gallery"])
         {
@@ -284,12 +287,16 @@
         if ([urlString hasPrefix:CONTENTBASE]) {
             if ([urlString isEqualToString:CONTENTBASE]) {
                 [super setTitleNavigation:self];
+            }else if ([urlString hasPrefix:[ CONTENTBASE stringByAppendingString:@"category/brandlogo_"]]) {
+                [super setBackCameraMenuNavigations:self];
+            }else if ([urlString hasPrefix:[ CONTENTBASE stringByAppendingString:@"category/brands"]]) {
+                [super setHomeCameraMenuNavigations:self];
             }else if ([urlString hasPrefix:[ CONTENTBASE stringByAppendingString:@"category"]]) {
                 [super setHomeCameraNavigations:self];
             }else if ([urlString isEqualToString:[ CONTENTBASE stringByAppendingString:@"form-search"]]) {
                 [super setHomeCameraMenuNavigations:self];
             }else{
-                [super setBackCameraNavigations:self];
+                [super setBackCameraMenuNavigations:self];
             }
         }else if ([urlString hasPrefix:[ BASEURL stringByAppendingString:@"/scan/list"]]) {
             [super setHomeCameraMenuNavigations:self];
@@ -308,11 +315,7 @@
             }
         }
 
-//            if(![urlString hasPrefix:@"http://fscan.fashiontv.co.jp/"] && ){
-//                [super setBackCameraNavigations:self];
-//            }else{
-//                [super setHomeCameraMenuNavigations:self];
-//            }
+
         
         if ([urlString isMatchedByRegex:@"result=true"]) {
             [super setHomeCameraMenuNavigations:self];
