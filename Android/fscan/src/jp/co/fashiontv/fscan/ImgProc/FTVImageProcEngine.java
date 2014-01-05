@@ -181,7 +181,7 @@ public class FTVImageProcEngine {
     public static void postData(final Context context, String brandSlug, final String imagePath) {
         final RequestParams params = new RequestParams();
         params.put("user_id", FTVUser.getID());
-        params.put("brandSlug", brandSlug);
+        params.put("brand_slug", brandSlug);
 
         String url = String.format("%s%s", FTVConstants.baseUrl, "scan/post.php");
 
@@ -192,7 +192,7 @@ public class FTVImageProcEngine {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 // get post id here
-                String postId = new String(responseBody);
+                final String postId = new String(responseBody);
                 Log.d(TAG, "Post ID : " + postId);
                 params.put("id", postId);
 
@@ -214,7 +214,7 @@ public class FTVImageProcEngine {
                 client.post(url, params, new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                        String url = encapsulateById(new String(responseBody));
+                        String url = encapsulateById(postId);
 
                         Log.d(TAG, "Redirect URL to : " + url);
 
@@ -252,36 +252,33 @@ public class FTVImageProcEngine {
         TestFlight.passCheckpoint("FTVImageProcEngine - imageSearchProcess");
 
         // FIXME: test only, bypass the image recognization
-        if (true) {
-            Context context = param.context;
+        Context context = param.context;
 
-            String path = param.imagePath;
-            Log.d(TAG, "Image Process Path - " + path);
+        String path = param.imagePath;
+        Log.d(TAG, "Image Process Path - " + path);
 
-            FileInputStream fis = null;
-            try {
-                fis = new FileInputStream(path);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                return null;
-            }
-
-            Bitmap resizedImage = BitmapFactory.decodeStream(fis);
-
-            Log.d(TAG, String.format("resizedImage : w - %d, h - %d", resizedImage.getWidth(), resizedImage.getHeight()));
-
-            // execute API in sync mode, call NEC stuff
-            String brandSlug = FTVImageProcEngine.executeApi(context, resizedImage);
-            Log.d(TAG, String.format("BRAND SLUG - %s\n", brandSlug));
-
-            if (brandSlug == null) {
-                brandSlug = "UNKNOWN";
-            }
-
-            return brandSlug;
-        } else {
-            return "failure";
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(path);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
         }
+
+        Bitmap resizedImage = BitmapFactory.decodeStream(fis);
+
+        Log.d(TAG, String.format("resizedImage : w - %d, h - %d", resizedImage.getWidth(), resizedImage.getHeight()));
+
+        // execute API in sync mode, call NEC stuff
+        String brandSlug = FTVImageProcEngine.executeApi(context, resizedImage);
+        Log.d(TAG, String.format("BRAND SLUG - %s\n", brandSlug));
+
+        if (brandSlug == null) {
+            brandSlug = "UNKNOWN";
+        }
+
+        return brandSlug;
+
     }
 
     /**

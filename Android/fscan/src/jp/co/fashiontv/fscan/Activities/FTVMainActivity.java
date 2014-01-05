@@ -1,16 +1,5 @@
 package jp.co.fashiontv.fscan.Activities;
 
-import jp.co.fashiontv.fscan.R;
-import jp.co.fashiontv.fscan.Camera.CameraActivity;
-import jp.co.fashiontv.fscan.Common.FTVConstants;
-import jp.co.fashiontv.fscan.Common.FTVNavigatorWebClient;
-import jp.co.fashiontv.fscan.Common.FTVUser;
-import jp.co.fashiontv.fscan.Common.PageFinishedEvent;
-import jp.co.fashiontv.fscan.Common.PageStartedEvent;
-import jp.co.fashiontv.fscan.Common.ReceivedErrorEvent;
-import jp.co.fashiontv.fscan.Gaziru.GaziruSearchParams;
-import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
-import jp.co.fashiontv.fscan.Utils.FTVUtil;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -27,10 +16,14 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
-
 import com.testflightapp.lib.TestFlight;
 import com.todddavies.components.progressbar.ProgressWheel;
+import jp.co.fashiontv.fscan.Camera.CameraActivity;
+import jp.co.fashiontv.fscan.Common.*;
+import jp.co.fashiontv.fscan.Gaziru.GaziruSearchParams;
+import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
+import jp.co.fashiontv.fscan.R;
+import jp.co.fashiontv.fscan.Utils.FTVUtil;
 
 //import com.todddavies.components.progressbar.ProgressWheel;
 
@@ -317,6 +310,7 @@ public class FTVMainActivity extends Activity {
             // exeute image post
             if (brandSlug != null) {
                 Log.d(TAG, "Post image with brand slug - " + brandSlug);
+                gaziruSearchParams.brandSlug = brandSlug;
 
                 new ImagePostTask().execute(gaziruSearchParams);
             }
