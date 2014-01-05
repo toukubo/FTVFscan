@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -52,21 +51,6 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
     private static final String JPEG_FILE_SUFFIX = ".jpg";
     private String mCurrentPhotoPath;
     private AlbumStorageDirFactory mAlbumStorageDirFactory = null;
-
-    /**
-     * Check if this device has a camera
-     */
-    public static boolean checkCameraHardware(Context context) {
-        if (context.getPackageManager().hasSystemFeature(
-            PackageManager.FEATURE_CAMERA)) {
-            // this device has a camera
-            return true;
-        } else {
-            // no camera on this device
-            Toast.makeText(context, context.getString(R.string.no_camera), Toast.LENGTH_SHORT);
-            return false;
-        }
-    }
 
     /* Photo album for this application */
     private String getAlbumName() {
@@ -127,12 +111,6 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
         mAlbumStorageDirFactory = new BaseAlbumDirFactory();
 
         context = this.getApplicationContext();
-        /**
-         * this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-         * WindowManager.LayoutParams.FLAG_FULLSCREEN);
-         * requestWindowFeature(Window.FEATURE_NO_TITLE);
-         */
-        // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         takePicView = (ImageButton) this.findViewById(R.id.button_capture);
         takePicView.setOnClickListener(TakePicListener);
@@ -236,7 +214,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
     /**
      * Finish camera activity and set the result after taken photo
      *
-     * @param uri
+     * @param uri taken photo uri
      */
     private void finishWithResult(String uri) {
         Intent previousIntent = getIntent();

@@ -1,8 +1,11 @@
 package jp.co.fashiontv.fscan.Utils;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 import jp.co.fashiontv.fscan.Core.FTVApplication;
 import jp.co.fashiontv.fscan.R;
 
@@ -62,5 +65,22 @@ public class DeviceUtil {
             "/" + FTVApplication.getInstance().getString(R.string.app_name);
 
         return path;
+    }
+
+    /**
+     * Check device has camera or not
+     * @param context application context
+     * @return true/false
+     */
+    public static boolean checkCameraHardware(Context context) {
+        if (context.getPackageManager().hasSystemFeature(
+            PackageManager.FEATURE_CAMERA)) {
+            // this device has a camera
+            return true;
+        } else {
+            // no camera on this device
+            Toast.makeText(context, context.getString(R.string.no_camera), Toast.LENGTH_SHORT);
+            return false;
+        }
     }
 }
