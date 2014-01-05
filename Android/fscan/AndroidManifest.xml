@@ -43,6 +43,7 @@
         <activity android:name=".Activities.FTVWebViewActivity"
                   android:screenOrientation="portrait"/>
         <activity android:name=".Camera.CameraActivity"
+                  android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
                   android:screenOrientation="portrait"/>
 
     </application>
