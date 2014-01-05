@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.PictureCallback;
@@ -186,6 +187,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
 
                 mCamera.autoFocus(new AutoFocusCallback() {
                     boolean once = true;
+
                     @Override
                     public void onAutoFocus(boolean b, Camera camera) {
                         if (once && mCamera != null) {
@@ -233,6 +235,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
 
     /**
      * Finish camera activity and set the result after taken photo
+     *
      * @param uri
      */
     private void finishWithResult(String uri) {
@@ -255,7 +258,15 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
         }
     };
 
-    private Size getOptimalPreviewSize(List<Size> sizes, int w, int h) {
+    /**
+     * Get optimal size from size list, can be used to get the proper preview size and picutre size
+     *
+     * @param sizes target sizes
+     * @param w source width
+     * @param h source height
+     * @return best match size from size list, based on the source size
+     */
+    private Size getOptimalSize(List<Size> sizes, int w, int h) {
         final double ASPECT_TOLERANCE = 0.05;
         double targetRatio = (double) w / h;
         if (sizes == null)
@@ -296,13 +307,30 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
         // Now that the size is known, set up the camera parameters and begin
         // the preview.
         Camera.Parameters parameters = mCamera.getParameters();
-//        parameters.setPictureFormat(PixelFormat.JPEG);
+        parameters.setPictureFormat(PixelFormat.JPEG);
+
         // Preview Size
-        List<Size> sizes = parameters.getSupportedPreviewSizes();
-        Size optimalSize = getOptimalPreviewSize(sizes, width, height);
-//        parameters.setPreviewSize(optimalSize.width, optimalSize.height);
-        parameters.setPictureSize(optimalSize.width, optimalSize.height);
+        List<Size> previewSizes = parameters.getSupportedPreviewSizes();
+        for (Size size : previewSizes) {
+            Log.d(TAG, "Camera supported preview size : width - " + size.width + " height - " + size.height);
+        }
+        Size optimalPreviewSize = getOptimalSize(previewSizes, width, height);
+        Log.d(TAG, "Camera set preview size : width - " + optimalPreviewSize.width + " height - " + optimalPreviewSize.height);
+        parameters.setPreviewSize(optimalPreviewSize.width, optimalPreviewSize.height);
+
+        // Picture Size
+        List<Size> pictureSizes = parameters.getSupportedPictureSizes();
+        for (Size size : pictureSizes) {
+            Log.d(TAG, "Camera supported picutre size : width - " + size.width + " height - " + size.height);
+        }
+        Size optimalPictureSize = getOptimalSize(previewSizes, width, height);
+
+        Log.d(TAG, "Camera set picture size : width - " + optimalPictureSize.width + " height - " + optimalPictureSize.height);
+        parameters.setPictureSize(optimalPictureSize.width, optimalPictureSize.height);
+
+        // Focus Mode
         parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+
         mCamera.setParameters(parameters);
 
         mCamera.startPreview();
