@@ -8,9 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString *const KGModalWillShowNotification;
+extern NSString *const KGModalDidShowNotification;
+extern NSString *const KGModalWillHideNotification;
+extern NSString *const KGModalDidHideNotification;
+
 typedef NS_ENUM(NSUInteger, KGModalBackgroundDisplayStyle){
     KGModalBackgroundDisplayStyleGradient,
     KGModalBackgroundDisplayStyleSolid
+};
+
+typedef NS_ENUM(NSUInteger, KGModalCloseButtonLocation){
+    KGModalCloseButtonLocationLeft,
+    KGModalCloseButtonLocationRight
 };
 
 @interface KGModal : NSObject
@@ -19,13 +29,17 @@ typedef NS_ENUM(NSUInteger, KGModalBackgroundDisplayStyle){
 // Defaults to YES
 @property (nonatomic) BOOL tapOutsideToDismiss;
 
-// Determins if the close button or tapping outside the modal should animate the dismissal
+// Determines if the close button or tapping outside the modal should animate the dismissal
 // Defaults to YES
 @property (nonatomic) BOOL animateWhenDismissed;
 
-// Determins if the close button is shown
+// Determines if the close button is shown
 // Defaults to YES
 @property (nonatomic) BOOL showCloseButton;
+
+// Determines whether close button will display on the left or right
+// Defaults to left
+@property (nonatomic) KGModalCloseButtonLocation closeButtonLocation;
 
 // The background color of the modal window
 // Defaults black with 0.5 opacity
@@ -35,13 +49,12 @@ typedef NS_ENUM(NSUInteger, KGModalBackgroundDisplayStyle){
 // Defaults to gradient, this looks better but takes a bit more time to display on the retina iPad
 @property (nonatomic) KGModalBackgroundDisplayStyle backgroundDisplayStyle;
 
-// Determins if the modal should rotate when the device rotates
+// Determines if the modal should rotate when the device rotates
 // Defaults to YES, only applies to iOS5
 @property (nonatomic) BOOL shouldRotate;
 
 // The shared instance of the modal
 + (instancetype)sharedInstance;
-
 
 // Set the content view to display in the modal and display with animations
 - (void)showWithContentView:(UIView *)contentView;
