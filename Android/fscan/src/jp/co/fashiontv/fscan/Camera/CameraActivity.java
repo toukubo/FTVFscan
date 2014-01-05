@@ -301,7 +301,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
         for (Size size : pictureSizes) {
             Log.d(TAG, "Camera supported picutre size : width - " + size.width + " height - " + size.height);
         }
-        Size optimalPictureSize = getOptimalSize(previewSizes, width, height);
+        Size optimalPictureSize = getOptimalSize(pictureSizes, width, height);
 
         Log.d(TAG, "Camera set picture size : width - " + optimalPictureSize.width + " height - " + optimalPictureSize.height);
         parameters.setPictureSize(optimalPictureSize.width, optimalPictureSize.height);
