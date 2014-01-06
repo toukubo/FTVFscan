@@ -100,9 +100,12 @@ static const int kImageViewTag = 1;  // the image view inside the collection vie
     };
     
     // enumerate only photos
+    
     //    NSUInteger groupTypes = ALAssetsGroupAlbum | ALAssetsGroupEvent | ALAssetsGroupFaces | ALAssetsGroupSavedPhotos;
     NSUInteger groupTypes =  ALAssetsGroupSavedPhotos;
     [self.assetsLibrary enumerateGroupsWithTypes:groupTypes usingBlock:listGroupBlock failureBlock:failureBlock];
+    
+    
     
     [super setHomeCameraMenuNavigations:self];
 }
@@ -116,7 +119,6 @@ static const int kImageViewTag = 1;  // the image view inside the collection vie
 - (void)viewWillDisappear:(BOOL)animated
 {
     if (returnFromPicker) returnFromPicker = NO;
-    
     [self.loadingView performSelectorOnMainThread:@selector(hide) withObject:nil waitUntilDone:NO];
 }
 

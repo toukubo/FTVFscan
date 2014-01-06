@@ -315,7 +315,9 @@
             }
         }
 
-
+        if ([urlString hasPrefix:@"http://fscan.fashiontv.co.jp/fdbdev/"]) {
+            [super setTitleNavigation:self];
+        }
         
         if ([urlString isMatchedByRegex:@"result=true"]) {
             [super setHomeCameraMenuNavigations:self];
