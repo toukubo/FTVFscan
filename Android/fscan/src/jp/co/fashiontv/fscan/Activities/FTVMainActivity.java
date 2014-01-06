@@ -29,7 +29,7 @@ import jp.co.fashiontv.fscan.Utils.FTVUtil;
 
 /**
  * Core business logic
- *
+ * <p/>
  * provide the universal webview for all of the web part display.
  */
 public class FTVMainActivity extends Activity {
@@ -49,6 +49,7 @@ public class FTVMainActivity extends Activity {
     private Uri fileUri;
 
     private int stage = 0;
+
     public void setStage(int s) {
         this.stage = s;
     }
@@ -70,8 +71,8 @@ public class FTVMainActivity extends Activity {
 
         setupWebView();
 
-        maskView = (RelativeLayout)findViewById(R.id.maskView);
-        progressWheel = (ProgressWheel)findViewById(R.id.progressBar);
+        maskView = (RelativeLayout) findViewById(R.id.maskView);
+        progressWheel = (ProgressWheel) findViewById(R.id.progressBar);
     }
 
 
@@ -201,35 +202,34 @@ public class FTVMainActivity extends Activity {
         Toast.makeText(FTVMainActivity.this, "back", Toast.LENGTH_SHORT).show();
     }
 */
-    
-    // code for handling the back button
-    
-    
-    // changes by ashu starts
- 	@Override
- 	public boolean onKeyDown(int keyCode, KeyEvent event) {
- 		if(event.getAction() == KeyEvent.ACTION_DOWN){
- 		 
- 				switch(keyCode)
- 				{
- 				case KeyEvent.KEYCODE_BACK:
- 					TestFlight.passCheckpoint("FTVWebViewActivity - onBackPressed");
- 					 if(mainWebView.canGoBack() == true){
- 						mainWebView.goBack();
- 					}else{
- 						finish();
- 					}
- 					return true;
- 				}
 
- 			}
- 			 
- 			
- 		return super.onKeyDown(keyCode, event);
- 	}
+    // code for handling the back button
+
+
+    // changes by ashu starts
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    TestFlight.passCheckpoint("FTVWebViewActivity - onBackPressed");
+                    if (mainWebView.canGoBack() == true) {
+                        mainWebView.goBack();
+                    } else {
+                        finish();
+                    }
+                    return true;
+            }
+
+        }
+
+
+        return super.onKeyDown(keyCode, event);
+    }
 // changes by ashu ends
+
     /**
-     *
      * @param event
      */
     public void onPageStartedEvent(PageStartedEvent event) {
@@ -306,13 +306,20 @@ public class FTVMainActivity extends Activity {
          * the result from doInBackground()
          */
         protected void onPostExecute(String brandSlug) {
-            // TODO: dismiss HUD or whatever to tell user progress
             // exeute image post
             if (brandSlug != null) {
                 Log.d(TAG, "Post image with brand slug - " + brandSlug);
                 gaziruSearchParams.brandSlug = brandSlug;
 
-                new ImagePostTask().execute(gaziruSearchParams);
+                if (brandSlug == null || brandSlug.equals("failure")) {
+                    // show search form
+                    Intent is = new Intent(mContext, FTVWebViewActivity.class);
+                    String urlSearch = String.format("%s%s", FTVConstants.baseUrl, FTVConstants.urlSearch);
+                    is.putExtra("url", urlSearch);
+                    mContext.startActivity(is);
+                } else {
+                    new ImagePostTask().execute(gaziruSearchParams);
+                }
             }
         }
     }

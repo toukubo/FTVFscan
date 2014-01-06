@@ -178,7 +178,7 @@ public class FTVImageProcEngine {
      * @param context   application context
      * @param brandSlug recognized brand from gaziru engine
      */
-    public static void postData(final Context context, String brandSlug, final String imagePath) {
+    public static void postImageDataWithBrandSlug(final Context context, String brandSlug, final String imagePath) {
         final RequestParams params = new RequestParams();
         params.put("user_id", FTVUser.getID());
         params.put("brand_slug", brandSlug);
@@ -291,7 +291,7 @@ public class FTVImageProcEngine {
     public static Void imagePostProcess(GaziruSearchParams param) {
         TestFlight.passCheckpoint("FTVImageProcEngine - imagePostProcess");
 
-        postData(param.context, param.brandSlug, param.imagePath);
+        postImageDataWithBrandSlug(param.context, param.brandSlug, param.imagePath);
 
         return null;
     }
