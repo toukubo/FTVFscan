@@ -11,10 +11,12 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import com.testflightapp.lib.TestFlight;
 import com.todddavies.components.progressbar.ProgressWheel;
@@ -68,15 +70,50 @@ public class FTVMainActivity extends Activity {
 
         // assets/dic/subordinates is arrangement in local
         FTVUtil.assets2Local(this);
+        
 
         setupWebView();
+        setUpHeaderView();
 
         maskView = (RelativeLayout) findViewById(R.id.maskView);
         progressWheel = (ProgressWheel) findViewById(R.id.progressBar);
     }
 
 
-    @Override
+    private void setUpHeaderView() {
+		 
+    	ImageView ivHome = (ImageView)findViewById(R.id.home);
+    	ImageView ivCamera  = (ImageView)findViewById(R.id.camera);
+    	ImageView ivSlider = (ImageView)findViewById(R.id.slider);
+    	
+    	ivCamera.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			 	Intent cameraIntent = new Intent(FTVMainActivity.this, CameraActivity.class);
+			 	startActivity(cameraIntent);
+				
+			}
+		});
+    
+    	
+    	
+    	
+    	ivHome.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				 mainWebView.clearHistory();
+				 mainWebView.clearCache(true);
+				  
+				 webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlHome);
+		      		
+			}
+		});
+	}
+
+	@Override
     protected void onDestroy() {
         super.onDestroy();
 
