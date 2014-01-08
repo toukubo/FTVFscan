@@ -327,7 +327,9 @@ public class FTVMainActivity extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            // TODO: show HUD or whatever to tell user progress
+
+            maskView.setVisibility(View.VISIBLE);
+            progressWheel.spin();
         }
 
         /**
@@ -343,6 +345,9 @@ public class FTVMainActivity extends Activity {
          * the result from doInBackground()
          */
         protected void onPostExecute(String brandSlug) {
+            progressWheel.stopSpinning();
+            maskView.setVisibility(View.INVISIBLE);
+
             // exeute image post
             if (brandSlug != null) {
                 Log.d(TAG, "Post image with brand slug - " + brandSlug);
@@ -368,7 +373,8 @@ public class FTVMainActivity extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            // TODO: show HUD or whatever to tell user progress
+            maskView.setVisibility(View.VISIBLE);
+            progressWheel.spin();
         }
 
         /**
@@ -384,7 +390,8 @@ public class FTVMainActivity extends Activity {
          * the result from doInBackground()
          */
         protected void onPostExecute() {
-            // TODO: dismiss HUD or whatever to tell user progress
+            progressWheel.stopSpinning();
+            maskView.setVisibility(View.GONE);
         }
     }
 }
