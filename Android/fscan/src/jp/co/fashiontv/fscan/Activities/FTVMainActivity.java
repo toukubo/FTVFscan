@@ -34,7 +34,7 @@ import jp.co.fashiontv.fscan.Utils.FTVUtil;
  * <p/>
  * provide the universal webview for all of the web part display.
  */
-public class FTVMainActivity extends Activity {
+public class FTVMainActivity extends BaseActivity {
 
     GaziruSearchParams gaziruSearchParams;
 
@@ -57,12 +57,12 @@ public class FTVMainActivity extends Activity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+       // requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        setContentView(R.layout.activity_main);
+      //  setContentView(R.layout.activity_main);
 
         TestFlight.passCheckpoint("FTVMainActivity - onCreate");
 
@@ -394,4 +394,10 @@ public class FTVMainActivity extends Activity {
             maskView.setVisibility(View.GONE);
         }
     }
+
+	@Override
+	public View getActivityLayout() {
+		 
+		  return getLayoutInflater().inflate(R.layout.activity_main, null);
+	}
 }

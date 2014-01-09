@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import jp.co.fashiontv.fscan.Activities.BaseActivity;
 import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
 import jp.co.fashiontv.fscan.R;
 import jp.co.fashiontv.fscan.Utils.StringUtil;
@@ -37,7 +38,7 @@ import java.util.List;
 /**
  * @author Alsor Zhou
  */
-public class CameraActivity extends Activity implements SurfaceHolder.Callback {
+public class CameraActivity extends BaseActivity implements SurfaceHolder.Callback {
     private String TAG = "CameraActivity";
     private SurfaceView surfaceView;
     private SurfaceHolder surfaceHolder;
@@ -105,7 +106,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.camera_layout);
+      //  setContentView(R.layout.camera_layout);
 
         isTakingPicture = false;
         mAlbumStorageDirFactory = new BaseAlbumDirFactory();
@@ -367,4 +368,10 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
             Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
         }
     }
+
+@Override
+public View getActivityLayout() {
+	// TODO Auto-generated method stub
+	return getLayoutInflater().inflate(R.layout.camera_layout, null);
+}
 }
