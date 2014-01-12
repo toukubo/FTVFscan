@@ -37,14 +37,18 @@
 
         <activity android:name=".Activities.FTVMainActivity"
                   android:label="@string/main_activity"
-                  android:screenOrientation="portrait">
+                  android:screenOrientation="portrait"
+                  android:launchMode="singleTask">
         </activity>
 
         <activity android:name=".Activities.FTVWebViewActivity"
-                  android:screenOrientation="portrait"/>
+                  android:screenOrientation="portrait"
+                  android:launchMode="singleTask"/>
+        
         <activity android:name=".Camera.CameraActivity"
                   android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-                  android:screenOrientation="portrait"/>
+                  android:screenOrientation="portrait"
+                  android:launchMode="singleTask"/>
 
     </application>
 </manifest>

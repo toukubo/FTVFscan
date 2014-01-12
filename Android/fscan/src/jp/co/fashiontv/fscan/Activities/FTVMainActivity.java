@@ -16,8 +16,12 @@ import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.SlidingDrawer;
+
 import com.testflightapp.lib.TestFlight;
 import com.todddavies.components.progressbar.ProgressWheel;
 import jp.co.fashiontv.fscan.Camera.CameraActivity;
@@ -55,6 +59,18 @@ public class FTVMainActivity extends BaseActivity {
     public void setStage(int s) {
         this.stage = s;
     }
+    
+    @Override
+    protected void onNewIntent(Intent intent) {
+     	super.onNewIntent(intent);
+     	String url = intent.getStringExtra("url");
+     	if (url!= null) {
+     		webViewClient.shouldOverrideUrlLoading(mainWebView, url);	
+     	//	showToast("onNewIntent");
+		}
+     	 
+     
+    }
 
     @Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -74,17 +90,18 @@ public class FTVMainActivity extends BaseActivity {
 
         setupWebView();
         setUpHeaderView();
-
         maskView = (RelativeLayout) findViewById(R.id.maskView);
         progressWheel = (ProgressWheel) findViewById(R.id.progressBar);
     }
+    
+    
 
 
     private void setUpHeaderView() {
 		 
     	ImageView ivHome = (ImageView)findViewById(R.id.home);
-    	ImageView ivCamera  = (ImageView)findViewById(R.id.camera);
-    	ImageView ivSlider = (ImageView)findViewById(R.id.slider);
+     	ImageView ivCamera  = (ImageView)findViewById(R.id.camera);
+    	 
     	
     	ivCamera.setOnClickListener(new OnClickListener() {
 			
@@ -96,20 +113,61 @@ public class FTVMainActivity extends BaseActivity {
 			}
 		});
     
-    	
-    	
-    	
-    	ivHome.setOnClickListener(new OnClickListener() {
+     	ivHome.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				
 				 mainWebView.clearHistory();
 				 mainWebView.clearCache(true);
-				  
 				 webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlHome);
 		      		
 			}
+		});
+    	
+    	
+		
+		lvMenuDrawerItems.setOnItemClickListener(new OnItemClickListener() {
+
+			
+			 
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				 
+				switch (position) {
+				case 0:
+					
+					webViewClient.shouldOverrideUrlLoading(mainWebView, tourUrl);
+					slidingMenu.showContent();
+					   
+					break;
+				case 1:
+					webViewClient.shouldOverrideUrlLoading(mainWebView, histroryUrl);
+					slidingMenu.showContent();
+					break;
+
+				case 2:
+					 // code to open gallery
+					Intent cameraIntent = new Intent(FTVMainActivity.this, CameraActivity.class);
+				 	startActivity(cameraIntent);
+					slidingMenu.showContent();
+					break;
+
+				case 3:
+					slidingMenu.showContent();
+					webViewClient.shouldOverrideUrlLoading(mainWebView, brandUrl);
+					break;
+
+					
+					
+				default:
+					break;
+				}
+			}
+
+
+			
 		});
 	}
 
@@ -135,10 +193,8 @@ public class FTVMainActivity extends BaseActivity {
         mainWebView.getSettings().setJavaScriptEnabled(true);
         mainWebView.getSettings().setPluginState(PluginState.ON);
         webViewClient = new FTVNavigatorWebClient(this, mainWebView);
-
         mainWebView.setWebViewClient(webViewClient);
         mainWebView.setWebChromeClient(new WebChromeClient());
-
         webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlHome);
     }
 

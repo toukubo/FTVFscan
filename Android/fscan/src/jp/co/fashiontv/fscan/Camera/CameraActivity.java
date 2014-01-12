@@ -21,9 +21,15 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import jp.co.fashiontv.fscan.Activities.BaseActivity;
+import jp.co.fashiontv.fscan.Activities.FTVMainActivity;
+import jp.co.fashiontv.fscan.Activities.FTVWebViewActivity;
+import jp.co.fashiontv.fscan.Common.FTVConstants;
 import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
 import jp.co.fashiontv.fscan.R;
 import jp.co.fashiontv.fscan.Utils.StringUtil;
@@ -107,22 +113,84 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
 
         super.onCreate(savedInstanceState);
       //  setContentView(R.layout.camera_layout);
-
+ 
         isTakingPicture = false;
         mAlbumStorageDirFactory = new BaseAlbumDirFactory();
-
         context = this.getApplicationContext();
-
         takePicView = (ImageButton) this.findViewById(R.id.button_capture);
         takePicView.setOnClickListener(TakePicListener);
-
         surfaceView = (SurfaceView) this.findViewById(R.id.camera_preview);
         surfaceHolder = surfaceView.getHolder();
         surfaceHolder.addCallback(this);
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-
         checkSoftStage();
+        setUpHeaderView();
+        setUpSlidingView();
     }
+
+    
+     
+    private void setUpHeaderView() {
+		 
+    	camera.setVisibility(View.INVISIBLE);
+    	home.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			    moveToNextActivity(FTVConstants.urlHome);	
+			}
+		});
+    	
+	}
+
+	private void setUpSlidingView() {
+    	lvMenuDrawerItems.setOnItemClickListener(new OnItemClickListener() {
+    		@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				 
+				switch (position) {
+				case 0:
+					slidingMenu.showContent();
+					moveToNextActivity(tourUrl);
+					break;
+				case 1:
+					slidingMenu.showContent();
+					moveToNextActivity(histroryUrl);
+					break;
+
+				case 2:
+					 // code to open gallery
+					//moveToNextActivity(tourUrl);
+					slidingMenu.showContent();
+					break;
+
+				case 3:
+					slidingMenu.showContent();
+					moveToNextActivity(brandUrl);
+					break;
+
+					
+					
+				default:
+					break;
+				}
+			}
+
+
+			
+		});
+	}
+
+	private void moveToNextActivity(String url) {
+
+		Intent intent = new Intent(CameraActivity.this, FTVMainActivity.class);
+		intent.putExtra("url",url);
+		startActivity(intent);
+
+
+	}
+
 
     @Override
     public void onBackPressed() {
