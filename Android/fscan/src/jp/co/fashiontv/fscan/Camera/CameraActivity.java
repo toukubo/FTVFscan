@@ -162,6 +162,11 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
 				case 2:
 					 // code to open gallery
 					//moveToNextActivity(tourUrl);
+					Intent galleryIntent = new Intent(
+							Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+					startActivity(galleryIntent);
+
 					slidingMenu.showContent();
 					break;
 
