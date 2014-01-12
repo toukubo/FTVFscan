@@ -71,13 +71,7 @@ public abstract class BaseActivity extends SlidingActivity {
 				slidingMenu.toggle();
 			}
 		});
- ;
-
-
-		System.out.println(histroryUrl+"\n"+brandUrl+"\n"+tourUrl);
-
-
-
+ 
 
 
 	}

@@ -107,9 +107,11 @@ public class FTVMainActivity extends BaseActivity {
 
 			@Override
 			public void onClick(View v) {
-				Intent cameraIntent = new Intent(FTVMainActivity.this, CameraActivity.class);
+			/*	Intent cameraIntent = new Intent(FTVMainActivity.this, CameraActivity.class);
 				startActivity(cameraIntent);
-
+*/
+				startActivityCamera();
+				
 			}
 		});
 
@@ -247,6 +249,7 @@ public class FTVMainActivity extends BaseActivity {
 	//        return true;
 	//    }
 
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.d(TAG, "REQUEST CODE - " + requestCode);
