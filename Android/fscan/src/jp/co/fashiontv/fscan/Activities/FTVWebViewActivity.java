@@ -54,7 +54,7 @@ public class FTVWebViewActivity extends BaseActivity {
         
         
         
-       // setupWebView();
+       setupWebView();
     }
 
     
