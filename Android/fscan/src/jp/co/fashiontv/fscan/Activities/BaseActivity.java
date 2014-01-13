@@ -1,13 +1,27 @@
 package jp.co.fashiontv.fscan.Activities;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream.PutField;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import jp.co.fashiontv.fscan.R;
 import jp.co.fashiontv.fscan.Activities.adapter.DrawerItemsAdapter;
+import jp.co.fashiontv.fscan.Camera.BaseAlbumDirFactory;
 import jp.co.fashiontv.fscan.Common.FTVConstants;
 import jp.co.fashiontv.fscan.Common.FTVUser;
+import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
+import jp.co.fashiontv.fscan.Utils.StringUtil;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -29,12 +43,17 @@ public abstract class BaseActivity extends SlidingActivity {
 	public String tourUrl =  FTVConstants.urlHome+"/fscan-tour/";
 	public ImageView home;
 	public ImageView camera;
+	private BaseAlbumDirFactory mAlbumStorageDirFactory;
+	 private static final String JPEG_FILE_PREFIX = "IMG_";
+	   private static final String JPEG_FILE_SUFFIX = ".jpg";
+	  
 
 	public abstract View getActivityLayout();
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		  mAlbumStorageDirFactory = new BaseAlbumDirFactory();
 		setUpView();
 	}
 
@@ -76,13 +95,97 @@ public abstract class BaseActivity extends SlidingActivity {
 
 	}
 
-
  
-
-
-
 	public void showToast(String  message) {
 		Toast.makeText(BaseActivity.this, ""+message, Toast.LENGTH_SHORT).show();
 	}
 
+	/**
+     * helper to retrieve the path of an image URI
+     */
+    public String getPath(Uri uri) {
+            // just some safety built in 
+            if( uri == null ) {
+                // TODO perform some logging or show user feedback
+                return null;
+            }
+            // try to retrieve the image from the media store first
+            // this will only work for images selected from gallery
+            String[] projection = { MediaStore.Images.Media.DATA };
+            Cursor cursor = managedQuery(uri, projection, null, null, null);
+            if( cursor != null ){
+                int column_index = cursor
+                .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                cursor.moveToFirst();
+                return cursor.getString(column_index);
+            }
+            // this is our fallback here
+            return uri.getPath();
+    }
+	
+    
+    
+    public String resizeImage(String uri) throws IOException {
+    	
+    	Bitmap bitMap= BitmapFactory.decodeFile(uri);
+        Bitmap originImage = FTVImageProcEngine.rotateImage(bitMap, 90);
+        Bitmap resizedImage = FTVImageProcEngine.imageResize(originImage, StringUtil.randomFilename(), true);
+        byte[] resizedBytes = FTVImageProcEngine.getBytesFromBitmap(resizedImage);
+
+          File file = createImageFile();
+          FileOutputStream fileOutputStream = new FileOutputStream(file);
+          fileOutputStream.write(resizedBytes);
+          fileOutputStream.close();
+
+          String path = file.getAbsolutePath();
+		return path;
+        
+		 
+		
+	}
+   
+   
+   private File createImageFile() throws IOException {
+       // Create an image file name
+       String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
+           .format(new Date());
+       String imageFileName = JPEG_FILE_PREFIX + timeStamp;
+       File albumF = getAlbumDir();
+       File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX,
+           albumF);
+       return imageF;
+   }
+   
+   
+   private File getAlbumDir() {
+       File storageDir = null;
+
+       if (Environment.MEDIA_MOUNTED.equals(Environment
+           .getExternalStorageState())) {
+
+           storageDir = mAlbumStorageDirFactory
+               .getAlbumStorageDir(getAlbumName());
+
+           if (storageDir != null) {
+               if (!storageDir.mkdirs()) {
+                   if (!storageDir.exists()) {
+                       Toast.makeText(BaseActivity.this, BaseActivity.this.getString(R.string.failed_create_album), Toast.LENGTH_SHORT);
+                       return null;
+                   }
+               }
+           }
+
+       } else {
+           Toast.makeText(BaseActivity.this, BaseActivity.this.getString(R.string.cannot_read_sd_card), Toast.LENGTH_SHORT);
+       }
+
+       return storageDir;
+   }
+   /* Photo album for this application */
+   private String getAlbumName() {
+       return getString(R.string.app_name);
+   }
+
+   
+   
 }

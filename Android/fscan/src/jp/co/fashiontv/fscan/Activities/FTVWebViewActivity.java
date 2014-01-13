@@ -44,8 +44,8 @@ public class FTVWebViewActivity extends BaseActivity {
 
         ImageView ivHome = (ImageView)findViewById(R.id.home);
         ivHome.setOnClickListener(new OnClickListener() {
-			
-			@Override
+		 
+        	@Override
 			public void onClick(View v) {
 				moveToNextActivity(FTVConstants.urlHome);
  

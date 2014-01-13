@@ -1,6 +1,18 @@
 package jp.co.fashiontv.fscan.Activities;
 
-import android.app.Activity;
+import java.io.IOException;
+
+import jp.co.fashiontv.fscan.R;
+import jp.co.fashiontv.fscan.Camera.CameraActivity;
+import jp.co.fashiontv.fscan.Common.FTVConstants;
+import jp.co.fashiontv.fscan.Common.FTVNavigatorWebClient;
+import jp.co.fashiontv.fscan.Common.FTVUser;
+import jp.co.fashiontv.fscan.Common.PageFinishedEvent;
+import jp.co.fashiontv.fscan.Common.PageStartedEvent;
+import jp.co.fashiontv.fscan.Common.ReceivedErrorEvent;
+import jp.co.fashiontv.fscan.Gaziru.GaziruSearchParams;
+import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
+import jp.co.fashiontv.fscan.Utils.FTVUtil;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -12,24 +24,16 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.SlidingDrawer;
 
 import com.testflightapp.lib.TestFlight;
 import com.todddavies.components.progressbar.ProgressWheel;
-import jp.co.fashiontv.fscan.Camera.CameraActivity;
-import jp.co.fashiontv.fscan.Common.*;
-import jp.co.fashiontv.fscan.Gaziru.GaziruSearchParams;
-import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
-import jp.co.fashiontv.fscan.R;
-import jp.co.fashiontv.fscan.Utils.FTVUtil;
 
 //import com.todddavies.components.progressbar.ProgressWheel;
 
@@ -157,8 +161,9 @@ public class FTVMainActivity extends BaseActivity {
 
 					Intent galleryIntent = new Intent(
 							Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+					startActivityForResult(galleryIntent, FTVConstants.activityRequestCodeGallery);
 
-					startActivity(galleryIntent);
+					//startActivity(galleryIntent);
 					slidingMenu.showContent();
 					break;
 
@@ -256,6 +261,8 @@ public class FTVMainActivity extends BaseActivity {
 		if (requestCode == FTVConstants.activityRequestCodeCamera) {
 			// return from camera
 			if (resultCode == RESULT_OK) {
+				//Uri imageUri = data.getData();
+				//String uri = getPath(imageUri);
 				Bundle extras = data.getExtras();
 				String uri = extras.getString("imageUri");
 				gaziruSearchParams = new GaziruSearchParams(this, uri, null);
@@ -271,7 +278,36 @@ public class FTVMainActivity extends BaseActivity {
 				Log.e(TAG, "CAMERA - SHOULD NEVER REACH");
 			}
 		} else {
+			
+			if (requestCode == FTVConstants.activityRequestCodeGallery) {
+				// return from camera
+				if (resultCode == RESULT_OK) {
+					Uri imageUri = data.getData();
+					String systemIamgePath  = getPath(imageUri);
+					String uri = null;
+					try {
+						uri = resizeImage(systemIamgePath);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				
+					gaziruSearchParams = new GaziruSearchParams(this, uri, null);
+					if (uri != null) {
+						new ImageSearchTask().execute(gaziruSearchParams);
+					}
+					// TODO: finish the camera activity
+				} else if (resultCode == RESULT_CANCELED) {
+					Log.d(TAG, "camera cancelled");
+					// on camera screen, if you push the back hardware button, then the brands page should be displays.
+				//	webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlBrands);
+				} else {
+					Log.e(TAG, "CAMERA - SHOULD NEVER REACH");
+				}
+			}
 			// never reach
+			
+			
 			Log.e(TAG, "onActivityResult SHOULD NEVER REACH");
 		}
 
@@ -293,6 +329,10 @@ public class FTVMainActivity extends BaseActivity {
 		//            checkLoginCredential();
 		//        }
 	}
+	
+	
+	
+
 
 	/* @Override
     public void onBackPressed() {
@@ -304,6 +344,7 @@ public class FTVMainActivity extends BaseActivity {
 
 	// code for handling the back button
 
+	
 
 	// changes by ashu starts
 	@Override

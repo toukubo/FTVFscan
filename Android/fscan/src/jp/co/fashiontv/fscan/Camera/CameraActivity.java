@@ -1,11 +1,30 @@
 package jp.co.fashiontv.fscan.Camera;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import jp.co.fashiontv.fscan.R;
+import jp.co.fashiontv.fscan.Activities.BaseActivity;
+import jp.co.fashiontv.fscan.Activities.FTVMainActivity;
+import jp.co.fashiontv.fscan.Activities.FTVWebViewActivity;
+import jp.co.fashiontv.fscan.Common.FTVConstants;
+import jp.co.fashiontv.fscan.Gaziru.GaziruSearchParams;
+import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
+import jp.co.fashiontv.fscan.Utils.StringUtil;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
@@ -14,36 +33,25 @@ import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.PictureCallback;
 import android.hardware.Camera.ShutterCallback;
 import android.hardware.Camera.Size;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-import jp.co.fashiontv.fscan.Activities.BaseActivity;
-import jp.co.fashiontv.fscan.Activities.FTVMainActivity;
-import jp.co.fashiontv.fscan.Activities.FTVWebViewActivity;
-import jp.co.fashiontv.fscan.Common.FTVConstants;
-import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
-import jp.co.fashiontv.fscan.R;
-import jp.co.fashiontv.fscan.Utils.StringUtil;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 /**
  * @author Alsor Zhou
  */
+@SuppressLint("NewApi")
 public class CameraActivity extends BaseActivity implements SurfaceHolder.Callback {
     private String TAG = "CameraActivity";
     private SurfaceView surfaceView;
@@ -164,8 +172,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
 					//moveToNextActivity(tourUrl);
 					Intent galleryIntent = new Intent(
 							Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-					startActivity(galleryIntent);
+					startActivityForResult(galleryIntent, FTVConstants.activityRequestCodeGallery);
 
 					slidingMenu.showContent();
 					break;
@@ -309,6 +316,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
             Log.d("ShutterCallback", "...onShutter...");
         }
     };
+	private GaziruSearchParams gaziruSearchParams;
 
     /**
      * Get optimal size from size list, can be used to get the proper preview size and picutre size
@@ -441,10 +449,143 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
             Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
         }
     }
+    
+    
+    
+    
+    @Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.d(TAG, "REQUEST CODE - " + requestCode);
+		 
+			
+			if (requestCode == FTVConstants.activityRequestCodeGallery) {
+				// return from camera
+				if (resultCode == RESULT_OK) {
+					Uri imageUri = data.getData();
+					String systemIamgePath  = getPath(imageUri);
+					String uri = null;
+					try {
+						uri = resizeImage(systemIamgePath);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				
+					gaziruSearchParams = new GaziruSearchParams(this, uri, null);
+					if (uri != null) {
+						new ImageSearchTask().execute(gaziruSearchParams);
+					}
+					// TODO: finish the camera activity
+				} else if (resultCode == RESULT_CANCELED) {
+					Log.d(TAG, "camera cancelled");
+					// on camera screen, if you push the back hardware button, then the brands page should be displays.
+				//	webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlBrands);
+				} else {
+					Log.e(TAG, "CAMERA - SHOULD NEVER REACH");
+				}
+			}
+			// never reach
+			
+			
+			Log.e(TAG, "onActivityResult SHOULD NEVER REACH");
+		 
+
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+    
+    
+    
+   
+
+
+
+	/**
+     
+    
+ // -------------------------- Async Task --------------------------
+
+ 	/**
+ 	 * Gaziru : image search task should never be executed from ui thread. Library has enabled the STRICT_MODE.
+ 	 */
+ 	private class ImageSearchTask extends AsyncTask<GaziruSearchParams, Void, String> {
+ 		@Override
+ 		protected void onPreExecute() {
+ 			super.onPreExecute();
+
+ 			//maskView.setVisibility(View.VISIBLE);
+ 			//progressWheel.spin();
+ 		}
+
+ 		/**
+ 		 * The system calls this to perform work in a worker thread and delivers
+ 		 * it the parameters given to AsyncTask.execute()
+ 		 */
+ 		protected String doInBackground(GaziruSearchParams... params) {
+ 			return FTVImageProcEngine.imageSearchProcess(params[0]);
+ 		}
+
+ 		/**
+ 		 * The system calls this to perform work in the UI thread and delivers
+ 		 * the result from doInBackground()
+ 		 */
+ 		protected void onPostExecute(String brandSlug) {
+ 			//progressWheel.stopSpinning();
+ 			//maskView.setVisibility(View.INVISIBLE);
+
+ 			// exeute image post
+ 			if (brandSlug != null) {
+ 				Log.d(TAG, "Post image with brand slug - " + brandSlug);
+ 				gaziruSearchParams.brandSlug = brandSlug;
+
+ 				if (brandSlug == null || brandSlug.equals("failure")) {
+ 					// show search form
+ 					Intent is = new Intent(CameraActivity.this, FTVWebViewActivity.class);
+ 					String urlSearch = String.format("%s%s", FTVConstants.baseUrl, FTVConstants.urlSearch);
+ 					is.putExtra("url", urlSearch);
+ 					CameraActivity.this.startActivity(is);
+ 				} else {
+ 					new ImagePostTask().execute(gaziruSearchParams);
+ 				}
+ 			}
+ 		}
+ 	}
+
+ 	/**
+ 	 * Gaziru : image search task should never be executed from ui thread. Library has enabled the STRICT_MODE.
+ 	 */
+ 	private class ImagePostTask extends AsyncTask<GaziruSearchParams, Void, Void> {
+ 		@Override
+ 		protected void onPreExecute() {
+ 			super.onPreExecute();
+ 			//maskView.setVisibility(View.VISIBLE);
+ 			//progressWheel.spin();
+ 		}
+
+ 		/**
+ 		 * The system calls this to perform work in a worker thread and delivers
+ 		 * it the parameters given to AsyncTask.execute()
+ 		 */
+ 		protected Void doInBackground(GaziruSearchParams... params) {
+ 			return FTVImageProcEngine.imagePostProcess(params[0]);
+ 		}
+
+ 		/**
+ 		 * The system calls this to perform work in the UI thread and delivers
+ 		 * the result from doInBackground()
+ 		 */
+ 		protected void onPostExecute() {
+ 			//progressWheel.stopSpinning();
+ 			//maskView.setVisibility(View.GONE);
+ 		}
+ 	}
+    
+       
 
 @Override
 public View getActivityLayout() {
 	// TODO Auto-generated method stub
 	return getLayoutInflater().inflate(R.layout.camera_layout, null);
 }
+
+
 }
