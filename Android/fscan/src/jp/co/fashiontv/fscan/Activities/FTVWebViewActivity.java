@@ -71,19 +71,23 @@ public class FTVWebViewActivity extends BaseActivity {
 				switch (position) {
 				case 0:
 					moveToNextActivity(tourUrl);
+					slidingMenu.showContent();
 					break;
 				case 1:
 					moveToNextActivity(histroryUrl);
+					slidingMenu.showContent();
 					break;
 
 				case 2:
 					 // code to open gallery
 					//moveToNextActivity(tourUrl);
+					slidingMenu.showContent();
 					break;
 
 				case 3:
 					 
 					moveToNextActivity(brandUrl);
+					slidingMenu.showContent();
 					break;
 
 					
@@ -103,6 +107,7 @@ public class FTVWebViewActivity extends BaseActivity {
 		Intent intent = new Intent(FTVWebViewActivity.this, FTVMainActivity.class);
 		intent.putExtra("url",url);
 		startActivity(intent);
+		finish();
 
 
 	}

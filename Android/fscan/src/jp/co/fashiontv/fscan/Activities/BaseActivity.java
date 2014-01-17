@@ -128,7 +128,7 @@ public abstract class BaseActivity extends SlidingActivity {
 
 
 	public String resizeImage(String uri) throws IOException {
- 		Bitmap bitmap = decodeBitmapFromPath(uri, 100, 100);
+ 		Bitmap bitmap = decodeBitmapFromPath(uri, 80, 80);
 		 
 		Bitmap originImage = FTVImageProcEngine.rotateImage(bitmap, 90);
 		Bitmap resizedImage = FTVImageProcEngine.imageResize(originImage, StringUtil.randomFilename(), true);
