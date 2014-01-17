@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.testflightapp.lib.TestFlight;
 
 import jp.co.fashiontv.fscan.Camera.CameraActivity;
@@ -60,7 +61,8 @@ public class FTVWebViewActivity extends BaseActivity {
     
     
     private void setUpSlidingView() {
-    	lvMenuDrawerItems.setOnItemClickListener(new OnItemClickListener() {
+    	slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
+     	lvMenuDrawerItems.setOnItemClickListener(new OnItemClickListener() {
 
 			
 			 
@@ -72,6 +74,7 @@ public class FTVWebViewActivity extends BaseActivity {
 				case 0:
 					moveToNextActivity(tourUrl);
 					slidingMenu.showContent();
+					
 					break;
 				case 1:
 					moveToNextActivity(histroryUrl);
