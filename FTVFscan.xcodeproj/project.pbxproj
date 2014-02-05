@@ -83,6 +83,20 @@
 		DE163383183B617A007EF946 /* DDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163382183B617A007EF946 /* DDMenuController.m */; };
 		DE163386183B665A007EF946 /* FTVMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163385183B665A007EF946 /* FTVMenuViewController.m */; };
 		DE249177183E800B00CE97FC /* NarzissText-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE249176183E800B00CE97FC /* NarzissText-Bold.otf */; };
+		DE80664B18A2ADA500D30F77 /* ScanDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80664A18A2ADA500D30F77 /* ScanDetailView.m */; };
+		DE80665618A2B2D600D30F77 /* MSNavigationPaneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80665018A2B2D600D30F77 /* MSNavigationPaneViewController.m */; };
+		DE80665718A2B2D600D30F77 /* PRTween.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80665318A2B2D600D30F77 /* PRTween.m */; };
+		DE80665818A2B2D600D30F77 /* PRTweenTimingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80665518A2B2D600D30F77 /* PRTweenTimingFunctions.m */; };
+		DE80666018A2B2E600D30F77 /* GAZIRUAuthLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80665C18A2B2E600D30F77 /* GAZIRUAuthLogic.m */; };
+		DE80666118A2B2E600D30F77 /* GAZIRUSearchLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80665F18A2B2E600D30F77 /* GAZIRUSearchLogic.m */; };
+		DE80666A18A2B2F400D30F77 /* FTVImageProcEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80666418A2B2F400D30F77 /* FTVImageProcEngine.m */; };
+		DE80666B18A2B2F400D30F77 /* FTVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80666718A2B2F400D30F77 /* FTVUser.m */; };
+		DE80666C18A2B2F400D30F77 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80666918A2B2F400D30F77 /* LoadingView.m */; };
+		DE80667418A2B32200D30F77 /* CameraConfigurationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80667018A2B32200D30F77 /* CameraConfigurationManager.m */; };
+		DE80667518A2B32200D30F77 /* CameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80667318A2B32200D30F77 /* CameraManager.m */; };
+		DE80668018A2B38900D30F77 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80667918A2B38900D30F77 /* ImageUtil.m */; };
+		DE80668118A2B38900D30F77 /* NSString+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80667C18A2B38900D30F77 /* NSString+Random.m */; };
+		DE80668218A2B38900D30F77 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80667F18A2B38900D30F77 /* UIImage+Resize.m */; };
 		DEB4B84F1821A0D70050FA49 /* bookmark-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8451821A0D70050FA49 /* bookmark-icon.png */; };
 		DEB4B8501821A0D70050FA49 /* bookmark-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8461821A0D70050FA49 /* bookmark-icon@2x.png */; };
 		DEB4B8511821A0D70050FA49 /* camera-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4B8471821A0D70050FA49 /* camera-icon.png */; };
@@ -238,6 +252,35 @@
 		DE163384183B665A007EF946 /* FTVMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVMenuViewController.h; sourceTree = "<group>"; };
 		DE163385183B665A007EF946 /* FTVMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVMenuViewController.m; sourceTree = "<group>"; };
 		DE249176183E800B00CE97FC /* NarzissText-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NarzissText-Bold.otf"; sourceTree = "<group>"; };
+		DE80664918A2ADA500D30F77 /* ScanDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanDetailView.h; sourceTree = "<group>"; };
+		DE80664A18A2ADA500D30F77 /* ScanDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanDetailView.m; sourceTree = "<group>"; };
+		DE80664F18A2B2D600D30F77 /* MSNavigationPaneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSNavigationPaneViewController.h; sourceTree = "<group>"; };
+		DE80665018A2B2D600D30F77 /* MSNavigationPaneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSNavigationPaneViewController.m; sourceTree = "<group>"; };
+		DE80665218A2B2D600D30F77 /* PRTween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTween.h; sourceTree = "<group>"; };
+		DE80665318A2B2D600D30F77 /* PRTween.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTween.m; sourceTree = "<group>"; };
+		DE80665418A2B2D600D30F77 /* PRTweenTimingFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTweenTimingFunctions.h; sourceTree = "<group>"; };
+		DE80665518A2B2D600D30F77 /* PRTweenTimingFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTweenTimingFunctions.m; sourceTree = "<group>"; };
+		DE80665B18A2B2E600D30F77 /* GAZIRUAuthLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAZIRUAuthLogic.h; sourceTree = "<group>"; };
+		DE80665C18A2B2E600D30F77 /* GAZIRUAuthLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAZIRUAuthLogic.m; sourceTree = "<group>"; };
+		DE80665E18A2B2E600D30F77 /* GAZIRUSearchLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAZIRUSearchLogic.h; sourceTree = "<group>"; };
+		DE80665F18A2B2E600D30F77 /* GAZIRUSearchLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAZIRUSearchLogic.m; sourceTree = "<group>"; };
+		DE80666318A2B2F400D30F77 /* FTVImageProcEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVImageProcEngine.h; sourceTree = "<group>"; };
+		DE80666418A2B2F400D30F77 /* FTVImageProcEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVImageProcEngine.m; sourceTree = "<group>"; };
+		DE80666518A2B2F400D30F77 /* FTVImageProcOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVImageProcOption.h; sourceTree = "<group>"; };
+		DE80666618A2B2F400D30F77 /* FTVUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVUser.h; sourceTree = "<group>"; };
+		DE80666718A2B2F400D30F77 /* FTVUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVUser.m; sourceTree = "<group>"; };
+		DE80666818A2B2F400D30F77 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
+		DE80666918A2B2F400D30F77 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		DE80666F18A2B32200D30F77 /* CameraConfigurationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraConfigurationManager.h; sourceTree = "<group>"; };
+		DE80667018A2B32200D30F77 /* CameraConfigurationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraConfigurationManager.m; sourceTree = "<group>"; };
+		DE80667218A2B32200D30F77 /* CameraManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraManager.h; sourceTree = "<group>"; };
+		DE80667318A2B32200D30F77 /* CameraManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraManager.m; sourceTree = "<group>"; };
+		DE80667818A2B38900D30F77 /* ImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtil.h; sourceTree = "<group>"; };
+		DE80667918A2B38900D30F77 /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
+		DE80667B18A2B38900D30F77 /* NSString+Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Random.h"; sourceTree = "<group>"; };
+		DE80667C18A2B38900D30F77 /* NSString+Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Random.m"; sourceTree = "<group>"; };
+		DE80667E18A2B38900D30F77 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		DE80667F18A2B38900D30F77 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		DEB4B8451821A0D70050FA49 /* bookmark-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark-icon.png"; sourceTree = "<group>"; };
 		DEB4B8461821A0D70050FA49 /* bookmark-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark-icon@2x.png"; sourceTree = "<group>"; };
 		DEB4B8471821A0D70050FA49 /* camera-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-icon.png"; sourceTree = "<group>"; };
@@ -417,6 +460,9 @@
 				8465C67917F5D74C00A00460 /* FTVBrandsViewController.m */,
 				8465C67217F5D69300A00460 /* FTVCameraViewController.h */,
 				8465C67317F5D69300A00460 /* FTVCameraViewController.m */,
+				DE80664918A2ADA500D30F77 /* ScanDetailView.h */,
+				DE80664A18A2ADA500D30F77 /* ScanDetailView.m */,
+				DE80664C18A2B25300D30F77 /* New Features */,
 				23DC1BCE1840DF2500B9FAEA /* FTVCustomNavigationController.h */,
 				23DC1BCD1840DF2500B9FAEA /* FTVCustomNavigationController.m */,
 				3964FC5E182A8AEF0035B187 /* FTVDelayJobWebViewController.h */,
@@ -520,6 +566,152 @@
 				DE249176183E800B00CE97FC /* NarzissText-Bold.otf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		DE80664C18A2B25300D30F77 /* New Features */ = {
+			isa = PBXGroup;
+			children = (
+				DE80666D18A2B30A00D30F77 /* Cam */,
+				DE80666218A2B2F400D30F77 /* Util */,
+				DE80665918A2B2E600D30F77 /* Logic */,
+				DE80664D18A2B2D600D30F77 /* Lib */,
+			);
+			name = "New Features";
+			sourceTree = "<group>";
+		};
+		DE80664D18A2B2D600D30F77 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				DE80664E18A2B2D600D30F77 /* MSNavigationPaneViewController */,
+				DE80665118A2B2D600D30F77 /* PRTween */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		DE80664E18A2B2D600D30F77 /* MSNavigationPaneViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DE80664F18A2B2D600D30F77 /* MSNavigationPaneViewController.h */,
+				DE80665018A2B2D600D30F77 /* MSNavigationPaneViewController.m */,
+			);
+			path = MSNavigationPaneViewController;
+			sourceTree = "<group>";
+		};
+		DE80665118A2B2D600D30F77 /* PRTween */ = {
+			isa = PBXGroup;
+			children = (
+				DE80665218A2B2D600D30F77 /* PRTween.h */,
+				DE80665318A2B2D600D30F77 /* PRTween.m */,
+				DE80665418A2B2D600D30F77 /* PRTweenTimingFunctions.h */,
+				DE80665518A2B2D600D30F77 /* PRTweenTimingFunctions.m */,
+			);
+			path = PRTween;
+			sourceTree = "<group>";
+		};
+		DE80665918A2B2E600D30F77 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				DE80665A18A2B2E600D30F77 /* GAZIRUAuthLogic */,
+				DE80665D18A2B2E600D30F77 /* GAZIRUSearchLogic */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		DE80665A18A2B2E600D30F77 /* GAZIRUAuthLogic */ = {
+			isa = PBXGroup;
+			children = (
+				DE80665B18A2B2E600D30F77 /* GAZIRUAuthLogic.h */,
+				DE80665C18A2B2E600D30F77 /* GAZIRUAuthLogic.m */,
+			);
+			path = GAZIRUAuthLogic;
+			sourceTree = "<group>";
+		};
+		DE80665D18A2B2E600D30F77 /* GAZIRUSearchLogic */ = {
+			isa = PBXGroup;
+			children = (
+				DE80665E18A2B2E600D30F77 /* GAZIRUSearchLogic.h */,
+				DE80665F18A2B2E600D30F77 /* GAZIRUSearchLogic.m */,
+			);
+			path = GAZIRUSearchLogic;
+			sourceTree = "<group>";
+		};
+		DE80666218A2B2F400D30F77 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				DE80666318A2B2F400D30F77 /* FTVImageProcEngine.h */,
+				DE80666418A2B2F400D30F77 /* FTVImageProcEngine.m */,
+				DE80666518A2B2F400D30F77 /* FTVImageProcOption.h */,
+				DE80666618A2B2F400D30F77 /* FTVUser.h */,
+				DE80666718A2B2F400D30F77 /* FTVUser.m */,
+				DE80666818A2B2F400D30F77 /* LoadingView.h */,
+				DE80666918A2B2F400D30F77 /* LoadingView.m */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		DE80666D18A2B30A00D30F77 /* Cam */ = {
+			isa = PBXGroup;
+			children = (
+				DE80667618A2B37100D30F77 /* Utils */,
+				DE80666E18A2B32200D30F77 /* CameraConfigurationManager */,
+				DE80667118A2B32200D30F77 /* CameraManager */,
+			);
+			name = Cam;
+			sourceTree = "<group>";
+		};
+		DE80666E18A2B32200D30F77 /* CameraConfigurationManager */ = {
+			isa = PBXGroup;
+			children = (
+				DE80666F18A2B32200D30F77 /* CameraConfigurationManager.h */,
+				DE80667018A2B32200D30F77 /* CameraConfigurationManager.m */,
+			);
+			path = CameraConfigurationManager;
+			sourceTree = "<group>";
+		};
+		DE80667118A2B32200D30F77 /* CameraManager */ = {
+			isa = PBXGroup;
+			children = (
+				DE80667218A2B32200D30F77 /* CameraManager.h */,
+				DE80667318A2B32200D30F77 /* CameraManager.m */,
+			);
+			path = CameraManager;
+			sourceTree = "<group>";
+		};
+		DE80667618A2B37100D30F77 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DE80667718A2B38900D30F77 /* ImageUtil */,
+				DE80667A18A2B38900D30F77 /* NSString+Random */,
+				DE80667D18A2B38900D30F77 /* UIImage+Resize */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		DE80667718A2B38900D30F77 /* ImageUtil */ = {
+			isa = PBXGroup;
+			children = (
+				DE80667818A2B38900D30F77 /* ImageUtil.h */,
+				DE80667918A2B38900D30F77 /* ImageUtil.m */,
+			);
+			path = ImageUtil;
+			sourceTree = "<group>";
+		};
+		DE80667A18A2B38900D30F77 /* NSString+Random */ = {
+			isa = PBXGroup;
+			children = (
+				DE80667B18A2B38900D30F77 /* NSString+Random.h */,
+				DE80667C18A2B38900D30F77 /* NSString+Random.m */,
+			);
+			path = "NSString+Random";
+			sourceTree = "<group>";
+		};
+		DE80667D18A2B38900D30F77 /* UIImage+Resize */ = {
+			isa = PBXGroup;
+			children = (
+				DE80667E18A2B38900D30F77 /* UIImage+Resize.h */,
+				DE80667F18A2B38900D30F77 /* UIImage+Resize.m */,
+			);
+			path = "UIImage+Resize";
 			sourceTree = "<group>";
 		};
 		DEB4B8441821A0AB0050FA49 /* Images */ = {
@@ -731,6 +923,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEFFD1A1183E8356004BBE1A /* NarzissText-Bold.otf in Sources */,
+				DE80666C18A2B2F400D30F77 /* LoadingView.m in Sources */,
 				22A1314D184384FE008D3669 /* LoadingView.m in Sources */,
 				39F4936D1821427E00093167 /* REString.m in Sources */,
 				39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */,
@@ -743,32 +936,45 @@
 				3964FC60182A8AEF0035B187 /* FTVDelayJobWebViewController.m in Sources */,
 				39E32CB5181FA6D2009C911F /* FTVRegisterViewController.m in Sources */,
 				39F4936118213B3000093167 /* GlobalCore.m in Sources */,
+				DE80665718A2B2D600D30F77 /* PRTween.m in Sources */,
+				DE80666A18A2B2F400D30F77 /* FTVImageProcEngine.m in Sources */,
 				39E32CBA181FB77D009C911F /* FTVUser.m in Sources */,
+				DE80665818A2B2D600D30F77 /* PRTweenTimingFunctions.m in Sources */,
 				DE163379183B4953007EF946 /* SVWebViewController.m in Sources */,
 				39F4935F18213B3000093167 /* DateUtil.m in Sources */,
 				8465C65117F5D1B500A00460 /* FTVTourViewController.m in Sources */,
 				39F4935D18213B3000093167 /* ColorUtil.m in Sources */,
 				23DC1BD31840DF2500B9FAEA /* FTVCustomNavigationController.m in Sources */,
 				395AFD8B183C92520093E0A4 /* Imaging.c in Sources */,
+				DE80667518A2B32200D30F77 /* CameraManager.m in Sources */,
 				DE16336F183B493B007EF946 /* PRTweenTimingFunctions.m in Sources */,
 				DE16336D183B493B007EF946 /* MSNavigationPaneViewController.m in Sources */,
+				DE80664B18A2ADA500D30F77 /* ScanDetailView.m in Sources */,
+				DE80668218A2B38900D30F77 /* UIImage+Resize.m in Sources */,
+				DE80668118A2B38900D30F77 /* NSString+Random.m in Sources */,
 				8465C64717F5D1B500A00460 /* main.m in Sources */,
 				395AFD84183C92520093E0A4 /* AVCamCaptureManager.m in Sources */,
 				39F4936C1821427E00093167 /* QuartzUtils.c in Sources */,
 				395AFD8C183C92520093E0A4 /* Texture.m in Sources */,
+				DE80666118A2B2E600D30F77 /* GAZIRUSearchLogic.m in Sources */,
 				8465C67717F5D73B00A00460 /* FTVGalleryViewController.m in Sources */,
 				39F4936218213B3000093167 /* ImageUtils.m in Sources */,
 				8465C67A17F5D74C00A00460 /* FTVBrandsViewController.m in Sources */,
 				395AFD88183C92520093E0A4 /* FTVCamOverlayView.m in Sources */,
 				DE163383183B617A007EF946 /* DDMenuController.m in Sources */,
+				DE80667418A2B32200D30F77 /* CameraConfigurationManager.m in Sources */,
 				8465C67417F5D69300A00460 /* FTVCameraViewController.m in Sources */,
 				395AFD8A183C92520093E0A4 /* EAGLView.m in Sources */,
+				DE80665618A2B2D600D30F77 /* MSNavigationPaneViewController.m in Sources */,
 				395AFD89183C92520093E0A4 /* Debug.c in Sources */,
 				8465C64B17F5D1B500A00460 /* FTVAppDelegate.m in Sources */,
 				23DC1BD21840DF2500B9FAEA /* FTVHomeViewController.m in Sources */,
 				DE163378183B4953007EF946 /* SVUtilities.m in Sources */,
 				39F4936418213B3000093167 /* UIDevice+Identifier.m in Sources */,
+				DE80666018A2B2E600D30F77 /* GAZIRUAuthLogic.m in Sources */,
 				8465C65417F5D1B500A00460 /* FTVScansViewController.m in Sources */,
+				DE80668018A2B38900D30F77 /* ImageUtil.m in Sources */,
+				DE80666B18A2B2F400D30F77 /* FTVUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,7 +1150,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F8E71171-32D0-4340-A01D-0684CFAC9DDD";
+				PROVISIONING_PROFILE = "75D2BEE6-52D6-4A61-AA07-C6AB6E781CEC";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -997,7 +1203,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F8E71171-32D0-4340-A01D-0684CFAC9DDD";
+				PROVISIONING_PROFILE = "75D2BEE6-52D6-4A61-AA07-C6AB6E781CEC";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;

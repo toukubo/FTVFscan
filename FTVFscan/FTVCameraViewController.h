@@ -6,15 +6,16 @@
 //  Copyright (c) 2013 T2. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+//#import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 #import "FTVCamOverlayView.h"
-
+#import "ScanDetailView.h"
 #import "FTVCustomNavigationController.h"
 
 @class AVCamCaptureManager, AVCamPreviewView, AVCaptureVideoPreviewLayer;
 
-@interface FTVCameraViewController : FTVCustomNavigationController <FTVCamOverlayViewDelegate, UINavigationControllerDelegate>
+@interface FTVCameraViewController : FTVCustomNavigationController <FTVCamOverlayViewDelegate, UINavigationControllerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate>
 {
     FTVCamOverlayView       *overlayView;
     
@@ -23,6 +24,13 @@
     UIButton                *stillButton;
     UIButton                *homeButton;
 }
+
+@property (strong, nonatomic) IBOutlet UIView *previewView;             // カメラプレビュー描画View
+@property (strong, nonatomic) IBOutlet UIView *processingView;          // 処理中View
+@property (strong, nonatomic) IBOutlet ScanDetailView *scanDetailView;  // スキャン結果描画View
+- (IBAction)onClickDetail:(UIButton *)sender;
+-(void)handleGAZIRUAuthResult:(NSString *)authResult;
+-(void)initView;
 
 @property (nonatomic, retain) AVCamCaptureManager           *captureManager;
 @property (nonatomic, retain) IBOutlet UIView               *videoPreviewView;

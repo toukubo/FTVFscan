@@ -13,6 +13,19 @@
 #import "DDMenuController.h"
 #import "AVCamCaptureManager.h"
 
+#import <RTSearchKit/RTSearchApi.h>
+#import "FTVAppDelegate.h"
+#import "CameraManager.h"
+#import "GAZIRUAuthLogic.h"
+#import "GAZIRUSearchLogic.h"
+#import "ImageUtil.h"
+
+
+// UIAlertViewタグ
+typedef enum {
+    AlertViewTagGAZIRUAuthFailed = 1,                               // GAZIRU認証失敗タグ
+} AlertViewTag;
+
 static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 
 @interface FTVCameraViewController () <UIGestureRecognizerDelegate>
@@ -34,6 +47,13 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     BOOL                        returnFromPicker;      // Workaround while this workflow is not completed
     NSString                    *redirectUrl;
 }
+
+
+@property (nonatomic, retain) CameraManager *cameraManager;         // Camera Manager
+@property (nonatomic) BOOL isAuthed;                                // GAZIRU認証フラグ（認証済／未認証）
+@property (nonatomic, retain) GAZIRUAuthLogic *gaziruAuthLogic;     // GAZIRU認証ロジックインスタンス
+@property (nonatomic) BOOL isSearching;                             // 検索処理実行中フラグ（処理中／非処理中）
+@property (nonatomic, retain) GAZIRUSearchLogic *gaziruSearchLogic; // GAZIRU検索ロジックインスタンス
 
 @end
 
@@ -73,11 +93,48 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     
 }
 
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self initView];
+    
+    [super viewWillAppear:YES];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
-    if(!returnFromPicker){
+    // カメラ、プレビューレイヤーの初期化を行い、バッファ通知先を自身（CameraViewController）に向ける
+    // startPreview実行後、バッファデータがAVCaptureVideoDataOutputSampleBufferDelegateを通して通知される
+    [_cameraManager openDriverWithDelegate:self previewFrame:_previewView.frame];
+    
+    // cameraManagerで保持するプレビューレイヤーを、IBで定義したpreviewViewに挿入する
+    // startPreview実行後、previewViewの最下層レイヤにカメラプレビューが描画される
+    [_previewView.layer insertSublayer:_cameraManager.videoPreviewLayer atIndex:0];
+    
+    // cameraManagerにプレビュー開始要求を行う
+    [_cameraManager startPreview];
+    
+    // カメラバッファでGAZIRU検索処理を行うために、GAZIRU認証処理を行う
+    // GAZIRU認証は通信処理が行われるため、バッググラウンドで処理を行う
+    _isAuthed = NO; // 未認証初期化
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-    }
+        // GAZIRU認証ロジックインスタンス生成・保持し、認証実行する
+        _gaziruAuthLogic = [[GAZIRUAuthLogic alloc] init];
+        [_gaziruAuthLogic executeGAZIRUAuth];
+        
+        // GAZIRU認証処理結果をUIスレッドでハンドルする
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // 認証結果をロジックから取得し、GAZIRU認証結果処理に引き渡す
+            NSString *authResult = _gaziruAuthLogic.resultString;
+            _gaziruAuthLogic = nil;
+            [self handleGAZIRUAuthResult:authResult];
+        });
+    });
+    
+    [super viewDidAppear:YES];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -108,7 +165,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
         [stillButton setImage:shutterImagePressed forState:UIControlStateHighlighted];
         [stillButton setBackgroundColor:[UIColor clearColor]];
         [stillButton addTarget:self action:@selector(captureStillImage:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:stillButton];
+//        [self.view addSubview:stillButton];
     }
     
     [self startCamCapture];
@@ -469,6 +526,105 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 - (void)captureManagerDeviceConfigurationChanged:(AVCamCaptureManager *)captureManager
 {
 	[self updateButtonStates];
+}
+
+#pragma -- New Features
+
+
+#pragma mark - UIAlertViewDelegte
+/**
+ UIAlertView非表示イベント<BR>
+ UIAlertViewのボタン押下で非表示となるイベントが通知されるデリゲートメソッドです。
+ @param alertView UIAlertView
+ @param buttonIndex NSInteger
+ */
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    switch (alertView.tag) {
+        case AlertViewTagGAZIRUAuthFailed:            // GAZIRU認証失敗
+        {
+            // 前画面に遷移する
+            FTVAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+            if ([appDelegate.window.rootViewController isKindOfClass:[UINavigationController class]]) {
+                UINavigationController *navigationController = (UINavigationController *)appDelegate.window.rootViewController;
+                [navigationController popViewControllerAnimated:YES];
+            }
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+#pragma mark - Private method
+/**
+ GAZIRU認証結果ハンドラ<BR>
+ 引数のGAZIRU認証結果に応じた処理を行うハンドラメソッドです。<BR>
+ 認証処理が成功した場合には認証状態に更新し、バッファ通知によるGAZIRU検索処理を解放します。<BR>
+ 認証処理が失敗した場合には認証失敗したメッセージを表示します。
+ @param authResult GAZIRU認証結果
+ */
+-(void)handleGAZIRUAuthResult:(NSString *)authResult
+{
+    // 認証成功した場合
+    if ([AUTH_OK isEqualToString:authResult]) {
+        // 認証状態に更新し、バッファ検索を解放する
+        _isSearching = NO;
+        _isAuthed = YES;
+        
+        // 処理中インジケータを非表示にする
+        [_processingView setHidden:YES];
+    }
+    // 認証失敗した場合
+    else {
+        // 認証失敗メッセージを表示する
+        [self showGAZIRUAuthFailedMessage];
+    }
+}
+
+/**
+ GAZIRU認証失敗メッセージ表示処理<BR>
+ GAZIRU認証失敗メッセージを表示する処理です。<BR>
+ アラート表示を行い、UIAlertViewDelegteでアラート消去後の処理を行います。
+ */
+-(void)showGAZIRUAuthFailedMessage
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"alert_camera_title_auth_failed", @"")
+                                                        message:NSLocalizedString(@"alert_camera_message_auth_failed", @"")
+                                                       delegate:self
+                                              cancelButtonTitle:NSLocalizedString(@"alert_camera_cancel_auth_failed", @"")
+                                              otherButtonTitles:nil];
+    alertView.tag = AlertViewTagGAZIRUAuthFailed;
+    [alertView show];
+}
+
+/**
+ GAZIRU検索結果ハンドラ<BR>
+ 引数の検索結果に応じた処理を行うハンドラメソッドです。<BR>
+ スキャン結果表示領域に検索結果表示要求を行い、バッファ受信解放によるリアルタイム検索処理再開を行います。
+ @param searchResult GAZIRU検索結果リスト
+ @param queryImage GAZIRU検索クエリ画像
+ */
+-(void)handleGAZIRUSearchResult:(NSMutableArray *)searchResult queryImage:(UIImage *)queryImage
+{
+    // スキャン結果表示領域
+    [_scanDetailView showScanDetail:searchResult withQueryImage:queryImage];
+    // 検索処理再開（バッファ受信による検索処理解放）
+    _isSearching = NO;
+}
+
+/**
+ View部品初期化処理<BR>
+ CameraViewController上に定義されている各種View部品を初期化する処理です。
+ */
+
+-(void)initView
+{
+    // 処理中インジケータ有効化
+    [_processingView setHidden:NO];
+    
+    // スキャン結果表示領域初期化
+    [_scanDetailView initComponent];
 }
 
 @end

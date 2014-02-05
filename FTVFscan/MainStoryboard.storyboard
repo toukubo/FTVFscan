@@ -76,6 +76,54 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" id="ulN-Ec-mwx" userLabel="View - detail" customClass="ScanDetailView">
+                                <rect key="frame" x="0.0" y="468" width="320" height="100"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RZc-fI-rX6" userLabel="Button - detail">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lws-ss-Szq" userLabel="Label - AppendInfo1">
+                                        <rect key="frame" x="20" y="20" width="280" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gMg-C5-6Cd" userLabel="Label - AppendInfo2">
+                                        <rect key="frame" x="20" y="55" width="280" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outlet property="appendInfo1Label" destination="lws-ss-Szq" id="7G6-XO-4tr"/>
+                                    <outlet property="appendInfo2Label" destination="gMg-C5-6Cd" id="0gX-He-k92"/>
+                                    <outlet property="detailButton" destination="RZc-fI-rX6" id="uUK-65-MRG"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" id="sMb-Oj-B8s" userLabel="View - Processing">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="nMr-Mn-wUW">
+                                        <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="O5r-jY-9Sf">
                                 <rect key="frame" x="59" y="3" width="34" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -90,7 +138,9 @@
                     <navigationItem key="navigationItem" id="XMb-aZ-Q3r"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="videoPreviewView" destination="0xr-Zd-tpX" id="AgO-3E-kdh"/>
+                        <outlet property="previewView" destination="0xr-Zd-tpX" id="Mum-BB-jpk"/>
+                        <outlet property="processingView" destination="sMb-Oj-B8s" id="5Kd-3m-yo6"/>
+                        <outlet property="scanDetailView" destination="ulN-Ec-mwx" id="tsg-7v-ZTt"/>
                         <segue destination="B7h-6y-4Tk" kind="modal" identifier="presentDelayJobWebViewController" id="imu-oV-QJI"/>
                     </connections>
                 </viewController>
@@ -387,6 +437,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="OU8-Ov-bC0"/>
+        <segue reference="imu-oV-QJI"/>
     </inferredMetricsTieBreakers>
 </document>
