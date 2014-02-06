@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2214388D184084920017FF04 /* drawer-head-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2214388C184084920017FF04 /* drawer-head-logo.png */; };
 		22A1314A18437A70008D3669 /* scan.png in Resources */ = {isa = PBXBuildFile; fileRef = 22A1314918437A70008D3669 /* scan.png */; };
-		22A1314D184384FE008D3669 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A1314C184384FE008D3669 /* LoadingView.m */; };
 		23A41AB918426C0F00D914DC /* draw_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 23A41AB818426C0F00D914DC /* draw_white.png */; };
 		23DC1BD01840DF2500B9FAEA /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DC1BC91840DF2500B9FAEA /* title.png */; };
 		23DC1BD11840DF2500B9FAEA /* home_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DC1BCA1840DF2500B9FAEA /* home_white.png */; };
@@ -38,7 +37,6 @@
 		39B391AB182782A300BD2D3B /* NEC_new.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 39B391A9182782A300BD2D3B /* NEC_new.jpg */; };
 		39B391AC182782A300BD2D3B /* NEC_old.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 39B391AA182782A300BD2D3B /* NEC_old.jpg */; };
 		39E32CB5181FA6D2009C911F /* FTVRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */; };
-		39E32CBA181FB77D009C911F /* FTVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E32CB9181FB77D009C911F /* FTVUser.m */; };
 		39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E39D211820F4BB003D023E /* FTVImageProcEngine.m */; };
 		39F4935D18213B3000093167 /* ColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F4934C18213B3000093167 /* ColorUtil.m */; };
 		39F4935F18213B3000093167 /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F4935018213B3000093167 /* DateUtil.m */; };
@@ -52,7 +50,6 @@
 		477045DB1842782900155D36 /* ftvlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 477045DA1842782900155D36 /* ftvlogo.png */; };
 		477045DD18428CBD00155D36 /* 240head.png in Resources */ = {isa = PBXBuildFile; fileRef = 477045DC18428CBD00155D36 /* 240head.png */; };
 		477045DF18428DE800155D36 /* 254head.png in Resources */ = {isa = PBXBuildFile; fileRef = 477045DE18428DE800155D36 /* 254head.png */; };
-		477045E118428EC500155D36 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 477045E018428EC500155D36 /* menu.png */; };
 		809377F4B37548E694C80943 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17EB1EFD5A21421C90C01507 /* libPods.a */; };
 		8465C63B17F5D1B500A00460 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63A17F5D1B500A00460 /* Foundation.framework */; };
 		8465C63D17F5D1B500A00460 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63C17F5D1B500A00460 /* CoreGraphics.framework */; };
@@ -72,9 +69,6 @@
 		8465C67717F5D73B00A00460 /* FTVGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C67617F5D73B00A00460 /* FTVGalleryViewController.m */; };
 		8465C67A17F5D74C00A00460 /* FTVBrandsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465C67917F5D74C00A00460 /* FTVBrandsViewController.m */; };
 		8465C67C17F5F30000A00460 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C67B17F5F30000A00460 /* MobileCoreServices.framework */; };
-		DE16336D183B493B007EF946 /* MSNavigationPaneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163368183B493B007EF946 /* MSNavigationPaneViewController.m */; };
-		DE16336E183B493B007EF946 /* PRTween.m in Sources */ = {isa = PBXBuildFile; fileRef = DE16336A183B493B007EF946 /* PRTween.m */; };
-		DE16336F183B493B007EF946 /* PRTweenTimingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = DE16336C183B493B007EF946 /* PRTweenTimingFunctions.m */; };
 		DE163377183B4953007EF946 /* SVLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163372183B4953007EF946 /* SVLeftMenuViewController.m */; };
 		DE163378183B4953007EF946 /* SVUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163374183B4953007EF946 /* SVUtilities.m */; };
 		DE163379183B4953007EF946 /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE163376183B4953007EF946 /* SVWebViewController.m */; };
@@ -89,7 +83,6 @@
 		DE80665818A2B2D600D30F77 /* PRTweenTimingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80665518A2B2D600D30F77 /* PRTweenTimingFunctions.m */; };
 		DE80666018A2B2E600D30F77 /* GAZIRUAuthLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80665C18A2B2E600D30F77 /* GAZIRUAuthLogic.m */; };
 		DE80666118A2B2E600D30F77 /* GAZIRUSearchLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80665F18A2B2E600D30F77 /* GAZIRUSearchLogic.m */; };
-		DE80666A18A2B2F400D30F77 /* FTVImageProcEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80666418A2B2F400D30F77 /* FTVImageProcEngine.m */; };
 		DE80666B18A2B2F400D30F77 /* FTVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80666718A2B2F400D30F77 /* FTVUser.m */; };
 		DE80666C18A2B2F400D30F77 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80666918A2B2F400D30F77 /* LoadingView.m */; };
 		DE80667418A2B32200D30F77 /* CameraConfigurationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DE80667018A2B32200D30F77 /* CameraConfigurationManager.m */; };
@@ -112,7 +105,6 @@
 		DEED1713183DE3E500FDC8C8 /* drawer-history-label.png in Resources */ = {isa = PBXBuildFile; fileRef = DEED170F183DE3E500FDC8C8 /* drawer-history-label.png */; };
 		DEED1714183DE3E500FDC8C8 /* drawer-tour-label.png in Resources */ = {isa = PBXBuildFile; fileRef = DEED1710183DE3E500FDC8C8 /* drawer-tour-label.png */; };
 		DEED1716183DE40200FDC8C8 /* drawer-delegate.png in Resources */ = {isa = PBXBuildFile; fileRef = DEED1715183DE40200FDC8C8 /* drawer-delegate.png */; };
-		DEFFD1A1183E8356004BBE1A /* NarzissText-Bold.otf in Sources */ = {isa = PBXBuildFile; fileRef = DE249176183E800B00CE97FC /* NarzissText-Bold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,8 +165,6 @@
 		39E32CAE181F990B009C911F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		39E32CB3181FA6D2009C911F /* FTVRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVRegisterViewController.h; sourceTree = "<group>"; };
 		39E32CB4181FA6D2009C911F /* FTVRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVRegisterViewController.m; sourceTree = "<group>"; };
-		39E32CB8181FB77D009C911F /* FTVUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVUser.h; sourceTree = "<group>"; };
-		39E32CB9181FB77D009C911F /* FTVUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVUser.m; sourceTree = "<group>"; };
 		39E39D201820F4BB003D023E /* FTVImageProcEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVImageProcEngine.h; sourceTree = "<group>"; };
 		39E39D211820F4BB003D023E /* FTVImageProcEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVImageProcEngine.m; sourceTree = "<group>"; };
 		39F4934B18213B3000093167 /* ColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtil.h; sourceTree = "<group>"; };
@@ -202,7 +192,6 @@
 		477045DA1842782900155D36 /* ftvlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ftvlogo.png; sourceTree = "<group>"; };
 		477045DC18428CBD00155D36 /* 240head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 240head.png; sourceTree = "<group>"; };
 		477045DE18428DE800155D36 /* 254head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 254head.png; sourceTree = "<group>"; };
-		477045E018428EC500155D36 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		47C61B931824181E00DF9125 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		47C61B941824181E00DF9125 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		62E03682EDFA4EAAB4576DB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -233,12 +222,6 @@
 		8465C67817F5D74C00A00460 /* FTVBrandsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVBrandsViewController.h; sourceTree = "<group>"; };
 		8465C67917F5D74C00A00460 /* FTVBrandsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVBrandsViewController.m; sourceTree = "<group>"; };
 		8465C67B17F5F30000A00460 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		DE163367183B493B007EF946 /* MSNavigationPaneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSNavigationPaneViewController.h; sourceTree = "<group>"; };
-		DE163368183B493B007EF946 /* MSNavigationPaneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSNavigationPaneViewController.m; sourceTree = "<group>"; };
-		DE163369183B493B007EF946 /* PRTween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTween.h; sourceTree = "<group>"; };
-		DE16336A183B493B007EF946 /* PRTween.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTween.m; sourceTree = "<group>"; };
-		DE16336B183B493B007EF946 /* PRTweenTimingFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTweenTimingFunctions.h; sourceTree = "<group>"; };
-		DE16336C183B493B007EF946 /* PRTweenTimingFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTweenTimingFunctions.m; sourceTree = "<group>"; };
 		DE163371183B4953007EF946 /* SVLeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVLeftMenuViewController.h; sourceTree = "<group>"; };
 		DE163372183B4953007EF946 /* SVLeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVLeftMenuViewController.m; sourceTree = "<group>"; };
 		DE163373183B4953007EF946 /* SVUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVUtilities.h; sourceTree = "<group>"; };
@@ -401,8 +384,6 @@
 			children = (
 				22A1314B184384FE008D3669 /* LoadingView.h */,
 				22A1314C184384FE008D3669 /* LoadingView.m */,
-				39E32CB8181FB77D009C911F /* FTVUser.h */,
-				39E32CB9181FB77D009C911F /* FTVUser.m */,
 				39153DB318225A3800F3C9D0 /* FTVImageProcOption.h */,
 				39E39D201820F4BB003D023E /* FTVImageProcEngine.h */,
 				39E39D211820F4BB003D023E /* FTVImageProcEngine.m */,
@@ -483,7 +464,6 @@
 				8465C65517F5D1B500A00460 /* Images.xcassets */,
 				DE163370183B4943007EF946 /* LeftMenu */,
 				39E32CAF181F9BAE009C911F /* Library */,
-				DE163366183B4901007EF946 /* MSNavigationPane */,
 				8465C64117F5D1B500A00460 /* Supporting Files */,
 				39E32CB7181FB33D009C911F /* Util */,
 			);
@@ -522,20 +502,6 @@
 				8465C66517F5D1B600A00460 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		DE163366183B4901007EF946 /* MSNavigationPane */ = {
-			isa = PBXGroup;
-			children = (
-				477045E018428EC500155D36 /* menu.png */,
-				DE163367183B493B007EF946 /* MSNavigationPaneViewController.h */,
-				DE163368183B493B007EF946 /* MSNavigationPaneViewController.m */,
-				DE163369183B493B007EF946 /* PRTween.h */,
-				DE16336A183B493B007EF946 /* PRTween.m */,
-				DE16336B183B493B007EF946 /* PRTweenTimingFunctions.h */,
-				DE16336C183B493B007EF946 /* PRTweenTimingFunctions.m */,
-			);
-			name = MSNavigationPane;
 			sourceTree = "<group>";
 		};
 		DE163370183B4943007EF946 /* LeftMenu */ = {
@@ -800,9 +766,6 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = T2;
 				TargetAttributes = {
-					8465C63617F5D1B500A00460 = {
-						DevelopmentTeam = 6367C7KA72;
-					};
 					8465C65A17F5D1B600A00460 = {
 						TestTargetID = 8465C63617F5D1B500A00460;
 					};
@@ -845,7 +808,6 @@
 				DE249177183E800B00CE97FC /* NarzissText-Bold.otf in Resources */,
 				DEB4B8521821A0D70050FA49 /* camera-icon@2x.png in Resources */,
 				39B391AB182782A300BD2D3B /* NEC_new.jpg in Resources */,
-				477045E118428EC500155D36 /* menu.png in Resources */,
 				DEB4B8561821A0D70050FA49 /* list-icon@2x.png in Resources */,
 				DEB4B8551821A0D70050FA49 /* list-icon.png in Resources */,
 				DEED1712183DE3E500FDC8C8 /* drawer-brands-label.png in Resources */,
@@ -922,23 +884,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEFFD1A1183E8356004BBE1A /* NarzissText-Bold.otf in Sources */,
 				DE80666C18A2B2F400D30F77 /* LoadingView.m in Sources */,
-				22A1314D184384FE008D3669 /* LoadingView.m in Sources */,
 				39F4936D1821427E00093167 /* REString.m in Sources */,
 				39E39D221820F4BB003D023E /* FTVImageProcEngine.m in Sources */,
 				395AFD85183C92520093E0A4 /* AVCamUtilities.m in Sources */,
 				DE163386183B665A007EF946 /* FTVMenuViewController.m in Sources */,
 				39F4936018213B3000093167 /* DeviceUtil.m in Sources */,
-				DE16336E183B493B007EF946 /* PRTween.m in Sources */,
 				39F4936E1821427E00093167 /* StringUtil.m in Sources */,
 				DE163377183B4953007EF946 /* SVLeftMenuViewController.m in Sources */,
 				3964FC60182A8AEF0035B187 /* FTVDelayJobWebViewController.m in Sources */,
 				39E32CB5181FA6D2009C911F /* FTVRegisterViewController.m in Sources */,
 				39F4936118213B3000093167 /* GlobalCore.m in Sources */,
 				DE80665718A2B2D600D30F77 /* PRTween.m in Sources */,
-				DE80666A18A2B2F400D30F77 /* FTVImageProcEngine.m in Sources */,
-				39E32CBA181FB77D009C911F /* FTVUser.m in Sources */,
 				DE80665818A2B2D600D30F77 /* PRTweenTimingFunctions.m in Sources */,
 				DE163379183B4953007EF946 /* SVWebViewController.m in Sources */,
 				39F4935F18213B3000093167 /* DateUtil.m in Sources */,
@@ -947,8 +904,6 @@
 				23DC1BD31840DF2500B9FAEA /* FTVCustomNavigationController.m in Sources */,
 				395AFD8B183C92520093E0A4 /* Imaging.c in Sources */,
 				DE80667518A2B32200D30F77 /* CameraManager.m in Sources */,
-				DE16336F183B493B007EF946 /* PRTweenTimingFunctions.m in Sources */,
-				DE16336D183B493B007EF946 /* MSNavigationPaneViewController.m in Sources */,
 				DE80664B18A2ADA500D30F77 /* ScanDetailView.m in Sources */,
 				DE80668218A2B38900D30F77 /* UIImage+Resize.m in Sources */,
 				DE80668118A2B38900D30F77 /* NSString+Random.m in Sources */,
@@ -1115,8 +1070,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Takahiro Fujikawa (EVJNX229VX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takahiro Fujikawa (EVJNX229VX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1150,7 +1105,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "75D2BEE6-52D6-4A61-AA07-C6AB6E781CEC";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -1168,8 +1123,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Takahiro Fujikawa (EVJNX229VX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takahiro Fujikawa (EVJNX229VX)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1203,7 +1158,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "75D2BEE6-52D6-4A61-AA07-C6AB6E781CEC";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
