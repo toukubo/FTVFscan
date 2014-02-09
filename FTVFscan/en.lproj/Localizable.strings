@@ -10,3 +10,15 @@
 "tabbar_item_title_ftvscan" = "ftv.fscan";
 "tabbar_item_title_gallery" = "gallery";
 "tabbar_item_title_brands" = "brands";
+
+/*
+ FTVCameraViewController
+ */
+"navigation_camera_title" = "Camera";
+"label_camera_result_defalt" = "Please Scan...";
+"label_camera_result_connection_failed" = "Connection failed...";
+"label_camera_result_append_info1" = "AppendInfo1:";
+"label_camera_result_append_info2" = "AppendInfo2:";
+"alert_camera_title_auth_failed" = "Camera View";
+"alert_camera_message_auth_failed" = "Authentication failed.";
+"alert_camera_cancel_auth_failed" = "OK";

@@ -27,7 +27,10 @@
 
 @property (strong, nonatomic) IBOutlet UIView *previewView;             // カメラプレビュー描画View
 @property (strong, nonatomic) IBOutlet UIView *processingView;          // 処理中View
-@property (strong, nonatomic) IBOutlet ScanDetailView *scanDetailView;  // スキャン結果描画View
+@property (strong, nonatomic) IBOutlet ScanDetailView *scanDetailView;
+
+
+// スキャン結果描画View
 - (IBAction)onClickDetail:(UIButton *)sender;
 -(void)handleGAZIRUAuthResult:(NSString *)authResult;
 -(void)initView;

@@ -73,6 +73,9 @@
         [_appendInfo2Label setText:[NSString stringWithFormat:@"%@ %@",
                                     NSLocalizedString(@"label_camera_result_append_info2", @""),
                                     [displayResult objectAtIndex:1]]];
+        
+        NSLog(@"Result 1 :----- %@", [displayResult objectAtIndex:0]);
+        NSLog(@"Result 2 :----- %@", [displayResult objectAtIndex:1]);
     }
 }
 
