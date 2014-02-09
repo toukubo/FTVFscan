@@ -18,7 +18,7 @@
 -(void)initComponent
 {
     // 付加情報表示領域に文字列初期化
-    [_appendInfo1Label setText:NSLocalizedString(@"label_camera_result_defalt", @"")];
+    //[_appendInfo1Label setText:NSLocalizedString(@"label_camera_result_defalt", @"")];
     [_appendInfo2Label setText:@""];
     // クエリ画像解放
     _queryImage = nil;
@@ -26,6 +26,28 @@
     _isScanHit = NO;
     // ボタン有効化
     [_detailButton setEnabled:YES];
+    dotUpdateTimer =
+    [NSTimer
+     scheduledTimerWithTimeInterval:0.1
+     target:self
+     selector:@selector(updateDotProgress:)
+     userInfo:nil
+     repeats:YES];
+}
+
+- (void)updateDotProgress:(NSTimer *)updatedTimer
+{
+    CGRect imgFrm = [_dotImg frame];
+    
+    if (imgFrm.origin.x >= 112)
+    {
+        imgFrm.origin.x = 12;
+    }
+    else
+    {
+        imgFrm.origin.x += 10;
+    }
+    [_dotImg setFrame:imgFrm];
 }
 
 /**
@@ -45,13 +67,14 @@
     // GAZIRU検索失敗の場合
     if (searchResult == nil) {
         // GAZIRU検索失敗を表示する
-        [_appendInfo1Label setText:NSLocalizedString(@"label_camera_result_connection_failed", @"")];
+        
+        //[_appendInfo1Label setText:NSLocalizedString(@"label_camera_result_connection_failed", @"")];
         [_appendInfo2Label setText:@""];
     }
     // GAZIRU検索ヒット無しの場合
     else if ([searchResult count] <= 0) {
         // 再スキャンメッセージを表示する
-        [_appendInfo1Label setText:NSLocalizedString(@"label_camera_result_defalt", @"")];
+        //[_appendInfo1Label setText:NSLocalizedString(@"label_camera_result_defalt", @"")];
         [_appendInfo2Label setText:@""];
     }
     // GAZIRU検索ヒットした場合
@@ -65,7 +88,14 @@
         
         // トップスコアのスキャン結果を取得する
         NSArray *displayResult = [[sortDescArray objectAtIndex:0] objectForKey:COLUMN_KEY_APPENDINFO];
-        
+
+        if (dotUpdateTimer)
+        {
+            [dotUpdateTimer invalidate];
+            dotUpdateTimer = nil;
+        }
+        _dotImg.hidden = YES;
+
         // スキャン結果のラベル表示する
         [_appendInfo1Label setText:[NSString stringWithFormat:@"%@ %@",
                                     NSLocalizedString(@"label_camera_result_append_info1", @""),
@@ -77,6 +107,15 @@
         NSLog(@"Result 1 :----- %@", [displayResult objectAtIndex:0]);
         NSLog(@"Result 2 :----- %@", [displayResult objectAtIndex:1]);
     }
+}
+
+- (void)dealloc
+{
+	if (dotUpdateTimer)
+	{
+		[dotUpdateTimer invalidate];
+		dotUpdateTimer = nil;
+	}
 }
 
 @end
