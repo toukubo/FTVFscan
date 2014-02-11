@@ -80,6 +80,7 @@
              userInfo:nil
              repeats:YES];
             _dotImg.hidden = NO;
+            _endsymLabel.hidden = YES;
         }
         [_appendInfo1Label setText:@""];
         [_appendInfo2Label setText:@""];
@@ -96,6 +97,7 @@
              userInfo:nil
              repeats:YES];
             _dotImg.hidden = NO;
+            _endsymLabel.hidden = YES;
         }
         // 再スキャンメッセージを表示する
         //[_appendInfo1Label setText:NSLocalizedString(@"label_camera_result_defalt", @"")];
@@ -120,15 +122,14 @@
             dotUpdateTimer = nil;
         }
         _dotImg.hidden = YES;
+        _endsymLabel.hidden = NO;
 
         // スキャン結果のラベル表示する
-        [_appendInfo1Label setText:[NSString stringWithFormat:@"%@ %@ >",
-                                    NSLocalizedString(@"label_camera_result_append_info1", @""),
+        [_appendInfo1Label setText:[NSString stringWithFormat:@"%@",
                                     [displayResult objectAtIndex:0]]];
         brand_slug = [displayResult objectAtIndex:0];
         
-        [_appendInfo2Label setText:[NSString stringWithFormat:@"%@ %@ >",
-                                    NSLocalizedString(@"label_camera_result_append_info2", @""),
+        [_appendInfo2Label setText:[NSString stringWithFormat:@"%@",
                                     [displayResult objectAtIndex:1]]];
         
         NSLog(@"Result 1 :----- %@", [displayResult objectAtIndex:0]);

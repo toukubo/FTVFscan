@@ -112,10 +112,17 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gMg-C5-6Cd" userLabel="Label - AppendInfo2">
-                                        <rect key="frame" x="20" y="61" width="280" height="25"/>
+                                        <rect key="frame" x="15" y="65" width="280" height="25"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=">" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IfZ-bH-kO6">
+                                        <rect key="frame" x="260" y="40" width="42" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" id="sMb-Oj-B8s" userLabel="View - Processing">
@@ -138,6 +145,7 @@
                                     <outlet property="appendInfo2Label" destination="gMg-C5-6Cd" id="0gX-He-k92"/>
                                     <outlet property="detailButton" destination="RZc-fI-rX6" id="uUK-65-MRG"/>
                                     <outlet property="dotImg" destination="8C2-Pe-Ar8" id="9Si-VE-QOr"/>
+                                    <outlet property="endsymLabel" destination="IfZ-bH-kO6" id="OD2-NS-jxK"/>
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="O5r-jY-9Sf">
@@ -438,6 +446,19 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oXp-dE-xD5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="962" y="-652"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="kWJ-cL-Mrn">
+            <objects>
+                <viewController id="132-5V-ZV5" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wdO-Qq-4zs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hyL-3C-Di7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

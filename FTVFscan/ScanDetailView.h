@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *appendInfo2Label;   // 付加情報２表示領域
 @property (strong, nonatomic) UIImage *queryImage;                  // クエリ画像
 @property (strong, nonatomic) IBOutlet UIImageView *dotImg;
+@property (strong, nonatomic) IBOutlet UILabel *endsymLabel;
 @property (nonatomic) BOOL isScanHit;                               // スキャンヒットフラグ（ヒット表示中／失敗・ヒット無し表示中）
 
 -(void)initComponent;
