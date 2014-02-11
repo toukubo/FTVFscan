@@ -63,18 +63,43 @@
     
     // クエリ画像を保持
     _queryImage = queryImage;
+    brand_slug = @"";
     
     // GAZIRU検索失敗の場合
     if (searchResult == nil) {
         // GAZIRU検索失敗を表示する
         
         //[_appendInfo1Label setText:NSLocalizedString(@"label_camera_result_connection_failed", @"")];
+        if (dotUpdateTimer == nil)
+        {
+            dotUpdateTimer =
+            [NSTimer
+             scheduledTimerWithTimeInterval:0.1
+             target:self
+             selector:@selector(updateDotProgress:)
+             userInfo:nil
+             repeats:YES];
+            _dotImg.hidden = NO;
+        }
+        [_appendInfo1Label setText:@""];
         [_appendInfo2Label setText:@""];
     }
     // GAZIRU検索ヒット無しの場合
     else if ([searchResult count] <= 0) {
+        if (dotUpdateTimer == nil)
+        {
+            dotUpdateTimer =
+            [NSTimer
+             scheduledTimerWithTimeInterval:0.1
+             target:self
+             selector:@selector(updateDotProgress:)
+             userInfo:nil
+             repeats:YES];
+            _dotImg.hidden = NO;
+        }
         // 再スキャンメッセージを表示する
         //[_appendInfo1Label setText:NSLocalizedString(@"label_camera_result_defalt", @"")];
+        [_appendInfo1Label setText:@""];
         [_appendInfo2Label setText:@""];
     }
     // GAZIRU検索ヒットした場合
@@ -97,10 +122,12 @@
         _dotImg.hidden = YES;
 
         // スキャン結果のラベル表示する
-        [_appendInfo1Label setText:[NSString stringWithFormat:@"%@ %@",
+        [_appendInfo1Label setText:[NSString stringWithFormat:@"%@ %@ >",
                                     NSLocalizedString(@"label_camera_result_append_info1", @""),
                                     [displayResult objectAtIndex:0]]];
-        [_appendInfo2Label setText:[NSString stringWithFormat:@"%@ %@",
+        brand_slug = [displayResult objectAtIndex:0];
+        
+        [_appendInfo2Label setText:[NSString stringWithFormat:@"%@ %@ >",
                                     NSLocalizedString(@"label_camera_result_append_info2", @""),
                                     [displayResult objectAtIndex:1]]];
         

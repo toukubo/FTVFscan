@@ -578,10 +578,11 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
             }
             
             for (int i = 0; i < TEST_TIME; i++) {
-                NSString *brand_slug = [FTVImageProcEngine executeApi:image];
+                NSString *brand_slug = scanDetailView->brand_slug;
                 
                 NSData *imageData = UIImagePNGRepresentation(image);
                 
+                NSLog(@"brand_slug : %s", brand_slug);
                 DLog(@"image data size - %d KB", imageData.length / 1024);
                 
                 if (IsEmpty(brand_slug) || [brand_slug isEqualToString:@"failure"]) {

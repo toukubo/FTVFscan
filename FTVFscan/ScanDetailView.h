@@ -11,7 +11,10 @@
 @interface ScanDetailView : UIView
 {
     NSTimer *dotUpdateTimer;
+    @public
+    NSString *brand_slug;
 }
+
 @property (strong, nonatomic) IBOutlet UIButton *detailButton;       // 詳細領域ボタン
 @property (strong, nonatomic) IBOutlet UILabel *appendInfo1Label;   // 付加情報１表示領域
 @property (strong, nonatomic) IBOutlet UILabel *appendInfo2Label;   // 付加情報２表示領域
