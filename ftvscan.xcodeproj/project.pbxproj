@@ -197,14 +197,14 @@
 		47C61B941824181E00DF9125 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		62E03682EDFA4EAAB4576DB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6623456D18A7E057009CEA6E /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot.png; sourceTree = "<group>"; };
-		8465C63717F5D1B500A00460 /* FTVFscan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FTVFscan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8465C63717F5D1B500A00460 /* ftvscan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ftvscan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8465C63A17F5D1B500A00460 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8465C63C17F5D1B500A00460 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8465C63E17F5D1B500A00460 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		8465C64217F5D1B500A00460 /* FTVFscan-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FTVFscan-Info.plist"; sourceTree = "<group>"; };
+		8465C64217F5D1B500A00460 /* ftvscan-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ftvscan-Info.plist"; sourceTree = "<group>"; };
 		8465C64417F5D1B500A00460 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8465C64617F5D1B500A00460 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		8465C64817F5D1B500A00460 /* FTVFscan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FTVFscan-Prefix.pch"; sourceTree = "<group>"; };
+		8465C64817F5D1B500A00460 /* ftvscan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ftvscan-Prefix.pch"; sourceTree = "<group>"; };
 		8465C64917F5D1B500A00460 /* FTVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTVAppDelegate.h; sourceTree = "<group>"; };
 		8465C64A17F5D1B500A00460 /* FTVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTVAppDelegate.m; sourceTree = "<group>"; };
 		8465C64F17F5D1B500A00460 /* FTVTourViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTVTourViewController.h; sourceTree = "<group>"; };
@@ -212,9 +212,9 @@
 		8465C65217F5D1B500A00460 /* FTVScansViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTVScansViewController.h; sourceTree = "<group>"; };
 		8465C65317F5D1B500A00460 /* FTVScansViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTVScansViewController.m; sourceTree = "<group>"; };
 		8465C65517F5D1B500A00460 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		8465C65B17F5D1B600A00460 /* FTVFscanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTVFscanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8465C65B17F5D1B600A00460 /* ftvscanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ftvscanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8465C65C17F5D1B600A00460 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		8465C66417F5D1B600A00460 /* FTVFscanTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FTVFscanTests-Info.plist"; sourceTree = "<group>"; };
+		8465C66417F5D1B600A00460 /* ftvscanTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ftvscanTests-Info.plist"; sourceTree = "<group>"; };
 		8465C66617F5D1B600A00460 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8465C66817F5D1B600A00460 /* FTVFscanTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTVFscanTests.m; sourceTree = "<group>"; };
 		8465C67217F5D69300A00460 /* FTVCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVCameraViewController.h; sourceTree = "<group>"; };
@@ -407,8 +407,8 @@
 		8465C63817F5D1B500A00460 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8465C63717F5D1B500A00460 /* FTVFscan.app */,
-				8465C65B17F5D1B600A00460 /* FTVFscanTests.xctest */,
+				8465C63717F5D1B500A00460 /* ftvscan.app */,
+				8465C65B17F5D1B600A00460 /* ftvscanTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -476,11 +476,11 @@
 			isa = PBXGroup;
 			children = (
 				39153DB0182259E100F3C9D0 /* Resources */,
-				8465C64217F5D1B500A00460 /* FTVFscan-Info.plist */,
+				8465C64217F5D1B500A00460 /* ftvscan-Info.plist */,
 				3964FC55182A6D590035B187 /* MainStoryboard.storyboard */,
 				8465C64317F5D1B500A00460 /* InfoPlist.strings */,
 				8465C64617F5D1B500A00460 /* main.m */,
-				8465C64817F5D1B500A00460 /* FTVFscan-Prefix.pch */,
+				8465C64817F5D1B500A00460 /* ftvscan-Prefix.pch */,
 				4756BE2E181EA80500B39EB7 /* Const.h */,
 				39E32CAE181F990B009C911F /* Common.h */,
 				3964FC5B182A6ECE0035B187 /* Localizable.strings */,
@@ -500,7 +500,7 @@
 		8465C66317F5D1B600A00460 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8465C66417F5D1B600A00460 /* FTVFscanTests-Info.plist */,
+				8465C66417F5D1B600A00460 /* ftvscanTests-Info.plist */,
 				8465C66517F5D1B600A00460 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -722,9 +722,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8465C63617F5D1B500A00460 /* FTVFscan */ = {
+		8465C63617F5D1B500A00460 /* ftvscan */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8465C66C17F5D1B600A00460 /* Build configuration list for PBXNativeTarget "FTVFscan" */;
+			buildConfigurationList = 8465C66C17F5D1B600A00460 /* Build configuration list for PBXNativeTarget "ftvscan" */;
 			buildPhases = (
 				AD63253B88FE46828273FB6D /* Check Pods Manifest.lock */,
 				8465C63317F5D1B500A00460 /* Sources */,
@@ -736,14 +736,14 @@
 			);
 			dependencies = (
 			);
-			name = FTVFscan;
+			name = ftvscan;
 			productName = FTVFscan;
-			productReference = 8465C63717F5D1B500A00460 /* FTVFscan.app */;
+			productReference = 8465C63717F5D1B500A00460 /* ftvscan.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8465C65A17F5D1B600A00460 /* FTVFscanTests */ = {
+		8465C65A17F5D1B600A00460 /* ftvscanTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8465C66F17F5D1B600A00460 /* Build configuration list for PBXNativeTarget "FTVFscanTests" */;
+			buildConfigurationList = 8465C66F17F5D1B600A00460 /* Build configuration list for PBXNativeTarget "ftvscanTests" */;
 			buildPhases = (
 				8465C65717F5D1B600A00460 /* Sources */,
 				8465C65817F5D1B600A00460 /* Frameworks */,
@@ -754,9 +754,9 @@
 			dependencies = (
 				8465C66117F5D1B600A00460 /* PBXTargetDependency */,
 			);
-			name = FTVFscanTests;
+			name = ftvscanTests;
 			productName = FTVFscanTests;
-			productReference = 8465C65B17F5D1B600A00460 /* FTVFscanTests.xctest */;
+			productReference = 8465C65B17F5D1B600A00460 /* ftvscanTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -777,7 +777,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8465C63217F5D1B500A00460 /* Build configuration list for PBXProject "FTVFscan" */;
+			buildConfigurationList = 8465C63217F5D1B500A00460 /* Build configuration list for PBXProject "ftvscan" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -791,8 +791,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8465C63617F5D1B500A00460 /* FTVFscan */,
-				8465C65A17F5D1B600A00460 /* FTVFscanTests */,
+				8465C63617F5D1B500A00460 /* ftvscan */,
+				8465C65A17F5D1B600A00460 /* ftvscanTests */,
 			);
 		};
 /* End PBXProject section */
@@ -953,7 +953,7 @@
 /* Begin PBXTargetDependency section */
 		8465C66117F5D1B600A00460 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8465C63617F5D1B500A00460 /* FTVFscan */;
+			target = 8465C63617F5D1B500A00460 /* ftvscan */;
 			targetProxy = 8465C66017F5D1B600A00460 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1084,8 +1084,8 @@
 					"$(SRCROOT)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FTVFscan/FTVFscan-Prefix.pch";
-				INFOPLIST_FILE = "FTVFscan/FTVFscan-Info.plist";
+				GCC_PREFIX_HEADER = "FTVFscan/ftvscan-Prefix.pch";
+				INFOPLIST_FILE = "FTVFscan/ftvscan-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -1111,7 +1111,7 @@
 					"-lstdc++",
 					"-all_load",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ftvscan;
 				PROVISIONING_PROFILE = "75D2BEE6-52D6-4A61-AA07-C6AB6E781CEC";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
@@ -1137,8 +1137,8 @@
 					"$(SRCROOT)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FTVFscan/FTVFscan-Prefix.pch";
-				INFOPLIST_FILE = "FTVFscan/FTVFscan-Info.plist";
+				GCC_PREFIX_HEADER = "FTVFscan/ftvscan-Prefix.pch";
+				INFOPLIST_FILE = "FTVFscan/ftvscan-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -1164,7 +1164,7 @@
 					"-lstdc++",
 					"-all_load",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ftvscan;
 				PROVISIONING_PROFILE = "75D2BEE6-52D6-4A61-AA07-C6AB6E781CEC";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
@@ -1187,8 +1187,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "FTVFscanTests/FTVFscanTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "FTVFscanTests/ftvscanTests-Info.plist";
+				PRODUCT_NAME = ftvscanTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1205,8 +1205,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FTVFscan/FTVFscan-Prefix.pch";
-				INFOPLIST_FILE = "FTVFscanTests/FTVFscanTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "FTVFscanTests/ftvscanTests-Info.plist";
+				PRODUCT_NAME = ftvscanTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1215,7 +1215,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8465C63217F5D1B500A00460 /* Build configuration list for PBXProject "FTVFscan" */ = {
+		8465C63217F5D1B500A00460 /* Build configuration list for PBXProject "ftvscan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8465C66A17F5D1B600A00460 /* Debug */,
@@ -1224,7 +1224,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8465C66C17F5D1B600A00460 /* Build configuration list for PBXNativeTarget "FTVFscan" */ = {
+		8465C66C17F5D1B600A00460 /* Build configuration list for PBXNativeTarget "ftvscan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8465C66D17F5D1B600A00460 /* Debug */,
@@ -1233,7 +1233,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8465C66F17F5D1B600A00460 /* Build configuration list for PBXNativeTarget "FTVFscanTests" */ = {
+		8465C66F17F5D1B600A00460 /* Build configuration list for PBXNativeTarget "ftvscanTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8465C67017F5D1B600A00460 /* Debug */,
