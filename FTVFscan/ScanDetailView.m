@@ -80,7 +80,7 @@
              userInfo:nil
              repeats:YES];
             _dotImg.hidden = NO;
-            _endsymLabel.hidden = YES;
+            _endsymImg.hidden = YES;
         }
         [_appendInfo1Label setText:@""];
         [_appendInfo2Label setText:@""];
@@ -97,7 +97,7 @@
              userInfo:nil
              repeats:YES];
             _dotImg.hidden = NO;
-            _endsymLabel.hidden = YES;
+            _endsymImg.hidden = YES;
         }
         // 再スキャンメッセージを表示する
         //[_appendInfo1Label setText:NSLocalizedString(@"label_camera_result_defalt", @"")];
@@ -122,7 +122,7 @@
             dotUpdateTimer = nil;
         }
         _dotImg.hidden = YES;
-        _endsymLabel.hidden = NO;
+        _endsymImg.hidden = NO;
 
         // スキャン結果のラベル表示する
         [_appendInfo1Label setText:[NSString stringWithFormat:@"%@",
