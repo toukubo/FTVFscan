@@ -15,7 +15,7 @@
     #define BASEURL @"http://fscan.fashiontv.co.jp/fscan-web-staging/"
 #endif
 
-#define CONTENTBASE @"http://fscan.fashiontv.co.jp/fdbdev/"
+#define CONTENTBASE @"http://fscan.fashiontv.co.jp/fdbdev.en/"
 
 #define IPHONE_HEIGHT 480
 #define MAX_PAGE      10

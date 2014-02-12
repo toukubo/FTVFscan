@@ -328,7 +328,7 @@
         self.webView.multipleTouchEnabled = NO;
 
         if ([urlString hasPrefix:CONTENTBASE]) {
-            if ([urlString isEqualToString:@"http://fscan.fashiontv.co.jp/fdbdev/"]) {
+            if ([urlString isEqualToString:@"http://fscan.fashiontv.co.jp/fdbdev.en/"]) {
                 [super setTitleNavigation:self];
             }else if ([urlString hasPrefix:[ CONTENTBASE stringByAppendingString:@"category/brandlogo_"]]) {
                 [super setBackCameraMenuNavigations:self];
@@ -344,7 +344,7 @@
         }else if ([urlString hasPrefix:[ BASEURL stringByAppendingString:@"/scan/list"]]) {
             [super setHomeCameraMenuNavigations:self];
 
-        }else if ([urlString hasPrefix:@"http://zxc.cz/fdbdev"]) {
+        }else if ([urlString hasPrefix:@"http://zxc.cz/fdbdev.en"]) {
             [super setHomeCameraMenuNavigations:self];
             
         }else if ([urlString hasPrefix:@"http://fashiontv.co.jp//www.youtube.com"]) {

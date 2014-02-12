@@ -57,7 +57,7 @@
                 [urlHolderArray removeLastObject];
                 
                 NSString *urlString = [urlHolderArray lastObject];
-                if([urlString hasPrefix:@"http://fscan.fashiontv.co.jp/fdbdev/brandlogo_"]) {
+                if([urlString hasPrefix:@"http://fscan.fashiontv.co.jp/fdbdev.en/brandlogo_"]) {
                     [urlHolderArray removeLastObject];
                     skipUrl = YES;
                     break;
@@ -284,7 +284,7 @@
         }else if ([urlString hasPrefix:[ BASEURL stringByAppendingString:@"/scan/list"]]) {
             [super setHomeCameraMenuNavigations:self];
             
-        }else if ([urlString hasPrefix:@"http://zxc.cz/fdbdev"]) {
+        }else if ([urlString hasPrefix:@"http://zxc.cz/fdbdev.en"]) {
             [super setHomeCameraMenuNavigations:self];
             
         }else if ([urlString hasPrefix:@"http://fashiontv.co.jp//www.youtube.com"]) {
