@@ -73,7 +73,7 @@
 -(void)setMenuButton:(UIView *)view{
     UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(screenWidth - 40, 2, 40, 40)];
     [menuButton setImageEdgeInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
-    [menuButton setImage:[UIImage imageNamed:@"menu.png"] forState:UIControlStateNormal];
+    [menuButton setImage:[UIImage imageNamed:@"draw_white.png"] forState:UIControlStateNormal];
     [menuButton addTarget:self action:@selector(openMenu) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:menuButton];
 }

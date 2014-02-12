@@ -126,6 +126,8 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     });
     
     [super viewDidAppear:animated];
+    
+    
 
 }
 
@@ -617,7 +619,6 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
                                                    FTVDelayJobWebViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVDelayJobWebViewController"];
                                                    controller.redirectUrl = redirectUrl;
                                                    controller.ShowResultPage = YES;
-                                                   
                                                    [menuController setRootController:controller animated:YES];
                                                    [menuController showRootController:YES];
                                                }

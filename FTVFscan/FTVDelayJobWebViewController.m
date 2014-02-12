@@ -185,6 +185,9 @@
 {
 //    NSLog(@"webViewDidFinishLoad,,,");
     [self statusIndicatorHide];
+    if (ShowResultPage) {
+        [super setHomeCameraMenuNavigations:self];
+    }
     isGoBack = NO;
     
     for (id subview in self.webView.subviews)
@@ -351,6 +354,7 @@
                 [super setBackCameraNavigations:self];
                 self.webView.scalesPageToFit = YES;
                 self.webView.multipleTouchEnabled = YES;
+                
 
             }
         }
@@ -360,6 +364,7 @@
         }
         
     }
+    
     return NO;
 }
 
