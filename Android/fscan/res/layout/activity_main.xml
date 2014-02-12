@@ -1,18 +1,54 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:orientation="vertical"
-              android:weightSum="8">
+              android:weightSum="10"
+              android:background="@android:color/black"
+              android:id="@+id/rootContainer">
+              
+   <!--  <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        
+        
+        
+        <include layout="@layout/layout_header"></include>
+         
+    </LinearLayout>
+ -->
+    
+                
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10">
 
-    <WebView android:id="@+id/main"
-             android:layout_width="fill_parent"
-             android:layout_height="0dp"
-             android:text="aaa"
-             android:layout_weight="7"/>
+        <WebView android:id="@+id/mainWebView"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"/>
 
-    <WebView android:id="@+id/navigation"
-             android:layout_width="fill_parent"
-             android:layout_height="0dp"
-             android:layout_weight="1"/>
+        <RelativeLayout android:id="@+id/maskView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#CC111111">
+
+            <com.todddavies.components.progressbar.ProgressWheel
+                    android:id="@+id/progressBar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    ProgressWheel:text=""
+                    ProgressWheel:textColor="#222222"
+                    ProgressWheel:textSize="14sp"
+                    ProgressWheel:rimColor="#4000"
+                    ProgressWheel:barLength="30dp"
+                    ProgressWheel:barColor="#BBB"
+                    ProgressWheel:barWidth="4dp"
+                    ProgressWheel:rimWidth="1dp"
+                    ProgressWheel:spinSpeed="30dp"
+                    ProgressWheel:delayMillis="75"
+                    android:layout_centerInParent="true"/>
+        </RelativeLayout>
+    </RelativeLayout>
 </LinearLayout>
 

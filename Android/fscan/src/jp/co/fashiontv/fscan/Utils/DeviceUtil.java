@@ -1,8 +1,11 @@
 package jp.co.fashiontv.fscan.Utils;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 import jp.co.fashiontv.fscan.Core.FTVApplication;
 import jp.co.fashiontv.fscan.R;
 
@@ -28,7 +31,7 @@ public class DeviceUtil {
         // using Environment.getExternalStorageState() before doing this.
 
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_PICTURES), FTVApplication.getContext().getString(R.string.app_name));
+            Environment.DIRECTORY_PICTURES), FTVApplication.getInstance().getString(R.string.app_name));
 
         // This location works best if you want the created images to be shared
         // between applications and persist after your app has been uninstalled.
@@ -59,8 +62,25 @@ public class DeviceUtil {
 
     public static String photoDirectory(){
         String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) +
-            "/" + FTVApplication.getContext().getString(R.string.app_name);
+            "/" + FTVApplication.getInstance().getString(R.string.app_name);
 
         return path;
+    }
+
+    /**
+     * Check device has camera or not
+     * @param context application context
+     * @return true/false
+     */
+    public static boolean checkCameraHardware(Context context) {
+        if (context.getPackageManager().hasSystemFeature(
+            PackageManager.FEATURE_CAMERA)) {
+            // this device has a camera
+            return true;
+        } else {
+            // no camera on this device
+            Toast.makeText(context, context.getString(R.string.no_camera), Toast.LENGTH_SHORT);
+            return false;
+        }
     }
 }

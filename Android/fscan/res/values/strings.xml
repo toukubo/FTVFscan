@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">fscan</string>
+    <string name="app_name">fashiontv</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     <string name="splash_activity">fscan.Splash</string>
     <string name="main_activity">fscan.Main</string>
     <string name="info_title_check_credential">Check Credential</string>
     <string name="info_check_credential">Checking creadential</string>
+    <string name="no_camera">No camera detected!</string>
+    <string name="cannot_read_sd_card">Can not access external SD card!</string>
+    <string name="failed_create_album">Failed to create album</string>
 
 </resources>

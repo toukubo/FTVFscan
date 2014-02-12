@@ -1,0 +1,30 @@
+FTV.f.scan Android
+
+Workflow
+--------
+Refer to http://cl.ly/1s0Q1T1K1W20 for detail workflow.
+
+Tasks
+-----
+Pages & Misc
+parallel with navigation,should never hard code the screen resolution. need auto fit the screen. make sure it works with Galaxy S series (including notes) at least.
+  cover page (scan / tour / index) with new remote url Alsor Zhou · Mon, Dec 2
+  customize loading view as ios for all HUD showing Alsor Zhou · Sun, Dec 1
+  Login & Register - remove old login & register (new spec) Alsor Zhou · Sun, Dec 1
+  use two steps post as ios Alsor Zhou · Sat, Nov 30
+  image recognized FAILED result page Alsor Zhou · Thu, Dec 5
+  image recognized SUCCESS result page Alsor Zhou · Thu, Dec 5
+  handle hardware key in pages 1 comment  Alsor Zhou · Fri, Dec 6
+  use testflight for beta deploy Mon, Dec 2
+Add a to-do
+Camera & Gallery（FTVCamera） 2 comments
+can be parallel with navigation, should never hard code the screen resolution. need auto fit the screen. make sure it works with Galaxy S series (including notes) at least.
+  High - Customize camera (shutter button, and non full screen camera preview) Ankit Kumar · Mon, Dec 2
+  High - Customize gallery Tue, Dec 3
+  Improve camera speed (performance spec) Thu, Dec 5
+Add a to-do
+Navigation
+Drawer and Top bar, better to finish by same person.should never hard code the screen resolution. need auto fit the screen. make sure it works with Galaxy S series (including notes) at least.
+  [CP] use menudrawerto replace the old “tab bar” styled view hierarchy 2 comments  Tue, Dec 3
+DeleteEdit
+  [CP] customize top bar (actionbar) 
