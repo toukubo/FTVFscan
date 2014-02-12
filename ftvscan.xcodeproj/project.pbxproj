@@ -51,6 +51,7 @@
 		477045DD18428CBD00155D36 /* 240head.png in Resources */ = {isa = PBXBuildFile; fileRef = 477045DC18428CBD00155D36 /* 240head.png */; };
 		477045DF18428DE800155D36 /* 254head.png in Resources */ = {isa = PBXBuildFile; fileRef = 477045DE18428DE800155D36 /* 254head.png */; };
 		6623456E18A7E057009CEA6E /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 6623456D18A7E057009CEA6E /* dot.png */; };
+		66B13D4218AB4AB7007D0A2B /* greater_sym.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B13D4118AB4AB7007D0A2B /* greater_sym.png */; };
 		809377F4B37548E694C80943 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17EB1EFD5A21421C90C01507 /* libPods.a */; };
 		8465C63B17F5D1B500A00460 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63A17F5D1B500A00460 /* Foundation.framework */; };
 		8465C63D17F5D1B500A00460 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8465C63C17F5D1B500A00460 /* CoreGraphics.framework */; };
@@ -197,6 +198,7 @@
 		47C61B941824181E00DF9125 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		62E03682EDFA4EAAB4576DB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6623456D18A7E057009CEA6E /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot.png; sourceTree = "<group>"; };
+		66B13D4118AB4AB7007D0A2B /* greater_sym.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greater_sym.png; sourceTree = "<group>"; };
 		8465C63717F5D1B500A00460 /* ftvscan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ftvscan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8465C63A17F5D1B500A00460 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8465C63C17F5D1B500A00460 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -685,6 +687,7 @@
 		DEB4B8441821A0AB0050FA49 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				66B13D4118AB4AB7007D0A2B /* greater_sym.png */,
 				6623456D18A7E057009CEA6E /* dot.png */,
 				22A1314918437A70008D3669 /* scan.png */,
 				477045DE18428DE800155D36 /* 254head.png */,
@@ -823,6 +826,7 @@
 				DEB4B8501821A0D70050FA49 /* bookmark-icon@2x.png in Resources */,
 				477045DD18428CBD00155D36 /* 240head.png in Resources */,
 				DEED1713183DE3E500FDC8C8 /* drawer-history-label.png in Resources */,
+				66B13D4218AB4AB7007D0A2B /* greater_sym.png in Resources */,
 				DEED1711183DE3E500FDC8C8 /* drawer-album-label.png in Resources */,
 				23DC1BD01840DF2500B9FAEA /* title.png in Resources */,
 				DEB4B8511821A0D70050FA49 /* camera-icon.png in Resources */,
