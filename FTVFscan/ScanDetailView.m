@@ -126,11 +126,12 @@
 
         // スキャン結果のラベル表示する
         [_appendInfo1Label setText:[NSString stringWithFormat:@"%@",
-                                    [displayResult objectAtIndex:0]]];
+                                    [displayResult objectAtIndex:1]]];
         brand_slug = [displayResult objectAtIndex:0];
         
-        [_appendInfo2Label setText:[NSString stringWithFormat:@"%@",
-                                    [displayResult objectAtIndex:1]]];
+//        [_appendInfo2Label setText:[NSString stringWithFormat:@"%@",
+//                                    [displayResult objectAtIndex:1]]];
+        [_appendInfo2Label setText:@""];
         
         NSLog(@"Result 1 :----- %@", [displayResult objectAtIndex:0]);
         NSLog(@"Result 2 :----- %@", [displayResult objectAtIndex:1]);
