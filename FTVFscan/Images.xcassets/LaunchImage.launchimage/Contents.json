@@ -12,7 +12,7 @@
       "extent" : "full-screen",
       "idiom" : "iphone",
       "subtype" : "retina4",
-      "filename" : "splash-11-1.png",
+      "filename" : "spalsh_i640.png",
       "minimum-system-version" : "7.0",
       "orientation" : "portrait",
       "scale" : "2x"
@@ -22,7 +22,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "splash768.png",
+      "filename" : "spalsh_i768.png",
       "scale" : "1x"
     },
     {
@@ -30,7 +30,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "splash1536-1.png",
+      "filename" : "spalsh_i1536.png",
       "scale" : "2x"
     },
     {
@@ -44,14 +44,14 @@
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
-      "filename" : "splash640-1.png",
+      "filename" : "spalsh_i640_960.png",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
-      "filename" : "splash-4.png",
+      "filename" : "spalsh_i640-1.png",
       "subtype" : "retina4",
       "scale" : "2x"
     },
@@ -59,28 +59,28 @@
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
-      "filename" : "splash1004.png",
+      "filename" : "spalsh_i768-2.png",
       "scale" : "1x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "full-screen",
-      "filename" : "splash768-1.png",
+      "filename" : "spalsh_i768-1.png",
       "scale" : "1x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
-      "filename" : "splash2008.png",
+      "filename" : "spalsh_i1536-2.png",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "full-screen",
-      "filename" : "splash1536-2.png",
+      "filename" : "spalsh_i1536-1.png",
       "scale" : "2x"
     }
   ],
