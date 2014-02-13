@@ -1081,8 +1081,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: JFCC CO.,LTD. (6367C7KA72)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JFCC CO.,LTD. (6367C7KA72)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Takahiro Fujikawa (EVJNX229VX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takahiro Fujikawa (EVJNX229VX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1116,7 +1116,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = ftvscan;
-				PROVISIONING_PROFILE = "8262C852-90DC-4E82-A3C9-1E4E6794DD48";
+				PROVISIONING_PROFILE = "97A517D9-CA25-4403-AF10-DEE4AC4DD9DB";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -1134,8 +1134,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: JFCC CO.,LTD. (6367C7KA72)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JFCC CO.,LTD. (6367C7KA72)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Takahiro Fujikawa (EVJNX229VX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takahiro Fujikawa (EVJNX229VX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1169,7 +1169,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = ftvscan;
-				PROVISIONING_PROFILE = "8262C852-90DC-4E82-A3C9-1E4E6794DD48";
+				PROVISIONING_PROFILE = "97A517D9-CA25-4403-AF10-DEE4AC4DD9DB";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
