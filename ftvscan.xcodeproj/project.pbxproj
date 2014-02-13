@@ -199,7 +199,7 @@
 		62E03682EDFA4EAAB4576DB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6623456D18A7E057009CEA6E /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot.png; sourceTree = "<group>"; };
 		66B13D4118AB4AB7007D0A2B /* greater_sym.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greater_sym.png; sourceTree = "<group>"; };
-		8465C63717F5D1B500A00460 /* ftvscan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ftvscan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8465C63717F5D1B500A00460 /* f.scan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = f.scan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8465C63A17F5D1B500A00460 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8465C63C17F5D1B500A00460 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8465C63E17F5D1B500A00460 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -409,7 +409,7 @@
 		8465C63817F5D1B500A00460 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8465C63717F5D1B500A00460 /* ftvscan.app */,
+				8465C63717F5D1B500A00460 /* f.scan.app */,
 				8465C65B17F5D1B600A00460 /* ftvscanTests.xctest */,
 			);
 			name = Products;
@@ -725,9 +725,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8465C63617F5D1B500A00460 /* ftvscan */ = {
+		8465C63617F5D1B500A00460 /* f.scan */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8465C66C17F5D1B600A00460 /* Build configuration list for PBXNativeTarget "ftvscan" */;
+			buildConfigurationList = 8465C66C17F5D1B600A00460 /* Build configuration list for PBXNativeTarget "f.scan" */;
 			buildPhases = (
 				AD63253B88FE46828273FB6D /* Check Pods Manifest.lock */,
 				8465C63317F5D1B500A00460 /* Sources */,
@@ -739,9 +739,9 @@
 			);
 			dependencies = (
 			);
-			name = ftvscan;
+			name = f.scan;
 			productName = FTVFscan;
-			productReference = 8465C63717F5D1B500A00460 /* ftvscan.app */;
+			productReference = 8465C63717F5D1B500A00460 /* f.scan.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8465C65A17F5D1B600A00460 /* ftvscanTests */ = {
@@ -794,7 +794,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8465C63617F5D1B500A00460 /* ftvscan */,
+				8465C63617F5D1B500A00460 /* f.scan */,
 				8465C65A17F5D1B600A00460 /* ftvscanTests */,
 			);
 		};
@@ -957,7 +957,7 @@
 /* Begin PBXTargetDependency section */
 		8465C66117F5D1B600A00460 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8465C63617F5D1B500A00460 /* ftvscan */;
+			target = 8465C63617F5D1B500A00460 /* f.scan */;
 			targetProxy = 8465C66017F5D1B600A00460 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1009,8 +1009,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Takahiro Fujikawa (EVJNX229VX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takahiro Fujikawa (EVJNX229VX)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: JFCC CO.,LTD. (6367C7KA72)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JFCC CO.,LTD. (6367C7KA72)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1028,7 +1028,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "F8E71171-32D0-4340-A01D-0684CFAC9DDD";
+				PROVISIONING_PROFILE = "D60B168D-7FA4-4EA9-BB98-84CDF3EDAAA1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1050,8 +1050,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Takahiro Fujikawa (EVJNX229VX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: JFCC CO.,LTD. (6367C7KA72)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JFCC CO.,LTD. (6367C7KA72)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1063,7 +1063,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "F8E71171-32D0-4340-A01D-0684CFAC9DDD";
+				PROVISIONING_PROFILE = "D60B168D-7FA4-4EA9-BB98-84CDF3EDAAA1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1081,7 +1081,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: JFCC CO.,LTD. (6367C7KA72)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JFCC CO.,LTD. (6367C7KA72)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1115,8 +1115,8 @@
 					"-lstdc++",
 					"-all_load",
 				);
-				PRODUCT_NAME = ftvscan;
-				PROVISIONING_PROFILE = "8262C852-90DC-4E82-A3C9-1E4E6794DD48";
+				PRODUCT_NAME = f.scan;
+				PROVISIONING_PROFILE = "D60B168D-7FA4-4EA9-BB98-84CDF3EDAAA1";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -1134,7 +1134,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: JFCC CO.,LTD. (6367C7KA72)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JFCC CO.,LTD. (6367C7KA72)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1168,8 +1168,8 @@
 					"-lstdc++",
 					"-all_load",
 				);
-				PRODUCT_NAME = ftvscan;
-				PROVISIONING_PROFILE = "8262C852-90DC-4E82-A3C9-1E4E6794DD48";
+				PRODUCT_NAME = f.scan;
+				PROVISIONING_PROFILE = "D60B168D-7FA4-4EA9-BB98-84CDF3EDAAA1";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -1228,7 +1228,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8465C66C17F5D1B600A00460 /* Build configuration list for PBXNativeTarget "ftvscan" */ = {
+		8465C66C17F5D1B600A00460 /* Build configuration list for PBXNativeTarget "f.scan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8465C66D17F5D1B600A00460 /* Debug */,
