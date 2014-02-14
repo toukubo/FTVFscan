@@ -59,7 +59,7 @@
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
-      "filename" : "spalsh_i768-2.png",
+      "filename" : "spalsh_i1004.png",
       "scale" : "1x"
     },
     {
@@ -73,7 +73,7 @@
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
-      "filename" : "spalsh_i1536-2.png",
+      "filename" : "spalsh_i2008.png",
       "scale" : "2x"
     },
     {
