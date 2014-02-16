@@ -12,7 +12,9 @@ import jp.co.fashiontv.fscan.Common.PageStartedEvent;
 import jp.co.fashiontv.fscan.Common.ReceivedErrorEvent;
 import jp.co.fashiontv.fscan.Gaziru.GaziruSearchParams;
 import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
+import jp.co.fashiontv.fscan.Listener.PageEventListener;
 import jp.co.fashiontv.fscan.Utils.FTVUtil;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -42,7 +44,8 @@ import com.todddavies.components.progressbar.ProgressWheel;
  * <p/>
  * provide the universal webview for all of the web part display.
  */
-public class FTVMainActivity extends BaseActivity {
+@SuppressLint("SetJavaScriptEnabled")
+public class FTVMainActivity extends BaseActivity implements PageEventListener {
 
 	GaziruSearchParams gaziruSearchParams;
 
@@ -72,17 +75,11 @@ public class FTVMainActivity extends BaseActivity {
 			webViewClient.shouldOverrideUrlLoading(mainWebView, url);	
 			//	showToast("onNewIntent");
 		}
-
-
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		// requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-		//  setContentView(R.layout.activity_main);
 
 		TestFlight.passCheckpoint("FTVMainActivity - onCreate");
 
@@ -90,64 +87,43 @@ public class FTVMainActivity extends BaseActivity {
 
 		// assets/dic/subordinates is arrangement in local
 		FTVUtil.assets2Local(this);
-
-
+		
 		setupWebView();
 		setUpHeaderView();
+		
 		maskView = (RelativeLayout) findViewById(R.id.maskView);
 		progressWheel = (ProgressWheel) findViewById(R.id.progressBar);
 	}
 
-
-
-
 	private void setUpHeaderView() {
-
 		ImageView ivHome = (ImageView)findViewById(R.id.home);
 		ImageView ivCamera  = (ImageView)findViewById(R.id.camera);
 
-
 		ivCamera.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-			/*	Intent cameraIntent = new Intent(FTVMainActivity.this, CameraActivity.class);
-				startActivity(cameraIntent);
-*/
 				startActivityCamera();
-				
 			}
 		});
 
 		ivHome.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-
 				mainWebView.clearHistory();
 				mainWebView.clearCache(true);
 				webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlHome);
-
 			}
 		});
 
-
-
 		lvMenuDrawerItems.setOnItemClickListener(new OnItemClickListener() {
-
-
-
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
 
 				switch (position) {
 				case 0:
-
 					webViewClient.shouldOverrideUrlLoading(mainWebView, tourUrl);
 					slidingMenu.showContent();
-
-
 					break;
 				case 1:
 
@@ -157,8 +133,6 @@ public class FTVMainActivity extends BaseActivity {
 
 				case 2:
 					// code to open gallery
-
-
 					Intent galleryIntent = new Intent(
 							Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 					startActivityForResult(galleryIntent, FTVConstants.activityRequestCodeGallery);
@@ -175,9 +149,6 @@ public class FTVMainActivity extends BaseActivity {
 					break;
 				}
 			}
-
-
-
 		});
 	}
 
@@ -193,6 +164,7 @@ public class FTVMainActivity extends BaseActivity {
 		return true;
 	}
 
+	@SuppressWarnings("deprecation")
 	private void setupWebView() {
 		TestFlight.passCheckpoint("FTVMainActivity - setupWebView");
 		Log.d(TAG, "UUID - " + FTVUser.getID());
@@ -203,57 +175,11 @@ public class FTVMainActivity extends BaseActivity {
 		mainWebView.getSettings().setJavaScriptEnabled(true);
 		mainWebView.getSettings().setPluginState(PluginState.ON);
 		webViewClient = new FTVNavigatorWebClient(this, mainWebView);
+		webViewClient.setPageEventListener(this);
 		mainWebView.setWebViewClient(webViewClient);
 		mainWebView.setWebChromeClient(new WebChromeClient());
 		webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlHome);
 	}
-
-	//    private boolean checkLoginCredential() {
-	//        TestFlight.passCheckpoint("FTVMainActivity - checkLoginCredential");
-	//
-	//        String url = String.format("%s%s%s", FTVConstants.baseUrl, "registration/isRegistered.php?deviceid=", FTVUser.getID());
-	//
-	//        // start the progress dialog
-	//        progressDialog = new ProgressDialog(this);
-	//        progressDialog.setTitle(getString(R.string.info_title_check_credential));
-	//        progressDialog.setMessage(getString(R.string.info_check_credential));
-	//        progressDialog.setIndeterminate(true);
-	//        progressDialog.setCancelable(false);
-	//
-	//        // start another thread to check credential
-	//        AsyncHttpClient client = new AsyncHttpClient();
-	//        client.setTimeout(FTVConstants.httpTimeout);
-	//        client.get(url, new AsyncHttpResponseHandler() {
-	//            @Override
-	//            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-	//                super.onSuccess(statusCode, headers, responseBody);
-	//
-	//                progressDialog.dismiss();
-	//
-	//                String resp = new String(responseBody);
-	//                if (resp != null && resp.equals("true")) {
-	//                    Log.d(TAG, "Device already registered!!");
-	//                    setupWebView();
-	//
-	////                    startActivityCamera();
-	//                } else {
-	//                    showRegisterActivity();
-	//                }
-	//            }
-	//
-	//            @Override
-	//            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-	//                super.onFailure(statusCode, headers, responseBody, error);
-	//
-	//                Log.d(TAG, "check credential failed");
-	//
-	//                progressDialog.dismiss();
-	//            }
-	//        });
-	//
-	//        return true;
-	//    }
-
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -278,7 +204,6 @@ public class FTVMainActivity extends BaseActivity {
 				Log.e(TAG, "CAMERA - SHOULD NEVER REACH");
 			}
 		} else {
-			
 			if (requestCode == FTVConstants.activityRequestCodeGallery) {
 				// return from camera
 				if (resultCode == RESULT_OK) {
@@ -307,13 +232,11 @@ public class FTVMainActivity extends BaseActivity {
 			}
 			// never reach
 			
-			
 			Log.e(TAG, "onActivityResult SHOULD NEVER REACH");
 		}
 
 		super.onActivityResult(requestCode, resultCode, data);
 	}
-
 
 	@Override
 	protected void onResume() {
@@ -321,32 +244,8 @@ public class FTVMainActivity extends BaseActivity {
 		TestFlight.passCheckpoint("FTVMainActivity - onResume");
 
 		super.onResume();
-
-		//        if (stage == FTVConstants.activityRequestCodeCamera || stage == FTVConstants.activityRequestCodeGallery) {
-		//            Log.d(TAG, "return from camera/gallery");
-		//        } else {
-		//            Log.d(TAG, "need register check");
-		//            checkLoginCredential();
-		//        }
 	}
 	
-	
-	
-
-
-	/* @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        Toast.makeText(FTVMainActivity.this, "back", Toast.LENGTH_SHORT).show();
-    }
-	 */
-
-	// code for handling the back button
-
-	
-
-	// changes by ashu starts
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -361,61 +260,51 @@ public class FTVMainActivity extends BaseActivity {
 				}
 				return true;
 			}
-
 		}
-
 
 		return super.onKeyDown(keyCode, event);
 	}
-	// changes by ashu ends
 
 	/**
 	 * @param event
 	 */
-	public void onPageStartedEvent(PageStartedEvent event) {
+	public void onPageStarted() {
 		Log.d(TAG, "onPageStartedEvent");
 		maskView.setVisibility(View.VISIBLE);
 		progressWheel.spin();
 	}
 
-	public void onPageFinishedEvent(PageFinishedEvent event) {
+	public void onPageFinished() {
 		Log.d(TAG, "onPageFinishedEvent");
 		progressWheel.stopSpinning();
 		maskView.setVisibility(View.GONE);
 	}
 
-	public void onReceivedErrorEvent(ReceivedErrorEvent event) {
+	public void onPageReceivedError() {
 		Log.d(TAG, "onReceivedErrorEvent");
 		progressWheel.stopSpinning();
 		maskView.setVisibility(View.GONE);
 	}
 
+//	/**
+//	 * TODO: show register activity
+//	 */
+//	private void showRegisterActivity() {
+//		TestFlight.passCheckpoint("FTVMainActivity - showRegisterActivity");
+//
+//		String registerUrl = String.format("%s%s%s%s", FTVConstants.baseUrl,
+//				"registration/index.php?deviceid=", FTVUser.getID(), "&device_type=android");
+//
+//		Intent intent = new Intent(mContext, FTVWebViewActivity.class);
+//		intent.putExtra("url", registerUrl);
+//		startActivity(intent);
+//	}
+
 	/**
-	 * TODO: show register activity
-	 */
-	private void showRegisterActivity() {
-		TestFlight.passCheckpoint("FTVMainActivity - showRegisterActivity");
-
-		String registerUrl = String.format("%s%s%s%s", FTVConstants.baseUrl,
-				"registration/index.php?deviceid=", FTVUser.getID(), "&device_type=android");
-
-		Intent intent = new Intent(mContext, FTVWebViewActivity.class);
-		intent.putExtra("url", registerUrl);
-		startActivity(intent);
-	}
-
-	/**
-	 * TODO: start custom camera here
+	 * Start custom camera here
 	 */
 	public void startActivityCamera() {
 		TestFlight.passCheckpoint("FTVMainActivity - startActivityCamera");
-
-		//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		//        fileUri = DeviceUtil.getOutputMediaFileUri(DeviceUtil.MEDIA_TYPE_IMAGE);
-		//        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-		//
-		//        setStage(FTVConstants.activityRequestCodeCamera);
-		//        startActivityForResult(intent, FTVConstants.activityRequestCodeCamera);
 
 		Intent intent = new Intent(this, CameraActivity.class);
 		startActivityForResult(intent, FTVConstants.activityRequestCodeCamera);

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="jp.co.fashiontv.fscan"
-          android:versionCode="50"
-          android:versionName="1.0-PRE">
+          android:versionCode="61"
+          android:versionName="1.0">
 
     <uses-sdk android:minSdkVersion="10"
-              android:targetSdkVersion="17"/>
+              android:targetSdkVersion="19"/>
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -38,19 +38,18 @@
         <activity android:name=".Activities.FTVMainActivity"
                   android:label="@string/main_activity"
                   android:screenOrientation="portrait"
-                  android:launchMode="singleTask"
-                 
-                >
-        </activity>
+                  android:launchMode="singleTask"/>
 
         <activity android:name=".Activities.FTVWebViewActivity"
                   android:screenOrientation="portrait"
-                  android:launchMode="singleTask"
-                />
+                  android:launchMode="singleTask"/>
         
         <activity android:name=".Camera.CameraActivity"
                   android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
                   android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".Activities.ResultActivity"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>

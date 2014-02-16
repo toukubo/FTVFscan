@@ -11,6 +11,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import com.testflightapp.lib.TestFlight;
 import jp.co.fashiontv.fscan.Activities.FTVMainActivity;
+import jp.co.fashiontv.fscan.Listener.CameraViewListener;
+import jp.co.fashiontv.fscan.Listener.PageEventListener;
 
 import java.util.Hashtable;
 
@@ -25,6 +27,8 @@ public class FTVNavigatorWebClient extends WebViewClient {
     WebView webView;
     public static final int REQUEST_CODE = 0;
 
+    private PageEventListener mListener;
+    
     private Hashtable<String, String> attributeSet = new Hashtable<String, String>();
     public boolean needShowResultPage = false;
 
@@ -39,12 +43,20 @@ public class FTVNavigatorWebClient extends WebViewClient {
         }
     }
 
+    /**
+     * カメラプレビューデータ通知受信のリスナを設定する
+     * @param cameraViewListener セットするcameraViewListener
+     */
+    public void setPageEventListener(PageEventListener listener) {
+        mListener = listener;
+    }
+    
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
         super.onPageStarted(view, url, favicon);
 
         if (this.activity instanceof FTVMainActivity) {
-            ((FTVMainActivity)this.activity).onPageStartedEvent(null);
+        	mListener.onPageStarted();
         }
     }
 
@@ -53,7 +65,7 @@ public class FTVNavigatorWebClient extends WebViewClient {
         super.onPageFinished(view, url);
 
         if (this.activity instanceof FTVMainActivity) {
-            ((FTVMainActivity)this.activity).onPageFinishedEvent(null);
+        	mListener.onPageFinished();
         }
     }
 
@@ -63,7 +75,7 @@ public class FTVNavigatorWebClient extends WebViewClient {
         super.onReceivedError(view, errorCode, description, failingUrl);
 
         if (this.activity instanceof FTVMainActivity) {
-            ((FTVMainActivity)this.activity).onReceivedErrorEvent(null);
+        	mListener.onPageReceivedError();
         }
     }
 
