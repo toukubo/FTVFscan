@@ -11,6 +11,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+import com.testflightapp.lib.TestFlight;
+
 import jp.co.fashiontv.fscan.R;
 import jp.co.fashiontv.fscan.Activities.BaseActivity;
 import jp.co.fashiontv.fscan.Activities.FTVMainActivity;
@@ -145,6 +147,8 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
              @Override
              protected void onPostExecute(String result) {
                  Log.d(TAG, "onPostExecute() result = " + result);
+                 TestFlight.passCheckpoint("onPostExecute() result = " + result);
+                 
                  // 認証成功の場合
                  if (result.equals("0000")) {
                      mProgressBar.setVisibility(View.INVISIBLE);
@@ -175,6 +179,8 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
             Point cameraResolution = new Point();
             cameraResolution.x = cameraView.getPreviewSize().width;
             cameraResolution.y = cameraView.getPreviewSize().height;
+            
+            TestFlight.passCheckpoint("start Search Logic");
             startSearchLogic(data, cameraResolution);
         }
     }
@@ -213,7 +219,7 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
     @SuppressWarnings("unchecked")
     public void searchExecuted(List<SearchResult> searchResultList) {
         Log.d(TAG, "notifyPhotosearchExecuted() searchResultList = " + searchResultList);
-
+        TestFlight.passCheckpoint("notifyPhotosearchExecuted() searchResultList = " + searchResultList);
         // 追加情報をテキストに設定
         TextView resultText1 = (TextView)findViewById(R.id.result_text1);
         TextView resultText2 = (TextView)findViewById(R.id.result_text2);
@@ -236,6 +242,7 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
             resultView.setOnClickListener(ResultTextClickListener);
             // 次の画面で利用するため検索に利用した画像を画面で保持
             if (mSearchLogic != null) {
+            	TestFlight.passCheckpoint("mSearchLogic.getQueryImageBMP();");
                 queryImageBMP = mSearchLogic.getQueryImageBMP();
             }
         } else {
@@ -331,6 +338,8 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
         public void onClick(View v) {
             if (!isClicked) {
                 // 結果画面へ遷移
+            	TestFlight.passCheckpoint("結果領域クリックリスナ");
+            	
                 Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
                 if (queryImageBMP != null) {
                     intent.putExtra("imageBitmap", queryImageBMP);
