@@ -25,6 +25,7 @@ public class ResultActivity extends Activity {
 	/** クエリ画像 */
 	private Bitmap queryImageBMP;
 
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -83,8 +84,9 @@ public class ResultActivity extends Activity {
 		ImageView ivCamera = (ImageView) findViewById(R.id.camera);
 		ImageView home = (ImageView) findViewById(R.id.home);
 		ImageView slider = (ImageView) findViewById(R.id.slider);
+		
 		home.setVisibility(View.GONE);
-		slider.setVisibility(View.GONE);	
+		slider.setVisibility(View.GONE);
 		ivCamera.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

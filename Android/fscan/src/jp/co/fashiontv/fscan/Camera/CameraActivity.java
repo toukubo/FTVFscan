@@ -112,7 +112,7 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 		resultText2.setText("");
 		resultView.setOnClickListener(null);
 		resultText1.setVisibility(View.GONE);
-	
+
 		// 企業認証処理実行
 		new AsyncTask<Void, Void, String>() {
 			@Override
@@ -222,8 +222,7 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 		if (searchResultList.size() > 0) {
 			// スコアをソート
 			Collections.sort(searchResultList, new ScoreComparator());
-			resultText1.setText("BrandLogo:"
-					+ searchResultList.get(0).getAppendInfo().get(0));
+			resultText1.setText(searchResultList.get(0).getAppendInfo().get(0));
 			resultText2.setText(searchResultList.get(0).getAppendInfo().get(1));
 			// ヒットした場合のみリスナを設定
 			resultView.setOnClickListener(ResultTextClickListener);
@@ -326,7 +325,8 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 			if (!isClicked) {
 				// 結果画面へ遷移
 				TestFlight.passCheckpoint("結果領域クリックリスナ");
-				
+				SaveHistory(queryImageBMP, resultText2.getText().toString(),
+						resultText1.getText().toString());
 				Intent intent = new Intent(getApplicationContext(),
 						ResultActivity.class);
 				if (queryImageBMP != null) {
@@ -529,5 +529,24 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 		startActivity(intent);
 	}
 
-	
+	private void SaveHistory(Bitmap bitmap, String Brandname, String BrandLogo) {
+		int year, month, day;
+		final Calendar c = Calendar.getInstance();
+		year = c.get(Calendar.YEAR);
+		month = c.get(Calendar.MONTH);
+		day = c.get(Calendar.DAY_OF_MONTH);
+		String date = year + "/" + String.format("%02d", (month + 1)) + "/"
+				+ day;
+		String logo = makesubstring(BrandLogo, ':');
+		String name = makesubstring(Brandname, ':');
+		DatabaseHandler db = new DatabaseHandler(this);
+		db.addHistory(name, logo, date, bitmap);
+	}
+
+	public String makesubstring(String string1, char c) {
+		int pos = string1.indexOf(c);
+		String newString = string1.substring(pos + 1, string1.length());
+		return newString;
+	}
+
 }

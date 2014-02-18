@@ -24,6 +24,6 @@
 
     <string name="imageutil_savebitmapsd_filenameprefix" translatable="false">IMG_</string>
     <string name="imageutil_savebitmapsd_savesubdirname" translatable="false">fscan</string>
-    
+   
     
 </resources>

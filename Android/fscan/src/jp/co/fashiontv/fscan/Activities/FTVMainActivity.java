@@ -71,9 +71,9 @@ public class FTVMainActivity extends BaseActivity implements PageEventListener {
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
 		String url = intent.getStringExtra("url");
-		if (url!= null) {
-			webViewClient.shouldOverrideUrlLoading(mainWebView, url);	
-			//	showToast("onNewIntent");
+		if (url != null) {
+			webViewClient.shouldOverrideUrlLoading(mainWebView, url);
+			// showToast("onNewIntent");
 		}
 	}
 
@@ -87,17 +87,17 @@ public class FTVMainActivity extends BaseActivity implements PageEventListener {
 
 		// assets/dic/subordinates is arrangement in local
 		FTVUtil.assets2Local(this);
-		
+
 		setupWebView();
 		setUpHeaderView();
-		
+
 		maskView = (RelativeLayout) findViewById(R.id.maskView);
 		progressWheel = (ProgressWheel) findViewById(R.id.progressBar);
 	}
 
 	private void setUpHeaderView() {
-		ImageView ivHome = (ImageView)findViewById(R.id.home);
-		ImageView ivCamera  = (ImageView)findViewById(R.id.camera);
+		ImageView ivHome = (ImageView) findViewById(R.id.home);
+		ImageView ivCamera = (ImageView) findViewById(R.id.camera);
 
 		ivCamera.setOnClickListener(new OnClickListener() {
 			@Override
@@ -111,39 +111,47 @@ public class FTVMainActivity extends BaseActivity implements PageEventListener {
 			public void onClick(View v) {
 				mainWebView.clearHistory();
 				mainWebView.clearCache(true);
-				webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlHome);
+				webViewClient.shouldOverrideUrlLoading(mainWebView,
+						FTVConstants.urlHome);
 			}
 		});
 
 		lvMenuDrawerItems.setOnItemClickListener(new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position,
-					long id) {
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
 
 				switch (position) {
 				case 0:
-					webViewClient.shouldOverrideUrlLoading(mainWebView, tourUrl);
+					webViewClient
+							.shouldOverrideUrlLoading(mainWebView, tourUrl);
 					slidingMenu.showContent();
 					break;
 				case 1:
 
-					webViewClient.shouldOverrideUrlLoading(mainWebView, histroryUrl);
 					slidingMenu.showContent();
+					Intent historyIntent = new Intent(FTVMainActivity.this,
+							HistoryActivity.class);
+					startActivity(historyIntent);
+					finish();
 					break;
 
 				case 2:
 					// code to open gallery
 					Intent galleryIntent = new Intent(
-							Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-					startActivityForResult(galleryIntent, FTVConstants.activityRequestCodeGallery);
+							Intent.ACTION_PICK,
+							android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+					startActivityForResult(galleryIntent,
+							FTVConstants.activityRequestCodeGallery);
 
-					//startActivity(galleryIntent);
+					// startActivity(galleryIntent);
 					slidingMenu.showContent();
 					break;
 
 				case 3:
 					slidingMenu.showContent();
-					webViewClient.shouldOverrideUrlLoading(mainWebView, brandUrl);
+					webViewClient.shouldOverrideUrlLoading(mainWebView,
+							brandUrl);
 					break;
 				default:
 					break;
@@ -178,17 +186,18 @@ public class FTVMainActivity extends BaseActivity implements PageEventListener {
 		webViewClient.setPageEventListener(this);
 		mainWebView.setWebViewClient(webViewClient);
 		mainWebView.setWebChromeClient(new WebChromeClient());
-		webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlHome);
+		webViewClient.shouldOverrideUrlLoading(mainWebView,
+				FTVConstants.urlHome);
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.d(TAG, "REQUEST CODE - " + requestCode);
 		if (requestCode == FTVConstants.activityRequestCodeCamera) {
 			// return from camera
 			if (resultCode == RESULT_OK) {
-				//Uri imageUri = data.getData();
-				//String uri = getPath(imageUri);
+				// Uri imageUri = data.getData();
+				// String uri = getPath(imageUri);
 				Bundle extras = data.getExtras();
 				String uri = extras.getString("imageUri");
 				gaziruSearchParams = new GaziruSearchParams(this, uri, null);
@@ -198,8 +207,10 @@ public class FTVMainActivity extends BaseActivity implements PageEventListener {
 				// TODO: finish the camera activity
 			} else if (resultCode == RESULT_CANCELED) {
 				Log.d(TAG, "camera cancelled");
-				// on camera screen, if you push the back hardware button, then the brands page should be displays.
-				webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlBrands);
+				// on camera screen, if you push the back hardware button, then
+				// the brands page should be displays.
+				webViewClient.shouldOverrideUrlLoading(mainWebView,
+						FTVConstants.urlBrands);
 			} else {
 				Log.e(TAG, "CAMERA - SHOULD NEVER REACH");
 			}
@@ -208,7 +219,7 @@ public class FTVMainActivity extends BaseActivity implements PageEventListener {
 				// return from camera
 				if (resultCode == RESULT_OK) {
 					Uri imageUri = data.getData();
-					String systemIamgePath  = getPath(imageUri);
+					String systemIamgePath = getPath(imageUri);
 					String uri = null;
 					try {
 						uri = resizeImage(systemIamgePath);
@@ -216,7 +227,7 @@ public class FTVMainActivity extends BaseActivity implements PageEventListener {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				
+
 					gaziruSearchParams = new GaziruSearchParams(this, uri, null);
 					if (uri != null) {
 						new ImageSearchTask().execute(gaziruSearchParams);
@@ -224,14 +235,16 @@ public class FTVMainActivity extends BaseActivity implements PageEventListener {
 					// TODO: finish the camera activity
 				} else if (resultCode == RESULT_CANCELED) {
 					Log.d(TAG, "camera cancelled");
-					// on camera screen, if you push the back hardware button, then the brands page should be displays.
-				//	webViewClient.shouldOverrideUrlLoading(mainWebView, FTVConstants.urlBrands);
+					// on camera screen, if you push the back hardware button,
+					// then the brands page should be displays.
+					// webViewClient.shouldOverrideUrlLoading(mainWebView,
+					// FTVConstants.urlBrands);
 				} else {
 					Log.e(TAG, "CAMERA - SHOULD NEVER REACH");
 				}
 			}
 			// never reach
-			
+
 			Log.e(TAG, "onActivityResult SHOULD NEVER REACH");
 		}
 
@@ -245,7 +258,7 @@ public class FTVMainActivity extends BaseActivity implements PageEventListener {
 
 		super.onResume();
 	}
-	
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -286,19 +299,20 @@ public class FTVMainActivity extends BaseActivity implements PageEventListener {
 		maskView.setVisibility(View.GONE);
 	}
 
-//	/**
-//	 * TODO: show register activity
-//	 */
-//	private void showRegisterActivity() {
-//		TestFlight.passCheckpoint("FTVMainActivity - showRegisterActivity");
-//
-//		String registerUrl = String.format("%s%s%s%s", FTVConstants.baseUrl,
-//				"registration/index.php?deviceid=", FTVUser.getID(), "&device_type=android");
-//
-//		Intent intent = new Intent(mContext, FTVWebViewActivity.class);
-//		intent.putExtra("url", registerUrl);
-//		startActivity(intent);
-//	}
+	// /**
+	// * TODO: show register activity
+	// */
+	// private void showRegisterActivity() {
+	// TestFlight.passCheckpoint("FTVMainActivity - showRegisterActivity");
+	//
+	// String registerUrl = String.format("%s%s%s%s", FTVConstants.baseUrl,
+	// "registration/index.php?deviceid=", FTVUser.getID(),
+	// "&device_type=android");
+	//
+	// Intent intent = new Intent(mContext, FTVWebViewActivity.class);
+	// intent.putExtra("url", registerUrl);
+	// startActivity(intent);
+	// }
 
 	/**
 	 * Start custom camera here
@@ -313,9 +327,11 @@ public class FTVMainActivity extends BaseActivity implements PageEventListener {
 	// -------------------------- Async Task --------------------------
 
 	/**
-	 * Gaziru : image search task should never be executed from ui thread. Library has enabled the STRICT_MODE.
+	 * Gaziru : image search task should never be executed from ui thread.
+	 * Library has enabled the STRICT_MODE.
 	 */
-	private class ImageSearchTask extends AsyncTask<GaziruSearchParams, Void, String> {
+	private class ImageSearchTask extends
+			AsyncTask<GaziruSearchParams, Void, String> {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
@@ -348,7 +364,8 @@ public class FTVMainActivity extends BaseActivity implements PageEventListener {
 				if (brandSlug == null || brandSlug.equals("failure")) {
 					// show search form
 					Intent is = new Intent(mContext, FTVWebViewActivity.class);
-					String urlSearch = String.format("%s%s", FTVConstants.baseUrl, FTVConstants.urlSearch);
+					String urlSearch = String.format("%s%s",
+							FTVConstants.baseUrl, FTVConstants.urlSearch);
 					is.putExtra("url", urlSearch);
 					mContext.startActivity(is);
 				} else {
@@ -359,9 +376,11 @@ public class FTVMainActivity extends BaseActivity implements PageEventListener {
 	}
 
 	/**
-	 * Gaziru : image search task should never be executed from ui thread. Library has enabled the STRICT_MODE.
+	 * Gaziru : image search task should never be executed from ui thread.
+	 * Library has enabled the STRICT_MODE.
 	 */
-	private class ImagePostTask extends AsyncTask<GaziruSearchParams, Void, Void> {
+	private class ImagePostTask extends
+			AsyncTask<GaziruSearchParams, Void, Void> {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
