@@ -42,6 +42,12 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Activities.HistoryActivity"
+            android:label="@string/main_activity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
             android:name=".Activities.FTVWebViewActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
