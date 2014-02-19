@@ -13,6 +13,19 @@
 #import "DDMenuController.h"
 #import "AVCamCaptureManager.h"
 
+#import <RTSearchKit/RTSearchApi.h>
+#import "FTVAppDelegate.h"
+#import "CameraManager.h"
+#import "GAZIRUAuthLogic.h"
+#import "GAZIRUSearchLogic.h"
+#import "ImageUtil.h"
+
+
+// UIAlertViewタグ
+typedef enum {
+    AlertViewTagGAZIRUAuthFailed = 1,                               // GAZIRU認証失敗タグ
+} AlertViewTag;
+
 static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 
 @interface FTVCameraViewController () <UIGestureRecognizerDelegate>
@@ -34,6 +47,13 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     BOOL                        returnFromPicker;      // Workaround while this workflow is not completed
     NSString                    *redirectUrl;
 }
+
+
+@property (nonatomic, retain) CameraManager *cameraManager;         // Camera Manager
+@property (nonatomic) BOOL isAuthed;                                // GAZIRU認証フラグ（認証済／未認証）
+@property (nonatomic, retain) GAZIRUAuthLogic *gaziruAuthLogic;     // GAZIRU認証ロジックインスタンス
+@property (nonatomic) BOOL isSearching;                             // 検索処理実行中フラグ（処理中／非処理中）
+@property (nonatomic, retain) GAZIRUSearchLogic *gaziruSearchLogic; // GAZIRU検索ロジックインスタンス
 
 @end
 
@@ -63,30 +83,68 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     
 //    if ([appDelegate checkLoginCredential]) {
         // bring up camera
-        [self switchSceneToCamera];
+//        [self switchSceneToCamera];
 //        DLog(@"but true");
 //    } else {
 //        [self switchSceneToRegisterController];
 //        DLog(@"but false. going to regist ");
 //    }
+    
+    _cameraManager = [[CameraManager alloc] init];
+    
     [super setHomeMenuNavigations:self];
     
 }
 
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self initView];
+    
+    [super viewWillAppear:YES];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
-    if(!returnFromPicker){
+
+    [_cameraManager openDriverWithDelegate:self previewFrame:_previewView.frame];
+    [_previewView.layer insertSublayer:_cameraManager.videoPreviewLayer atIndex:0];
+    [_cameraManager startPreview];
+    
+    _isAuthed = NO;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-    }
+        _gaziruAuthLogic = [[GAZIRUAuthLogic alloc] init];
+        [_gaziruAuthLogic executeGAZIRUAuth];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+        
+            NSString *authResult = _gaziruAuthLogic.resultString;
+            _gaziruAuthLogic = nil;
+            [self handleGAZIRUAuthResult:authResult];
+        });
+    });
+    
+    [super viewDidAppear:animated];
+    
+    
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self.loadingView hide];
+    [_cameraManager stopPreview];
+    [_cameraManager closeDriver];
     
-    if (returnFromPicker) {
-        returnFromPicker = NO;
-    }
+//    [self.loadingView hide];
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        [[[self captureManager] session] stopRunning];
+//        [[[self captureManager] session] removeInput:[captureManager videoInput]];
+//    });
+//    if (returnFromPicker) {
+//        returnFromPicker = NO;
+//    }
+    
 }
 
 - (void)switchSceneToCamera
@@ -104,7 +162,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
         [stillButton setImage:shutterImagePressed forState:UIControlStateHighlighted];
         [stillButton setBackgroundColor:[UIColor clearColor]];
         [stillButton addTarget:self action:@selector(captureStillImage:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:stillButton];
+//        [self.view addSubview:stillButton];
     }
     
     [self startCamCapture];
@@ -277,8 +335,8 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
     [self.loadingView show];
     
     if ([self captureManager] == nil) {
-        AVCamCaptureManager *manager = [[AVCamCaptureManager alloc] init];
-        [self setCaptureManager:manager];
+        captureManager = [[AVCamCaptureManager alloc] init];
+        [self setCaptureManager:captureManager];
         [[self captureManager] setDelegate:self];
         
         if ([[self captureManager] setupSession]) {
@@ -292,7 +350,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
                                                           }];
             
             // Create video preview layer and add it to the UI
-            AVCaptureVideoPreviewLayer *newCaptureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:[[self captureManager] session]];
+            captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:[[self captureManager] session]];
             UIView *view = [self videoPreviewView];
             
             view.backgroundColor = [UIColor blackColor];
@@ -305,13 +363,13 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
                                 bounds.origin.y,
                                 bounds.size.width,
                                 bounds.size.height);
-            [newCaptureVideoPreviewLayer setFrame:bounds];
+            [captureVideoPreviewLayer setFrame:bounds];
             
-            [newCaptureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+            [captureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
             
-            [viewLayer insertSublayer:newCaptureVideoPreviewLayer below:[[viewLayer sublayers] objectAtIndex:0]];
+            [viewLayer insertSublayer:captureVideoPreviewLayer below:[[viewLayer sublayers] objectAtIndex:0]];
             
-            [self setCaptureVideoPreviewLayer:newCaptureVideoPreviewLayer];
+            [self setCaptureVideoPreviewLayer:captureVideoPreviewLayer];
             
             // Start the session. This is done asychronously since -startRunning doesn't return until the session is running.
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -377,6 +435,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
                         CGFloat y1 = frameSize.height;
                         CGFloat x2 = frameSize.width;
                         CGFloat blackBar = (y1 - y2) / 2;
+                        
 						// If point is inside letterboxed area, do coordinate conversion. Otherwise, don't change the default value returned (.5,.5)
                         if (point.y >= blackBar && point.y <= blackBar + y2) {
 							// Scale (accounting for the letterboxing on the top and bottom of the video preview), switch x and y, and reverse x
@@ -466,5 +525,220 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
 {
 	[self updateButtonStates];
 }
+
+#pragma -- New Features
+
+
+
+
+
+#pragma mark - IBAction
+
+- (IBAction)onClickDetail:(UIButton *)sender
+{
+    if ([[sender superview] isMemberOfClass:[ScanDetailView class]]) {
+        ScanDetailView *scanDetailView = (ScanDetailView *)[sender superview];
+
+        if (scanDetailView.isScanHit) {
+        
+            [sender setEnabled:NO];
+            
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+//                resultViewController = [[ResultViewController alloc] initWithNibName:@"ResultViewController" bundle:nil];
+            }
+            // iPad
+            else {
+//                resultViewController = [[ResultViewController alloc] initWithNibName:@"ResultViewController_iPad" bundle:nil];
+            }
+            
+            
+            
+//            resultViewController.queryImage = scanDetailView.queryImage;
+            
+            UIImage *image = scanDetailView.queryImage;
+            NSString *imagePath = @"";
+            if (image != nil)
+            {
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                     NSUserDomainMask, YES);
+                NSString *documentsDirectory = [paths objectAtIndex:0];
+                imagePath = [documentsDirectory stringByAppendingPathComponent:
+                                  @"test.png" ];
+                NSData* data = UIImagePNGRepresentation(image);
+                [data writeToFile:imagePath atomically:YES];
+            }
+
+            
+            
+            DLog(@"IMG pre proessed: W - %0.f px, H - %0.f px", image.size.width, image.size.height);
+            
+            for (int i = 0; i < TEST_TIME; i++) {
+                NSDate *start = [NSDate date];
+                image = [FTVImageProcEngine imageResize:image saveWithName:[NSString genRandStringLength:10] usingJPEG:YES];
+                NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
+                NSLog(@"imageResize Execution Time: %f", executionTime);
+            }
+            
+            for (int i = 0; i < TEST_TIME; i++) {
+                NSString *brand_slug = scanDetailView->brand_slug;
+                
+                NSData *imageData = UIImagePNGRepresentation(image);
+                
+                NSLog(@"brand_slug : %s", brand_slug);
+                DLog(@"image data size - %d KB", imageData.length / 1024);
+                
+                if (IsEmpty(brand_slug) || [brand_slug isEqualToString:@"failure"]) {
+                    [appDelegate performSelectorOnMainThread:@selector(showModalPopupWindow) withObject:nil waitUntilDone:NO];
+                } else {
+                    NSDate *start = [NSDate date];
+                    // no need to post data if BRAND was failure
+                    // step 1 - post brand slug, and get response for "id=xxx"
+                    [FTVImageProcEngine postWithBrand:brand_slug
+                                       withStartBlock:^{
+                                       } withFinishBlock:^(BOOL success, NSString *resp) {
+                                           if (success) {
+                                               NSTimeInterval executionTime = [[NSDate date] timeIntervalSinceDate:start];
+                                               NSLog(@"postData Execution Time: %f", executionTime);
+                                               
+                                               // step 2 - post image data
+                                               [FTVImageProcEngine postData:imageData
+                                                                  withBrand:brand_slug
+                                                                     withId:resp
+                                                             withStartBlock:nil
+                                                            withFinishBlock:^(BOOL success, NSString *resp) {
+                                                                // TODO: should we do some extra stuff here?
+                                                            } withFailedBlock:^(BOOL success, NSString *resp) {
+                                                                //
+                                                            }];
+                                               
+                                               redirectUrl = [FTVImageProcEngine encapsulateById:resp];
+                                               if (![redirectUrl isMalform]) {
+                                                   //                                           [self performSelectorOnMainThread:@selector(switchSceneToResultController) withObject:nil waitUntilDone:NO];
+                                                   
+                                                   DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+                                                   FTVDelayJobWebViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVDelayJobWebViewController"];
+                                                   controller.redirectUrl = redirectUrl;
+                                                   controller.ShowResultPage = YES;
+                                                   [menuController setRootController:controller animated:YES];
+                                                   [menuController showRootController:YES];
+                                               }
+                                           }
+                                       } withFailedBlock:^(BOOL success, NSString *resp) {
+                                       }];
+                    
+                    DLog(@"IMG: W - %0.f px, H - %0.f px", image.size.width, image.size.height);
+                }
+            }
+//            [self performSelector:@selector(doImageProcessInBackgroundWithPath:) withObject:imagePath];
+//            [self performSelectorInBackground:@selector(doImageProcessInBackgroundWithPath:) withObject:imagePath];
+            
+//            FTVAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+//            if ([appDelegate.window.rootViewController isKindOfClass:[UINavigationController class]]) {
+//                UINavigationController *navigationController = (UINavigationController *)appDelegate.window.rootViewController;
+//                [navigationController pushViewController:resultViewController animated:YES];
+//            }
+        }
+    }
+}
+
+#pragma mark - AVCaptureVideoDataOutputSampleBufferDelegate
+
+-(void)captureOutput:(AVCaptureOutput *)captureOutput
+didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
+      fromConnection:(AVCaptureConnection *)connection
+{
+
+    if (_isAuthed && !_isSearching) {
+        
+        _isSearching = YES;
+        
+        CMSampleBufferRef queryBuffer;
+        CMSampleBufferCreateCopy(kCFAllocatorDefault, sampleBuffer, &queryBuffer);
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            _gaziruSearchLogic = [[GAZIRUSearchLogic alloc] init];
+            [_gaziruSearchLogic executeGAZIRUSearch:queryBuffer];
+            
+            CFRelease(queryBuffer);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSMutableArray *searchResult = _gaziruSearchLogic.resultArray;
+                UIImage *queryImage = _gaziruSearchLogic.queryImage;
+                _gaziruSearchLogic = nil;
+                [self handleGAZIRUSearchResult:searchResult queryImage:queryImage];
+            });
+        });
+    }
+}
+
+#pragma mark - UIAlertViewDelegte
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    switch (alertView.tag) {
+        case AlertViewTagGAZIRUAuthFailed:            // GAZIRU認証失敗
+        {
+            FTVAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+            if ([appDelegate.window.rootViewController isKindOfClass:[UINavigationController class]]) {
+                UINavigationController *navigationController = (UINavigationController *)appDelegate.window.rootViewController;
+                [navigationController popViewControllerAnimated:YES];
+            }
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+
+#pragma mark - Private method
+
+-(void)handleGAZIRUAuthResult:(NSString *)authResult
+{
+    
+    if ([AUTH_OK isEqualToString:authResult]) {
+        
+        _isSearching = NO;
+        _isAuthed = YES;
+        
+        [_processingView setHidden:YES];
+    }
+    else {
+        [self showGAZIRUAuthFailedMessage];
+    }
+}
+
+
+-(void)showGAZIRUAuthFailedMessage
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"alert_camera_title_auth_failed", @"")
+                                                        message:NSLocalizedString(@"alert_camera_message_auth_failed", @"")
+                                                       delegate:self
+                                              cancelButtonTitle:NSLocalizedString(@"alert_camera_cancel_auth_failed", @"")
+                                              otherButtonTitles:nil];
+    alertView.tag = AlertViewTagGAZIRUAuthFailed;
+    [alertView show];
+}
+
+
+-(void)handleGAZIRUSearchResult:(NSMutableArray *)searchResult queryImage:(UIImage *)queryImage
+{
+    [_scanDetailView showScanDetail:searchResult withQueryImage:queryImage];
+    
+    _isSearching = NO;
+}
+
+
+
+
+-(void)initView
+{
+    
+    [_processingView setHidden:NO];
+    
+    [_scanDetailView initComponent];
+}
+
 
 @end

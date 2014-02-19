@@ -63,6 +63,7 @@
 {
     if ([url isMatchedByRegex:@"target=_blank"]) {
         return YES;
+        
     }
     
     return NO;

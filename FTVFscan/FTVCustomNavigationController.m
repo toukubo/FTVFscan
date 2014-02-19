@@ -9,6 +9,8 @@
 #import "FTVCustomNavigationController.h"
 #import "FTVHomeViewController.h"
 #import "FTVCameraViewController.h"
+#import "FTVDelayJobWebViewController.h"
+
 
 @interface FTVCustomNavigationController (){
     NSString                    *redirectUrl;
@@ -71,7 +73,7 @@
 -(void)setMenuButton:(UIView *)view{
     UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(screenWidth - 40, 2, 40, 40)];
     [menuButton setImageEdgeInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
-    [menuButton setImage:[UIImage imageNamed:@"menu.png"] forState:UIControlStateNormal];
+    [menuButton setImage:[UIImage imageNamed:@"draw_white.png"] forState:UIControlStateNormal];
     [menuButton addTarget:self action:@selector(openMenu) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:menuButton];
 }
@@ -273,9 +275,9 @@
 
 -(void)setTitleNavigation:(UIViewController *)vc{
     //Title
-    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(110, 13, 100, 16)];
+    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake((screenWidth/2 - 50), 13, 100, 16)];
     titleView.image = [UIImage imageNamed:@"240head.png"];
-    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 44)];
     navigationView.backgroundColor = [UIColor blackColor];
     [navigationView addSubview:titleView];
     [vc.view addSubview:navigationView];
@@ -289,8 +291,16 @@
 }
 
 -(void)homeAction{
-    FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate switchSceneToTabController];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+    
+    FTVDelayJobWebViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"FTVDelayJobWebViewController"];
+    controller.redirectUrl = CONTENTBASE;
+    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    [menuController setRootController:controller animated:YES];
+    [menuController showRootController:YES];
+
+    
 }
 
 -(void)openMenu
@@ -301,8 +311,16 @@
 
 
 -(void)cameraAction{
-    FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate switchSceneToCameraController];
+
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+    
+    FTVDelayJobWebViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
+    DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    [menuController setRootController:controller animated:YES];
+    [menuController showRootController:YES];
+
+    
+
 }
 
 

@@ -23,6 +23,7 @@ static NSString * const URL_REGISTRTION = @"/registration/index.php";
 {
     [super viewDidLoad];
     
+    
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])
     {
         [self prefersStatusBarHidden];

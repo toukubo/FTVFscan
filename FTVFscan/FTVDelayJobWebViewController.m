@@ -13,6 +13,9 @@
 @interface FTVDelayJobWebViewController ()
 {
     BOOL isGoBack;
+    BOOL skipUrl;
+    int count;
+    NSMutableArray *urlHolderArray;
 }
 
 @end
@@ -48,6 +51,10 @@
 {
     [super viewDidLoad];
     NSLog(@"VDL,,,");
+    count = 0;
+    skipUrl = NO;
+    urlHolderArray = [[NSMutableArray alloc] init];
+    
     [self.webView setDelegate:self];
     self.navigationController.navigationBarHidden = YES;
     self.webView.autoresizesSubviews = YES;
@@ -92,7 +99,7 @@
         NSLog(@"initial load...");
     }
     
-    [super setHomeCameraMenuNavigations:self];
+//    [super setHomeCameraMenuNavigations:self];
 
     
     
@@ -119,9 +126,35 @@
     if([self.webView canGoBack])
     {
         isGoBack = YES;
-        [self.webView goBack];
+        
+        int counter = [urlHolderArray count];
+        for (int i = 0; i < counter; i++) {
+            NSString *urlString = [urlHolderArray lastObject];
+            if([urlString hasPrefix:@"http://www.youtube.com/embed"]) {
+                [urlHolderArray removeLastObject];
+                
+                NSString *urlString = [urlHolderArray lastObject];
+                if([urlString hasPrefix:@"http://fscan.fashiontv.co.jp/fdbdev/brandlogo_"]) {
+                    [urlHolderArray removeLastObject];
+                    skipUrl = YES;
+                    break;
+                }
+
+            }
+        }
+        
+        if (skipUrl) {
+            NSString *url = [urlHolderArray lastObject];
+            [self loadUrl:url];
+            skipUrl = NO;
+        }else {
+            [urlHolderArray removeLastObject];
+            [self.webView goBack];
+        }
+        
     }
     
+    NSLog(@"%@", urlHolderArray);
 }
 
 
@@ -133,6 +166,7 @@
 - (void)loadUrl:(NSString*)url
 {
     NSLog(@"loadUrl...%@", url);
+   
 
     if (!IsEmpty(url)) {
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -142,15 +176,18 @@
 #pragma mark - UIWebView Delegate
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    NSLog(@"webViewDidStartLoad,,,");
+//    NSLog(@"webViewDidStartLoad,,,");
     [self statusIndicatorShow];
     
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    NSLog(@"webViewDidFinishLoad,,,");
+//    NSLog(@"webViewDidFinishLoad,,,");
     [self statusIndicatorHide];
+    if (ShowResultPage) {
+        [super setHomeCameraMenuNavigations:self];
+    }
     isGoBack = NO;
     
     for (id subview in self.webView.subviews)
@@ -170,7 +207,7 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    NSLog(@"shouldStartLoadWithRequest,,,");
+//    NSLog(@"shouldStartLoadWithRequest,,,");
     NSString *urlString = request.URL.absoluteString;
 //    DLog(@"%@", urlString);
 //    if ([self needOpenExternalSafari:urlString]) {
@@ -197,7 +234,7 @@
 #pragma mark - Helper
 - (IBAction)dismissModalView:(id)sender {
     
-    [self.navigationController dismissModalViewControllerAnimated:YES];
+//    [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 - (BOOL)needOpenExternalSafari:(NSString*)url
@@ -226,6 +263,16 @@
 - (BOOL)shouldOverrideUrlLoading:(NSString *)urlString
 {
     NSLog(@"%@", urlString);
+    NSLog(@"Count : %d", count);
+    count += 1;
+    [urlHolderArray addObject:urlString];
+    
+//    if([urlString hasPrefix:@"http://fscan.fashiontv.co.jp/fdbdev/category/brands"]){
+//        [[NSUserDefaults standardUserDefaults] setObject:urlString forKey:@"last_url"];
+//        skipUrl = NO;
+//    }else if([urlString hasPrefix:@"http://www.youtube.com/embed"]) {
+//        skipUrl = YES;
+//    }
 
     if ([self needOpenExternalSafari:urlString]) {
         [FTVImageProcEngine openSafari:urlString];
@@ -259,13 +306,12 @@
         // Todo: gailya need to confirm the way to load the camera/gallery with drawer
         if ([action hasSuffix:@"Camera"]) {
 
-//            DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
-//            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
-//            [menuController setRootController:controller animated:YES];
+            DDMenuController *menuController = (DDMenuController*)((FTVAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FTVCameraViewController"];
+            [menuController setRootController:controller animated:YES];
+            [menuController showRootController:YES];
 
-            FTVAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-            [appDelegate switchSceneToCameraController];
-//            [super setHomeMenuNavigations:self];
+            
         }
         else if([action hasSuffix:@"Gallery"])
         {
@@ -282,14 +328,18 @@
         self.webView.multipleTouchEnabled = NO;
 
         if ([urlString hasPrefix:CONTENTBASE]) {
-            if ([urlString isEqualToString:CONTENTBASE]) {
+            if ([urlString isEqualToString:@"http://fscan.fashiontv.co.jp/fdbdev/"]) {
                 [super setTitleNavigation:self];
+            }else if ([urlString hasPrefix:[ CONTENTBASE stringByAppendingString:@"category/brandlogo_"]]) {
+                [super setBackCameraMenuNavigations:self];
+            }else if ([urlString hasPrefix:[ CONTENTBASE stringByAppendingString:@"category/brands"]]) {
+                [super setHomeCameraMenuNavigations:self];
             }else if ([urlString hasPrefix:[ CONTENTBASE stringByAppendingString:@"category"]]) {
                 [super setHomeCameraNavigations:self];
             }else if ([urlString isEqualToString:[ CONTENTBASE stringByAppendingString:@"form-search"]]) {
                 [super setHomeCameraMenuNavigations:self];
             }else{
-                [super setBackCameraNavigations:self];
+                [super setBackCameraMenuNavigations:self];
             }
         }else if ([urlString hasPrefix:[ BASEURL stringByAppendingString:@"/scan/list"]]) {
             [super setHomeCameraMenuNavigations:self];
@@ -304,21 +354,17 @@
                 [super setBackCameraNavigations:self];
                 self.webView.scalesPageToFit = YES;
                 self.webView.multipleTouchEnabled = YES;
+                
 
             }
         }
-
-//            if(![urlString hasPrefix:@"http://fscan.fashiontv.co.jp/"] && ){
-//                [super setBackCameraNavigations:self];
-//            }else{
-//                [super setHomeCameraMenuNavigations:self];
-//            }
         
         if ([urlString isMatchedByRegex:@"result=true"]) {
             [super setHomeCameraMenuNavigations:self];
         }
         
     }
+    
     return NO;
 }
 

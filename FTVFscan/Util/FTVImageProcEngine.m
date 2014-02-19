@@ -107,7 +107,7 @@
             NSDictionary *bland_dict = (NSDictionary *)[resultArray objectAtIndex: 0];
             NSMutableArray *appendedInfos = (NSMutableArray *)[ bland_dict valueForKey:@"appendInfo"];
             brand_slug = [ appendedInfos objectAtIndex:0];
-            DLog(@"BRAND SLUG - %@", brand_slug);
+            NSLog(@"BRAND SLUG - %@", brand_slug);
         }
         
         //for calculation operation time
