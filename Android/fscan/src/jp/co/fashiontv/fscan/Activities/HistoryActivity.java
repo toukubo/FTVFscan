@@ -45,6 +45,7 @@ public class HistoryActivity extends BaseActivity {
 	private boolean isClicked = false;
 
 	HistoryAdapter adapter;
+	ListView historyListView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,15 @@ public class HistoryActivity extends BaseActivity {
 		setUpHeaderView();
 		setUpSlidingView();
 
-		ListView lv = (ListView) findViewById(R.id.history);
+		historyListView = (ListView) findViewById(R.id.history);
+
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+
 		ArrayList<History> imageArry = new ArrayList<History>();
 		DatabaseHandler db = new DatabaseHandler(this);
 		List<History> histories = db.getAllContacts();
@@ -70,8 +79,7 @@ public class HistoryActivity extends BaseActivity {
 
 		}
 		adapter = new HistoryAdapter(this, R.layout.history_row, imageArry);
-		lv.setAdapter(adapter);
-
+		historyListView.setAdapter(adapter);
 	}
 
 	@Override
