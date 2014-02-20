@@ -10,10 +10,9 @@ import jp.co.fashiontv.fscan.Activities.BaseActivity;
 import jp.co.fashiontv.fscan.Activities.FTVMainActivity;
 import jp.co.fashiontv.fscan.Activities.FTVWebViewActivity;
 import jp.co.fashiontv.fscan.Activities.HistoryActivity;
-import jp.co.fashiontv.fscan.Activities.ResultActivity;
 import jp.co.fashiontv.fscan.Common.FTVConstants;
-import jp.co.fashiontv.fscan.Common.FTVUser;
 import jp.co.fashiontv.fscan.Database.DatabaseHandler;
+import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
 import jp.co.fashiontv.fscan.Listener.CameraViewListener;
 import jp.co.fashiontv.fscan.Logic.AuthLogic;
 import jp.co.fashiontv.fscan.Logic.SearchLogic;
@@ -30,8 +29,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -61,8 +63,11 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 	private Bitmap queryImageBMP = null;
 	/** ��������������������������� */
 	private boolean isClicked = false;
+	private ImageView imageView;
 
-	TextView resultText1, resultText2;
+
+	TextView resultText2;
+	String brand_slug = "";
 
 	// private GaziruSearchParams gaziruSearchParams;
 
@@ -108,12 +113,17 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 		// ���������������������������������
 		queryImageBMP = null;
 		// ������������������������������������������������������������
-		resultText1 = (TextView) findViewById(R.id.result_text1);
+
+        Animation hyperspaceJump = AnimationUtils.loadAnimation(this, R.anim.translate);
+        imageView = (ImageView)findViewById(R.id.image);
+
+		 imageView.startAnimation(hyperspaceJump);
+		
 		resultText2 = (TextView) findViewById(R.id.result_text2);
-		resultText1.setText(getString(R.string.result_text_default));
+
 		resultText2.setText("");
 		resultView.setOnClickListener(null);
-		resultText1.setVisibility(View.GONE);
+
 
 		// ������������������������
 		new AsyncTask<Void, Void, String>() {
@@ -208,13 +218,11 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 				.passCheckpoint("notifyPhotosearchExecuted() searchResultList = "
 						+ searchResultList);
 		// ������������������������������������
-		TextView resultText1 = (TextView) findViewById(R.id.result_text1);
+//		TextView resultText1 = (TextView) findViewById(R.id.result_text1);
 		TextView resultText2 = (TextView) findViewById(R.id.result_text2);
 
 		// ���������������������
 		if (searchResultList == null) {
-			resultText1
-					.setText(getString(R.string.result_text_connection_failed));
 			resultText2.setText("");
 			resultView.setOnClickListener(null);
 			return;
@@ -224,8 +232,9 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 		if (searchResultList.size() > 0) {
 			// ���������������������
 			Collections.sort(searchResultList, new ScoreComparator());
-			resultText1.setText(searchResultList.get(0).getAppendInfo().get(0));
 			resultText2.setText(searchResultList.get(0).getAppendInfo().get(1));
+			brand_slug = searchResultList.get(0).getAppendInfo().get(0);
+
 			// ���������������������������������������������
 			resultView.setOnClickListener(ResultTextClickListener);
 			// ������������������������������������������������������������������������������
@@ -234,7 +243,6 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 				queryImageBMP = mSearchLogic.getQueryImageBMP();
 			}
 		} else {
-			resultText1.setText(getString(R.string.result_text_default));
 			resultText2.setText("");
 			resultView.setOnClickListener(null);
 		}
@@ -327,20 +335,23 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 			if (!isClicked) {
 				// ���������������������
 				TestFlight.passCheckpoint("���������������������������������");
-				SaveHistory(queryImageBMP, resultText2.getText().toString(),
-						resultText1.getText().toString());
-				Intent is = new Intent(mContext, FTVWebViewActivity.class);
-				String urlSearch = String.format("%s%s",
-						FTVConstants.baseUrl, FTVConstants.urlSearch);
+//				SaveHistory(queryImageBMP, resultText2.getText().toString(),
+//						brand_slug);
+				
+				FTVImageProcEngine.postImageDataWithBrandSlug(mContext,brand_slug,queryImageBMP);
+				
+//				Intent is = new Intent(mContext, FTVWebViewActivity.class);
+//				String urlSearch = String.format("%s%s",
+//						FTVConstants.baseUrl, FTVConstants.urlSearch);
 //                String url = String.format("%s%s%s%s%s", FTVConstants.baseUrl, "scan/scan.php?deviceid=", FTVUser.getID(), "&id=", resultText1.getText().toString());
-				String url = FTVConstants.urlHome + resultText1.getText().toString();
-				is.putExtra("url", url);
+//				String url = FTVConstants.urlHome + brand_slug;
+//				is.putExtra("url", url);
 //				mContext.startActivity(is);
 				
 //				if (queryImageBMP != null) {
 //					intent.putExtra("imageBitmap", queryImageBMP);
 //				}
-				startActivity(is);
+//				startActivity(is);
 				queryImageBMP = null;
 				isClicked = true;
 			}
@@ -505,10 +516,8 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 					break;
 				case 1:
 					slidingMenu.showContent();
-					Intent historyIntent = new Intent(CameraActivity.this,
-							HistoryActivity.class);
-					startActivity(historyIntent);
-					finish();
+					String string = histroryUrl;
+					moveToNextActivity(string);
 					break;
 				case 2:
 					// code to open gallery

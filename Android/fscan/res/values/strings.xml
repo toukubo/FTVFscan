@@ -12,11 +12,14 @@
     <string name="cannot_read_sd_card">Can not access external SD card!</string>
     <string name="failed_create_album">Failed to create album</string>
 
-    <string name="result_text_default">Please Scan&#8230;</string>
+    <string name="result_text_default">SCAN RESULT</string>
     <string name="result_text_connection_failed">Connection failed&#8230;</string>
     <string name="result_text_append_info1">AppendInfo1:</string>
     <string name="result_text_append_info2">AppendInfo2:</string>
     <string name="result_text_image_path">Image Path:\n</string>
+    
+    
+        
 
     <string name="alert_camera_title_auth_failed">Camera View</string>
     <string name="alert_camera_message_auth_failed">Authentication failed.</string>

@@ -40,7 +40,7 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 public abstract class BaseActivity extends SlidingActivity {
 	public SlidingMenu slidingMenu;
 	public ListView lvMenuDrawerItems;
-	public String histroryUrl =    FTVConstants.baseUrl+"/scan/list.php?id="+FTVUser.getID();
+	public String histroryUrl =    FTVConstants.baseUrl+"/scan/list.php?deviceid="+FTVUser.getID();
 	public String brandUrl =FTVConstants.urlBrands;
 	public String tourUrl =  FTVConstants.urlHome+"/fscan-tour/";
 	public ImageView home;

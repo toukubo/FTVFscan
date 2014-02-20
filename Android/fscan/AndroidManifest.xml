@@ -59,6 +59,11 @@
             android:name=".Activities.ResultActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" />
+            <activity
+                android:name="jp.co.fashiontv.fscan.sample.ScanDetailsView"
+                android:screenOrientation="portrait">
+            </activity>
+            
     </application>
 
 </manifest>

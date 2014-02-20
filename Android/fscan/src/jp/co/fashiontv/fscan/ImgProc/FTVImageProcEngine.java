@@ -1,17 +1,14 @@
 package jp.co.fashiontv.fscan.ImgProc;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.util.Log;
-import android.webkit.URLUtil;
-import android.widget.Toast;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-import com.testflightapp.lib.TestFlight;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import jp.co.fashiontv.fscan.Activities.FTVWebViewActivity;
 import jp.co.fashiontv.fscan.Common.FTVConstants;
 import jp.co.fashiontv.fscan.Common.FTVUser;
@@ -21,16 +18,24 @@ import jp.co.fashiontv.fscan.Utils.ImageUtil;
 import jp.co.nec.gazirur.rtsearch.lib.bean.SearchResult;
 import jp.co.nec.gazirur.rtsearch.lib.clientapi.RTFeatureSearcher;
 import jp.co.nec.gazirur.rtsearch.lib.clientapi.RTSearchApi;
+
 import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.apache.http.Header;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.util.Log;
+import android.webkit.URLUtil;
+import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.testflightapp.lib.TestFlight;
 
 /**
  * Created by Alsor Zhou on 13-11-9.
@@ -172,6 +177,34 @@ public class FTVImageProcEngine {
         return null;
     }
 
+    public static String getFilePath(Bitmap bitmap, Context context){
+		String filePath = ImageUtil.saveImageSD(
+				context, bitmap);
+    	File f = new File(context.getCacheDir(), filePath);
+    	try {
+        	f.createNewFile();
+
+        	//Convert bitmap to byte array
+        	ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        	bitmap.compress(CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+        	byte[] bitmapdata = bos.toByteArray();
+
+        	//write the bytes in file
+        	FileOutputStream fos = new FileOutputStream(f);
+        	fos.write(bitmapdata);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return filePath;
+
+    }
+    public static void postImageDataWithBrandSlug(final Context context, String brandSlug, final Bitmap bitmap) {
+    	String path  = getFilePath(bitmap,context);
+    	postImageDataWithBrandSlug(context, brandSlug,path);
+    }
+    	
+    
     /**
      * Post resized image to our server in async mode
      *
@@ -198,6 +231,7 @@ public class FTVImageProcEngine {
 
                 try {
                     File image = new File(imagePath);
+                    Log.d(TAG,"the image path is ----"+imagePath);
                     params.put("image", image);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -221,6 +255,8 @@ public class FTVImageProcEngine {
                         if (URLUtil.isValidUrl(url)) {
                             Intent is = new Intent(context, FTVWebViewActivity.class);
                             is.putExtra("url", url);
+                            is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+
                             context.startActivity(is);
 
                         } else {
