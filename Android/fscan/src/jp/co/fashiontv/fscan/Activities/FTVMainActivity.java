@@ -128,12 +128,10 @@ public class FTVMainActivity extends BaseActivity implements PageEventListener {
 					slidingMenu.showContent();
 					break;
 				case 1:
-
 					slidingMenu.showContent();
-					Intent historyIntent = new Intent(FTVMainActivity.this,
-							HistoryActivity.class);
-					startActivity(historyIntent);
-					finish();
+					String string = histroryUrl;
+					webViewClient.shouldOverrideUrlLoading(mainWebView,
+							string);
 					break;
 
 				case 2:
