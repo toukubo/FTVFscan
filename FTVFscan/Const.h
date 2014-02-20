@@ -10,9 +10,9 @@
 #define FTVFscan_Const_h
 
 #ifdef DEBUG
-    #define BASEURL @"http://fscan.fashiontv.co.jp/fscan-web-staging/"
+    #define BASEURL @"http://fscan.fashiontv.co.jp/fscan.en/"
 #else
-    #define BASEURL @"http://fscan.fashiontv.co.jp/fscan-web-staging/"
+    #define BASEURL @"http://fscan.fashiontv.co.jp/fscan.en/"
 #endif
 
 #define CONTENTBASE @"http://fscan.fashiontv.co.jp/fdbdev.en/"
