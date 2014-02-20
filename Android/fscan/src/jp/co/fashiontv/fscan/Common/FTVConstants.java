@@ -9,7 +9,7 @@ public class FTVConstants {
     public static String host               = "fscan.fashiontv.co.jp";
 
 //    public static String baseUrl            = "http://fscan.fashiontv.co.jp/fscan-web-staging/";
-      public static String baseUrl            = "http://zxc.cz/fdbdev.en/";
+      public static String baseUrl            = "http://fscan.fashiontv.co.jp/fscan.en/";
       
     public static String urlCategoryNews    = "news/";
     public static String urlCategoryMovie   = "movie/";
