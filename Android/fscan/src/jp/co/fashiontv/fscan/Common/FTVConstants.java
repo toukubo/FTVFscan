@@ -4,7 +4,7 @@ package jp.co.fashiontv.fscan.Common;
  * Created by Alsor Zhou on 13-11-9.
  */
 public class FTVConstants {
-    public static String urlHome            = "http://fscan.fashiontv.co.jp/fdbdev/";
+    public static String urlHome            = "http://fscan.fashiontv.co.jp/fdbdev.en/";
 
     public static String host               = "fscan.fashiontv.co.jp";
 
@@ -17,7 +17,7 @@ public class FTVConstants {
     public static String urlFormSearch      = "form-search/";
     public static String urlSearch          = "search/";
 
-    public static String urlBrands          = "http://fscan.fashiontv.co.jp/fdbdev/category/brands/";
+    public static String urlBrands          = "http://fscan.fashiontv.co.jp/fdbdev.en/category/brands/";
 
     public static int httpTimeout           = 120;    // seconds
 

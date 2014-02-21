@@ -8,10 +8,11 @@ import java.util.List;
 import jp.co.fashiontv.fscan.R;
 import jp.co.fashiontv.fscan.Activities.BaseActivity;
 import jp.co.fashiontv.fscan.Activities.FTVMainActivity;
+import jp.co.fashiontv.fscan.Activities.FTVWebViewActivity;
 import jp.co.fashiontv.fscan.Activities.HistoryActivity;
-import jp.co.fashiontv.fscan.Activities.ResultActivity;
 import jp.co.fashiontv.fscan.Common.FTVConstants;
 import jp.co.fashiontv.fscan.Database.DatabaseHandler;
+import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
 import jp.co.fashiontv.fscan.Listener.CameraViewListener;
 import jp.co.fashiontv.fscan.Logic.AuthLogic;
 import jp.co.fashiontv.fscan.Logic.SearchLogic;
@@ -28,8 +29,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -45,26 +49,29 @@ import com.testflightapp.lib.TestFlight;
  */
 public class CameraActivity extends BaseActivity implements CameraViewListener {
 	private static final String TAG = "CameraActivity";
-	/** カメラビュー */
+	/** ������������������ */
 	private CameraView cameraView = null;
-	/** 結果領域 */
+	/** ������������ */
 	private RelativeLayout resultView = null;
-	/** 認証済みフラグ */
+	/** ��������������������� */
 	private boolean isAuthed = false;
-	/** アプリケーションコンテキスト */
+	/** ������������������������������������������ */
 	private Context mContext = null;
-	/** 画像識別ロジックインスタンス */
+	/** ������������������������������������������ */
 	private SearchLogic mSearchLogic = null;
-	/** クエリ画像 */
+	/** ��������������� */
 	private Bitmap queryImageBMP = null;
-	/** クリック済みフラグ */
+	/** ��������������������������� */
 	private boolean isClicked = false;
+	private ImageView imageView;
 
-	TextView resultText1, resultText2;
+
+	TextView resultText2;
+	String brand_slug = "";
 
 	// private GaziruSearchParams gaziruSearchParams;
 
-	/** プログレスバー */
+	/** ��������������������� */
 	private ProgressBar mProgressBar;
 
 	@Override
@@ -73,12 +80,12 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 
 		mContext = getApplicationContext();
 
-		// 結果領域取得
+		// ������������������
 		resultView = (RelativeLayout) findViewById(R.id.result_view);
-		// 結果領域のリスナをnullで初期化
+		// ���������������������������null������������
 		resultView.setOnClickListener(null);
 
-		// 画像識別ロジックインスタンス生成
+		// ������������������������������������������������
 		mSearchLogic = new SearchLogic();
 
 		setUpHeaderView();
@@ -94,26 +101,31 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		// CameraView設定
-		// viewの取得
+		// CameraView������
+		// view���������
 		cameraView = (CameraView) findViewById(R.id.camera_view);
-		// カメラインスタンスの作成
+		// ������������������������������������
 		cameraView.recreateCamera();
-		// プレビューデータ通知用のリスナー登録
-		// カメラプレビューコールバックをnotifyPreviewData()で受け取けとる。
+		// ������������������������������������������������������
+		// ���������������������������������������������notifyPreviewData()������������������������
 		cameraView.setCameraViewListener(this);
 
-		// クエリ画像を初期化する
+		// ���������������������������������
 		queryImageBMP = null;
-		// 結果表示領域のテキストビューを初期化する
-		resultText1 = (TextView) findViewById(R.id.result_text1);
+		// ������������������������������������������������������������
+
+        Animation hyperspaceJump = AnimationUtils.loadAnimation(this, R.anim.translate);
+        imageView = (ImageView)findViewById(R.id.image);
+
+		 imageView.startAnimation(hyperspaceJump);
+		
 		resultText2 = (TextView) findViewById(R.id.result_text2);
-		resultText1.setText(getString(R.string.result_text_default));
+
 		resultText2.setText("");
 		resultView.setOnClickListener(null);
-		resultText1.setVisibility(View.GONE);
 
-		// 企業認証処理実行
+
+		// ������������������������
 		new AsyncTask<Void, Void, String>() {
 			@Override
 			protected String doInBackground(Void... params) {
@@ -126,17 +138,17 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 				Log.d(TAG, "onPostExecute() result = " + result);
 				TestFlight.passCheckpoint("onPostExecute() result = " + result);
 
-				// 認証成功の場合
+				// ���������������������
 				if (result.equals("0000")) {
 					mProgressBar.setVisibility(View.INVISIBLE);
-					// 認証済みフラグをON
+					// ������������������������ON
 					isAuthed = true;
-					// プレビューデータ通知を開始
+					// ���������������������������������������
 					if (cameraView != null) {
 						cameraView.notifyRestartPreview();
 					}
 				}
-				// 認証失敗の場合
+				// ���������������������
 				else {
 					showGAZIRUAuthFailedAlertDialog();
 				}
@@ -145,16 +157,16 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 	}
 
 	/**
-	 * CameraViewからのプレビューデータ通知を受信時処理
+	 * CameraView���������������������������������������������������������
 	 * 
 	 * @param data
-	 *            プレビューデータ
+	 *            ������������������������
 	 */
 	public void notifyPreviewData(byte[] data) {
 		Log.d(TAG, "notifyPreviewData() isAuthed = " + isAuthed);
-		// カメラViewが存在するかつ認証済みの場合
+		// ���������View������������������������������������������
 		if (cameraView != null && isAuthed) {
-			// 画像識別ロジック開始
+			// ������������������������������
 			Point cameraResolution = new Point();
 			cameraResolution.x = cameraView.getPreviewSize().width;
 			cameraResolution.y = cameraView.getPreviewSize().height;
@@ -165,16 +177,16 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 	}
 
 	/**
-	 * 画像識別ロジックを開始
+	 * ���������������������������������
 	 * 
 	 * @param data
-	 *            プレビューデータ
+	 *            ������������������������
 	 * @param cameraResolution
-	 *            カメラ解像度
+	 *            ������������������
 	 */
 	public void startSearchLogic(byte[] data, final Point cameraResolution) {
 
-		// 検索処理実行
+		// ������������������
 		new AsyncTask<byte[], Void, List<SearchResult>>() {
 
 			@Override
@@ -193,10 +205,10 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 	}
 
 	/**
-	 * 識別完了後処理 識別結果の追加情報1,2を画面に表示します。 カメラプレビューデータのコールバックを有効化します。
+	 * ��������������������� ���������������������������1,2������������������������������ ������������������������������������������������������������������������������
 	 * 
 	 * @param searchResultList
-	 *            識別結果リスト
+	 *            ���������������������
 	 */
 	@SuppressWarnings("unchecked")
 	public void searchExecuted(List<SearchResult> searchResultList) {
@@ -205,45 +217,43 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 		TestFlight
 				.passCheckpoint("notifyPhotosearchExecuted() searchResultList = "
 						+ searchResultList);
-		// 追加情報をテキストに設定
-		TextView resultText1 = (TextView) findViewById(R.id.result_text1);
+		// ������������������������������������
+//		TextView resultText1 = (TextView) findViewById(R.id.result_text1);
 		TextView resultText2 = (TextView) findViewById(R.id.result_text2);
 
-		// 検索失敗の場合
+		// ���������������������
 		if (searchResultList == null) {
-			resultText1
-					.setText(getString(R.string.result_text_connection_failed));
 			resultText2.setText("");
 			resultView.setOnClickListener(null);
 			return;
 		}
 
-		// 検索成功しヒットした場合
+		// ������������������������������������
 		if (searchResultList.size() > 0) {
-			// スコアをソート
+			// ���������������������
 			Collections.sort(searchResultList, new ScoreComparator());
-			resultText1.setText(searchResultList.get(0).getAppendInfo().get(0));
 			resultText2.setText(searchResultList.get(0).getAppendInfo().get(1));
-			// ヒットした場合のみリスナを設定
+			brand_slug = searchResultList.get(0).getAppendInfo().get(0);
+
+			// ���������������������������������������������
 			resultView.setOnClickListener(ResultTextClickListener);
-			// 次の画面で利用するため検索に利用した画像を画面で保持
+			// ������������������������������������������������������������������������������
 			if (mSearchLogic != null) {
 				TestFlight.passCheckpoint("mSearchLogic.getQueryImageBMP();");
 				queryImageBMP = mSearchLogic.getQueryImageBMP();
 			}
 		} else {
-			resultText1.setText(getString(R.string.result_text_default));
 			resultText2.setText("");
 			resultView.setOnClickListener(null);
 		}
 
-		// プレビューデータ通知を再開
+		// ���������������������������������������
 		cameraView.notifyRestartPreview();
 
 	}
 
 	/**
-	 * SearchResultをスコア降順にソートするクラス SearchResultをスコア降順にソートするためのComparatorクラスです。
+	 * SearchResult��������������������������������������������� SearchResult���������������������������������������������Comparator������������������
 	 */
 	@SuppressWarnings("rawtypes")
 	private class ScoreComparator implements Comparator {
@@ -268,7 +278,7 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		// クリックイベントを許可する
+		// ���������������������������������������
 		isClicked = false;
 	}
 
@@ -278,7 +288,7 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 	}
 
 	/**
-	 * GAZIRU認証処理失敗時ダイアログ表示処理 OKボタン押下でActivityを終了します。
+	 * GAZIRU������������������������������������������������ OK������������������Activity���������������������
 	 */
 	private void showGAZIRUAuthFailedAlertDialog() {
 		if (!isFinishing()) {
@@ -290,7 +300,7 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 					new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							// Activity終了
+							// Activity������
 							finish();
 						}
 					});
@@ -318,21 +328,30 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 	// finish();
 	// }
 
-	/** 結果領域クリックリスナ */
+	/** ��������������������������������� */
 	private OnClickListener ResultTextClickListener = (new OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			if (!isClicked) {
-				// 結果画面へ遷移
-				TestFlight.passCheckpoint("結果領域クリックリスナ");
-				SaveHistory(queryImageBMP, resultText2.getText().toString(),
-						resultText1.getText().toString());
-				Intent intent = new Intent(getApplicationContext(),
-						ResultActivity.class);
-				if (queryImageBMP != null) {
-					intent.putExtra("imageBitmap", queryImageBMP);
-				}
-				startActivity(intent);
+				// ���������������������
+				TestFlight.passCheckpoint("���������������������������������");
+//				SaveHistory(queryImageBMP, resultText2.getText().toString(),
+//						brand_slug);
+				
+				FTVImageProcEngine.postImageDataWithBrandSlug(mContext,brand_slug,queryImageBMP);
+				
+//				Intent is = new Intent(mContext, FTVWebViewActivity.class);
+//				String urlSearch = String.format("%s%s",
+//						FTVConstants.baseUrl, FTVConstants.urlSearch);
+//                String url = String.format("%s%s%s%s%s", FTVConstants.baseUrl, "scan/scan.php?deviceid=", FTVUser.getID(), "&id=", resultText1.getText().toString());
+//				String url = FTVConstants.urlHome + brand_slug;
+//				is.putExtra("url", url);
+//				mContext.startActivity(is);
+				
+//				if (queryImageBMP != null) {
+//					intent.putExtra("imageBitmap", queryImageBMP);
+//				}
+//				startActivity(is);
 				queryImageBMP = null;
 				isClicked = true;
 			}
@@ -497,10 +516,8 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 					break;
 				case 1:
 					slidingMenu.showContent();
-					Intent historyIntent = new Intent(CameraActivity.this,
-							HistoryActivity.class);
-					startActivity(historyIntent);
-					finish();
+					String string = histroryUrl;
+					moveToNextActivity(string);
 					break;
 				case 2:
 					// code to open gallery

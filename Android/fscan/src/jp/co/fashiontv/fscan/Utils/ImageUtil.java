@@ -126,13 +126,13 @@ public class ImageUtil {
         }
     }
 
-    /** ファイル名付加 */
+    /** ��������������������� */
     private static final SimpleDateFormat FILE_NAME_DATEFORMAT = new SimpleDateFormat("yyyyMMdd-HHmmss");
     /**  */
     private static final String SAVE_IMAGE_ROOTDIR = Environment.getExternalStorageDirectory().getAbsolutePath();
 
     /**
-     * コンストラクタ(インスタンス生成禁止) .
+     * ���������������������(������������������������������) .
      */
     private ImageUtil() {
     }
@@ -182,15 +182,15 @@ public class ImageUtil {
     }
 
     /**
-     * YUV420SP→ARGB8888 Bitmap変換＋トリミング処理
-     * １．YUV420SPをARGB8888 Bitmapフォーマットに変換します。
-     * ２．trimRect範囲で画像の切り出しを行います。
-     * ３．引数のスケールで拡大します。
+     * YUV420SP���ARGB8888 Bitmap������������������������������
+     * ������YUV420SP���ARGB8888 Bitmap���������������������������������������
+     * ������trimRect������������������������������������������������
+     * ������������������������������������������������
      *
-     * @param data YUV420SPバイナリ
-     * @param resolution data解像度
-     * @param trimRect トリミング領域
-     * @param scale 拡大値
+     * @param data YUV420SP������������
+     * @param resolution data���������
+     * @param trimRect ���������������������
+     * @param scale ���������
      * @return ARGB8888 Bitmap
      */
     public static Bitmap createScaledBitmapFromYUV420SP(byte[] data, Point resolution, Rect trimRect, float scale) {
@@ -203,11 +203,11 @@ public class ImageUtil {
     }
 
     /**
-     * YUV420SPバイナリ→ARGB8888 Bitmap変換処理
-     * YUV420SPバイナリをARGB8888 Bitmapフォーマットに変換します。
+     * YUV420SP���������������ARGB8888 Bitmap������������
+     * YUV420SP���������������ARGB8888 Bitmap���������������������������������������
      *
-     * @param data YUV420SPバイナリ
-     * @param resolution data解像度
+     * @param data YUV420SP������������
+     * @param resolution data���������
      * @return ARGB8888 Bitmap
      */
     public static Bitmap getBitmapFromYUV420SP(byte[] data, Point resolution) {
@@ -215,12 +215,12 @@ public class ImageUtil {
     }
 
     /**
-     * YUV420SPバイナリ→ARGB8888 Bitmap変換処理
-     * YUV420SPバイナリをARGB8888 Bitmapフォーマットに変換します。
+     * YUV420SP���������������ARGB8888 Bitmap������������
+     * YUV420SP���������������ARGB8888 Bitmap���������������������������������������
      *
-     * @param data YUV420SPバイナリ
-     * @param width data画像横幅
-     * @param height data画像縦幅
+     * @param data YUV420SP������������
+     * @param width data������������
+     * @param height data������������
      * @return ARGB8888 Bitmap
      */
     public static Bitmap getBitmapFromYUV420SP(byte[] data, int width, int height) {
@@ -239,11 +239,11 @@ public class ImageUtil {
     }
 
     /**
-     * Bitmap画像回転処理
-     * 引数のBitmap画像を90度回転します。
+     * Bitmap������������������
+     * ���������Bitmap���������90���������������������
      *
-     * @param source 回転対象bitmap
-     * @return 回転後Bitmap
+     * @param source ������������bitmap
+     * @return ���������Bitmap
      */
     public static Bitmap createBitmapRotated(Bitmap source) {
         Matrix m = new Matrix();
@@ -253,51 +253,51 @@ public class ImageUtil {
     }
 
     /**
-     * SDカードに画像を保存する。
+     * SD������������������������������������
      *
      * @return
      */
     public static String saveImageSD(Context context, Bitmap bmp) {
 
-        // 保存ディレクトリ
+        // ������������������������
         String fileDir = SAVE_IMAGE_ROOTDIR + "/" + context.getString(R.string.imageutil_savebitmapsd_savesubdirname);
 
-        // ファイル名
+        // ���������������
         String fileName;
         synchronized (FILE_NAME_DATEFORMAT) {
-            fileName = context.getString(R.string.imageutil_savebitmapsd_filenameprefix) + FILE_NAME_DATEFORMAT.format(new Date()) + ".jpg";
+            fileName = context.getString(R.string.imageutil_savebitmapsd_filenameprefix) + FILE_NAME_DATEFORMAT.format(new Date()) + ".png";
         }
 
-        // OutputStream定義
+        // OutputStream������
         OutputStream os = null;
 
-        // ファイルPath
+        // ������������Path
         String filePath = fileDir + "/" + fileName;
 
         try {
-            // ディレクトリファイルインスタンス
+            // ������������������������������������������������
             File dir = new File(fileDir);
 
-            // ディレクトリがなかったら作成する
+            // ������������������������������������������������
             if (!dir.exists()) {
                 dir.mkdir();
                 Log.d(TAG, "create directory:" + dir.toString());
             }
 
-            // ファイルインスタンス
+            // ������������������������������
             File file = new File(fileDir, fileName);
 
-            // 新規作成だった場合
+            // ���������������������������
             if (file.createNewFile()) {
 
-                // FileOutputStreamでインスタンス生成
+                // FileOutputStream���������������������������
                 os = new FileOutputStream(file);
 
-                // Bitmapデータがある場合
+                // Bitmap������������������������
                 if (bmp != null) {
 
-                    // JPEG形式で書き込む
-                    bmp.compress(CompressFormat.JPEG, 100, os);
+                    // JPEG���������������������
+                    bmp.compress(CompressFormat.PNG, 100, os);
 
                 }
             }
@@ -306,7 +306,7 @@ public class ImageUtil {
             return null;
         } finally {
 
-            // OutputStreamがある場合はcloseする
+            // OutputStream������������������close������
             if (os != null) {
 
                 try {
@@ -318,14 +318,14 @@ public class ImageUtil {
             }
         }
 
-        // 画像情報をコンテントプロバイダに通知
+        // ������������������������������������������������������
         ContentResolver cr = context.getContentResolver();
         ContentValues values = new ContentValues(7);
-        values.put(Images.Media.TITLE, fileName); // タイトル
-        values.put(Images.Media.DISPLAY_NAME, fileName); // 表示名
-        values.put(Images.Media.DATE_TAKEN, System.currentTimeMillis());// データトークン
-        values.put(Images.Media.MIME_TYPE, "image/jpeg"); // MIMEタイプ
-        values.put(Images.Media.DATA, filePath); // 保存先
+        values.put(Images.Media.TITLE, fileName); // ������������
+        values.put(Images.Media.DISPLAY_NAME, fileName); // ���������
+        values.put(Images.Media.DATE_TAKEN, System.currentTimeMillis());// ���������������������
+        values.put(Images.Media.MIME_TYPE, "image/png"); // MIME���������
+        values.put(Images.Media.DATA, filePath); // ���������
         cr.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
         Log.d(TAG, "filePath = " + filePath);
