@@ -5,7 +5,7 @@
       "idiom" : "iphone",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "splash640.png",
+      "filename" : "splash-11.png",
       "scale" : "2x"
     },
     {
@@ -30,21 +30,21 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "splash1536.png",
+      "filename" : "splash-11-1.png",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
-      "filename" : "splash320.png",
+      "filename" : "Default-Portrait 2.png",
       "scale" : "1x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
-      "filename" : "splash640-1.png",
+      "filename" : "Default-Portrait@2x.png",
       "scale" : "2x"
     },
     {
@@ -59,46 +59,28 @@
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
-      "filename" : "splash768-2.png",
+      "filename" : "Default.png",
       "scale" : "1x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "full-screen",
-      "filename" : "splash768-1.png",
+      "filename" : "Default 2.png",
       "scale" : "1x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
-      "filename" : "splash1536-2.png",
+      "filename" : "Default-Portrait.png",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "full-screen",
-      "filename" : "splash1536-1.png",
-      "scale" : "2x"
-    },
-    {
-      "extent" : "full-screen",
-      "idiom" : "ipad",
-      "filename" : "splash-11.png",
-      "minimum-system-version" : "7.0",
-      "orientation" : "landscape",
-      "unassigned" : true,
-      "scale" : "1x"
-    },
-    {
-      "extent" : "full-screen",
-      "idiom" : "ipad",
-      "filename" : "splash-11-1.png",
-      "minimum-system-version" : "7.0",
-      "orientation" : "landscape",
-      "unassigned" : true,
+      "filename" : "Default@2x.png",
       "scale" : "2x"
     },
     {
