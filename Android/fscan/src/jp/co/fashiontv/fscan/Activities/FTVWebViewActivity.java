@@ -44,6 +44,7 @@ public class FTVWebViewActivity extends BaseActivity {
         setUpSlidingView();
 
         ImageView ivHome = (ImageView)findViewById(R.id.home);
+        ImageView camera = (ImageView)findViewById(R.id.camera);
         ivHome.setOnClickListener(new OnClickListener() {
 		 
         	@Override
@@ -52,6 +53,13 @@ public class FTVWebViewActivity extends BaseActivity {
  
 			}
 		});
+        camera.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivityCamera();
+			}
+		});
+
         
         
         
@@ -140,4 +148,14 @@ public class FTVWebViewActivity extends BaseActivity {
 		
 		return getLayoutInflater().inflate(R.layout.layout_webview, null);
 	}
+	/**
+//	 * Start custom camera here
+//	 */
+	public void startActivityCamera() {
+		TestFlight.passCheckpoint("FTVMainActivity - startActivityCamera");
+
+		Intent intent = new Intent(this, CameraActivity.class);
+		startActivityForResult(intent, FTVConstants.activityRequestCodeCamera);
+	}
+
 }
