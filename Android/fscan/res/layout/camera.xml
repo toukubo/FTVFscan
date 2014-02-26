@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:padding="10dp"
-            android:background="#22000000">
+            android:background="#11000000">
             <!-- 追加情報1 -->
             <TextView
                 android:id="@+id/result_text1"
