@@ -581,6 +581,7 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
             
             for (int i = 0; i < TEST_TIME; i++) {
                 NSString *brand_slug = scanDetailView->brand_slug;
+                NSString *recognization_id = scanDetailView->recognitionId;
                 
                 NSData *imageData = UIImagePNGRepresentation(image);
                 
@@ -612,6 +613,10 @@ static void *AVCamFlashModeObserverContext = &AVCamFlashModeObserverContext;
                                                             }];
                                                
                                                redirectUrl = [FTVImageProcEngine encapsulateById:resp];
+                                               
+                                               // append recognization id to redirectUrl
+                                               redirectUrl = [NSString stringWithFormat:@"%@&recognitionid=%@", redirectUrl, recognization_id];
+                                               
                                                if (![redirectUrl isMalform]) {
                                                    //                                           [self performSelectorOnMainThread:@selector(switchSceneToResultController) withObject:nil waitUntilDone:NO];
                                                    

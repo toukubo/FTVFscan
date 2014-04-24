@@ -115,7 +115,7 @@
         
         // トップスコアのスキャン結果を取得する
         NSArray *displayResult = [[sortDescArray objectAtIndex:0] objectForKey:COLUMN_KEY_APPENDINFO];
-
+        
         if (dotUpdateTimer)
         {
             [dotUpdateTimer invalidate];
@@ -128,6 +128,8 @@
         [_appendInfo1Label setText:[NSString stringWithFormat:@"%@",
                                     [displayResult objectAtIndex:1]]];
         brand_slug = [displayResult objectAtIndex:0];
+        recognitionId = [NSString stringWithFormat:@"%@", [[sortDescArray objectAtIndex:0] objectForKey:COLUMN_KEY_ID]];
+        
         
 //        [_appendInfo2Label setText:[NSString stringWithFormat:@"%@",
 //                                    [displayResult objectAtIndex:1]]];

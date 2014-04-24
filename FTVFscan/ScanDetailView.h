@@ -13,6 +13,7 @@
     NSTimer *dotUpdateTimer;
     @public
     NSString *brand_slug;
+    NSString *recognitionId;
 }
 
 @property (strong, nonatomic) IBOutlet UIButton *detailButton;       // 詳細領域ボタン
