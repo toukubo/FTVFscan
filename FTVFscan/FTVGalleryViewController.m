@@ -173,6 +173,8 @@ static const int kImageViewTag = 1;  // the image view inside the collection vie
                                                 }];
                                    
                                    redirectUrl = [FTVImageProcEngine encapsulateById:resp];
+                                   redirectUrl = [redirectUrl stringByAppendingString:@"&source=gallery"];
+
                                    if (![redirectUrl isMalform]) {
 //                                       [self performSelectorOnMainThread:@selector(switchSceneToResultController) withObject:nil waitUntilDone:NO];
                                        

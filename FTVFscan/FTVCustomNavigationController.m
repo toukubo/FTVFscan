@@ -197,6 +197,7 @@
     [self setCameraButton:navigationView];
     [self setMenuButton:navigationView];
     [vc.view addSubview:navigationView];
+    DLog(@"executed");
 }
 
 -(void)setCameraMenuNavigations:(UIViewController *)vc{
@@ -222,7 +223,7 @@
 
 -(void)setBackCameraMenuNavigations:(UIViewController *)vc{
     UIView *navigationView = [self drawBackground];
-    [self setHomeButton:navigationView];
+//    [self setHomeButton:navigationView];
     [self setCameraButton:navigationView];
     [self setMenuButton:navigationView];
     [self setBackButton:navigationView vc:vc];

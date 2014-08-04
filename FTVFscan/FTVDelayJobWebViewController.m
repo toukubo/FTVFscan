@@ -186,7 +186,7 @@
 //    NSLog(@"webViewDidFinishLoad,,,");
     [self statusIndicatorHide];
     if (ShowResultPage) {
-        [super setHomeCameraMenuNavigations:self];
+//        [super setHomeCameraMenuNavigations:self];
     }
     isGoBack = NO;
     
@@ -330,8 +330,6 @@
         if ([urlString hasPrefix:CONTENTBASE]) {
             if ([urlString isEqualToString:@"http://fscan.fashiontv.co.jp/fdbdev/"]) {
                 [super setTitleNavigation:self];
-            }else if ([urlString hasPrefix:[ CONTENTBASE stringByAppendingString:@"category/brandlogo_"]]) {
-                [super setBackCameraMenuNavigations:self];
             }else if ([urlString hasPrefix:[ CONTENTBASE stringByAppendingString:@"category/brands"]]) {
                 [super setHomeCameraMenuNavigations:self];
             }else if ([urlString hasPrefix:[ CONTENTBASE stringByAppendingString:@"category"]]) {
@@ -341,6 +339,12 @@
             }else{
                 [super setBackCameraMenuNavigations:self];
             }
+            
+            if ([urlString isMatchedByRegex:@"result=true"]) {
+                [super setHomeCameraMenuNavigations:self];
+            }
+
+            
         }else if ([urlString hasPrefix:[ BASEURL stringByAppendingString:@"/scan/list"]]) {
             [super setHomeCameraMenuNavigations:self];
 
@@ -350,17 +354,16 @@
         }else if ([urlString hasPrefix:@"http://fashiontv.co.jp//www.youtube.com"]) {
             [super setBackCameraMenuNavigations:self];
         }else{
-            if(![urlString hasPrefix:@"http://www.youtube.com"]){
-                [super setBackCameraNavigations:self];
+            if([urlString rangeOfString:@"www.youtube.com"].location != NSNotFound){
+                [super setHomeCameraMenuNavigations:self];
                 self.webView.scalesPageToFit = YES;
                 self.webView.multipleTouchEnabled = YES;
-                
 
+//            }else if(![urlString rangeOfString:@"www.youtube.com"].location != NSNotFound){
+//                [super setHomeCameraMenuNavigations:self];
+            }else if(![urlString hasSuffix:@"png"] && ![urlString hasSuffix:@"jpg"] &&![urlString hasSuffix:@"about:blank"]){
+                [super setBackCameraMenuNavigations:self];
             }
-        }
-        
-        if ([urlString isMatchedByRegex:@"result=true"]) {
-            [super setHomeCameraMenuNavigations:self];
         }
         
     }
