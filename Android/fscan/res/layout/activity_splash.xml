@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     
     tools:context=".MainActivity" 
-    android:background="@drawable/splash">
+    android:background="@drawable/splash_first">
 <!-- 
 <ImageView 
 	android:layout_width="wrap_content"
