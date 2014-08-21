@@ -8,17 +8,15 @@ import java.util.List;
 import jp.co.fashiontv.fscan.R;
 import jp.co.fashiontv.fscan.Activities.BaseActivity;
 import jp.co.fashiontv.fscan.Activities.FTVMainActivity;
-import jp.co.fashiontv.fscan.Activities.FTVWebViewActivity;
-import jp.co.fashiontv.fscan.Activities.HistoryActivity;
 import jp.co.fashiontv.fscan.Common.FTVConstants;
 import jp.co.fashiontv.fscan.Database.DatabaseHandler;
-import jp.co.fashiontv.fscan.ImgProc.FTVImageProcEngine;
 import jp.co.fashiontv.fscan.Listener.CameraViewListener;
 import jp.co.fashiontv.fscan.Logic.AuthLogic;
 import jp.co.fashiontv.fscan.Logic.SearchLogic;
 import jp.co.fashiontv.fscan.View.CameraView;
 import jp.co.nec.gazirur.rtsearch.lib.bean.SearchResult;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -48,6 +46,8 @@ import com.testflightapp.lib.TestFlight;
  * @author Alsor Zhou
  */
 public class CameraActivity extends BaseActivity implements CameraViewListener {
+	public ProgressDialog progressDialog;
+
 	private static final String TAG = "CameraActivity";
 	/** ������������������ */
 	private CameraView cameraView = null;
@@ -56,13 +56,13 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 	/** ��������������������� */
 	private boolean isAuthed = false;
 	/** ������������������������������������������ */
-	private Context mContext = null;
+	Context mContext = null;
 	/** ������������������������������������������ */
 	private SearchLogic mSearchLogic = null;
 	/** ��������������� */
-	private Bitmap queryImageBMP = null;
+	Bitmap queryImageBMP = null;
 	/** ��������������������������� */
-	private boolean isClicked = false;
+	boolean isClicked = false;
 	private ImageView imageView;
 
 
@@ -72,8 +72,8 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 	// private GaziruSearchParams gaziruSearchParams;
 
 	/** ��������������������� */
-	private ProgressBar mProgressBar;
-
+	ProgressBar mProgressBar;
+	private OnClickListener ResultTextClickListener = null;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -87,12 +87,13 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 
 		// ������������������������������������������������
 		mSearchLogic = new SearchLogic();
-
+		ResultTextClickListener = new DetailClickListener(this);
 		setUpHeaderView();
 		setUpSlidingView();
 
-		mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-		mProgressBar.setVisibility(View.VISIBLE);
+
+//		mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+//		mProgressBar.setVisibility(View.VISIBLE);
 	}
 
 	/*
@@ -109,6 +110,8 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 		// ������������������������������������������������������
 		// ���������������������������������������������notifyPreviewData()������������������������
 		cameraView.setCameraViewListener(this);
+		RelativeLayout maskView = (RelativeLayout) findViewById(R.id.maskView);
+		maskView.setVisibility(View.GONE);
 
 		// ���������������������������������
 		queryImageBMP = null;
@@ -140,7 +143,7 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 
 				// ���������������������
 				if (result.equals("0000")) {
-					mProgressBar.setVisibility(View.INVISIBLE);
+//					mProgressBar.setVisibility(View.INVISIBLE);
 					// ������������������������ON
 					isAuthed = true;
 					// ���������������������������������������
@@ -329,34 +332,6 @@ public class CameraActivity extends BaseActivity implements CameraViewListener {
 	// }
 
 	/** ��������������������������������� */
-	private OnClickListener ResultTextClickListener = (new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			if (!isClicked) {
-				// ���������������������
-				TestFlight.passCheckpoint("���������������������������������");
-//				SaveHistory(queryImageBMP, resultText2.getText().toString(),
-//						brand_slug);
-				
-				FTVImageProcEngine.postImageDataWithBrandSlug(mContext,brand_slug,queryImageBMP);
-				
-//				Intent is = new Intent(mContext, FTVWebViewActivity.class);
-//				String urlSearch = String.format("%s%s",
-//						FTVConstants.baseUrl, FTVConstants.urlSearch);
-//                String url = String.format("%s%s%s%s%s", FTVConstants.baseUrl, "scan/scan.php?deviceid=", FTVUser.getID(), "&id=", resultText1.getText().toString());
-//				String url = FTVConstants.urlHome + brand_slug;
-//				is.putExtra("url", url);
-//				mContext.startActivity(is);
-				
-//				if (queryImageBMP != null) {
-//					intent.putExtra("imageBitmap", queryImageBMP);
-//				}
-//				startActivity(is);
-				queryImageBMP = null;
-				isClicked = true;
-			}
-		}
-	});
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {

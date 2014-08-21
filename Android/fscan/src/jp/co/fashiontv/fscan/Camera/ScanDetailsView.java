@@ -11,7 +11,7 @@ import android.webkit.WebViewClient;
 public class ScanDetailsView extends Activity {
 
 	private WebView webView;
-	private ProgressDialog progressDialog;
+	public ProgressDialog progressDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

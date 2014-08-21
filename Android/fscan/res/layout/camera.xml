@@ -7,9 +7,12 @@
 <!-- CameraActivityメインレイアウト -->
 <!-- コンテンツ領域 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+    
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
@@ -19,7 +22,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
     </jp.co.fashiontv.fscan.View.CameraView>
+    
+        
     </FrameLayout>
+    
+    
+        <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    
+
+        <RelativeLayout android:id="@+id/maskView"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="#CC111111" />
+
+    
+      </FrameLayout>
+        
+        
+        
+        
 
     <!-- 追加情報領域 -->
     
@@ -97,13 +120,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#00000000">
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:visibility="invisible" />
+
+
         </RelativeLayout>
     </FrameLayout>
 </RelativeLayout>
